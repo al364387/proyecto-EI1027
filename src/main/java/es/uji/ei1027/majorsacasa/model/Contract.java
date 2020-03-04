@@ -12,6 +12,7 @@ public class Contract {
     private Date startDate;
     private Date endDate;
     private int serviceNumber;
+    private String cifCompany;
 
     public Contract() {
     }
@@ -80,6 +81,14 @@ public class Contract {
         this.serviceNumber = serviceNumber;
     }
 
+    public String getCifCompany() {
+        return cifCompany;
+    }
+
+    public void setCifCompany(String cifCompany) {
+        this.cifCompany = cifCompany;
+    }
+
     @Override
     public String toString() {
         return "Contract{" +
@@ -91,6 +100,7 @@ public class Contract {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", serviceNumber=" + serviceNumber +
+                ", cifCompany='" + cifCompany + '\'' +
                 '}';
     }
 }

@@ -10,6 +10,8 @@ public class VolunteerAvailability {
     private boolean friday;
     private boolean saturday;
     private boolean sunday;
+    private int idVolunteer;
+    private String dniEderly;
 
     public VolunteerAvailability() {
     }
@@ -86,6 +88,22 @@ public class VolunteerAvailability {
         this.sunday = sunday;
     }
 
+    public int getIdVolunteer() {
+        return idVolunteer;
+    }
+
+    public void setIdVolunteer(int idVolunteer) {
+        this.idVolunteer = idVolunteer;
+    }
+
+    public String getDniEderly() {
+        return dniEderly;
+    }
+
+    public void setDniEderly(String dniEderly) {
+        this.dniEderly = dniEderly;
+    }
+
     @Override
     public String toString() {
         return "VolunteerAvailability{" +
@@ -98,6 +116,8 @@ public class VolunteerAvailability {
                 ", friday=" + friday +
                 ", saturday=" + saturday +
                 ", sunday=" + sunday +
+                ", idVolunteer=" + idVolunteer +
+                ", dniEderly='" + dniEderly + '\'' +
                 '}';
     }
 }
