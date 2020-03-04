@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.model;
 import java.util.Date;
 
 public class Contract {
+
     private String number;
     private boolean catering;
     private boolean nursing;
