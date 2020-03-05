@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Gestionar Nadadors </title>
+    <meta charset="UTF-8"/>
+    <link rel ="stylesheet" href ="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1> Llista de Nadadors </h1>
+<table>
+    <thead>
+    <tr>
+        <th> Num.Federat</th>
+        <th> Nom</th>
+        <th> Pais</th>
+        <th> Edat</th>
+        <th>Gènere</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="nadadors" type="String"*/-->
+    <!--/*@thymesVar id="nadador" type="String"*/-->
+    <tr th:each="nadador: ${nadadors}">
+        <!--/*@thymesVar id="numFederat" type="String"*/-->
+        <td th:text="${nadador.numFederat}"></td>
+        <!--/*@thymesVar id="nom" type="String"*/-->
+        <td th:text="${nadador.nom}"></td>
+        <!--/*@thymesVar id="pais" type=""*/-->
+        <td th:text="${nadador.pais}"></td>
+        <!--/*@thymesVar id="edat" type=""*/-->
+        <td th:text="${nadador.edat}"></td>
+        <!--/*@thymesVar id="genere" type=""*/-->
+        <td th:text="${nadador.genere}"></td>
+        <td><a th:href="@{/nadador/update/{nom}(nom=${nadador.nom})}"> Edita </a>
+        </td>
+        <td><a th:href="@{/nadador/delete/{nom}(nom=${nadador.nom})}"> Esborra </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add">Afegeix nadador </a>
+</body>
+</html>
