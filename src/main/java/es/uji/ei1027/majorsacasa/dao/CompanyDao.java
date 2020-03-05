@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository // En Spring els DAOs van anotats amb @Repository
-public class CompanytDao {
+public class CompanyDao {
     private JdbcTemplate jdbcTemplate;
 
     // Obté el jdbcTemplate a partir del Data Source
@@ -20,40 +20,38 @@ public class CompanytDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-//    /* Afegeix la request a la base de dades */
-//    void addRequest(Request peticion) {
-//        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-//                peticion.getNumber(), peticion.getState(), peticion.getStartDate(),
-//                peticion.getEndDate(), peticion.getTime(), peticion.isCatering(),
-//                peticion.isNursing(), peticion.isCleaning(), peticion.getDescription(),
-//                peticion.getElderlyId(), peticion.getContractId());
-//    }
-//
-//    /* Esborra la request de la base de dades */
-//    public void deleteRequest(Request peticion) {
-//        jdbcTemplate.update("DELETE FROM Request WHERE number = ?", peticion.getNumber());
-//    }
-//
-//    /* Actualitza els atributs de la request */
-//    public void updateRequest(Request peticion) {
-//        jdbcTemplate.update("UPDATE Request SET state = ?, description = ?", peticion.getState(), peticion.getDescription());
-//    }
-//
-//    /* Obté el nadador amb el nom donat. Torna null si no existeix. */
-//    public Request getRequest(int number) {
-//        try {
-//            return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE number = ?", new RequestRowMapper(), number);
-//        } catch (EmptyResultDataAccessException e) {
-//            return null;
-//        }
-//    }
-//
-//    /* Obté tots els request. Torna una llista buida si no n'hi ha cap. */
-//    public List<Request> getNadadors() {
-//        try {
-//            return jdbcTemplate.query("SELECT * FROM Request", new RequestRowMapper());
-//        } catch (EmptyResultDataAccessException e) {
-//            return new ArrayList<Request>();
-//        }
-//    }
+    /* Afegeix la company a la base de dades */
+    void addRequest(Company empresa) {
+        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?, ?, ?)",
+                empresa.getCif(), empresa.getName(), empresa.getPhoneNumber(),
+                empresa.getAddress());
+    }
+
+    /* Esborra la empresa de la base de dades */
+    public void deleteRequest(Company empresa) {
+        jdbcTemplate.update("DELETE FROM Company WHERE cif = ?", empresa.getCif());
+    }
+
+    /* Actualitza els atributs de la request */
+    public void updateRequest(Company empresa) {
+        jdbcTemplate.update("UPDATE Request SET phoneNumber = ?, address = ?", empresa.getPhoneNumber(), empresa.getAddress());
+    }
+
+    /* Obté el nadador amb el nom donat. Torna null si no existeix. */
+    public Company getRequest(String cif) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE cif = ?", new CompanyRowMapper(), cif);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    /* Obté tots els request. Torna una llista buida si no n'hi ha cap. */
+    public List<Company> getNadadors() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Company", new CompanyRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Company>();
+        }
+    }
 }
