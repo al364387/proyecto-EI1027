@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Request {
@@ -7,7 +8,7 @@ public class Request {
     private String state;
     private Date startDate;
     private Date endDate;
-    private Date time;
+    private Time time;
     private boolean catering;
     private boolean nursing;
     private boolean cleaning;
@@ -54,7 +55,7 @@ public class Request {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Time time) {
         this.time = time;
     }
 
@@ -123,4 +124,3 @@ public class Request {
                 '}';
     }
 }
-
