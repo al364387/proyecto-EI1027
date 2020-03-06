@@ -106,7 +106,6 @@ public class Request {
         this.contractId = contractId;
     }
 
-
     @Override
     public String toString() {
         return "Request{" +
