@@ -21,7 +21,7 @@ public class InvoiceDao {
     }
 
     //Añadir Factura
-    public void addVolunteer(Invoice invoice) {
+    public void addInvoice(Invoice invoice) {
         jdbcTemplate.update("INSERT INTO Invoice VALUES(?, ?, ?, ?, ?, ?)",
                 invoice.getInvoiceNumber(), invoice.getDate(), invoice.isCatering(), invoice.isCleaning(), invoice.isNursing(),
                 invoice.getPrice());

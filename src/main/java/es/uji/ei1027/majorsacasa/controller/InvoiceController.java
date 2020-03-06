@@ -46,11 +46,11 @@ public class InvoiceController {
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("volunteer") Invoice invoice,
+    public String processAddSubmit(@ModelAttribute("invoice") Invoice invoice,
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "invoice/add";
-        invoiceDao.addVolunteer(invoice);
+        invoiceDao.addInvoice(invoice);
         return "redirect:list.html";
     }
 
