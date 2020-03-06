@@ -1,8 +1,10 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import java.sql.Time;
+
 public class VolunteerAvailability {
-    private int startTime;
-    private int endTime;
+    private Time startTime;
+    private Time endTime;
     private boolean monday;
     private boolean tuesday;
     private boolean wednesday;
@@ -16,19 +18,19 @@ public class VolunteerAvailability {
     public VolunteerAvailability() {
     }
 
-    public int getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
-    public int getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 
