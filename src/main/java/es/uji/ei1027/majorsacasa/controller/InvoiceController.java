@@ -20,6 +20,7 @@ import java.util.List;
 public class InvoiceController {
     private InvoiceDao invoiceDao;
 
+
     @Autowired
     public void setInvoiceDao(InvoiceDao invoiceDao) {
         this.invoiceDao = invoiceDao;
