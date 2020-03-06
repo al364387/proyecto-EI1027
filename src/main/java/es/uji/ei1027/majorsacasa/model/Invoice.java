@@ -1,9 +1,12 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Invoice {
     private String invoiceNumber;
+    @DateTimeFormat(pattern = "dd/mm/yyyy")
     private LocalDate date;
     private boolean catering;
     private boolean cleaning;
