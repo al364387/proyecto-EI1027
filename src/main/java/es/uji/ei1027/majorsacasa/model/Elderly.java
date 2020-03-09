@@ -1,6 +1,6 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Elderly {
     private String socialAsisNum;
@@ -8,7 +8,7 @@ public class Elderly {
     private String surname;
     private String email;
     private String DNI;
-    private Date birthDate;
+    private LocalDate birthDate;
     private int phoneNumber;
     private String address;
     private String bankAccount;
@@ -58,11 +58,11 @@ public class Elderly {
         this.DNI = DNI;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
