@@ -27,9 +27,9 @@ public class InvoiceLineDao {
     }
 
     //Borrar Linea de Factura
-    public void deleteInvoiceLine(int number) {
+    public void deleteInvoiceLine(int numberInvoice) {
         jdbcTemplate.update("DELETE from InvoiceLine where number=?",
-                number);
+                numberInvoice);
     }
 
     //Modificar atributos de la Linea de Factura

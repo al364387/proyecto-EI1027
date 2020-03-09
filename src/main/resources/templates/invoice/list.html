@@ -24,7 +24,7 @@
             <td th:text="${invoice.invoiceNumber}"></td>
             <td th:text="${invoice.date}"></td>
 
-            <td><a th:href="@{/volunteer/delete/{name}(name=${invoice.invoiceNumber})}">Borrar</a>
+            <td><a th:href="@{/invoice/delete/{name}(name=${invoice.invoiceNumber})}">Borrar</a>
         </tr>
         </tbody>
     </table>

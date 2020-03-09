@@ -13,8 +13,8 @@ public class InvoiceLine {
         return numberInvoice;
     }
 
-    public void setNumber(int number) {
-        this.numberInvoice = number;
+    public void setNumber(int numberInvoice) {
+        this.numberInvoice = numberInvoice;
     }
 
     public String getConcept() {
