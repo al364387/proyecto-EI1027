@@ -28,6 +28,15 @@ public class ElderlyDao {
                 elderly.getUsername(), elderly.getPassword());
     }
 
+    // Actualiza los datos de una persona mayor
+    public void upadateElderly(Elderly elderly){
+        jdbcTemplate.update("UPDATE Elderly SET socialAsisNum = ?, name = ?, surname = ?, email = ?, birthDate = ?, " +
+                "phoneNumber = ?, address = ?, bankAccount = ?, username = ?, password = ? WHERE dni = ?",
+                elderly.getSocialAsisNum(), elderly.getName(), elderly.getSurname(), elderly.getEmail(),
+                elderly.getBirthDate(), elderly.getPhoneNumber(), elderly.getAddress(), elderly.getBankAccount(),
+                elderly.getUsername(), elderly.getPassword(), elderly.getDNI());
+    }
+
     // Borra a la persona mayor de la bbdd
     public void deleteElderly(String dni){
         jdbcTemplate.update("DELETE FROM Elderly WHERE dni = ?", dni);
