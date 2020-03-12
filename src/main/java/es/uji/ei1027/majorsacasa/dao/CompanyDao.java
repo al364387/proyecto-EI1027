@@ -21,24 +21,24 @@ public class CompanyDao {
     }
 
     /* Afegeix la company a la base de dades */
-    void addRequest(Company empresa) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?, ?, ?)",
+    void addCompany(Company empresa) {
+        jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?)",
                 empresa.getCif(), empresa.getName(), empresa.getPhoneNumber(),
                 empresa.getAddress());
     }
 
     /* Esborra la empresa de la base de dades */
-    public void deleteRequest(Company empresa) {
+    public void deleteCompany(Company empresa) {
         jdbcTemplate.update("DELETE FROM Company WHERE cif = ?", empresa.getCif());
     }
 
-    /* Actualitza els atributs de la request */
-    public void updateRequest(Company empresa) {
-        jdbcTemplate.update("UPDATE Request SET phoneNumber = ?, address = ?", empresa.getPhoneNumber(), empresa.getAddress());
+    /* Actualitza els atributs de la Company */
+    public void updateCompany(Company empresa) {
+        jdbcTemplate.update("UPDATE Company SET phoneNumber = ?, address = ?", empresa.getPhoneNumber(), empresa.getAddress());
     }
 
     /* Obté el nadador amb el nom donat. Torna null si no existeix. */
-    public Company getRequest(String cif) {
+    public Company getCompany(String cif) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE cif = ?", new CompanyRowMapper(), cif);
         } catch (EmptyResultDataAccessException e) {
@@ -46,8 +46,8 @@ public class CompanyDao {
         }
     }
 
-    /* Obté tots els request. Torna una llista buida si no n'hi ha cap. */
-    public List<Company> getNadadors() {
+    /* Obté tots els Company. Torna una llista buida si no n'hi ha cap. */
+    public List<Company> getCompanies() {
         try {
             return jdbcTemplate.query("SELECT * FROM Company", new CompanyRowMapper());
         } catch (EmptyResultDataAccessException e) {
