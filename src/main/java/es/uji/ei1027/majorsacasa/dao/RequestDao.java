@@ -49,7 +49,7 @@ public class RequestDao {
     }
 
     /* Obté tots els request. Torna una llista buida si no n'hi ha cap. */
-    public List<Request> getNadadors() {
+    public List<Request> getRequests() {
         try {
             return jdbcTemplate.query("SELECT * FROM Request", new RequestRowMapper());
         } catch (EmptyResultDataAccessException e) {

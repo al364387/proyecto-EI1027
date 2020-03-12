@@ -24,7 +24,7 @@ public class CompanyDao {
     void addCompany(Company empresa) {
         jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?)",
                 empresa.getCif(), empresa.getName(), empresa.getPhoneNumber(),
-                empresa.getAddress());
+                empresa.getEmail());
     }
 
     /* Esborra la empresa de la base de dades */
@@ -34,7 +34,8 @@ public class CompanyDao {
 
     /* Actualitza els atributs de la Company */
     public void updateCompany(Company empresa) {
-        jdbcTemplate.update("UPDATE Company SET phoneNumber = ?, address = ?", empresa.getPhoneNumber(), empresa.getAddress());
+        jdbcTemplate.update("UPDATE Company SET phoneNumber = ?, email = ? WHERE cif = ?",
+                empresa.getPhoneNumber(), empresa.getEmail(), empresa.getCif());
     }
 
     /* Obté el nadador amb el nom donat. Torna null si no existeix. */

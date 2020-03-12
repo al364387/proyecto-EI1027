@@ -4,7 +4,7 @@ public class Company {
     private String cif;
     private String name;
     private int phoneNumber;
-    private String address;
+    private String email;
 
     public Company() {
     }
@@ -33,12 +33,12 @@ public class Company {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Company {
                 "cif='" + cif + '\'' +
                 ", name='" + name + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", address='" + address + '\'' +
+                ", address='" + email + '\'' +
                 '}';
     }
 

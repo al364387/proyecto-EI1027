@@ -6,37 +6,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1> Lista de Compañías </h1>
-<table>
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th scope="col"> Nom</th>-->
-<!--        <th scope="col"> Descripcio</th>-->
-<!--        <th scope="col"> Tipus</th>-->
-<!--        <th scope="col"> Data</th>-->
-<!--        <th scope="col"></th>-->
-<!--        <th scope="col"></th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    &lt;!&ndash;/*@thymesVar id="proves" type="String"*/&ndash;&gt;-->
-<!--    &lt;!&ndash;/*@thymesVar id="prova" type="String"*/&ndash;&gt;-->
-<!--    <tr th:each="prova: ${proves}">-->
-<!--        &lt;!&ndash;/*@thymesVar id="nom" type="String"*/&ndash;&gt;-->
-<!--        <td th:text="${prova.nom}"></td>-->
-<!--        &lt;!&ndash;/*@thymesVar id="descripcio" type=""*/&ndash;&gt;-->
-<!--        <td th:text="${prova.descripcio}"></td>-->
-<!--        &lt;!&ndash;/*@thymesVar id="tipus" type=""*/&ndash;&gt;-->
-<!--        <td th:text="${prova.tipus}"></td>-->
-<!--        &lt;!&ndash;/*@thymesVar id="data" type=""*/&ndash;&gt;-->
-<!--        <td th:text="${prova.data}"></td>-->
-<!--        <td><a th:href="@{/prova/update/{nom}(nom=${prova.nom})}"> Edita </a>-->
-<!--        </td>-->
-<!--        <td><a th:href="@{/prova/delete/{nom}(nom=${prova.nom})}"> Esborra </a>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-</table>
-<a href="add">Añadir compañía </a>
+<div class="container">
+    <h1> Lista de Compañías </h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col"> Cif</th>
+            <th scope="col"> Nombre</th>
+            <th scope="col"> Teléfono</th>
+            <th scope="col"> Dirección</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="company: ${companies}">
+            <td th:text="${company.cif}"></td>
+            <td th:text="${company.name}"></td>
+            <td th:text="${company.phoneNumber}"></td>
+            <td th:text="${company.email}"></td>
+            <td>Editar</td>
+            <td>Borrar</td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add">Añadir compañía </a>
+    <a href="/">Atrás</a>
+</div>
+
 </body>
 </html>
