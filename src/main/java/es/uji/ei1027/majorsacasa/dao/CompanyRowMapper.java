@@ -12,7 +12,7 @@ public final class CompanyRowMapper implements RowMapper<Company> {
         empresa.setCif(rs.getString("cif"));
         empresa.setName(rs.getString("name"));
         empresa.setPhoneNumber(rs.getInt("phoneNumber"));
-        empresa.setAddress(rs.getString("address"));
+        empresa.setEmail(rs.getString("email"));
         return empresa;
     }
 }

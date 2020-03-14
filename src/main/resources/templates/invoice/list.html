@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Facturas</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Lista Facturas</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Numero de factura</th>
+            <th>Fecha</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="invoice: ${invoices}">
+            <td th:text="${invoice.invoiceNumber}"></td>
+            <td th:text="${invoice.date}"></td>
+
+            <td><a th:href="@{/invoice/delete/{name}(name=${invoice.invoiceNumber})}">Borrar</a>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add" class="btn btn-success" role="button">Añade factura</a>
+</div>
+</body>
+</html>

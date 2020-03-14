@@ -6,10 +6,12 @@ import es.uji.ei1027.majorsacasa.model.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class InvoiceDao {
     private JdbcTemplate jdbcTemplate;
 
@@ -19,7 +21,7 @@ public class InvoiceDao {
     }
 
     //Añadir Factura
-    public void addVolunteer(Invoice invoice) {
+    public void addInvoice(Invoice invoice) {
         jdbcTemplate.update("INSERT INTO Invoice VALUES(?, ?, ?, ?, ?, ?)",
                 invoice.getInvoiceNumber(), invoice.getDate(), invoice.isCatering(), invoice.isCleaning(), invoice.isNursing(),
                 invoice.getPrice());

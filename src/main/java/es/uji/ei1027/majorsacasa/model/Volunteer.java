@@ -1,10 +1,12 @@
 package es.uji.ei1027.majorsacasa.model;
 
 import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Volunteer {
     private String name;
     private String surname;
+    @DateTimeFormat(pattern = "dd/mm/yyyy")
     private LocalDate birthdate;
     private int phonenumber;
     private String address;

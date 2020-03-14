@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear nueva factura</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Nueva factura</h2>
+<form action="#" th:action="@{/invoice/add}"
+      th:object="${invoice}" method="post">
+    <table>
+        <tr>
+            <td><label>Numero de factura</label></td>
+            <td><input type="text" th:field="*{invoiceNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Fecha (dd/mm/yyyy)</label></td>
+            <td><input type="text" th:field="*{date}" /></td>
+        </tr>
+        <tr>
+            <td><p>Tipo de servicio: </p></td>
+            <td><input type="checkbox" id="tipo1" name="tipo1" value="Cleaning" th:field="*{cleaning}"/>
+            <label for="tipo1"> Servicio de Limpieza</label><br></td>
+            <td><input type="checkbox" id="tipo2" name="tipo2" value="Catering"th:field="*{catering}"/>
+            <label for="tipo2"> Servicio de Catering</label><br></td>
+            <td><input type="checkbox" id="tipo3" name="tipo3" value="Nursing" th:field="*{nursing}"/>
+            <label for="tipo3"> Servicio de Enfermería</label><br></td>
+        </tr>
+
+        <tr>
+            <td><label>Precio</label></td>
+            <td><input type="text" th:field="*{price}" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir factura" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

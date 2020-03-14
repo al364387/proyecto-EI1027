@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Voluntarios</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Lista Voluntarios</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="voluntari: ${volunteers}">
+            <td th:text="${voluntari.name}"></td>
+            <td th:text="${voluntari.surname}"></td>
+
+            <td><a th:href="@{/volunteer/delete/{name}(name=${voluntari.name})}">Borrar</a>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add" class="btn btn-success" role="button">Añade voluntario</a>
+</div>
+</body>
+</html>

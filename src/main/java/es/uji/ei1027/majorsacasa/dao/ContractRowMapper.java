@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class ContractRowMapper implements RowMapper<Contract> {
     public Contract mapRow(ResultSet rs, int i) throws SQLException {
@@ -14,8 +15,8 @@ public class ContractRowMapper implements RowMapper<Contract> {
         contract.setNursing(rs.getBoolean("nursing"));
         contract.setCleaning(rs.getBoolean("cleaning"));
         contract.setPrice(rs.getFloat("price"));
-        contract.setStartDate(rs.getDate("startDate"));
-        contract.setEndDate(rs.getDate("endDate"));
+        contract.setStartDate(rs.getObject("startDate", LocalDate.class));
+        contract.setEndDate(rs.getObject("endDate", LocalDate.class));
         contract.setServiceNumber(rs.getInt("serviceNumber"));
         contract.setCifCompany(rs.getString("cifCompany"));
         return contract;

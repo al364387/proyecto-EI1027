@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear nuevo voluntario</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Nuevo voluntario</h2>
+<form action="#" th:action="@{/volunteer/add}"
+      th:object="${volunteer}" method="post">
+    <table>
+        <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>Apellido</label></td>
+            <td><input type="text" th:field="*{surname}" /></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de nacimiento (dd/mm/yyyy)</label></td>
+            <td><input type="text" th:field="*{birthdate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Numero de telefono</label></td>
+            <td><input type="number" th:field="*{phonenumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Direccion</label></td>
+            <td><input type="text" th:field="*{address}" /></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de aceptacion</label></td>
+            <td><input type="text" th:field="*{acceptDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Nombre de usuario</label></td>
+            <td><input type="text" th:field="*{username}" /></td>
+        </tr>
+        <tr>
+            <td><label>Contraseña</label></td>
+            <td><input type="text" th:field="*{password}" /></td>
+        </tr>
+        <tr>
+            <td><label>Última fecha</label></td>
+            <td><input type="text" th:field="*{endDate}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir voluntario" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
