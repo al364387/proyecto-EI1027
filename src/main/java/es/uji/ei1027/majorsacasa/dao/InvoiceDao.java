@@ -29,7 +29,7 @@ public class InvoiceDao {
 
     //Borrar Factura
     public void deleteInvoice(String invoiceNumber) {
-        jdbcTemplate.update("DELETE from Invoice where invoiceNumber=?",
+        jdbcTemplate.update("DELETE from Invoice where invoicenum= ?",
                 invoiceNumber);
     }
 
@@ -41,7 +41,7 @@ public class InvoiceDao {
             System.out.println("template: " + c);
             return c;
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("sin voluntarios: ");
+            System.out.println("sin facturas: ");
             return new ArrayList<Invoice>();
         }
     }
