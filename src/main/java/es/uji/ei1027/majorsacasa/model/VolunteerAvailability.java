@@ -12,6 +12,7 @@ public class VolunteerAvailability {
     private boolean friday;
     private boolean saturday;
     private boolean sunday;
+    private String hobby;
     private int idVolunteer;
     private String dniEderly;
 
@@ -88,6 +89,14 @@ public class VolunteerAvailability {
 
     public void setSunday(boolean sunday) {
         this.sunday = sunday;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
     }
 
     public int getIdVolunteer() {

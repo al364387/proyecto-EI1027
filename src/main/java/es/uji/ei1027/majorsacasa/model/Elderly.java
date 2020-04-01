@@ -3,7 +3,7 @@ package es.uji.ei1027.majorsacasa.model;
 import java.time.LocalDate;
 
 public class Elderly {
-    private String socialAsisNum;
+    private String socialAssisId;
     private String name;
     private String surname;
     private String email;
@@ -18,12 +18,12 @@ public class Elderly {
     public Elderly() {
     }
 
-    public String getSocialAsisNum() {
-        return socialAsisNum;
+    public String getSocialAssisId() {
+        return socialAssisId;
     }
 
-    public void setSocialAsisNum(String socialAsisNum) {
-        this.socialAsisNum = socialAsisNum;
+    public void setSocialAssisId(String socialAssisId) {
+        this.socialAssisId = socialAssisId;
     }
 
     public String getName() {
@@ -109,7 +109,7 @@ public class Elderly {
     @Override
     public String toString() {
         return "Elderly{" +
-                "socialAsisNum='" + socialAsisNum + '\'' +
+                "socialAsisNum='" + socialAssisId + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +

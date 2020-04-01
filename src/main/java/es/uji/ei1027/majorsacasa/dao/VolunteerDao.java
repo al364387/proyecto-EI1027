@@ -45,6 +45,4 @@ public class VolunteerDao {
             return new ArrayList<Volunteer>();
         }
     }
-
-
 }
