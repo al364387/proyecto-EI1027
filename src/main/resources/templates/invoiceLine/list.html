@@ -25,6 +25,8 @@
             <td th:text="${invoiceLine.number}"></td>
             <td th:text="${invoiceLine.concept}"></td>
             <td th:text="${invoiceLine.monthPrice}"></td>
+            <td th:text="${invoiceLine.invoiceNumId}"></td>
+            <td th:text="${invoiceLine.requestNum}"></td>
 
             <td><a th:href="@{/invoiceLine/delete/{name}(name=${invoiceLine.number})}">Borrar</a>
         </tr>

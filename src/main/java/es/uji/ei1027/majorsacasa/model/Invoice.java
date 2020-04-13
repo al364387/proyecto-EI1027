@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Invoice {
-    private String invoiceNumber;
+    private String invoicenum;
     @DateTimeFormat(pattern = "dd/mm/yyyy")
     private LocalDate date;
     private boolean catering;
@@ -19,7 +19,7 @@ public class Invoice {
 
 
     public String getInvoiceNumber() {
-        return invoiceNumber;
+        return invoicenum;
     }
 
     public LocalDate getDate() {
@@ -43,7 +43,7 @@ public class Invoice {
     }
 
     public void setInvoiceNumber(String invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
+        this.invoicenum = invoiceNumber;
     }
 
     public void setDate(LocalDate date) {

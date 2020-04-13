@@ -13,9 +13,9 @@
           th:object="${invoiceLine}" method="post">
 
         <div class="form-group row">
-            <label class="control-label col-sm-2" for="numberInvoice">Numero de linea de factura:</label>
+            <label class="control-label col-sm-2" for="number">Numero de linea de factura:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="numberInvoice" th:field="*{number}" />
+                <input type="text" class="form-control" id="number" th:field="*{number}" />
             </div>
         </div>
 
@@ -32,6 +32,21 @@
                 <input type="number" class="form-control" id="monthPrice" th:field="*{monthPrice}" />
             </div>
         </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="invoiceNumId">Numero de factura:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="invoiceNumId" th:field="*{invoiceNumId}" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="requestNum">Numero de solicitud:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="requestNum" th:field="*{requestNum}" />
+            </div>
+        </div>
+
 
         <div class="form-group row">
             <div class="col-sm-offset-2 col-sm-4">

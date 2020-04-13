@@ -52,7 +52,7 @@ public class InvoiceLineController {
         return "redirect:list.html";
     }
 
-    @RequestMapping(value="/update/{numberInvoice}", method = RequestMethod.GET)
+    @RequestMapping(value="/update/{number}", method = RequestMethod.GET)
     public String editInvoiceLine(Model model, @PathVariable int invoiceLine) {
         model.addAttribute("invoiceLine", invoiceLineDao.getInvoiceLine(invoiceLine));
         return "invoiceLine/update";

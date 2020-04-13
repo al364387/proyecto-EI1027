@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td><label>Fecha de nacimiento (dd/mm/yyyy)</label></td>
-            <td><input type="text" th:field="*{birthdate}" /></td>
+            <td><input type="date" th:field="*{birthdate}" /></td>
         </tr>
         <tr>
             <td><label>Numero de telefono</label></td>
@@ -32,23 +32,17 @@
             <td><input type="text" th:field="*{address}" /></td>
         </tr>
         <tr>
-            <td><label>Fecha de aceptacion</label></td>
-            <td><input type="text" th:field="*{acceptDate}" /></td>
-        </tr>
-        <tr>
             <td><label>Nombre de usuario</label></td>
             <td><input type="text" th:field="*{username}" /></td>
         </tr>
         <tr>
             <td><label>Contraseña</label></td>
-            <td><input type="text" th:field="*{password}" /></td>
+            <td><input type="password" th:field="*{password}" /></td>
         </tr>
-        <tr>
-            <td><label>Última fecha</label></td>
-            <td><input type="text" th:field="*{endDate}" /></td>
-        </tr>
+
         <tr>
             <td colspan="2"><input type="submit" value="Añadir voluntario" /></td>
+            <td colspan="2"><a href="/" class="button">Atrás</a></td>
         </tr>
     </table>
 </form>

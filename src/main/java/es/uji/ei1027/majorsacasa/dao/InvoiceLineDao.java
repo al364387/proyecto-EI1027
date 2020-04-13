@@ -22,25 +22,25 @@ public class InvoiceLineDao {
 
     //Añadir Linea de Factura
     public void addInvoiceLine(InvoiceLine invoiceLine) {
-        jdbcTemplate.update("INSERT INTO InvoiceLine VALUES(?, ?, ?)",
-                invoiceLine.getNumber(), invoiceLine.getConcept(), invoiceLine.getMonthPrice());
+        jdbcTemplate.update("INSERT INTO InvoiceLine VALUES(?, ?, ?, ?, ?)",
+                invoiceLine.getNumber(), invoiceLine.getConcept(), invoiceLine.getMonthPrice(), invoiceLine.getInvoiceNumId(), invoiceLine.getRequestNum());
     }
 
     //Borrar Linea de Factura
-    public void deleteInvoiceLine(int numberInvoice) {
+    public void deleteInvoiceLine(int number) {
         jdbcTemplate.update("DELETE from InvoiceLine where number=?",
-                numberInvoice);
+                number);
     }
 
     //Modificar atributos de la Linea de Factura
     public void updateInvoiceLine(InvoiceLine invoiceLine) {
-        jdbcTemplate.update("UPDATE InvoiceLine SET concept =?, monthPrice =? WHERE numberInvoice =?", invoiceLine.getConcept(),invoiceLine.getMonthPrice(), invoiceLine.getNumber());
+        jdbcTemplate.update("UPDATE InvoiceLine SET concept =?, monthPrice =? WHERE number =?", invoiceLine.getConcept(),invoiceLine.getMonthPrice(), invoiceLine.getNumber());
     }
 
     //Obtiene InvoiceLine
-    public InvoiceLine getInvoiceLine(int numberInvoice) {
+    public InvoiceLine getInvoiceLine(int number) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM InvoiceLine WHERE numberInvoice =?", new InvoiceLineRowMapper(), numberInvoice);
+            return jdbcTemplate.queryForObject("SELECT * FROM InvoiceLine WHERE number =?", new InvoiceLineRowMapper(), number);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
