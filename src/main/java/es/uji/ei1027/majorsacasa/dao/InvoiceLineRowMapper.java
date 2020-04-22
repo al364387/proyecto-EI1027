@@ -11,9 +11,12 @@ public class InvoiceLineRowMapper implements RowMapper<InvoiceLine> {
 
     public InvoiceLine mapRow(ResultSet rs, int rowNum) throws SQLException {
         InvoiceLine invoiceLine = new InvoiceLine();
-        invoiceLine.setNumber(rs.getInt("numberInvoice"));
+        invoiceLine.setNumber(rs.getInt("number"));
         invoiceLine.setConcept(rs.getString("concept"));
         invoiceLine.setMonthPrice(rs.getFloat("monthPrice"));
+        invoiceLine.setInvoiceNumId(rs.getString("invoiceNumId"));
+        invoiceLine.setRequestNum(rs.getInt("requestNum"));
+
         return invoiceLine;
     }
 }
