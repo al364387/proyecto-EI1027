@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,11 +37,20 @@ public class ElderlyController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly,
                                    BindingResult bindingResult) {
+        ElderlyValidator elderlyValidator = new ElderlyValidator();
+        elderlyValidator.validate(elderly, bindingResult);
         if (bindingResult.hasErrors()) {
             return "elderly/add";
         }
 
-        elderlyDao.addElderly(elderly);
+        try {
+            elderlyDao.addElderly(elderly);
+        } catch (DuplicateKeyException e){
+            throw new MajorsacasaException(
+                "Ya existe una cuenta con el DNI: " +
+                elderly.getDNI(), "CPDuplicada");
+        }
+
         return "redirect:list";
     }
 
@@ -62,7 +72,16 @@ public class ElderlyController {
 
     @RequestMapping(value = "delete/{dni}")
     public String processDelete(@PathVariable String dni){
-        elderlyDao.deleteElderly(dni);
-        return "redirect:list";
+        try{
+            elderlyDao.deleteElderly(dni);
+        }catch (Exception e){
+            throw new MajorsacasaException(
+                "No se puede borrar el usuario con DNI: " + dni +
+                " si aun tiene servicios solicitados",
+                "CPConServicios");
+
+        }
+
+        return "redirect:../list";
     }
 }

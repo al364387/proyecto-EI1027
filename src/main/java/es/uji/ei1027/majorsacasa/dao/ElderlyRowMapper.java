@@ -13,7 +13,7 @@ public class ElderlyRowMapper implements RowMapper<Elderly> {
     public Elderly mapRow(ResultSet rs, int i) throws SQLException {
         Elderly elderly = new Elderly();
 
-        elderly.setSocialAssisId(rs.getString("socialAsisNum"));
+        elderly.setSocialAssisId(rs.getString("socialAssisId"));
         elderly.setName(rs.getString("name"));
         elderly.setSurname(rs.getString("surname"));
         elderly.setEmail(rs.getString("email"));

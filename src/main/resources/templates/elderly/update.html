@@ -4,105 +4,83 @@
     <meta charset="UTF-8">
     <title>Añadir persona mayor</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css" th:href="@{/css/elderly.css}"/>
 </head>
 <body>
 <h2>Añadir persona mayor</h2>
 <form class="form-horizontal" action="#" th:action="@{/elderly/update}" th:object="${elderly}" method="post">
     <table>
         <tr>
+            <td><label>DNI: </label></td>
             <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-5" for="socialAsisNum">Número de asistente social:</label>
-                    <div>
-                        <input type="text" class="form-control" id="socialAsisNum" th:field="*{socialAsisNum}" size="20" maxlength="20" />
-                    </div>
-                </div>
+                <input type="text" th:field="*{DNI}" size="20" maxlength="20" readonly required/>
             </td>
+
+        </tr>
+        <tr>
+            <td><label>Número de asistente social:</label></td>
             <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-3" for="name">Nombre:</label>
-                    <div>
-                        <input type="text" class="form-control" id="name" th:field="*{name}" size="20" maxlength="20" required />
-                    </div>
-                </div>
+                <input type="text" th:field="*{socialAssisId}" size="20"
+                       maxlength="20"/>
             </td>
+        </tr>
+        <tr>
+            <td><label>Nombre:</label></td>
             <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-3" for="surname">Apellidos:</label>
-                    <div>
-                        <input type="text" class="form-control" id="surname" th:field="*{surname}" size="20" maxlength="20" required />
-                    </div>
+                <input type="text" th:field="*{name}" size="20" maxlength="20"
+                       required/>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Apellidos:</label></td>
+            <td>
+                <div>
+                    <input type="text" th:field="*{surname}" size="20" maxlength="20" required/>
                 </div>
             </td>
         </tr>
         <tr>
+            <td><label>Email:</label></td>
             <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-4" for="email">Email:</label>
-                    <div>
-                        <input type="email" class="form-control" id="email" th:field="*{email}" size="20" maxlength="50" required />
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-4" for="dni">DNI: </label>
-                    <div>
-                        <input type="text" class="form-control" id="dni" th:field="*{DNI}" size="20" maxlength="20" readonly required />
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-4" for="birthDate">Fecha de nacimiento: </label>
-                    <div>
-                        <input type="date" class="form-control" id="birthDate" th:field="*{birthDate}" required />
-                    </div>
-                </div>
+                <input type="email" th:field="*{email}" size="20" maxlength="50"
+                       required/>
             </td>
         </tr>
         <tr>
+            <td><label>Fecha de nacimiento: </label></td>
             <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-4" for="phoneNumber">Teléfono:</label>
-                    <div>
-                        <input type="tel" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" required />
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-4" for="address">Dirección:</label>
-                    <div>
-                        <input type="text" class="form-control" id="address" th:field="*{address}" size="50" maxlength="70" required />
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-4" for="bankAccount">Cuenata bancaria:</label>
-                    <div>
-                        <input type="text" class="form-control" id="bankAccount" th:field="*{bankAccount}" size="50" maxlength="50" required />
-                    </div>
-                </div>
+                <input type="date" th:field="*{birthDate}" required/>
             </td>
         </tr>
         <tr>
+            <td> <label>Teléfono:</label></td>
             <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-4" for="username">Usuario:</label>
-                    <div>
-                        <input type="text" class="form-control" id="username" th:field="*{username}" size="20" maxlength="20" required />
-                    </div>
-                </div>
+                <input type="tel" th:field="*{phoneNumber}" required/>
             </td>
+        </tr>
+        <tr>
+            <td><label>Dirección:</label></td>
             <td>
-                <div class="form-group row">
-                    <label class="control-label col-sm-4" for="password">Contraseña:</label>
-                    <div>
-                        <input type="password" class="form-control" id="password" th:field="*{password}" size="20" maxlength="20" required />
-                    </div>
-                </div>
+                <input type="text" th:field="*{address}" size="50"
+                       maxlength="70" required/>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Cuenata bancaria:</label></td>
+            <td>
+                <input type="text" th:field="*{bankAccount}" size="50" maxlength="50" required/>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Usuario:</label></td>
+            <td>
+                <input type="text" th:field="*{username}" size="20" maxlength="20" required/>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Contraseña:</label></td>
+            <td>
+                <input type="password" th:field="*{password}" size="20" maxlength="20" required/>
             </td>
         </tr>
     </table>
@@ -113,6 +91,6 @@
         </div>
     </div>
 </form>
-<a href = "/elderly/list"> Atrás </a>
+<a href="/elderly/list"> Atrás </a>
 </body>
 </html>

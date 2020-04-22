@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Añadir contrato</title>
+    <link rel ="stylesheet" href ="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <h2>Nuevo contrato</h2>
+    <form class="form-horizontal" action="#" th:action="@{/contract/add}" th:object="${contract}" method="post">
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="number">Número</label>
+            <div>
+                <input type="text" class="form-control" id="number" th:field="*{number}" />
+            </div>
+        </div>
+        <label class="control-label">Seleccione un servicio: </label>
+        <div class="form-group row">
+            <label class="control-label col-sm-2 radio-inline" for="catering">
+                Catering
+            </label>
+            <div>
+                <input type="text" class="form-control" id="catering" th:field="*{catering}"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2 radio-inline" for="cleaning">
+                Limpieza
+            </label>
+            <div>
+                <input type="text" class="form-control" id="cleaning" th:field="*{cleaning}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2 radio-inline" for="nursing">
+                Enfermería
+            </label>
+            <div>
+                <input type="text" class="form-control" id="nursing" th:field="*{nursing}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="price">Precio</label>
+            <div>
+                <input type="text" class="form-control" id="price" th:field="*{price}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="startDate">Fecha comienzo</label>
+            <div>
+                <input type="date" class="form-control" id="startDate" th:field="*{startDate}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="endDate">Fecha fin</label>
+            <div>
+                <input type="date" class="form-control" id="endDate" th:field="*{endDate}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="serviceNumber">Número de servicios</label>
+            <div>
+                <input type="number" class="form-control" id="serviceNumber" th:field="*{serviceNumber}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="cifCompany">CIF Empresa</label>
+            <div>
+                <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-primary"> Añadir</button>
+            </div>
+        </div>
+    </form>
+    <a href = "/"> Atrás </a>
+</div>
+</body>
+</html>

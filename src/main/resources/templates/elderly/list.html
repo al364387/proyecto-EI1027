@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <title>Listado de personas mayores</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css" th:href="@{/css/elderly.css}"/>
 </head>
 <body>
-    <div class="p-3">
+    <div class="container">
         <h1>Listado de personas mayores</h1>
-        <table class="table-striped border">
+        <table class="table-bordered">
             <thead>
                 <tr>
                     <th>Núm. asistente social</th>
+                    <th>DNI</th>
                     <th>Nombre</th>
                     <th>Apellidos</th>
                     <th>Email</th>
-                    <th>DNI</th>
                     <th>Fecha de nacimiento</th>
                     <th>Teléfono</th>
                     <th>Dirección</th>
@@ -27,11 +28,11 @@
             </thead>
             <tbody>
                 <tr th:each="elderly: ${elderlies}">
-                    <td class="border" th:text="${elderly.socialAsisNum}"></td>
+                    <td class="border" th:text="${elderly.socialAssisId}"></td>
+                    <td class="border" th:text="${elderly.DNI}"></td>
                     <td class="border" th:text="${elderly.name}"></td>
                     <td class="border" th:text="${elderly.surname}"></td>
                     <td class="border" th:text="${elderly.email}"></td>
-                    <td class="border" th:text="${elderly.DNI}"></td>
                     <td class="border" th:text="${elderly.birthDate}"></td>
                     <td class="border" th:text="${elderly.phoneNumber}"></td>
                     <td class="border" th:text="${elderly.address}"></td>
