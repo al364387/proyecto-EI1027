@@ -37,8 +37,10 @@ public class ElderlyController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly,
                                    BindingResult bindingResult) {
-        ElderlyValidator elderlyValidator = new ElderlyValidator();
+        //TODO quitar comentado
+        /*ElderlyValidator elderlyValidator = new ElderlyValidator();
         elderlyValidator.validate(elderly, bindingResult);
+        */
         if (bindingResult.hasErrors()) {
             return "elderly/add";
         }
@@ -46,9 +48,11 @@ public class ElderlyController {
         try {
             elderlyDao.addElderly(elderly);
         } catch (DuplicateKeyException e){
+            /*
             throw new MajorsacasaException(
                 "Ya existe una cuenta con el DNI: " +
                 elderly.getDNI(), "CPDuplicada");
+                */
         }
 
         return "redirect:list";
@@ -75,10 +79,12 @@ public class ElderlyController {
         try{
             elderlyDao.deleteElderly(dni);
         }catch (Exception e){
+            /*
             throw new MajorsacasaException(
                 "No se puede borrar el usuario con DNI: " + dni +
                 " si aun tiene servicios solicitados",
                 "CPConServicios");
+                */
 
         }
 
