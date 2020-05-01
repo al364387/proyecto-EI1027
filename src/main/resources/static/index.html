@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <meta charset="UTF-8"/>
     <title>Majors a Casa</title>
-    <link rel ="stylesheet" href ="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<div class="container">
+<div layout:fragment="content">
     <h1> Majors a Casa</h1>
 
     <h3>Personas mayores</h3>
@@ -45,7 +48,6 @@
         <li><a href="request/list"> Lista de peticiones </a></li>
     </ul>
 
-
     <h3>Facturas</h3>
     <ul>
         <li><a href="invoice/add"> Crear factura </a></li>
@@ -61,10 +63,6 @@
     <h1>Gestió usuaris</h1>
     <ul>
         <li><a href="/login">Login</a></li>
-        <li><a href="/user/list">Lista Login</a></li>
-        <li><a href="/user/listContract">Lista Contratos</a></li>
-
-
     </ul>
 
 </div>

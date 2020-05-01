@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="alert" th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info'">
+            <h3 th:text="${message}"></h3>
+            <p>Pulsa el botón para ir al inicio o el botón del navegador para ir hacia atras</p>
+        </div>
+        <div th:align="center">
+            <a href="/" class="btn btn-primary">Inicio</a>
+        </div>
+    </div>
+</body>
+</html>
