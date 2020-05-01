@@ -27,7 +27,7 @@ public class VolunteerController {
     @RequestMapping(value = "/delete/{id}")
     public String processDeleteVolunteer(@PathVariable int id) {
         volunteerDao.deleteVolunteer(id);
-        return "redirect:../../list";
+        return "redirect:../list";
     }
 
     @RequestMapping("/list")
@@ -50,7 +50,7 @@ public class VolunteerController {
         if (bindingResult.hasErrors())
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
-        return "redirect:list.html";
+        return "redirect:list";
     }
 
 }

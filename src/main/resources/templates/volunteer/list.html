@@ -12,6 +12,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>id</th>
             <th>Nombre</th>
             <th>Apellido</th>
 
@@ -21,10 +22,11 @@
         </thead>
         <tbody>
         <tr th:each="voluntari: ${volunteers}">
+            <td th:text="${voluntari.id}"></td>
             <td th:text="${voluntari.name}"></td>
             <td th:text="${voluntari.surname}"></td>
 
-            <td><a th:href="@{/volunteer/delete/{name}(name=${voluntari.name})}">Borrar</a>
+            <td><a th:href="@{/volunteer/delete/{id}(id=${voluntari.id})}">Borrar</a>
         </tr>
         </tbody>
     </table>
