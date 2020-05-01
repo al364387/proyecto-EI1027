@@ -19,10 +19,14 @@ public class ContractDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public ContractDao(){
+        super();
+    }
+
     // Añade el contrato a la bbdd
     public void addContract(Contract contract){
         jdbcTemplate.update("INSERT INTO Contract VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                contract.getNumber(), contract.isCatering(), contract.isNursing(),
+                contract.getNumContract(), contract.isCatering(), contract.isNursing(),
                 contract.isCleaning(), contract.getPrice(), contract.getStartDate(),
                 contract.getEndDate(), contract.getServiceNumber(), contract.getCifCompany());
     }

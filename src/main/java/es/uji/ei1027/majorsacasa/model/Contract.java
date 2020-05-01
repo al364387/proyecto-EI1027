@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Contract {
 
-    private String number;
+    private String numContract;
     private boolean catering;
     private boolean nursing;
     private boolean cleaning;
@@ -17,12 +17,12 @@ public class Contract {
     public Contract() {
     }
 
-    public String getNumber() {
-        return number;
+    public String getNumContract() {
+        return numContract;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setNumContract(String numContract) {
+        this.numContract = numContract;
     }
 
     public boolean isCatering() {
@@ -92,7 +92,7 @@ public class Contract {
     @Override
     public String toString() {
         return "Contract{" +
-                "number='" + number + '\'' +
+                "number='" + numContract + '\'' +
                 ", catering=" + catering +
                 ", nursing=" + nursing +
                 ", cleaning=" + cleaning +

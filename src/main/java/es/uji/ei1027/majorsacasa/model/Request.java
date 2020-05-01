@@ -7,16 +7,18 @@ public class Request {
     private int number;
     private String state;
     private Date startDate;
-    private Date endDate;
-    private Time time;
+    private Date endDate;  //acepta nulos
+    private Time time;  //tiempo del servicio
     private boolean catering;
     private boolean nursing;
     private boolean cleaning;
     private String description;
-    private String elderlyId;
-    private String contractId;
+    private String elderlyId; //Id del mayor que haga la peticion
+    private String contractId; //segun el tipo de servicio
 
    public Request() {
+       this.startDate = new Date();
+       this.state="Pendiente";
    }
 
    public int getNumber() {

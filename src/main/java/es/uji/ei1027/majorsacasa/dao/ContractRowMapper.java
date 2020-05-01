@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class ContractRowMapper implements RowMapper<Contract> {
     public Contract mapRow(ResultSet rs, int i) throws SQLException {
         Contract contract = new Contract();
-        contract.setNumber(rs.getString("numContract"));
+        contract.setNumContract(rs.getString("numContract"));
         contract.setCatering(rs.getBoolean("catering"));
         contract.setNursing(rs.getBoolean("nursing"));
         contract.setCleaning(rs.getBoolean("cleaning"));

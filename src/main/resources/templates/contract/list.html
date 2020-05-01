@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 <tr th:each="contract: ${contracts}">
-                    <td th:text="${contract.number}"></td>
+                    <td th:text="${contract.numContract}"></td>
                     <td>
                         <p th:if="${contract.catering == true}">Catering</p>
                         <p th:if="${contract.cleaning == true}">Limpieza</p>
