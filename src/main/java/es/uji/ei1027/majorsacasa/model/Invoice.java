@@ -18,7 +18,7 @@ public class Invoice {
     }
 
 
-    public String getInvoiceNumber() {
+    public String getInvoicenum() {
         return invoicenum;
     }
 
@@ -42,8 +42,8 @@ public class Invoice {
         return price;
     }
 
-    public void setInvoiceNumber(String invoiceNumber) {
-        this.invoicenum = invoiceNumber;
+    public void setInvoicenum(String invoicenum) {
+        this.invoicenum = invoicenum;
     }
 
     public void setDate(LocalDate date) {

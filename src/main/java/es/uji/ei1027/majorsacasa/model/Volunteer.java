@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Volunteer {
+    private int id;
     private String name;
     private String surname;
     @DateTimeFormat(pattern = "dd/mm/yyyy")
@@ -89,6 +90,14 @@ public class Volunteer {
 
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

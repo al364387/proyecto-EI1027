@@ -22,9 +22,12 @@ public class VolunteerDao {
 
     //Añadir Voluntario
     public void addVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                createId(),
                 volunteer.getName(), volunteer.getSurname(), volunteer.getBirthdate(), volunteer.getPhonenumber(), volunteer.getAddress(),
-                volunteer.getUsername(), volunteer.getPassword());
+                null,
+                volunteer.getUsername(), volunteer.getPassword(),
+                null);
     }
 
     //Borrar Voluntario
@@ -44,5 +47,11 @@ public class VolunteerDao {
             System.out.println("sin voluntarios: ");
             return new ArrayList<Volunteer>();
         }
+    }
+
+    public int createId(){
+        List<Volunteer> volunteers = getVolunteers();
+        int id = volunteers.get(volunteers.size() - 1).getId() + 1;
+        return id;
     }
 }

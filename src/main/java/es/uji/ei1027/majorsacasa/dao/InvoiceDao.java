@@ -23,14 +23,14 @@ public class InvoiceDao {
     //Añadir Factura
     public void addInvoice(Invoice invoice) {
         jdbcTemplate.update("INSERT INTO Invoice VALUES(?, ?, ?, ?, ?, ?)",
-                invoice.getInvoiceNumber(), invoice.getDate(), invoice.isCatering(), invoice.isCleaning(), invoice.isNursing(),
+                invoice.getInvoicenum(), invoice.getDate(), invoice.isCatering(), invoice.isCleaning(), invoice.isNursing(),
                 invoice.getPrice());
     }
 
     //Borrar Factura
-    public void deleteInvoice(String invoiceNumber) {
+    public void deleteInvoice(String invoicenum) {
         jdbcTemplate.update("DELETE from Invoice where invoicenum= ?",
-                invoiceNumber);
+                invoicenum);
     }
 
     //Listar Facturas

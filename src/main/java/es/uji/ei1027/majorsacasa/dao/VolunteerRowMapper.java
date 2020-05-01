@@ -11,6 +11,7 @@ public final class VolunteerRowMapper implements RowMapper<Volunteer> {
 
     public Volunteer mapRow(ResultSet rs, int rowNum) throws SQLException {
         Volunteer volunteer = new Volunteer();
+        volunteer.setId(rs.getInt("id"));
         volunteer.setName(rs.getString("name"));
         volunteer.setSurname(rs.getString("surname"));
         Date d = rs.getDate("birthdate");

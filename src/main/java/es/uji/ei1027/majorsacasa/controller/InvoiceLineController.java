@@ -23,10 +23,10 @@ public class InvoiceLineController {
         this.invoiceLineDao = invoiceLineDao;
     }
 
-    @RequestMapping(value = "/delete/{id}")
+    @RequestMapping(value = "/delete/{invoiceNumber}")
     public String processDeleteInvoice(@PathVariable int invoiceNumber) {
         invoiceLineDao.deleteInvoiceLine(invoiceNumber);
-        return "redirect:../../list";
+        return "redirect:../list";
     }
 
     @RequestMapping("/list")
@@ -49,7 +49,7 @@ public class InvoiceLineController {
         if (bindingResult.hasErrors())
             return "invoiceLine/add";
         invoiceLineDao.addInvoiceLine(invoiceLine);
-        return "redirect:list.html";
+        return "redirect:list";
     }
 
     @RequestMapping(value="/update/{number}", method = RequestMethod.GET)
