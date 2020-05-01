@@ -28,5 +28,17 @@ public class UserController {
         model.addAttribute("users", userDao.listAllUsers());
         return "user/list";
     }
+
+    @RequestMapping("/listContract")
+    public String listContract(HttpSession session, Model model) {
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        model.addAttribute("contracts", userDao.listContract());
+        return "user/listContract";
+    }
+
 }
 

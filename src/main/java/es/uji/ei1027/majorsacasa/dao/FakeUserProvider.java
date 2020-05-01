@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import es.uji.ei1027.majorsacasa.model.Contract;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.stereotype.Repository;
@@ -46,6 +47,11 @@ public class FakeUserProvider implements UserDao {
     @Override
     public Collection<UserDetails> listAllUsers() {
         return knownUsers.values();
+    }
+
+    @Override
+    public Collection<Contract> listContract() {
+        return null;
     }
 }
 
