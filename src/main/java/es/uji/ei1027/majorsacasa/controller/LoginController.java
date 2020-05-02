@@ -11,10 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
 
 
 class UserValidator implements Validator {
@@ -22,14 +20,15 @@ class UserValidator implements Validator {
     public boolean supports(Class<?> cls) {
         return UserDetails.class.isAssignableFrom(cls);
     }
+
     @Override
     public void validate(Object obj, Errors errors) {
         UserDetails userDetails = (UserDetails) obj;
-        if(userDetails.getUsername().trim().equals("")){
+        if (userDetails.getUsername().trim().equals("")) {
             errors.rejectValue("username", "obligatori", "Es necesario introducir el nombre de usuario");
         }
 
-        if(userDetails.getPassword().trim().equals("")){
+        if (userDetails.getPassword().trim().equals("")) {
             errors.rejectValue("password", "obligatori", "Es necesario introducir la contraseña");
         }
     }
@@ -43,10 +42,11 @@ public class LoginController {
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute("user", new UserDetails());
+        model.addAttribute("login", true);
         return "login";
     }
 
-    @RequestMapping(value="/login", method=RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("user") UserDetails user,
                              BindingResult bindingResult, HttpSession session) {
         UserValidator userValidator = new UserValidator();
@@ -54,24 +54,24 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             return "login";
         }
-        // Comprova que el login siga correcte
-        // intentant carregar les dades de l'usuari
+        // Comprueba que el login sea correcto
+        // intentando cargar losdatos de usuario
         user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
         if (user == null) {
             bindingResult.rejectValue("password", "badpw", "Contrasenya incorrecta");
             return "login";
         }
-        // Autenticats correctament.
-        // Guardem les dades de l'usuari autenticat a la sessió
+        // Autenticados correctamente.
+        // Guardamos los datos de el usuario autenticado en la sessión
         session.setAttribute("user", user);
         String nextURL = (String) session.getAttribute("nextUrl");
-        if(nextURL != null) {
+        if (nextURL != null) {
             session.removeAttribute("nextUrl");
             return "redirect:/" + nextURL;
         }
-        // Torna a la pàgina principal
+        // Volver a la página principal
         else
-            return "redirect:/";
+            return "redirect:/admin/index";
     }
 
     @RequestMapping("/logout")

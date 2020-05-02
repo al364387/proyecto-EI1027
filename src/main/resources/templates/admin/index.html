@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/nav"></div>
-    <ul>
-        <li><a href="/contract/list">Gestión de cotratos</a></li>
-        <li><a href="/contract/list">Gestión de voluntarios</a></li>
-        <li><a href="/contract/list">Peticiones personas mayores</a></li>
-    </ul>
+    <div>
+        <ul>
+            <li><a href="/contract/list">Gestión de contratos</a></li>
+            <li><a href="/volunteer/list">Gestión de voluntarios</a></li>
+            <li><a href="/request/list">Peticiones personas mayores</a></li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>

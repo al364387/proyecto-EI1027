@@ -9,13 +9,22 @@
 }
 
 .navbar-li{
-    padding: 0 20px;
+    padding: 0 60px;
 }
 .navbar-op{
     color: #ffffff;
     font-size: 32px;
+    text-decoration: none !important;
 }
 
 .padding0{
     padding: 0;
+}
+
+.nav-select{
+    color: #5AA2E0 !important;
+}
+
+.separator{
+    border-right: 2px #ffffff solid;
 }
