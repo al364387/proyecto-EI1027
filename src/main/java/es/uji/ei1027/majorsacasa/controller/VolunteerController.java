@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -31,9 +33,17 @@ public class VolunteerController {
     }
 
     @RequestMapping("/list")
-    public String listVolunteer(Model model) {
+    public String listVolunteer(HttpSession session, Model model) {
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            model.addAttribute("login", true);
+            return "login";
+        }
+
         List<Volunteer> l = volunteerDao.getVolunteers();
 
+        model.addAttribute("isAdmin", true);
         model.addAttribute("volunteers", l);
         return "volunteer/list";
     }

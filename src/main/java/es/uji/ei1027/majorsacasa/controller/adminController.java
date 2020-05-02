@@ -1,8 +1,6 @@
 package es.uji.ei1027.majorsacasa.controller;
 
-import es.uji.ei1027.majorsacasa.dao.UserDao;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +10,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/admin")
 public class adminController {
-    private UserDao userDao;
-
-    @Autowired
-    public void setSociDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     @RequestMapping("/index")
     public String homeAdmin(HttpSession session, Model model) {

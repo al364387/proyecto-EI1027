@@ -5,32 +5,38 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
 <div class="container">
-    <h1>Lista Voluntarios</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
+    <div th:replace="fragments/nav"></div>
+    <div class="contenido">
+        <h1>Lista Voluntarios</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
 
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="voluntari: ${volunteers}">
-            <td th:text="${voluntari.id}"></td>
-            <td th:text="${voluntari.name}"></td>
-            <td th:text="${voluntari.surname}"></td>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="voluntari: ${volunteers}">
+                <td th:text="${voluntari.id}"></td>
+                <td th:text="${voluntari.name}"></td>
+                <td th:text="${voluntari.surname}"></td>
 
-            <td><a th:href="@{/volunteer/delete/{id}(id=${voluntari.id})}">Borrar</a>
-        </tr>
-        </tbody>
-    </table>
-    <a href="/admin/index">Atrás</a>
+                <td><a th:href="@{/volunteer/delete/{id}(id=${voluntari.id})}">Borrar</a>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/admin/index">Atrás</a>
+    </div>
+    <div th:replace="fragments/footer"></div>
 </div>
 </body>
 </html>

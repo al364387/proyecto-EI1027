@@ -6,17 +6,19 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/nav"></div>
-    <div>
+    <div class="contenido">
         <ul>
             <li><a href="/contract/list">Gestión de contratos</a></li>
             <li><a href="/volunteer/list">Gestión de voluntarios</a></li>
             <li><a href="/request/list">Peticiones personas mayores</a></li>
         </ul>
     </div>
+    <div th:replace="fragments/footer"></div>
 </div>
 </body>
 </html>

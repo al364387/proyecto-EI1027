@@ -1,3 +1,20 @@
+body{
+    background: #C0C0C0;
+}
+
+footer{
+    text-align: center;
+}
+
+.contenido{
+    min-height: calc(100vh - 112.93px - 121px);
+}
+
+.container{
+    background: #ffffff;
+}
+
+
 .loggeduser {
     color: gray;
     text-align: right;

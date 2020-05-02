@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Request;
+import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/request")
@@ -25,7 +28,14 @@ public class RequestController {
     }
 
     @RequestMapping("/list")
-    public String listCompanies(Model model){
+    public String listCompanies(HttpSession session, Model model){
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            model.addAttribute("login", true);
+            return "login";
+        }
+        model.addAttribute("isAdmin", true);
         model.addAttribute("requests",requestDao.getRequests());
         return "request/list";
     }

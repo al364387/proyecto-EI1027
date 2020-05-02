@@ -5,14 +5,15 @@
     <title>Listado de contratos</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-<div th:replace="fragments/nav"></div>
-<h1>Listado de contratos</h1>
-
     <div class="container">
-        <table class="table table-striped">
-            <thead>
+        <div th:replace="fragments/nav"></div>
+        <div class="contenido">
+            <h1>Listado de contratos</h1>
+            <table class="table table-striped">
+                <thead>
                 <tr>
                     <th>Numero</th>
                     <th>Servicio</th>
@@ -22,8 +23,8 @@
                     <th>Número de servicios</th>
                     <th>CIF Empresa</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr th:each="contract: ${contracts}">
                     <td th:text="${contract.numContract}"></td>
                     <td>
@@ -37,9 +38,11 @@
                     <td th:text="${contract.serviceNumber}"></td>
                     <td th:text="${contract.cifCompany}"></td>
                 </tr>
-            </tbody>
-        </table>
-        <a href = "/admin/index"> Atrás </a>
+                </tbody>
+            </table>
+            <a href = "/admin/index"> Atrás </a>
+        </div>
+        <div th:replace="fragments/footer"></div>
     </div>
 </body>
 </html>

@@ -28,8 +28,10 @@ public class ContractController {
         if (session.getAttribute("user") == null)
         {
             model.addAttribute("user", new UserDetails());
+            model.addAttribute("login", true);
             return "login";
         }
+        model.addAttribute("isAdmin", true);
         model.addAttribute("contracts", contractDao.getContracts());
         return "contract/list";
     }
