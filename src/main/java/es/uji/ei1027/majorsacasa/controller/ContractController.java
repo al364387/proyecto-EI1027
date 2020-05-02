@@ -43,6 +43,7 @@ public class ContractController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
+        model.addAttribute("isAdmin", true);
         model.addAttribute("contract", new Contract());
         return "contract/add";
     }

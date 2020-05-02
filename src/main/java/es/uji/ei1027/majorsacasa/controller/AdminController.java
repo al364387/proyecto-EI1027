@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
-public class adminController {
+public class AdminController {
 
     @RequestMapping("/index")
     public String homeAdmin(HttpSession session, Model model) {

@@ -3,10 +3,50 @@
     margin: 0 !important;
 }
 
+.navbar-op span{
+    color: #5aa2e0;
+}
+
+
 .floatR{
     float: right;
 }
 
 .floatL{
     float: left;
+}
+
+h1{
+    text-align: center;
+}
+
+.icon{
+    color: #fff;
+    margin-right: 40px;
+    font-size: 28px;
+}
+
+.addContract{
+    text-decoration: none !important;
+    color: #143548;
+    font-weight: bold;
+    border: 2px solid;
+    padding: 0 5px 5px 5px;
+}
+
+.addContract a:link{
+    color: #5aa2e0;
+    text-decoration: none !important;
+}
+.addContract a:focus{
+    color: #5aa2e0;
+    text-decoration: none !important;
+}
+
+.addContract span{
+    vertical-align: text-top;
+}
+
+.addContract svg{
+    vertical-align: text-bottom;
 }

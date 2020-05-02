@@ -7,31 +7,33 @@
 </head>
 <body>
 <div class="container">
-    <h1> Lista de Compañías </h1>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col"> Cif</th>
-            <th scope="col"> Nombre</th>
-            <th scope="col"> Teléfono</th>
-            <th scope="col"> Dirección</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="company: ${companies}">
-            <td th:text="${company.cif}"></td>
-            <td th:text="${company.name}"></td>
-            <td th:text="${company.phoneNumber}"></td>
-            <td th:text="${company.email}"></td>
-            <td>Editar</td>
-            <td>Borrar</td>
-        </tr>
-        </tbody>
-    </table>
-    <a href="add">Añadir compañía </a>
-    <a href="/">Atrás</a>
+    <div class="contenido">
+        <h1> Lista de Compañías </h1>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col"> Cif</th>
+                <th scope="col"> Nombre</th>
+                <th scope="col"> Teléfono</th>
+                <th scope="col"> Dirección</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="company: ${companies}">
+                <td th:text="${company.cif}"></td>
+                <td th:text="${company.name}"></td>
+                <td th:text="${company.phoneNumber}"></td>
+                <td th:text="${company.email}"></td>
+                <td>Editar</td>
+                <td>Borrar</td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="add">Añadir compañía </a>
+        <a href="/">Atrás</a>
+    </div>
 </div>
 
 </body>
