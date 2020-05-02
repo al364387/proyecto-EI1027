@@ -25,9 +25,13 @@ public class ContractDao {
 
     // Añade el contrato a la bbdd
     public void addContract(Contract contract){
+        String servicio = contract.getAuxService();
+        boolean catering = servicio.equals("Catering");
+        boolean nursing = servicio.equals("Nursing");
+        boolean cleaning = servicio.equals("Cleaning");
         jdbcTemplate.update("INSERT INTO Contract VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                contract.getNumContract(), contract.isCatering(), contract.isNursing(),
-                contract.isCleaning(), contract.getPrice(), contract.getStartDate(),
+                contract.getNumContract(), catering, nursing,
+                cleaning, contract.getPrice(), contract.getStartDate(),
                 contract.getEndDate(), contract.getServiceNumber(), contract.getCifCompany());
     }
 

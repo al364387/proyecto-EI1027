@@ -14,6 +14,8 @@ public class Contract {
     private int serviceNumber;
     private String cifCompany;
 
+    private String auxService; // esta variable ayuda al añadir un contrato distinguiendo el servicio
+
     public Contract() {
     }
 
@@ -87,6 +89,14 @@ public class Contract {
 
     public void setCifCompany(String cifCompany) {
         this.cifCompany = cifCompany;
+    }
+
+    public String getAuxService() {
+        return auxService;
+    }
+
+    public void setAuxService(String auxService) {
+        this.auxService = auxService;
     }
 
     @Override
