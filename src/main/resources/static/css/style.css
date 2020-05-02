@@ -1,0 +1,21 @@
+.loggeduser {
+    color: gray;
+    text-align: right;
+    margin-right: 10pt;
+}
+
+.logo{
+    width: 65px;
+}
+
+.navbar-li{
+    padding: 0 20px;
+}
+.navbar-op{
+    color: #ffffff;
+    font-size: 32px;
+}
+
+.padding0{
+    padding: 0;
+}
