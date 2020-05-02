@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--link rel="stylesheet" type="text/css"
-          href="/css/natacio.css"
-          th:href="@{/css/natacio.css}"/-->
+    <link rel="stylesheet" type="text/css"
+          href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
     <title>Login</title>
     <meta charset="UTF-8"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h2>Accés</h2>
-<form action="#" th:action="@{/login}"
-      th:object="${user}" method="post">
-    <p>
-        <label>Nom d'usuari:</label>
-        <input class="form_control" type="text" th:field="*{username}"/>
-    <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-    </p>
-    <p>
-        <label>Contrasenya:</label>
-        <input class="form_control" type="password" th:field="*{password}"/>
-    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-    </p>
-    <input type="submit" value="Accedir" />
-</form>
+
+<div class="container">
+    <div th:replace="fragments/nav"></div>
+    <div class="justify-content-center">
+        <h2>Acceso</h2>
+        <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+            <p>
+                <label>Nombre de usuario:</label>
+                <input class="form_control" type="text" th:field="*{username}"/>
+            <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            </p>
+            <p>
+                <label>Contraseña:</label>
+                <input class="form_control" type="password" th:field="*{password}"/>
+            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </p>
+            <input type="submit" value="Accedir"/>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

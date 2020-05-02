@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <title>Listado de contratos</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div th:replace="fragments/nav"></div>
+<h1>Listado de contratos</h1>
+
     <div class="container">
-        <h1>Listado de contratos</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -36,7 +39,7 @@
                 </tr>
             </tbody>
         </table>
-        <a href = "/"> Atrás </a>
+        <a href = "/admin/index"> Atrás </a>
     </div>
 </body>
 </html>
