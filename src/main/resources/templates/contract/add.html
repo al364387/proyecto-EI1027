@@ -28,58 +28,90 @@
         <form class="form-horizontal" action="#" th:action="@{/contract/add}" th:object="${contract}" method="post">
             <table class="tableAddContract">
                 <tr>
-                    <td><label for="number">Número*:</label></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="form-control" id="number" th:field="*{numContract}"/></td>
-                </tr>
-                <tr>
-                    <td><label class="control-label">Seleccione un servicio*: </label></td>
-                </tr>
-                <tr>
                     <td>
-                        <input type="radio" id="catering" name="servicio" value="Catering"
-                               th:field="*{auxService}"/>
-                        <label for="catering">Catering</label><br>
-                        <input type="radio" id="cleaning" name="servicio" value="Cleaning"
-                               th:field="*{auxService}"/>
-                        <label for="cleaning">Cleaning</label><br>
-                        <input type="radio" id="nursing" name="servicio" value="Nursing" th:field="*{auxService}"/>
-                        <label for="nursing">Nursing</label><br>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="number">Número*:</label>
+                            <input type="text" class="form-control" id="number" th:field="*{numContract}"/>
+                        </div>
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="price">Precio*:</label></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="form-control" id="price" th:field="*{price}"/></td>
-                </tr>
-                <tr>
-                    <td><label for="startDate">Fecha comienzo*:</label></td>
-                </tr>
-                <tr>
-                    <td><input type="date" class="form-control" id="startDate" th:field="*{startDate}"/></td>
-                </tr>
-                <tr>
-                    <td><label for="endDate">Fecha fin*:</label></td>
-                </tr>
-                <tr>
-                    <td><input type="date" class="form-control" id="endDate" th:field="*{endDate}"/></td>
-                </tr>
-                <tr>
-                    <td><label for="serviceNumber">Número de servicios*:</label></td>
-                </tr>
-                <tr>
-                    <td><input type="number" class="form-control" id="serviceNumber" th:field="*{serviceNumber}"/></td>
-                </tr>
-                <tr>
-                    <td><label for="cifCompany">CIF Empresa*:</label></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}"/></td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label class="control-label">Seleccione un servicio*: </label>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="catering" name="servicio"
+                                           value="Catering"
+                                           th:field="*{auxService}"/>Comidas
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="cleaning" name="servicio"
+                                           value="Cleaning"
+                                           th:field="*{auxService}"/>Limpieza
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="nursing" name="servicio"
+                                           value="Nursing"
+                                           th:field="*{auxService}"/>Enfermería
+                                </label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="price">Precio*:</label>
+                            <input type="text" class="form-control" id="price" th:field="*{price}"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="startDate">Fecha comienzo*:</label>
+                            <input type="date" class="form-control" id="startDate" th:field="*{startDate}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="endDate">Fecha fin*:</label>
+                            <input type="date" class="form-control" id="endDate" th:field="*{endDate}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="serviceNumber">Número de servicios*:</label>
+                            <input type="number" class="form-control" id="serviceNumber" th:field="*{serviceNumber}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="cifCompany">CIF Empresa*:</label>
+                            <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="buttonSubmit">
                         <button class="btn" type="submit">Acceder</button>
                     </td>
                 </tr>
@@ -90,7 +122,6 @@
         *Campos obligatorios
     </div>
     <div th:replace="fragments/footer"></div>
-
 </div>
 </body>
 </html>

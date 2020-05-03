@@ -61,6 +61,10 @@ h2{
 /*=====================================*/
 
 /* DISEÑO PARA BOTONES */
+.buttonSubmit {
+    padding-top: 10px;
+    text-align: center;
+}
 .buttonSubmit button{
     background-color: #465881;
     border-color: #465881;

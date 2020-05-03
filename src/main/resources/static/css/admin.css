@@ -49,9 +49,14 @@
 
 /* Add contract */
 .tableAddContract{
-    width: 25%;
+    width: 30%;
     margin: 0 auto;
 }
+
+.tableAddContract td div{
+    margin: 0 auto;
+}
+
 .return a{
     color: #465881;
     text-decoration: none;
