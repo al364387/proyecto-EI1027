@@ -1,4 +1,4 @@
-.tdAcceso {
+.buttonSubmit {
     padding-top: 10px;
     text-align: center;
 }
@@ -19,14 +19,4 @@
     font-size: 19px;
     margin-bottom: 0;
     padding-top: 10px;
-}
-.tdAcceso button{
-    background-color: #465881;
-    border-color: #465881;
-    color: #fff;
-}
-.tdAcceso button:hover {
-    background-color: #00909e;
-    border-color: #00909e;
-    color: #fff;
 }
