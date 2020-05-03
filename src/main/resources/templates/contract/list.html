@@ -12,48 +12,50 @@
     <div th:replace="fragments/nav"></div>
     <div class="contenido">
         <br>
-        <h1>Listado de contratos</h1>
+        <h2>Listado de contratos</h2>
         <br>
-        <div>
-            <a title="Añadir nuevo contrato" class="addContract" href="/contract/add">
-                <svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-                          clip-rule="evenodd"></path>
-                </svg>
-                <span style="">Nuevo contrato</span>
-            </a>
+        <div class="container">
+            <div>
+                <a title="Añadir nuevo contrato" class="addContract" href="/contract/add">
+                    <svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    <span style="">Nuevo contrato</span>
+                </a>
+            </div>
+            <br>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Servicio</th>
+                    <th>Precio</th>
+                    <th>Fecha de comienzo</th>
+                    <th>Fecha de finalización</th>
+                    <th>Número de servicios</th>
+                    <th>CIF Empresa</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contract: ${contracts}">
+                    <td th:text="${contract.numContract}"></td>
+                    <td>
+                        <p th:if="${contract.catering == true}">Catering</p>
+                        <p th:if="${contract.cleaning == true}">Limpieza</p>
+                        <p th:if="${contract.nursing == true}">Enfermería</p>
+                    </td>
+                    <td th:text="${contract.price}"></td>
+                    <td th:text="${contract.startDate}"></td>
+                    <td th:text="${contract.endDate}"></td>
+                    <td th:text="${contract.serviceNumber}"></td>
+                    <td th:text="${contract.cifCompany}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <br>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Numero</th>
-                <th>Servicio</th>
-                <th>Precio</th>
-                <th>Fecha de comienzo</th>
-                <th>Fecha de finalización</th>
-                <th>Número de servicios</th>
-                <th>CIF Empresa</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="contract: ${contracts}">
-                <td th:text="${contract.numContract}"></td>
-                <td>
-                    <p th:if="${contract.catering == true}">Catering</p>
-                    <p th:if="${contract.cleaning == true}">Limpieza</p>
-                    <p th:if="${contract.nursing == true}">Enfermería</p>
-                </td>
-                <td th:text="${contract.price}"></td>
-                <td th:text="${contract.startDate}"></td>
-                <td th:text="${contract.endDate}"></td>
-                <td th:text="${contract.serviceNumber}"></td>
-                <td th:text="${contract.cifCompany}"></td>
-            </tr>
-            </tbody>
-        </table>
     </div>
     <div th:replace="fragments/footer"></div>
 </div>

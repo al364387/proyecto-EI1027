@@ -6,6 +6,11 @@ footer{
     text-align: center;
 }
 
+h2{
+    text-align: center;
+    color: #1b2a49;
+}
+
 .contenido{
     min-height: calc(100vh - 112.93px - 121px);
 }

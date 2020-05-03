@@ -6,9 +6,7 @@
     width: 100vh;
     margin: 0 auto;
 }
-.tablaLogin h2{
-    color: #1b2a49;
-}
+
 .tablaLogin tr{
     text-align: center;
 }
