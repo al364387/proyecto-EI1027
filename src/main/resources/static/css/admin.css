@@ -67,7 +67,12 @@
 .tableAddContract td div{
     margin: 0 auto;
 }
+
 .tableAddContract td.buttonSubmit{
+    padding-top: 20px;
+}
+
+.tableAddContract td.buttonCancel{
     padding-top: 20px;
 }
 

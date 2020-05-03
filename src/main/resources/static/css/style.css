@@ -50,9 +50,11 @@ h2{
 .separator{
     border-right: 2px #ffffff solid;
 }
+
 .error{
     color: red;
 }
+
 /* Float */
 .floatRight{
     float: right;
@@ -61,15 +63,18 @@ h2{
 .floatLeft{
     float: left;
 }
+
 /* End Float ===================== */
 
 /* Alineaciones */
 .alignRight{
     text-align: right;
 }
+
 .alignLeft{
     text-align: left;
 }
+
 /* End Alineaciones ============== */
 
 /* DISEÑO PARA BOTONES */
@@ -77,14 +82,33 @@ h2{
     padding-top: 10px;
     text-align: center;
 }
+
 .buttonSubmit button{
     background-color: #465881;
     border-color: #465881;
     color: #fff;
 }
+
 .buttonSubmit button:hover {
     background-color: #00909e;
     border-color: #00909e;
     color: #fff;
+}
+
+.buttonCancel {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.buttonCancel button{
+    background-color: transparent;
+    border-color: #465881;
+    color: #465881;
+}
+
+.buttonCancel button:hover {
+    background-color: transparent;
+    border-color: #00909e;
+    color: #00909e;
 }
 /* End DISEÑO PARA BOTONES ======= */
