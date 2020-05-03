@@ -25,3 +25,8 @@
     border-color: #465881;
     color: #fff;
 }
+.tdAcceso button:hover {
+    background-color: #00909e;
+    border-color: #00909e;
+    color: #fff;
+}
