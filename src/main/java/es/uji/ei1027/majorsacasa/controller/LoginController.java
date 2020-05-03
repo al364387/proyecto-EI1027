@@ -47,11 +47,12 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String checkLogin(@ModelAttribute("user") UserDetails user,
+    public String checkLogin(@ModelAttribute("user") UserDetails user, Model model,
                              BindingResult bindingResult, HttpSession session) {
         UserValidator userValidator = new UserValidator();
         userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
+            model.addAttribute("login", true);
             return "login";
         }
         // Comprueba que el login sea correcto
@@ -59,6 +60,7 @@ public class LoginController {
         user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
         if (user == null) {
             bindingResult.rejectValue("password", "badpw", "Usuario o contraseña incorrecta");
+            model.addAttribute("login", true);
             return "login";
         }
         // Autenticados correctamente.
