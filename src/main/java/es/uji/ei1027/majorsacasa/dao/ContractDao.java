@@ -25,13 +25,9 @@ public class ContractDao {
 
     // Añade el contrato a la bbdd
     public void addContract(Contract contract){
-        String servicio = contract.getAuxService();
-        boolean catering = servicio.equals("Catering");
-        boolean nursing = servicio.equals("Nursing");
-        boolean cleaning = servicio.equals("Cleaning");
         jdbcTemplate.update("INSERT INTO Contract VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                contract.getNumContract(), catering, nursing,
-                cleaning, contract.getPrice(), contract.getStartDate(),
+                contract.getNumContract(), isCatering(contract.getAuxService()), isNursing(contract.getAuxService()),
+                isCleaning(contract.getAuxService()), contract.getPrice(), contract.getStartDate(),
                 contract.getEndDate(), contract.getServiceNumber(), contract.getCifCompany());
     }
 
@@ -52,5 +48,18 @@ public class ContractDao {
         } catch (EmptyResultDataAccessException e){
             return new ArrayList<Contract>();
         }
+    }
+
+    // Métodos para saber el tipo de servicio
+    private boolean isCatering(String servicio){
+        return servicio.equals("Catering");
+    }
+
+    private boolean isNursing(String servicio){
+        return servicio.equals("Nursing");
+    }
+
+    private boolean isCleaning(String servicio){
+        return servicio.equals("Cleaning");
     }
 }

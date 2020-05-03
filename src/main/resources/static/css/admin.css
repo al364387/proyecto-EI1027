@@ -21,6 +21,7 @@
     font-size: 28px;
 }
 
+/* List contract */
 .addContract{
     text-decoration: none !important;
     color: #1b2a49;
@@ -44,4 +45,10 @@
 
 .addContract svg{
     vertical-align: text-bottom;
+}
+
+/* Add contract */
+.tableAddContract{
+    width: 100vh;
+    margin: 0 auto;
 }
