@@ -49,6 +49,14 @@
 
 /* Add contract */
 .tableAddContract{
-    width: 100vh;
+    width: 25%;
     margin: 0 auto;
+}
+.return a{
+    color: #465881;
+    text-decoration: none;
+}
+.return a:hover{
+    color: #00909e;
+    text-decoration: none;
 }
