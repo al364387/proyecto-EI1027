@@ -1,5 +1,5 @@
 body{
-    background: #C0C0C0;
+    background: #c9d1d3;
 }
 
 footer{
@@ -39,9 +39,12 @@ footer{
 }
 
 .nav-select{
-    color: #5AA2E0 !important;
+    color: #00909e !important;
 }
 
 .separator{
     border-right: 2px #ffffff solid;
+}
+.error{
+    color: red;
 }

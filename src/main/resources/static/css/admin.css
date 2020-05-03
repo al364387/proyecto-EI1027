@@ -28,18 +28,18 @@ h1{
 
 .addContract{
     text-decoration: none !important;
-    color: #143548;
+    color: #1b2a49;
     font-weight: bold;
     border: 2px solid;
     padding: 0 5px 5px 5px;
 }
 
 .addContract a:link{
-    color: #5aa2e0;
+    color: #00909e;
     text-decoration: none !important;
 }
 .addContract a:focus{
-    color: #5aa2e0;
+    color: #00909e;
     text-decoration: none !important;
 }
 
