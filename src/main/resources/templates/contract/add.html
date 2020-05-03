@@ -12,60 +12,66 @@
     <div th:replace="fragments/nav"></div>
     <div class="contenido">
         <h2>Nuevo contrato</h2>
-        <form class="form-horizontal" action="#" th:action="@{/contract/add}" th:object="${contract}" method="post">
-            <div class="form-group row">
-                <label class="control-label col-sm-2" for="number">Número</label>
-                <div>
-                    <input type="text" class="form-control" id="number" th:field="*{numContract}"/>
-                </div>
-            </div>
-            <label class="control-label">Seleccione un servicio: </label>
-            <br>
-
-            <input type="radio" id="catering" name="servicio" value="Catering" th:field="*{auxService}"/>
-            <label for="catering">Catering</label><br>
-            <input type="radio" id="cleaning" name="servicio" value="Cleaning" th:field="*{auxService}"/>
-            <label for="cleaning">Cleaning</label><br>
-            <input type="radio" id="nursing" name="servicio" value="Nursing" th:field="*{auxService}"/>
-            <label for="nursing">Nursing</label><br>
-
-            <div class="form-group row">
-                <label class="control-label col-sm-2" for="price">Precio</label>
-                <div>
-                    <input type="text" class="form-control" id="price" th:field="*{price}"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="control-label col-sm-2" for="startDate">Fecha comienzo</label>
-                <div>
-                    <input type="date" class="form-control" id="startDate" th:field="*{startDate}"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="control-label col-sm-2" for="endDate">Fecha fin</label>
-                <div>
-                    <input type="date" class="form-control" id="endDate" th:field="*{endDate}"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="control-label col-sm-2" for="serviceNumber">Número de servicios</label>
-                <div>
-                    <input type="number" class="form-control" id="serviceNumber" th:field="*{serviceNumber}"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="control-label col-sm-2" for="cifCompany">CIF Empresa</label>
-                <div>
-                    <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-offset-2 col-sm-4">
-                    <button type="submit" class="btn btn-primary">Añadir</button>
-                </div>
-            </div>
-        </form>
-        <a href="/contract/list"> Atrás </a>
+        <div>
+            <form class="form-horizontal" action="#" th:action="@{/contract/add}" th:object="${contract}" method="post">
+                <table class="tableAddContract">
+                    <tr>
+                        <td><label class="control-label col-sm-2" for="number">Número</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-control" id="number" th:field="*{numContract}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label">Seleccione un servicio: </label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" id="catering" name="servicio" value="Catering"
+                                   th:field="*{auxService}"/>
+                            <label for="catering">Catering</label><br>
+                            <input type="radio" id="cleaning" name="servicio" value="Cleaning"
+                                   th:field="*{auxService}"/>
+                            <label for="cleaning">Cleaning</label><br>
+                            <input type="radio" id="nursing" name="servicio" value="Nursing" th:field="*{auxService}"/>
+                            <label for="nursing">Nursing</label><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label col-sm-2" for="price">Precio</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-control" id="price" th:field="*{price}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label col-sm-2" for="startDate">Fecha comienzo</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" class="form-control" id="startDate" th:field="*{startDate}"/></td>
+                    </tr>
+                    <tr>
+                        <td> <label class="control-label col-sm-2" for="endDate">Fecha fin</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" class="form-control" id="endDate" th:field="*{endDate}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label col-sm-2" for="serviceNumber">Número de servicios</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" class="form-control" id="serviceNumber" th:field="*{serviceNumber}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label col-sm-2" for="cifCompany">CIF Empresa</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}"/></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary">Añadir</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </div>
     <div th:replace="fragments/footer"></div>
 </div>
