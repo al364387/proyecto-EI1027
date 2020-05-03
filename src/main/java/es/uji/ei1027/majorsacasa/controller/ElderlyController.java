@@ -85,7 +85,6 @@ public class ElderlyController {
                 " si aun tiene servicios solicitados",
                 "CPConServicios");
                 */
-
         }
 
         return "redirect:../list";
