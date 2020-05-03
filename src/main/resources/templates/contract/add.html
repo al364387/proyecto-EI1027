@@ -11,7 +11,7 @@
 <div class="container">
     <div th:replace="fragments/nav"></div>
     <div class="contenido">
-        <div class="return alingRight">
+        <div class="return alignRight">
             <a href="/contract/list">
                 <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                      xmlns="http://www.w3.org/2000/svg">
@@ -30,20 +30,14 @@
                 <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label for="number">Número*:</label>
-                            <input type="text" class="form-control" id="number" th:field="*{numContract}"/>
+                            <label for="cifCompany">CIF Empresa*: <a href="/company/add">Añadir nueva empresa</a></label>
+                            <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}"/>
                         </div>
                     </td>
-                </tr>
-                <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label class="control-label">Seleccione un servicio*: </label>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <div class="form-check-inline">
                                 <label class="form-check-label">
@@ -76,25 +70,6 @@
                             <input type="text" class="form-control" id="price" th:field="*{price}"/>
                         </div>
                     </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label for="startDate">Fecha comienzo*:</label>
-                            <input type="date" class="form-control" id="startDate" th:field="*{startDate}"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label for="endDate">Fecha fin*:</label>
-                            <input type="date" class="form-control" id="endDate" th:field="*{endDate}"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="serviceNumber">Número de servicios*:</label>
@@ -105,20 +80,33 @@
                 <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label for="cifCompany">CIF Empresa*:</label>
-                            <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}"/>
+                            <label for="startDate">Fecha comienzo*:</label>
+                            <input type="date" class="form-control" id="startDate" th:field="*{startDate}"/>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="endDate">Fecha fin*:</label>
+                            <input type="date" class="form-control" id="endDate" th:field="*{endDate}"/>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td class="buttonSubmit">
-                        <button class="btn" type="submit">Añadir</button>
+                        <div class="buttonAdd alignRight">
+                            <button class="btn" type="submit">Añadir</button>
+                        </div>
+                    </td>
+                    <td class="buttonSubmit">
+                        <div class="buttonDelete alignLeft">
+                            <button class="btn" type="reset">Borrar</button>
+                        </div>
                     </td>
                 </tr>
             </table>
         </form>
     </div>
-    <div class="alingRight">
+    <div class="alignRight">
         *Campos obligatorios
     </div>
     <div th:replace="fragments/footer"></div>

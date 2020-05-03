@@ -7,14 +7,6 @@
     color: #00909e;
 }
 
-.floatR{
-    float: right;
-}
-
-.floatL{
-    float: left;
-}
-
 .icon{
     color: #fff;
     margin-right: 40px;
@@ -24,9 +16,6 @@
 .icon:hover{
     color: #00909e;
 }
-
-
-
 
 /* List contract */
 .addContract{
@@ -55,20 +44,50 @@
 }
 
 /* Add contract */
+.return a{
+    color: #465881;
+    text-decoration: none;
+}
+
+.return a:hover{
+    color: #00909e;
+    text-decoration: none;
+}
+
 .tableAddContract{
-    width: 30%;
+    width: 72%;
     margin: 0 auto;
+}
+
+.tableAddContract tr td{
+    min-width: 369px;
+    min-height: 92px;
 }
 
 .tableAddContract td div{
     margin: 0 auto;
 }
+.tableAddContract td.buttonSubmit{
+    padding-top: 20px;
+}
 
-.return a{
-    color: #465881;
-    text-decoration: none;
+.tableAddContract label{
+    padding-top: 20px;
 }
-.return a:hover{
-    color: #00909e;
-    text-decoration: none;
+
+.tableAddContract div.form-check-inline{
+    margin-right: .75rem;
 }
+
+.tableAddContract label.form-check-label{
+    padding-top: 6px;
+}
+
+.buttonAdd{
+    padding-right: 15px;
+}
+
+.buttonDelete{
+    padding-left: 15px;
+}
+
