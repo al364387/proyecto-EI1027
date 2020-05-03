@@ -58,7 +58,7 @@ public class LoginController {
         // intentando cargar losdatos de usuario
         user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
         if (user == null) {
-            bindingResult.rejectValue("password", "badpw", "Contrasenya incorrecta");
+            bindingResult.rejectValue("password", "badpw", "Usuario o contraseña incorrecta");
             return "login";
         }
         // Autenticados correctamente.
