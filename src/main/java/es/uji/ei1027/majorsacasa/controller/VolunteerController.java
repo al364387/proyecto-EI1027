@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.InvoiceLine;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,22 @@ public class VolunteerController {
         if (bindingResult.hasErrors())
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
+        return "redirect:list";
+    }
+
+    @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
+    public String editVolunteer(Model model, @PathVariable int id) {
+        model.addAttribute("volunteer", volunteerDao.getVolunteer(id));
+        return "volunteer/update";
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("volunteer") Volunteer volunteer,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "volunteer/update";
+        volunteerDao.updateVolunteer(volunteer);
         return "redirect:list";
     }
 

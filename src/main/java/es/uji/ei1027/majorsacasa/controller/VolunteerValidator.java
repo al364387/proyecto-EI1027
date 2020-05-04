@@ -31,11 +31,11 @@ public class VolunteerValidator implements Validator {
         if(volunteer.getPassword().trim().equals("")){
             errors.rejectValue("username", "obligatorio", "Ha de introducirse un valor");
         }
-
+/*
         if((volunteer.getBirthdate().getYear() + 18) < LocalDate.now().getYear()){
             errors.rejectValue("birthdate", "voluntario muy joven", "Es necesario tener 18 años para ser voluntario");
         }
-
+*/
 
     }
 }

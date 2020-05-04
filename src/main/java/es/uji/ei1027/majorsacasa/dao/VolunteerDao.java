@@ -36,6 +36,19 @@ public class VolunteerDao {
                 id);
     }
 
+    public void updateVolunteer(Volunteer volunteer) {
+        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =?, endDate =? WHERE id =?", volunteer.getAcceptDate() ,volunteer.getEndDate(), volunteer.getId());
+    }
+
+    public Volunteer getVolunteer(int id) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE id =?", new VolunteerRowMapper(), id);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
     //Listar Voluntarios
     public List<Volunteer> getVolunteers() {
         try {
@@ -54,4 +67,6 @@ public class VolunteerDao {
         int id = volunteers.get(volunteers.size() - 1).getId() + 1;
         return id;
     }
+
+
 }

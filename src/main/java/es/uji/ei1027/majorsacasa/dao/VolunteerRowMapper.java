@@ -18,6 +18,12 @@ public final class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setBirthdate(d!=null ? d.toLocalDate() : null);
         volunteer.setPhonenumber(rs.getInt("phoneNumber"));
 
+        Date da = rs.getDate("acceptDate");
+        volunteer.setAcceptDate(da!=null ? da.toLocalDate() : null);
+
+        Date dat = rs.getDate("endDate");
+        volunteer.setEndDate(dat!=null ? dat.toLocalDate() : null);
+
         volunteer.setAddress(rs.getString("address"));
 
         volunteer.setUsername(rs.getString("username"));

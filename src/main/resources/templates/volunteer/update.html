@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Añadir voluntario</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/nav"></div>
+    <div class="contenido">
+        <div class="return alignRight">
+            <a href="/volunteer/list">
+                <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M8.354 1.646a.5.5 0 010 .708L2.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                    <path fill-rule="evenodd"
+                          d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                </svg>
+                Volver al listado de voluntarios</a>
+        </div>
+        <h2>Nuevo voluntario</h2>
+        <form class="form-horizontal" action="#" th:action="@{/volunteer/update}" th:object="${volunteer}"
+              method="post">
+            <table class="tableAddContract">
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="id">Id: <a href="/volunteer/update">Añadir nueva empresa</a></label>
+                            <input type="text" class="form-control" id="id" th:field="*{id}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="name">Nombre:</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="surname">Apellido:</label>
+                            <input type="text" class="form-control" id="surname" th:field="*{surname}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="birthdate">Fecha de nacimiento:</label>
+                            <input type="date" class="form-control" id="birthdate" th:field="*{birthdate}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="phonenumber">Número de teléfono*:</label>
+                            <input type="number" class="form-control" id="phonenumber" th:field="*{phonenumber}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="acceptDate">Fecha comienzo*:</label>
+                            <input type="date" class="form-control" id="acceptDate" th:field="*{acceptDate}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="endDate">Fecha fin*:</label>
+                            <input type="date" class="form-control" id="endDate" th:field="*{endDate}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="buttonSubmit">
+                        <div class="buttonAdd alignRight">
+                            <button class="btn" type="submit">Añadir</button>
+                        </div>
+                    </td>
+                    <td class="buttonCancel">
+                        <div class="buttonDelete alignLeft">
+                            <button class="btn" type="reset">Borrar</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="alignRight">
+        *Campos obligatorios
+    </div>
+    <div th:replace="fragments/footer"></div>
+</div>
+</body>
+</html>
