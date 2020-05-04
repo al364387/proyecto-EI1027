@@ -6,7 +6,6 @@
     <link rel="icon" type="image/png" href="/img/icon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/elderly.css" th:href="@{/css/elderly.css}"/>
 </head>
 <body>
 <div class="continer" style="padding: 10px;">
@@ -14,9 +13,9 @@
     <form class="form-horizontal" action="#" th:action="@{/elderly/add}" th:object="${elderly}" method="post">
         <table>
             <tr>
-                <td><label>DNI: </label></td>
+                <td><label>DNI*: </label></td>
                 <td>
-                    <input type="text" th:field="*{DNI}" size="20" maxlength="20" />
+                    <input type="text" th:field="*{DNI}" th:errorClass="needcorrection" size="20" maxlength="20" />
                 </td>
                 <td th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}" class="error"></td>
             </tr>
@@ -28,63 +27,73 @@
                 </td>
             </tr>
             <tr>
-                <td><label>Nombre:</label></td>
+                <td><label>Nombre*:</label></td>
                 <td>
-                    <input type="text" th:field="*{name}" size="20" maxlength="20"
+                    <input type="text" th:field="*{name}" th:errorClass="needcorrection" size="20" maxlength="20"
                            />
+
                 </td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></td>
             </tr>
             <tr>
-                <td><label>Apellidos:</label></td>
+                <td><label>Apellidos*:</label></td>
                 <td>
                     <div>
-                        <input type="text" th:field="*{surname}" size="20" maxlength="20" />
+                        <input type="text" th:field="*{surname}" th:errorClass="needcorrection" size="20" maxlength="20" />
                     </div>
                 </td>
+                <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error"></td>
             </tr>
             <tr>
-                <td><label>Email:</label></td>
+                <td><label>Email*:</label></td>
                 <td>
-                    <input type="email" th:field="*{email}" size="20" maxlength="50"
+                    <input type="email" th:field="*{email}" th:errorClass="needcorrection" size="20" maxlength="50"
                            />
                 </td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
             </tr>
             <tr>
-                <td><label>Fecha de nacimiento: </label></td>
+                <td><label>Fecha de nacimiento*: </label></td>
                 <td>
-                    <input type="date" th:field="*{birthDate}" />
+                    <input type="date" th:field="*{birthDate}" th:errorClass="needcorrection" />
                 </td>
+                <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" class="error"></td>
             </tr>
             <tr>
-                <td> <label>Teléfono:</label></td>
+                <td> <label>Teléfono*:</label></td>
                 <td>
-                    <input type="tel" th:field="*{phoneNumber}" />
+                    <input type="tel" th:field="*{phoneNumber}" th:errorClass="needcorrection" />
                 </td>
+                <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></td>
             </tr>
             <tr>
-                <td><label>Dirección:</label></td>
+                <td><label>Dirección*:</label></td>
                 <td>
-                    <input type="text" th:field="*{address}" size="50"
+                    <input type="text" th:field="*{address}" th:errorClass="needcorrection" size="50"
                            maxlength="70" />
                 </td>
+                <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></td>
             </tr>
             <tr>
-                <td><label>Cuenata bancaria:</label></td>
+                <td><label>Cuenta bancaria*:</label></td>
                 <td>
-                    <input type="text" th:field="*{bankAccount}" size="50" maxlength="50" />
+                    <input type="text" th:field="*{bankAccount}" th:errorClass="needcorrection" size="50" maxlength="50" />
                 </td>
+                <td th:if="${#fields.hasErrors('bankAccount')}" th:errors="*{bankAccount}" class="error"></td>
             </tr>
             <tr>
-                <td><label>Usuario:</label></td>
+                <td><label>Usuario*:</label></td>
                 <td>
-                    <input type="text" th:field="*{username}" size="20" maxlength="20" />
+                    <input type="text" th:field="*{username}" th:errorClass="needcorrection" size="20" maxlength="20" />
                 </td>
+                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></td>
             </tr>
             <tr>
-                <td><label>Contraseña:</label></td>
+                <td><label>Contraseña*:</label></td>
                 <td>
-                    <input type="password" th:field="*{password}" size="20" maxlength="20" />
+                    <input type="password" th:field="*{password}" th:errorClass="needcorrection" size="20" maxlength="20" />
                 </td>
+                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
             </tr>
         </table>
 

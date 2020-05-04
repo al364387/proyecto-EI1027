@@ -17,7 +17,52 @@ public class ElderlyValidator implements Validator {
 
         if (elderly.getDNI().trim().equals("")) {
             errors.rejectValue("DNI", "obligado",
-                    "Es necsario introducir un valor");
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getName().trim().equals("")) {
+            errors.rejectValue("name", "obligado",
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getSurname().trim().equals("")) {
+            errors.rejectValue("surname", "obligado",
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getEmail().trim().equals("")) {
+            errors.rejectValue("email", "obligado",
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getBirthDate() == null) {
+            errors.rejectValue("birthDate", "obligado",
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getPhoneNumber() == 0) {
+            errors.rejectValue("phoneNumber", "obligado",
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getAddress().trim().equals("")) {
+            errors.rejectValue("address", "obligado",
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getBankAccount().trim().equals("")) {
+            errors.rejectValue("bankAccount", "obligado",
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getUsername().trim().equals("")) {
+            errors.rejectValue("username", "obligado",
+                    "Es necesario introducir un valor");
+        }
+
+        if (elderly.getPassword().trim().equals("")) {
+            errors.rejectValue("password", "obligado",
+                    "Es necesario introducir un valor");
         }
     }
 }

@@ -31,8 +31,12 @@
                 <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label for="cifCompany">CIF Empresa*: <a href="/company/add">Añadir nueva empresa</a></label>
-                            <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}"/>
+                            <label for="cifCompany">Empresa*: <a href="/company/add">Añadir nueva empresa</a></label>
+                            <select class="form-control" id="cifCompany" th:field="*{cifCompany}">
+                                <option th:each="company: ${companies.getCompanies()}" th:value="${company.cif}"
+                                        th:text="${company.name}">
+                                </option>
+                            </select>
                         </div>
                     </td>
                     <td>

@@ -51,9 +51,16 @@ h2{
     border-right: 2px #ffffff solid;
 }
 
-.error{
+/* Errores ======================= */
+.error {
     color: red;
+    font-size: 80%;
 }
+
+.needcorrection {
+    border-color: red;
+}
+/* End Errores ================== */
 
 /* Float ========================= */
 .floatRight{

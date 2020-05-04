@@ -40,7 +40,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input class="form_control" type="text" th:field="*{username}"/></td>
+                    <td><input class="form_control" th:errorClass="needcorrection" type="text" th:field="*{username}"/></td>
                 </tr>
 
                 <tr>
@@ -51,7 +51,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input class="form_control" type="password" th:field="*{password}"/></td>
+                    <td><input class="form_control" type="password" th:errorClass="needcorrection" th:field="*{password}"/></td>
                 </tr>
                 <tr>
                     <td class="buttonSubmit">

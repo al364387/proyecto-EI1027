@@ -3,6 +3,8 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.model.Contract;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
+import es.uji.ei1027.majorsacasa.services.ContractService;
+import es.uji.ei1027.majorsacasa.services.ContractSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +19,16 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/contract")
 public class ContractController {
     private ContractDao contractDao;
+    private ContractService contractService;
 
     @Autowired
     public void setContractDao(ContractDao contractDao){
         this.contractDao = contractDao;
+    }
+
+    @Autowired
+    public void setContractService(ContractService contractService){
+        this.contractService = contractService;
     }
 
     @RequestMapping("/list")
@@ -45,6 +53,8 @@ public class ContractController {
         }
         model.addAttribute("isAdmin", true);
         model.addAttribute("contract", new Contract());
+        model.addAttribute("listContratcs", contractDao.getContracts());
+        model.addAttribute("companies", contractService);
         return "contract/add";
     }
 
