@@ -47,6 +47,16 @@ public class CompanyDao {
         }
     }
 
+    /* Obté el nadador amb el nom donat. Torna null si no existeix. */
+    public Company getUserCompany(String username) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE username = ?",
+                    new CompanyRowMapper(), username);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
     /* Obté tots els Company. Torna una llista buida si no n'hi ha cap. */
     public List<Company> getCompanies() {
         try {
