@@ -13,18 +13,18 @@
         <div class="contenido">
             <br>
             <h2>Acceso</h2>
-            <form class="form-horizontal" action="#" th:action="@{/login}" th:object="${user}" method="post">
+            <form class="needs-validation" action="#" th:action="@{/login}" th:object="${user}" method="post">
                 <div class="formLogin">
-                    <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-                    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                     <label for="username">Nombre de usuario*:</label>
-                    <input id="username" class="form_control" th:errorClass="needcorrection" type="text"
+                    <input id="username" class="form_control" type="text" th:errorClass="needcorrection"
                            th:field="*{username}"/>
-
+                    <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                     <label for="pass">Contraseña*:</label>
                     <input id="pass" class="form_control" type="password" th:errorClass="needcorrection"
                            th:field="*{password}"/>
+                    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                     <div class="buttonSubmit">
+                        <br>
                         <button class="btn" type="submit">Acceder</button>
                     </div>
                 </div>

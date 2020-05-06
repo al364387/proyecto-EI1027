@@ -25,11 +25,11 @@ class UserValidator implements Validator {
     public void validate(Object obj, Errors errors) {
         UserDetails userDetails = (UserDetails) obj;
         if (userDetails.getUsername().trim().equals("")) {
-            errors.rejectValue("username", "obligatori", "Es necesario introducir el nombre de usuario");
+            errors.rejectValue("username", "obligatori", "Introduzca el nombre de usuario");
         }
 
         if (userDetails.getPassword().trim().equals("")) {
-            errors.rejectValue("password", "obligatori", "Es necesario introducir la contraseña");
+            errors.rejectValue("password", "obligatori", "Introduzca la contraseña");
         }
     }
 }
@@ -85,6 +85,7 @@ public class LoginController {
         }
 
         if (user == null) {
+            bindingResult.rejectValue("username", "badpw", "");
             bindingResult.rejectValue("password", "badpw", "Usuario o contraseña incorrecta");
             model.addAttribute("login", true);
             return "login";
