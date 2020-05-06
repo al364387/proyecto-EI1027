@@ -21,10 +21,10 @@ public class CompanyDao {
     }
 
     /* Afegeix la company a la base de dades */
-    void addCompany(Company empresa) {
-        jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?)",
+    public void addCompany(Company empresa) {
+        jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?, ?, ?)",
                 empresa.getCif(), empresa.getName(), empresa.getPhoneNumber(),
-                empresa.getEmail());
+                empresa.getEmail(), empresa.getUsername(), empresa.getPassword());
     }
 
     /* Esborra la empresa de la base de dades */
@@ -38,7 +38,7 @@ public class CompanyDao {
                 empresa.getPhoneNumber(), empresa.getEmail(), empresa.getCif());
     }
 
-    /* Obté el nadador amb el nom donat. Torna null si no existeix. */
+    /* Obté el company amb el nom donat. Torna null si no existeix. */
     public Company getCompany(String cif) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE cif = ?", new CompanyRowMapper(), cif);
