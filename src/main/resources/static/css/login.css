@@ -1,0 +1,24 @@
+.buttonSubmit {
+    padding-top: 10px;
+    text-align: center;
+}
+.tablaLogin{
+    width: 100vh;
+    margin: 0 auto;
+}
+
+.alignLeft{
+    text-align: left;
+    width: 24%;
+    margin: 0 auto;
+}
+
+.tablaLogin tr{
+    text-align: center;
+}
+
+.tablaLogin label{
+    font-size: 19px;
+    margin-bottom: 0;
+    padding-top: 10px;
+}

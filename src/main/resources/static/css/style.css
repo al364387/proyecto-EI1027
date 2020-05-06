@@ -19,6 +19,7 @@ h2{
     background: #ffffff;
 }
 
+
 .loggeduser {
     color: gray;
     text-align: right;
@@ -27,7 +28,6 @@ h2{
 
 .logo{
     width: 65px;
-    height: 89px;
 }
 
 .navbar-li{
@@ -50,107 +50,31 @@ h2{
 .separator{
     border-right: 2px #ffffff solid;
 }
-
-/* Login ========================= */
-.tablaLogin{
-    width: 100vh;
-    margin: 0 auto;
-}
-
-.tablaLogin tr{
-    text-align: center;
-}
-
-.alignLeft{
-    text-align: left;
-    width: 24%;
-    margin: 0 auto;
-}
-
-.tablaLogin label{
-    font-size: 19px;
-    margin-bottom: 0;
-    padding-top: 10px;
-}
-/* End Login ===================== */
-
-/* Register ====================== */
-.tableRegister{
-    width: 100vh;
-    margin: 0 auto;
-    height: 150px;
-}
-
-.tableRegister tr{
-    text-align: center;
-}
-/* End Register ================== */
-
-/* Errores ======================= */
-.error {
+.error{
     color: red;
-    font-size: 80%;
 }
 
-.needcorrection {
-    border-color: red;
-}
-/* End Errores ================== */
-
-/* Float ========================= */
-.floatRight{
-    float: right;
-}
-
-.floatLeft{
-    float: left;
-}
-
-/* End Float ===================== */
-
-/* Alineaciones ================== */
-.alignRight{
+/* Alineaciones */
+.alingRight{
     text-align: right;
 }
+/*=====================================*/
 
-.alignLeft{
-    text-align: left;
-}
-
-/* End Alineaciones ============== */
-
-/* Diseño para botones =========== */
-.buttonSubmit {
-    padding-top: 10px;
-    text-align: center;
-}
-
+/* DISEÑO PARA BOTONES */
 .buttonSubmit button{
     background-color: #465881;
     border-color: #465881;
     color: #fff;
 }
-
 .buttonSubmit button:hover {
     background-color: #00909e;
     border-color: #00909e;
     color: #fff;
 }
-
-.buttonCancel {
-    padding-top: 10px;
-    text-align: center;
-}
-
-.buttonCancel button{
-    background-color: transparent;
-    border-color: #465881;
-    color: #465881;
-}
-
-.buttonCancel button:hover {
-    background-color: transparent;
-    border-color: #00909e;
-    color: #00909e;
-}
-/* End Diseño para botones ======= */
+/*=====================================*/
+/*
+<!--       _
+       .__(.)< (MEOW)
+        \___)
+ ~~~~~~~~~~~~~~~~~~-->
+ */
