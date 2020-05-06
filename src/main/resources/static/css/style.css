@@ -50,17 +50,66 @@ h2{
 .separator{
     border-right: 2px #ffffff solid;
 }
-.error{
-    color: red;
+
+/* Login ========================= */
+.tablaLogin{
+    width: 100vh;
+    margin: 0 auto;
 }
 
-/* Alineaciones */
+.tablaLogin tr{
+    text-align: center;
+}
+
+.alignLeft{
+    text-align: left;
+    width: 24%;
+    margin: 0 auto;
+}
+
+.tablaLogin label{
+    font-size: 19px;
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+/* End Login ===================== */
+
+/* Register ====================== */
+.tableRegister{
+    width: 100vh;
+    margin: 0 auto;
+    height: 150px;
+}
+
+.tableRegister tr{
+    text-align: center;
+}
+/* End Register ================== */
+
+/* Errores ======================= */
+.error {
+    color: red;
+    font-size: 80%;
+}
+
+.needcorrection {
+    border-color: red;
+}
+/* End Errores ================== */
+
+/* Float ========================= */
+.floatRight{
+    float: right;
+}
+/* End Float ===================== */
+
+/* Alineaciones ================== */
 .alingRight{
     text-align: right;
 }
-/*=====================================*/
+/* End Alineaciones ============== */
 
-/* DISEÑO PARA BOTONES */
+/* Diseño para botones =========== */
 .buttonSubmit button{
     background-color: #465881;
     border-color: #465881;
@@ -71,10 +120,4 @@ h2{
     border-color: #00909e;
     color: #fff;
 }
-/*=====================================*/
-/*
-<!--       _
-       .__(.)< (MEOW)
-        \___)
- ~~~~~~~~~~~~~~~~~~-->
- */
+/* End Diseño para botones ======= */
