@@ -54,7 +54,6 @@
                 <td><a class="btn btn-success" th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Aceptado')}">Aceptar</a></td>
                 <td><a class="btn btn-danger" th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Rechazado')}">Rechazar</a></td>
             </tr>
-            @{/classificacio/delete /{nNadador}/{nProva}(nNadador=${classificacio.nomNadador},nProva=${classificacio.nomP rova})}
             </tbody>
         </table>
         <a th:href="@{/}">Atrás</a>

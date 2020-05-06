@@ -1,6 +1,8 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+import com.sun.org.apache.xerces.internal.impl.xs.util.XSInputSource;
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Request;
@@ -64,7 +66,7 @@ public class RequestController {
     @RequestMapping(value = "/update/{number}/{estado}", method = RequestMethod.GET)
     public String editRequestStatus(@PathVariable String number, @PathVariable String estado) {
         requestDao.updateRequestStatus(Integer.parseInt(number), estado);
-        return "redirect:list";
+        return "redirect:../../list" ;
     }
 
 }
