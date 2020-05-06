@@ -1,21 +1,36 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.model.Admin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class DefaultController {
+    private final List<String> images = new ArrayList<>();
+
+    @Autowired
+    public void setImages(){
+        images.add("/img/slide1.png");
+        images.add("/img/slide2.png");
+        images.add("/img/slide3.png");
+        images.add("/img/slide4.png");
+    }
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
+        model.addAttribute("images", images);
         model.addAttribute("home", true);
         return "index";
     }
 
     @RequestMapping("/index")
-    public String index1(Model model){
+    public String index1(Model model) {
+        model.addAttribute("images", images);
         model.addAttribute("home", true);
         return "index";
     }

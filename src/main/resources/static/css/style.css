@@ -52,6 +52,76 @@ h2{
     border-right: 2px #ffffff solid;
 }
 
+/* Index ========================= */
+.carousel-indicators .active {
+    background-color: #465881;
+}
+
+.carousel-inner img {
+    width: 100%;
+    max-height: 460px
+}
+
+.carousel-control {
+    width: 0;
+}
+
+.carousel-control.left,
+.carousel-control.right {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    background-image: none;
+    background-repeat: no-repeat;
+    text-shadow: none;
+}
+
+.carousel-control.left span {
+    padding: 15px;
+}
+
+.carousel-control.right span {
+    padding: 15px;
+}
+
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+    position: absolute;
+    top: 45%;
+    z-index: 5;
+    display: inline-block;
+}
+
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .icon-prev {
+    left: 0;
+}
+
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-next {
+    right: 0;
+}
+
+.header-text {
+    position: absolute;
+    top: 20%;
+    left: 1.8%;
+    right: auto;
+    width: 96.66666666666666%;
+    color: #fff;
+}
+
+.header-text h2 {
+    font-size: 40px;
+}
+
+.header-text h2 span {
+    color: #fff;
+    padding: 10px;
+}
+/* End Index ===================== */
+
 /* Login ========================= */
 .formLogin{
     margin: 0 auto;
@@ -109,6 +179,9 @@ h2{
 
 .alignLeft{
     text-align: left;
+}
+.center{
+    margin: 0 auto;
 }
 /* End Alineaciones ============== */
 

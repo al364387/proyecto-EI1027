@@ -8,37 +8,43 @@
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
     <div th:if="*{user != null}">
-        <div th:if="*{role == 'Admin'}" >
+        <div th:if="*{role == 'Admin'}">
             <div th:replace="fragments/admin :: admin-css"></div>
         </div>
-        <div th:if="*{role == 'Elderly'}" >
+        <div th:if="*{role == 'Elderly'}">
             <div th:replace="fragments/elderly :: elderly-css"></div>
         </div>
-        <div th:if="*{role == 'Volunteer'}" >
+        <div th:if="*{role == 'Volunteer'}">
             <div th:replace="fragments/volunteer :: volunteer-css"></div>
         </div>
     </div>
 </head>
 <body>
-    <div class="container">
-        <div th:replace="fragments/nav :: nav"></div>
-        <div class="contenido" th:object="${session}">
-            <div th:if="*{user == null}">
-                <div th:replace="fragments/cover :: cover"></div>
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido" th:object="${session}">
+        <div th:if="*{user == null}">
+            <div th:replace="fragments/cover :: cover"></div>
+        </div>
+        <div th:unless="*{user == null}">
+            <div th:if="*{role == 'Admin'}">
+                <div th:replace="fragments/admin :: admin"></div>
             </div>
-            <div th:unless="*{user == null}">
-                <div th:if="*{role == 'Admin'}">
-                    <div th:replace="fragments/admin :: admin"></div>
-                </div>
-                <div th:if="*{role == 'Elderly'}">
-                    <div th:replace="fragments/elderly :: elderly"></div>
-                </div>
-                <div th:if="*{role == 'Volunteer'}">
-                    <div th:replace="fragments/volunteer :: volunteer"></div>
-                </div>
+            <div th:if="*{role == 'Elderly'}">
+                <div th:replace="fragments/elderly :: elderly"></div>
+            </div>
+            <div th:if="*{role == 'Volunteer'}">
+                <div th:replace="fragments/volunteer :: volunteer"></div>
             </div>
         </div>
-        <div th:replace="fragments/footer :: footer"></div>
     </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+</script>
 </html>

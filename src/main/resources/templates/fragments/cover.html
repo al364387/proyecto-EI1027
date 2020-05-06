@@ -6,17 +6,59 @@
 </head>
 <body>
     <div th:fragment="cover">
-        <h3>Facturas</h3>
-        <ul>
-            <li><a href="invoice/add"> Crear factura </a></li>
-            <li><a href="invoice/list"> Lista de facturas </a></li>
-        </ul>
+        <br>
+        <div id="miCarrusel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li th:each="image,iterstat: ${images}"
+                    data-target="#miCarrusel"
+                    th:attr="data-slide-to=${iterstat.index}"
+                    th:class="${iterstat.index}== 0 ? 'active':''"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div th:each="image,iterstat: ${images}" th:class="${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
+                    <img th:src="@{${image}}"class="d-block w-100">
+                    <div class="header-text hidden-xs">
+                        <div class="col-md-10 center">
+                            <h2 class="alignLeft">
+                                <span>Puede solicitar ayuda</span>
+                            </h2>
+                            <br>
+                            <h2 class="alignRight">
+                                <span>de una sistente social llamando al</span>
+                            </h2>
+                            <br>
+                            <h2 class="alignLeft">
+                                <span>900 66 55 44</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#miCarrusel"
+               role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only"> Previous </span>
+            </a>
+            <a class="carousel-control-next" href="#miCarrusel"
+               role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only"> Next </span>
+            </a>
+        </div>
 
-        <h3>Linea de Factura</h3>
-        <ul>
-            <li><a href="invoiceLine/add"> Crear linea de factura </a></li>
-            <li><a href="invoiceLine/list"> Lista de lineas de facturas </a></li>
-        </ul>
+
+        <!--        La creación de facturas tiene que ser automática -->
+        <!--        <h3>Facturas</h3>-->
+        <!--        <ul>-->
+        <!--            <li><a href="invoice/add"> Crear factura </a></li>-->
+        <!--            <li><a href="invoice/list"> Lista de facturas </a></li>-->
+        <!--        </ul>-->
+
+        <!--        <h3>Linea de Factura</h3>-->
+        <!--        <ul>-->
+        <!--            <li><a href="invoiceLine/add"> Crear linea de factura </a></li>-->
+        <!--            <li><a href="invoiceLine/list"> Lista de lineas de facturas </a></li>-->
+        <!--        </ul>-->
     </div>
 </body>
 </html>
