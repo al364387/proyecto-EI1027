@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:object="${session}">
 <head>
     <title> Gestionar Compañías </title>
     <meta charset="UTF-8"/>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
+    <div th:replace="fragments/nav :: nav-css"/>
+    <div th:if="*{user != null}">
+        <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css" />
+    </div>
 </head>
 <body>
 <div class="container">
+    <div th:replace="fragments/nav :: nav"/>
     <div class="contenido">
         <h1> Lista de Compañías </h1>
         <table class="table table-bordered">
@@ -33,9 +36,10 @@
             </tr>
             </tbody>
         </table>
-        <a href="add">Añadir compañía </a>
-        <a href="/">Atrás</a>
+        <a href="/company/add">Añadir compañía </a>
+        <a th:href="@{/}">Atrás</a>
     </div>
+    <div th:replace="fragments/footer :: footer"></div>
 </div>
 
 </body>

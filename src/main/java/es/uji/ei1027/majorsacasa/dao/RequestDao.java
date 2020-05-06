@@ -50,6 +50,10 @@ public class RequestDao {
         jdbcTemplate.update("UPDATE Request SET state = ?, description = ?", peticion.getState(), peticion.getDescription());
     }
 
+    public void updateRequestStatus(int number, String estado) {
+        jdbcTemplate.update("UPDATE Request SET state = ? WHERE number = ?", estado,number);
+    }
+
     /* Obté el request amb el nom donat. Torna null si no existeix. */
     public Request getRequest(int number) {
         try {

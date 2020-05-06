@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-    <div th:replace="fragments/nav"></div>
+    <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
         <h1> Lista de Peticiones </h1>
         <a href="add">Añadir petición </a>
@@ -45,20 +45,21 @@
                     <p th:if="${request.nursing==true}">Enfermería</p>
                     <p th:if="${request.cleaning==true}">Limpieza</p>
                 </td>
-                <td th:if="${request.description==null}">  -</td>  <!-- Super feature, te pone un "-" cuando no tiene descripcion -->
+                <td th:if="${request.description==null}">             -</td>  <!-- Super feature, te pone un "-" cuando no tiene descripcion -->
                 <td th:unless="${request.description==null}">
                     <p th:text="${request.description}"></p>
                 </td>
                 <td th:text="${request.elderlyId}"></td>
                 <td th:text="${request.contractId}"></td>
-                <td>Editar</td>
-                <td>Borrar</td>
+                <td><a class="btn btn-success" th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Aceptado')}">Aceptar</a></td>
+                <td><a class="btn btn-danger" th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Rechazado')}">Rechazar</a></td>
             </tr>
+            @{/classificacio/delete /{nNadador}/{nProva}(nNadador=${classificacio.nomNadador},nProva=${classificacio.nomP rova})}
             </tbody>
         </table>
-        <a href="/admin/index">Atrás</a>
+        <a th:href="@{/}">Atrás</a>
     </div>
-    <div th:replace="fragments/footer"></div>
+    <div th:replace="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>

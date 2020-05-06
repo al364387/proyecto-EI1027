@@ -2,10 +2,7 @@ package es.uji.ei1027.majorsacasa.controller;
 
 
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
-import es.uji.ei1027.majorsacasa.model.Admin;
-import es.uji.ei1027.majorsacasa.model.Company;
-import es.uji.ei1027.majorsacasa.model.Contract;
-import es.uji.ei1027.majorsacasa.model.Request;
+import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,11 +27,10 @@ public class CompanyController {
     public String addCompany(HttpSession session, Model model){
         if (session.getAttribute("user") == null)
         {
-            model.addAttribute("user", new Admin());
+            model.addAttribute("user", new UserDetails());
             return "login";
         }
-        model.addAttribute("isAdmin", true);
-        model.addAttribute("request", new Company());
+        model.addAttribute("company", new Company());
         model.addAttribute("listCompanies", companyDao.getCompanies());
         return "company/add";
 
