@@ -53,25 +53,17 @@ h2{
 }
 
 /* Login ========================= */
-.tablaLogin{
-    width: 100vh;
+.formLogin{
     margin: 0 auto;
+    width: 180px;
 }
 
-.tablaLogin tr{
-    text-align: center;
-}
-
-.center{
-    margin: 0 auto;
-}
-
-.tablaLogin label{
-    width: 24%;
+.formLogin label{
     font-size: 19px;
     margin-bottom: 0;
     padding-top: 10px;
 }
+
 /* End Login ===================== */
 
 /* Register ====================== */
