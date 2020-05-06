@@ -18,16 +18,16 @@
                 <div th:each="image,iterstat: ${images}" th:class="${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
                     <img th:src="@{${image}}"class="d-block w-100">
                     <div class="header-text hidden-xs">
-                        <div class="col-md-10 center">
+                        <div class="col-md-10 marginCenter">
                             <h2 class="alignLeft">
                                 <span>Puede solicitar ayuda</span>
                             </h2>
                             <br>
-                            <h2 class="alignRight">
+                            <h2 class="center">
                                 <span>de una sistente social llamando al</span>
                             </h2>
                             <br>
-                            <h2 class="alignLeft">
+                            <h2 class="alignRight">
                                 <span>900 66 55 44</span>
                             </h2>
                         </div>

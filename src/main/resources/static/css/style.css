@@ -170,6 +170,9 @@ h2{
 .floatRight{
     float: right;
 }
+.marginCenter{
+    margin: 0 auto;
+}
 /* End Float ===================== */
 
 /* Alineaciones ================== */
@@ -181,7 +184,7 @@ h2{
     text-align: left;
 }
 .center{
-    margin: 0 auto;
+    text-align: center;
 }
 /* End Alineaciones ============== */
 
