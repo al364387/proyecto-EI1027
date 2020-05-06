@@ -28,6 +28,7 @@ h2{
 
 .logo{
     width: 65px;
+    height: 89px;
 }
 
 .navbar-li{
@@ -61,13 +62,12 @@ h2{
     text-align: center;
 }
 
-.alignLeft{
-    text-align: left;
-    width: 24%;
+.center{
     margin: 0 auto;
 }
 
 .tablaLogin label{
+    width: 24%;
     font-size: 19px;
     margin-bottom: 0;
     padding-top: 10px;
@@ -104,12 +104,20 @@ h2{
 /* End Float ===================== */
 
 /* Alineaciones ================== */
-.alingRight{
+.alignRight{
     text-align: right;
+}
+
+.alignLeft{
+    text-align: left;
 }
 /* End Alineaciones ============== */
 
 /* Diseño para botones =========== */
+.buttonSubmit {
+    padding-top: 10px;
+    text-align: center;
+}
 .buttonSubmit button{
     background-color: #465881;
     border-color: #465881;
@@ -119,5 +127,21 @@ h2{
     background-color: #00909e;
     border-color: #00909e;
     color: #fff;
+}
+.buttonCancel {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.buttonCancel button{
+    background-color: transparent;
+    border-color: #465881;
+    color: #465881;
+}
+
+.buttonCancel button:hover {
+    background-color: transparent;
+    border-color: #00909e;
+    color: #00909e;
 }
 /* End Diseño para botones ======= */
