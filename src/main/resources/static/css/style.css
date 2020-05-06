@@ -51,6 +51,41 @@ h2{
     border-right: 2px #ffffff solid;
 }
 
+/* Login ========================= */
+.tablaLogin{
+    width: 100vh;
+    margin: 0 auto;
+}
+
+.tablaLogin tr{
+    text-align: center;
+}
+
+.alignLeft{
+    text-align: left;
+    width: 24%;
+    margin: 0 auto;
+}
+
+.tablaLogin label{
+    font-size: 19px;
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+/* End Login ===================== */
+
+/* Register ====================== */
+.tableRegister{
+    width: 100vh;
+    margin: 0 auto;
+    height: 150px;
+}
+
+.tableRegister tr{
+    text-align: center;
+}
+/* End Register ================== */
+
 /* Errores ======================= */
 .error {
     color: red;

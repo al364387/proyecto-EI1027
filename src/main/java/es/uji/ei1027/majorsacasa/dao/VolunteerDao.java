@@ -48,6 +48,14 @@ public class VolunteerDao {
             return null;
         }
     }
+    public Volunteer getUserVolunteer(String username) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE username = ?", new VolunteerRowMapper(), username);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
     //Listar Voluntarios
     public List<Volunteer> getVolunteers() {

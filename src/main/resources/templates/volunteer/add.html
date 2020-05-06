@@ -3,50 +3,52 @@
 <head>
     <title>Crear nuevo voluntario</title>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
+    <div th:replace="fragments/nav :: nav-css"/>
 </head>
 <body>
-<h2>Nuevo voluntario</h2>
-<form action="#" th:action="@{/volunteer/add}"
-      th:object="${volunteer}" method="post">
-    <table>
-        <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{name}" /></td>
-        </tr>
-        <tr>
-            <td><label>Apellido</label></td>
-            <td><input type="text" th:field="*{surname}" /></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de nacimiento (dd/mm/yyyy)</label></td>
-            <td><input type="date" th:field="*{birthdate}" /></td>
-        </tr>
-        <tr>
-            <td><label>Numero de telefono</label></td>
-            <td><input type="number" th:field="*{phonenumber}" /></td>
-        </tr>
-        <tr>
-            <td><label>Direccion</label></td>
-            <td><input type="text" th:field="*{address}" /></td>
-        </tr>
-        <tr>
-            <td><label>Nombre de usuario</label></td>
-            <td><input type="text" th:field="*{username}" /></td>
-        </tr>
-        <tr>
-            <td><label>Contraseña</label></td>
-            <td><input type="password" th:field="*{password}" /></td>
-        </tr>
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+        <h2>Nuevo voluntario</h2>
+        <form action="#" th:action="@{/volunteer/add}"
+              th:object="${volunteer}" method="post">
+            <table>
+                <tr>
+                    <td><label>Nombre</label></td>
+                    <td><input type="text" th:field="*{name}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Apellido</label></td>
+                    <td><input type="text" th:field="*{surname}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de nacimiento (dd/mm/yyyy)</label></td>
+                    <td><input type="date" th:field="*{birthdate}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Numero de telefono</label></td>
+                    <td><input type="number" th:field="*{phonenumber}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Direccion</label></td>
+                    <td><input type="text" th:field="*{address}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre de usuario</label></td>
+                    <td><input type="text" th:field="*{username}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Contraseña</label></td>
+                    <td><input type="password" th:field="*{password}" /></td>
+                </tr>
 
-        <tr>
-            <td colspan="2"><input type="submit" value="Añadir voluntario" /></td>
-            <td colspan="2"><a href="/" class="button">Atrás</a></td>
-        </tr>
-    </table>
-</form>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Registrarse" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>

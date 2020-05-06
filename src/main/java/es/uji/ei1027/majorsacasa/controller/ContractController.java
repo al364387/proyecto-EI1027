@@ -2,9 +2,8 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.model.Contract;
-import es.uji.ei1027.majorsacasa.model.UserDetails;
+import es.uji.ei1027.majorsacasa.model.Admin;
 import es.uji.ei1027.majorsacasa.services.ContractService;
-import es.uji.ei1027.majorsacasa.services.ContractSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +34,7 @@ public class ContractController {
     public String listContracts(HttpSession session, Model model){
         if (session.getAttribute("user") == null)
         {
-            model.addAttribute("user", new UserDetails());
+            model.addAttribute("user", new Admin());
             model.addAttribute("login", true);
             return "login";
         }
@@ -48,7 +47,7 @@ public class ContractController {
     public String addContract(HttpSession session, Model model){
         if (session.getAttribute("user") == null)
         {
-            model.addAttribute("user", new UserDetails());
+            model.addAttribute("user", new Admin());
             return "login";
         }
         model.addAttribute("isAdmin", true);

@@ -2,7 +2,7 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import javax.servlet.http.HttpSession;
 
-import es.uji.ei1027.majorsacasa.dao.UserDao;
+import es.uji.ei1027.majorsacasa.dao.*;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,12 +39,17 @@ public class LoginController {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("user", new UserDetails());
-        model.addAttribute("login", true);
-        return "login";
-    }
+    @Autowired
+    private AdminDao adminDao;
+
+    @Autowired
+    private ElderlyDao elderlyDao;
+
+    @Autowired
+    private VolunteerDao volunteerDao;
+
+    @Autowired
+    private CompanyDao companyDao;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("user") UserDetails user, Model model,
@@ -56,16 +61,38 @@ public class LoginController {
             return "login";
         }
         // Comprueba que el login sea correcto
-        // intentando cargar losdatos de usuario
-        user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
+        // intentando cargar los datos de usuario
+        String role = "";
+
+        if (adminDao.getUserAdmin(user.getUsername()) != null) {
+            role  = "Admin";
+            user = userDao.loadUserByUsername(user, adminDao.getUserAdmin(user.getUsername()).getPassword(),
+                    role);
+        } else if (elderlyDao.getUserElderly(user.getUsername()) != null) {
+            role ="Elderly";
+            user = userDao.loadUserByUsername(user, elderlyDao.getUserElderly(user.getUsername()).getPassword(),
+                    role);
+        } else if (volunteerDao.getUserVolunteer(user.getUsername()) != null) {
+            role = "Volunteer";
+            user = userDao.loadUserByUsername(user, volunteerDao.getUserVolunteer(user.getUsername()).getPassword(),
+                    role);
+        } else if (companyDao.getUserCompany(user.getUsername()) != null) {
+            role = "Company";
+            user = userDao.loadUserByUsername(user, companyDao.getUserCompany(user.getUsername()).getPassword(),
+                    role);
+        } else {
+            user = null;
+        }
+
         if (user == null) {
             bindingResult.rejectValue("password", "badpw", "Usuario o contraseña incorrecta");
             model.addAttribute("login", true);
             return "login";
         }
         // Autenticados correctamente.
-        // Guardamos los datos de el usuario autenticado en la sessión
+        // Guardamos los datos de el usuario autenticado en la sessión y su role
         session.setAttribute("user", user);
+        session.setAttribute("role", role);
         String nextURL = (String) session.getAttribute("nextUrl");
         if (nextURL != null) {
             session.removeAttribute("nextUrl");
@@ -73,7 +100,7 @@ public class LoginController {
         }
         // Volver a la página principal
         else
-            return "redirect:/admin/index";
+            return "redirect:/";
     }
 
     @RequestMapping("/logout")

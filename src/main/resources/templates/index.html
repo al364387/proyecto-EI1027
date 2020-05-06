@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      th:object="${session}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Majors a Casa</title>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+    <div th:replace="fragments/nav :: nav-css"/>
+    <div th:if="*{user != null}">
+        <div th:if="*{role == 'Admin'}" >
+            <div th:replace="fragments/admin :: admin-css"></div>
+        </div>
+        <div th:if="*{role == 'Elderly'}" >
+            <div th:replace="fragments/elderly :: elderly-css"></div>
+        </div>
+        <div th:if="*{role == 'Volunteer'}" >
+            <div th:replace="fragments/volunteer :: volunteer-css"></div>
+        </div>
+    </div>
+</head>
+<body>
+    <div class="container">
+        <div th:replace="fragments/nav :: nav"></div>
+        <div class="contenido" th:object="${session}">
+            <div th:if="*{user == null}">
+                <div th:replace="fragments/cover :: cover"></div>
+            </div>
+            <div th:unless="*{user == null}">
+                <div th:if="*{role == 'Admin'}">
+                    <div th:replace="fragments/admin :: admin"></div>
+                </div>
+                <div th:if="*{role == 'Elderly'}">
+                    <div th:replace="fragments/elderly :: elderly"></div>
+                </div>
+                <div th:if="*{role == 'Volunteer'}">
+                    <div th:replace="fragments/volunteer :: volunteer"></div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</body>
+</html>

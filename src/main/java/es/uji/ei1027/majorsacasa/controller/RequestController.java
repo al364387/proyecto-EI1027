@@ -4,7 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Request;
-import es.uji.ei1027.majorsacasa.model.UserDetails;
+import es.uji.ei1027.majorsacasa.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +31,7 @@ public class RequestController {
     public String listCompanies(HttpSession session, Model model){
         if (session.getAttribute("user") == null)
         {
-            model.addAttribute("user", new UserDetails());
+            model.addAttribute("user", new Admin());
             model.addAttribute("login", true);
             return "login";
         }

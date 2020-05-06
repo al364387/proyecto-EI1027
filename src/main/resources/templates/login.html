@@ -4,64 +4,63 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Iniciar sesión</title>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+    <div th:replace="fragments/nav :: nav-css"/>
 </head>
 <body>
+    <div class="container">
+        <div th:replace="fragments/nav :: nav"></div>
+        <div class="contenido">
+            <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+                <table class="tablaLogin">
+                    <tr>
+                        <td>
+                            <br>
+                            <h2>Acceso</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="alignLeft">
+                                <label>Nombre de usuario*</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input class="form_control" th:errorClass="needcorrection" type="text" th:field="*{username}"/>
+                        </td>
+                    </tr>
 
-<div class="container">
-    <div th:replace="fragments/nav"></div>
-    <div class="contenido">
-        <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-            <table class="tablaLogin">
-                <tr>
-                    <td>
-                        <br>
-                        <h2>Acceso</h2>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="alignLeft">
-                            <label>Nombre de usuario*</label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input class="form_control" th:errorClass="needcorrection" type="text" th:field="*{username}"/></td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="alignLeft">
-                            <label>Contraseña*</label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input class="form_control" type="password" th:errorClass="needcorrection" th:field="*{password}"/></td>
-                </tr>
-                <tr>
-                    <td class="buttonSubmit">
-                        <button class="btn" type="submit">Acceder</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                    <tr>
+                        <td>
+                            <div class="alignLeft">
+                                <label>Contraseña*</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input class="form_control" type="password" th:errorClass="needcorrection"
+                                   th:field="*{password}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="buttonSubmit">
+                            <button class="btn" type="submit">Acceder</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
     </div>
-    <div th:replace="fragments/footer"></div>
-</div>
 </body>
 </html>

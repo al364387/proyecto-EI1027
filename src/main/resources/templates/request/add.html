@@ -3,46 +3,49 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Añadir petición</title>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+    <div th:replace="fragments/nav :: nav-css"/>
 </head>
 <body>
-<div class="container">
-    <h2>Nueva petición</h2>
-    <form class="form-horizontal" action="#" th:action="@{/request/add}" th:object="${request}" method="post">
+<div class="container" >
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+        <h2>Nueva petición</h2>
+        <form class="form-horizontal" action="#" th:action="@{/request/add}" th:object="${request}" method="post">
 
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="elderlyId">Elder DNI TEST(04384362X):</label>
-            <div>
-                <input type="text" class="form-control" id="elderlyId" th:field="*{elderlyId}" />
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="elderlyId">Elder DNI TEST(04384362X):</label>
+                <div>
+                    <input type="text" class="form-control" id="elderlyId" th:field="*{elderlyId}" />
+                </div>
             </div>
-        </div>
 
-        <label class="control-label">Seleccione un servicio:</label>
-        <select id="contractId" th:field="*{contractId}">
-            <option th:each="contrato: ${listContracts}" th:value="${contrato.numContract}">
-                <p th:if="${contrato.catering==true }">Comidas</p>
-                <p th:if="${contrato.nursing==true}">Enfermería</p>
-                <p th:if="${contrato.cleaning==true}">Limpieza</p>
-            </option>
-        </select>
+            <label class="control-label">Seleccione un servicio:</label>
+            <select id="contractId" th:field="*{contractId}">
+                <option th:each="contrato: ${listContracts}" th:value="${contrato.numContract}">
+                    <p th:if="${contrato.catering==true }">Comidas</p>
+                    <p th:if="${contrato.nursing==true}">Enfermería</p>
+                    <p th:if="${contrato.cleaning==true}">Limpieza</p>
+                </option>
+            </select>
 
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="description">Detalles extra:</label>
-            <div>
-                <input type="text" class="form-control" id="description" th:field="*{description}" />
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="description">Detalles extra:</label>
+                <div>
+                    <input type="text" class="form-control" id="description" th:field="*{description}" />
+                </div>
             </div>
-        </div>
 
-        <!-- BOTON ANADIR -->
-        <div class="form-group row">
-            <div class="col-sm-offset-2 col-sm-4">
-                <button type="submit" class="btn btn-primary"> Añadir</button>
+            <!-- BOTON ANADIR -->
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-primary"> Añadir</button>
+                </div>
             </div>
-        </div>
-        FALTA SACAR EL ID DEL MAYOR QUE HAGA LA PETICION
-    </form>
-    <a href = "/"> Atrás </a>
+            FALTA SACAR EL ID DEL MAYOR QUE HAGA LA PETICION
+        </form>
+        <a href = "/"> Atrás </a>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
 </div>
 </body>

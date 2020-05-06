@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="volunteer-css">
+        <link rel="stylesheet" th:href="@{/css/volunteer.css}" href="/css/volunteer.css">
+    </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:fragment="volunteer">
+        <h3>Disponibilidad de voluntarios</h3>
+        <ul>
+            <li><a href="volunteerAvailability/add"> Añadir disponibilidad </a></li>
+        </ul>
+    </div>
+</body>
+</html>

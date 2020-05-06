@@ -1,10 +1,10 @@
 package es.uji.ei1027.majorsacasa.model;
 
-public class UserDetails {
+public class Admin {
     String username;
     String password;
 
-    public UserDetails() {
+    public Admin() {
     }
 
     public String getUsername() {

@@ -2,108 +2,109 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Añadir persona mayor</title>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Añadir solicitante</title>
+    <div th:replace="fragments/nav :: nav-css"/>
 </head>
 <body>
-<div class="continer" style="padding: 10px;">
-    <h2>Nuevo solicitante</h2>
-    <form class="form-horizontal" action="#" th:action="@{/elderly/add}" th:object="${elderly}" method="post">
-        <table>
-            <tr>
-                <td><label>DNI*: </label></td>
-                <td>
-                    <input type="text" th:field="*{DNI}" th:errorClass="needcorrection" size="20" maxlength="20" />
-                </td>
-                <td th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}" class="error"></td>
-            </tr>
-            <tr>
-                <td><label>Número de asistente social:</label></td>
-                <td>
-                    <input type="text" th:field="*{socialAssisId}" size="20"
-                           maxlength="20"/>
-                </td>
-            </tr>
-            <tr>
-                <td><label>Nombre*:</label></td>
-                <td>
-                    <input type="text" th:field="*{name}" th:errorClass="needcorrection" size="20" maxlength="20"
-                           />
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+        <h2>Nuevo solicitante</h2>
+        <form class="form-horizontal" action="#" th:action="@{/elderly/add}" th:object="${elderly}" method="post">
+            <table>
+                <tr>
+                    <td><label>DNI*: </label></td>
+                    <td>
+                        <input type="text" th:field="*{DNI}" th:errorClass="needcorrection" size="20" maxlength="20" />
+                    </td>
+                    <td th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}" class="error"></td>
+                </tr>
+                <tr>
+                    <td><label>Número de asistente social:</label></td>
+                    <td>
+                        <input type="text" th:field="*{socialAssisId}" size="20"
+                               maxlength="20"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Nombre*:</label></td>
+                    <td>
+                        <input type="text" th:field="*{name}" th:errorClass="needcorrection" size="20" maxlength="20"
+                        />
 
-                </td>
-                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></td>
-            </tr>
-            <tr>
-                <td><label>Apellidos*:</label></td>
-                <td>
-                    <div>
-                        <input type="text" th:field="*{surname}" th:errorClass="needcorrection" size="20" maxlength="20" />
-                    </div>
-                </td>
-                <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error"></td>
-            </tr>
-            <tr>
-                <td><label>Email*:</label></td>
-                <td>
-                    <input type="email" th:field="*{email}" th:errorClass="needcorrection" size="20" maxlength="50"
-                           />
-                </td>
-                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
-            </tr>
-            <tr>
-                <td><label>Fecha de nacimiento*: </label></td>
-                <td>
-                    <input type="date" th:field="*{birthDate}" th:errorClass="needcorrection" />
-                </td>
-                <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" class="error"></td>
-            </tr>
-            <tr>
-                <td> <label>Teléfono*:</label></td>
-                <td>
-                    <input type="tel" th:field="*{phoneNumber}" th:errorClass="needcorrection" />
-                </td>
-                <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></td>
-            </tr>
-            <tr>
-                <td><label>Dirección*:</label></td>
-                <td>
-                    <input type="text" th:field="*{address}" th:errorClass="needcorrection" size="50"
-                           maxlength="70" />
-                </td>
-                <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></td>
-            </tr>
-            <tr>
-                <td><label>Cuenta bancaria*:</label></td>
-                <td>
-                    <input type="text" th:field="*{bankAccount}" th:errorClass="needcorrection" size="50" maxlength="50" />
-                </td>
-                <td th:if="${#fields.hasErrors('bankAccount')}" th:errors="*{bankAccount}" class="error"></td>
-            </tr>
-            <tr>
-                <td><label>Usuario*:</label></td>
-                <td>
-                    <input type="text" th:field="*{username}" th:errorClass="needcorrection" size="20" maxlength="20" />
-                </td>
-                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></td>
-            </tr>
-            <tr>
-                <td><label>Contraseña*:</label></td>
-                <td>
-                    <input type="password" th:field="*{password}" th:errorClass="needcorrection" size="20" maxlength="20" />
-                </td>
-                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
-            </tr>
-        </table>
+                    </td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></td>
+                </tr>
+                <tr>
+                    <td><label>Apellidos*:</label></td>
+                    <td>
+                        <div>
+                            <input type="text" th:field="*{surname}" th:errorClass="needcorrection" size="20" maxlength="20" />
+                        </div>
+                    </td>
+                    <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error"></td>
+                </tr>
+                <tr>
+                    <td><label>Email*:</label></td>
+                    <td>
+                        <input type="email" th:field="*{email}" th:errorClass="needcorrection" size="20" maxlength="50"
+                        />
+                    </td>
+                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de nacimiento*: </label></td>
+                    <td>
+                        <input type="date" th:field="*{birthDate}" th:errorClass="needcorrection" />
+                    </td>
+                    <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" class="error"></td>
+                </tr>
+                <tr>
+                    <td> <label>Teléfono*:</label></td>
+                    <td>
+                        <input type="tel" th:field="*{phoneNumber}" th:errorClass="needcorrection" />
+                    </td>
+                    <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></td>
+                </tr>
+                <tr>
+                    <td><label>Dirección*:</label></td>
+                    <td>
+                        <input type="text" th:field="*{address}" th:errorClass="needcorrection" size="50"
+                               maxlength="70" />
+                    </td>
+                    <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></td>
+                </tr>
+                <tr>
+                    <td><label>Cuenta bancaria*:</label></td>
+                    <td>
+                        <input type="text" th:field="*{bankAccount}" th:errorClass="needcorrection" size="50" maxlength="50" />
+                    </td>
+                    <td th:if="${#fields.hasErrors('bankAccount')}" th:errors="*{bankAccount}" class="error"></td>
+                </tr>
+                <tr>
+                    <td><label>Usuario*:</label></td>
+                    <td>
+                        <input type="text" th:field="*{username}" th:errorClass="needcorrection" size="20" maxlength="20" />
+                    </td>
+                    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></td>
+                </tr>
+                <tr>
+                    <td><label>Contraseña*:</label></td>
+                    <td>
+                        <input type="password" th:field="*{password}" th:errorClass="needcorrection" size="20" maxlength="20" />
+                    </td>
+                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
+                </tr>
+            </table>
 
-        <div class="form-group row">
-            <div class="col-sm-offset-2 col-sm-4">
-                <button type="submit" class="btn btn-primary"> Añadir</button>
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-primary"> Registrarse</button>
+                </div>
             </div>
-        </div>
-    </form>
-    <a href="/"> Atrás </a>
+        </form>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>

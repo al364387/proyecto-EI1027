@@ -51,6 +51,16 @@ public class ElderlyDao {
         }
     }
 
+    // Muestra los datos de una persona mayor. Devuelve nulo si no existe
+    public Elderly getUserElderly(String username){
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Elderly WHERE username = ?", new ElderlyRowMapper(), username);
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
+
     // Muestra todos los datos de las personas mayores
     public List<Elderly> getElderlies(){
         try {

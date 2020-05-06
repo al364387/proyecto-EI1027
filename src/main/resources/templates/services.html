@@ -4,17 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Servicios</title>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+    <div th:replace="fragments/nav :: nav-css"/>
 </head>
 <body>
-<div class="container">
-    <div th:replace="fragments/nav"></div>
-    <div class="contenido">
+    <div class="container">
+        <div th:replace="fragments/nav :: nav"></div>
+        <div class="contenido">
 
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
     </div>
-    <div th:replace="fragments/footer"></div>
-</div>
 </body>
 </html>

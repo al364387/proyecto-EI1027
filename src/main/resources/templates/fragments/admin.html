@@ -2,17 +2,12 @@
 <html lang="es"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Inicio</title>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <div th:fragment="admin-css">
+        <link rel="stylesheet" th:href="@{/css/admin.css}" href="/css/admin.css">
+    </div>
 </head>
 <body>
-<div class="container">
-    <div th:replace="fragments/nav"></div>
-    <div class="contenido">
+    <div th:fragment="admin">
         <h2>Opciones de administración</h2>
         <table class="tablaIndex">
             <tr>
@@ -37,9 +32,14 @@
                     </h5>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <h5>
+                        <a class="btn buttonOptions" href="/company/list">Gestión empresas</a>
+                    </h5>
+                </td>
+            </tr>
         </table>
     </div>
-    <div th:replace="fragments/footer"></div>
-</div>
 </body>
 </html>

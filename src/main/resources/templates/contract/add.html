@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:object="${session}">
 <head>
     <meta charset="UTF-8"/>
     <title>Añadir contrato</title>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <div th:replace="fragments/nav :: nav-css"/>
+    <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css" />
 </head>
 <body>
 <div class="container">
-    <div th:replace="fragments/nav"></div>
+    <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
         <div class="return alignRight">
             <a href="/contract/list">
@@ -114,7 +113,7 @@
     <div class="alignRight">
         *Campos obligatorios
     </div>
-    <div th:replace="fragments/footer"></div>
+    <div th:replace="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>

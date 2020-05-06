@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 @Configuration
-public class MajorsacasaConfiguration {
+public class MajorsacasaConfiguration  {
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
@@ -34,4 +34,6 @@ public class MajorsacasaConfiguration {
             }
         };
     }
+
+
 }
