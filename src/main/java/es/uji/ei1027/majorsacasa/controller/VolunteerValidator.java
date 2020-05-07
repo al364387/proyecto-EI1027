@@ -5,6 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class VolunteerValidator implements Validator {
     @Override
@@ -43,11 +44,12 @@ public class VolunteerValidator implements Validator {
         if(volunteer.getPassword().trim().equals("")){
             errors.rejectValue("username", "Obligatorio", "Ha de introducirse una contraseña");
         }
-/*
-        if((volunteer.getBirthdate().getYear() + 18) < LocalDate.now().getYear()){
+
+
+        if(volunteer.getBirthdate().getYear() + 18 > LocalDate.now().getYear()){
             errors.rejectValue("birthdate", "voluntario muy joven", "Es necesario tener 18 años para ser voluntario");
         }
-*/
+
 
     }
 }
