@@ -20,11 +20,12 @@
                     <td th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}" class="error"></td>
                 </tr>
                 <tr>
-                    <td><label>Número de asistente social:</label></td>
+                    <td><label>Número de asistente social*:</label></td>
                     <td>
                         <input type="text" th:field="*{socialAssisId}" size="20"
                                maxlength="20"/>
                     </td>
+                    <td th:if="${#fields.hasErrors('socialAssisId')}" th:errors="*{socialAssisId}" class="error"></td>
                 </tr>
                 <tr>
                     <td><label>Nombre*:</label></td>
