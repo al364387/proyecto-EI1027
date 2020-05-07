@@ -53,7 +53,7 @@ public class Request {
         this.endDate = endDate;
     }
 
-    public Date getTime() {
+    public Time getTime() {
         return time;
     }
 

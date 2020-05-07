@@ -7,18 +7,11 @@
     <div th:replace="fragments/nav :: nav-css"/>
 </head>
 <body>
-<div class="container" >
+<div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
         <h2>Nueva petición</h2>
         <form class="form-horizontal" action="#" th:action="@{/request/add}" th:object="${request}" method="post">
-
-            <div class="form-group row">
-                <label class="control-label col-sm-2" for="elderlyId">Elder DNI TEST(04384362X):</label>
-                <div>
-                    <input type="text" class="form-control" id="elderlyId" th:field="*{elderlyId}" />
-                </div>
-            </div>
 
             <label class="control-label">Seleccione un servicio:</label>
             <select id="contractId" th:field="*{contractId}">
@@ -30,9 +23,14 @@
             </select>
 
             <div class="form-group row">
+                <label for="time">Hora de servicio:</label>
+                <input type="time" class="form-control" id="time" th:field="*{time}" />
+            </div>
+
+            <div class="form-group row">
                 <label class="control-label col-sm-2" for="description">Detalles extra:</label>
                 <div>
-                    <input type="text" class="form-control" id="description" th:field="*{description}" />
+                    <input type="text" class="form-control" id="description" th:field="*{description}"/>
                 </div>
             </div>
 
@@ -44,7 +42,7 @@
             </div>
             FALTA SACAR EL ID DEL MAYOR QUE HAGA LA PETICION
         </form>
-        <a href = "/"> Atrás </a>
+        <a href="/"> Atrás </a>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>

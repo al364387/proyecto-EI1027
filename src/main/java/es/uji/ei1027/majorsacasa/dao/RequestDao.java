@@ -1,14 +1,20 @@
 package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.Contract;
+import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
+import es.uji.ei1027.majorsacasa.model.UserDetails;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,28 +28,29 @@ public class RequestDao {
     }
 
     /* Afegeix la request a la base de dades */
-    public void addRequest(Request peticion) {
-        ContractDao contractDao = new ContractDao();
-        Contract contrato = contractDao.getContract(peticion.getContractId());
+    public void addRequest(Request peticion, UserDetails username, ElderlyDao elderlyDao, ContractDao contractDao) {
 
-        boolean catering = contrato.isCatering();
-        boolean nursing = contrato.isNursing();
-        boolean cleaning = contrato.isCleaning();
+        String dni = elderlyDao.getUserElderly(username.getUsername()).getDNI();
+
+        Time time;
+
+        if(peticion.getTime() == null){
+            time = new Time(10);
+        } else {
+            time = peticion.getTime();
+        }
+
+        boolean catering = contractDao.getContract(peticion.getContractId()).isCatering();
+        boolean nursing = contractDao.getContract(peticion.getContractId()).isNursing();
+        boolean cleaning = contractDao.getContract(peticion.getContractId()).isCleaning();
 
         jdbcTemplate.update("INSERT INTO Request(state, startDate, endDate, time, catering, nursing, cleaning," +
                         " description, elderlyId, contractId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 peticion.getState(), peticion.getStartDate(),
-                peticion.getEndDate(), peticion.getTime(), catering,
+                peticion.getEndDate(), time, catering,
                 nursing, cleaning, peticion.getDescription(),
-                peticion.getElderlyId(), peticion.getContractId());
+                dni, peticion.getContractId());
     }
-
-    /* Esborra la request de la base de dades LOS REQUEST NO DEBERÍAN BORRARSE*/
-    /*
-    public void deleteRequest(Request peticion) {
-        jdbcTemplate.update("DELETE FROM Request WHERE number = ?", peticion.getNumber());
-    }
-    */
 
     /* Actualitza els atributs de la request */
     public void updateRequest(Request peticion) {

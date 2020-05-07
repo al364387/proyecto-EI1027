@@ -22,12 +22,12 @@ public class ContractValidator implements Validator {
 
         if (contract.getPrice() == 0) {
             errors.rejectValue("price", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir un precio");
         }
 
         if (contract.getServiceNumber() == 0) {
             errors.rejectValue("serviceNumber", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir un número de servicios");
         }
 
         if (contract.getStartDate() == null) {
