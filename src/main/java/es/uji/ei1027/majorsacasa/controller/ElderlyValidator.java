@@ -19,6 +19,7 @@ public class ElderlyValidator implements Validator {
             errors.rejectValue("DNI", "obligado",
                     "Es necesario introducir un valor");
         }
+
         if (elderly.getSocialAssisId().trim().equals("")) {
             errors.rejectValue("socialAssisId", "obligado",
                     "Es necesario introducir un valor");

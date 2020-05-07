@@ -22,7 +22,7 @@
                 <tr>
                     <td><label>Número de asistente social*:</label></td>
                     <td>
-                        <input type="text" th:field="*{socialAssisId}" size="20"
+                        <input type="text" th:field="*{socialAssisId}" th:errorClass="needcorrection" size="20"
                                maxlength="20"/>
                     </td>
                     <td th:if="${#fields.hasErrors('socialAssisId')}" th:errors="*{socialAssisId}" class="error"></td>

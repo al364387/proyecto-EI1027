@@ -50,16 +50,18 @@ public class ContractController {
             return "login";
         }
         model.addAttribute("contract", new Contract());
-        model.addAttribute("listContratcs", contractDao.getContracts());
         model.addAttribute("companies", contractService);
         return "contract/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract,
-                                   BindingResult bindingResult){
+                                   BindingResult bindingResult, Model model){
+        ContractValidator contractValidator = new ContractValidator();
+        contractValidator.validate(contract, bindingResult);
 
         if (bindingResult.hasErrors()){
+            model.addAttribute("companies", contractService);
             return "contract/add";
         }
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <title>Añadir contrato</title>
     <div th:replace="fragments/nav :: nav-css"/>
-    <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css" />
+    <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css"/>
 </head>
 <body>
 <div class="container">
@@ -44,26 +44,27 @@
                         </div>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" id="catering" name="servicio"
-                                           value="Catering"
-                                           th:field="*{auxService}"/>Comidas
+                                <input type="radio" class="form-check-input" id="catering" name="servicio"
+                                       value="Catering" th:field="*{auxService}"/>
+                                <label class="form-check-label" for="catering">
+                                    Comidas
                                 </label>
                             </div>
                             <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" id="cleaning" name="servicio"
-                                           value="Cleaning"
-                                           th:field="*{auxService}"/>Limpieza
+                                <input type="radio" class="form-check-input" id="cleaning" name="servicio"
+                                       value="Cleaning" th:field="*{auxService}"/>
+                                <label class="form-check-label" for="cleaning">
+                                    Limpieza
                                 </label>
                             </div>
                             <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" id="nursing" name="servicio"
-                                           value="Nursing"
-                                           th:field="*{auxService}"/>Enfermería
+                                <input type="radio" class="form-check-input" id="nursing" name="servicio"
+                                       value="Nursing" th:field="*{auxService}"/>
+                                <label class="form-check-label" for="nursing">
+                                    Enfermería
                                 </label>
                             </div>
+                            <div class="error" th:if="${#fields.hasErrors('auxService')}" th:errors="*{auxService}"></div>
                         </div>
                     </td>
                 </tr>
@@ -71,13 +72,18 @@
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="price">Precio*:</label>
-                            <input type="text" class="form-control" id="price" th:field="*{price}"/>
+                            <input type="text" class="form-control" id="price" th:field="*{price}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
                         </div>
                     </td>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="serviceNumber">Número de servicios*:</label>
-                            <input type="number" class="form-control" id="serviceNumber" th:field="*{serviceNumber}"/>
+                            <input type="number" class="form-control" id="serviceNumber" th:field="*{serviceNumber}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('serviceNumber')}"
+                                 th:errors="*{serviceNumber}"></div>
                         </div>
                     </td>
                 </tr>
@@ -85,23 +91,31 @@
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="startDate">Fecha comienzo*:</label>
-                            <input type="date" class="form-control" id="startDate" th:field="*{startDate}"/>
+                            <input type="date" class="form-control" id="startDate" th:field="*{startDate}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('startDate')}"
+                                 th:errors="*{startDate}"></div>
                         </div>
                     </td>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="endDate">Fecha fin*:</label>
-                            <input type="date" class="form-control" id="endDate" th:field="*{endDate}"/>
+                            <input type="date" class="form-control" id="endDate" th:field="*{endDate}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('endDate')}"
+                                 th:errors="*{endDate}"></div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td class="buttonSubmit">
+                        <br>
                         <div class="buttonAdd alignRight">
                             <button class="btn" type="submit">Añadir</button>
                         </div>
                     </td>
                     <td class="buttonCancel">
+                        <br>
                         <div class="buttonDelete alignLeft">
                             <button class="btn" type="reset">Borrar</button>
                         </div>
@@ -109,9 +123,9 @@
                 </tr>
             </table>
         </form>
-    </div>
-    <div class="alignRight">
-        *Campos obligatorios
+        <div class="alignRight">
+            *Campos obligatorios
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>
