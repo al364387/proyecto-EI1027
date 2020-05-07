@@ -32,13 +32,13 @@ public class RequestDao {
 
         String dni = elderlyDao.getUserElderly(username.getUsername()).getDNI();
 
-        Time time;
-
-        if(peticion.getTime() == null){
-            time = new Time(10);
-        } else {
-            time = peticion.getTime();
-        }
+//        Time time;
+//
+//        if(peticion.getTime() == null){
+//            time = new Time(10);
+//        } else {
+//            time = peticion.getTime();
+//        }
 
         boolean catering = contractDao.getContract(peticion.getContractId()).isCatering();
         boolean nursing = contractDao.getContract(peticion.getContractId()).isNursing();
@@ -47,7 +47,7 @@ public class RequestDao {
         jdbcTemplate.update("INSERT INTO Request(state, startDate, endDate, time, catering, nursing, cleaning," +
                         " description, elderlyId, contractId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 peticion.getState(), peticion.getStartDate(),
-                peticion.getEndDate(), time, catering,
+                peticion.getEndDate(), peticion.getTime(), catering,
                 nursing, cleaning, peticion.getDescription(),
                 dni, peticion.getContractId());
     }
