@@ -31,13 +31,15 @@ public class CompanyController {
             return "login";
         }
         model.addAttribute("company", new Company());
-        model.addAttribute("listCompanies", companyDao.getCompanies());
         return "company/add";
 
     }
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
                                    BindingResult bindingResult){
+
+        CompanyValidator companyValidator = new CompanyValidator();
+        companyValidator.validate(company,bindingResult);
 
         if (bindingResult.hasErrors()){
             return "company/add";

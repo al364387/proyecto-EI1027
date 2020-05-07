@@ -20,28 +20,32 @@
             <div class="form-group row">
                 <label class="control-label col-sm-2" for="name">Nombre*:</label>
                 <div>
-                    <input type="text" class="form-control" id="name" th:field="*{name}" />
+                    <input type="text" class="form-control" id="name" th:field="*{name}" th:errorClass="needcorrection"/>
+                    <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="control-label col-sm-2" for="cif">CIF*:</label>
                 <div>
-                    <input type="text" class="form-control" id="cif" th:field="*{cif}" />
+                    <input type="text" class="form-control" id="cif" th:field="*{cif}" th:errorClass="needcorrection"/>
+                    <div class="error" th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}"></div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="control-label col-sm-2" for="phoneNumber">Número de teléfono:</label>
                 <div>
-                    <input type="number" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" />
+                    <input type="number" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" th:errorClass="needcorrection"/>
+                    <div class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="control-label col-sm-2" for="email">Correo electrónico*:</label>
                 <div>
-                    <input type="email" class="form-control" id="email" th:field="*{email}" />
+                    <input type="email" class="form-control" id="email" th:field="*{email}" th:errorClass="needcorrection"/>
+                    <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                 </div>
             </div>
             <br>
@@ -49,14 +53,16 @@
             <div class="form-group row">
                 <label class="control-label col-sm-2" for="username">Nombre de usuario*:</label>
                 <div>
-                    <input type="text" class="form-control" id="username" th:field="*{username}" />
+                    <input type="text" class="form-control" id="username" th:field="*{username}" th:errorClass="needcorrection"/>
+                    <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="control-label col-sm-2" for="password">Contraseña*:</label>
                 <div>
-                    <input type="password" class="form-control" id="password" th:field="*{password}" />
+                    <input type="password" class="form-control" id="password" th:field="*{password}" th:errorClass="needcorrection"/>
+                    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                 </div>
             </div>
 
