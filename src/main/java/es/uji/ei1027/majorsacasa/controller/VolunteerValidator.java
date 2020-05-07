@@ -17,19 +17,31 @@ public class VolunteerValidator implements Validator {
         Volunteer volunteer = (Volunteer) o;
 
         if(volunteer.getName().trim().equals("")){
-            errors.rejectValue("name", "obligatorio", "Ha de introducirse un valor");
+            errors.rejectValue("name", "Obligatorio", "Ha de introducirse un nombre");
         }
 
         if(volunteer.getSurname().trim().equals("")){
-            errors.rejectValue("surname", "obligatorio", "Ha de introducirse un valor");
+            errors.rejectValue("surname", "Obligatorio", "Ha de introducirse un apellido");
+        }
+
+        if(volunteer.getBirthdate()==null){
+            errors.rejectValue("birthdate", "Obligatorio", "Ha de introducirse una fecha válida");
+        }
+
+        if(volunteer.getPhonenumber()==0){
+            errors.rejectValue("phonenumber", "Obligatorio", "Ha de introducirse un teléfono");
+        }
+
+        if(volunteer.getAddress().trim().equals("")){
+            errors.rejectValue("address", "Obligatorio", "Ha de introducirse una dirección");
         }
 
         if(volunteer.getUsername().trim().equals("")){
-            errors.rejectValue("username", "obligatorio", "Ha de introducirse un valor");
+            errors.rejectValue("username", "Obligatorio", "Ha de introducirse un nombre de usuario");
         }
 
         if(volunteer.getPassword().trim().equals("")){
-            errors.rejectValue("username", "obligatorio", "Ha de introducirse un valor");
+            errors.rejectValue("username", "Obligatorio", "Ha de introducirse una contraseña");
         }
 /*
         if((volunteer.getBirthdate().getYear() + 18) < LocalDate.now().getYear()){

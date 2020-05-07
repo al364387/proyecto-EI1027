@@ -50,7 +50,6 @@ public class ElderlyController {
             throw new MajorsacasaException(
             "Ya existe una cuenta con el DNI: " +
             elderly.getDNI(), "CPDuplicada");
-
         }
 
         return "redirect:list";
