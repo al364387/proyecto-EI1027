@@ -16,4 +16,11 @@ public class ContractSvc implements ContractService {
     public List<Company> getCompanies() {
         return companyDao.getCompanies();
     }
+
+    @Override
+    public String getCompanyName(String CIF) {
+        return companyDao.getCompany(CIF).getName();
+    }
+
+
 }

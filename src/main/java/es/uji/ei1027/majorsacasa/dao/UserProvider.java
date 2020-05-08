@@ -12,10 +12,7 @@ public class UserProvider implements UserDao {
             throws EncryptionOperationNotPossibleException {
 
         // Contraseña
-//        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-//        if (passwordEncryptor.checkPassword(password, user.getPassword())) {
         if (password.equals(user.getPassword())) {
-            // Se debería borrar de manera segura el campo contraseña antes de devolverlo
             return user;
         } else {
             return null; // bad login!

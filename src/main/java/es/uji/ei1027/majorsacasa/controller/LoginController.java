@@ -3,7 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import javax.servlet.http.HttpSession;
 
 import es.uji.ei1027.majorsacasa.dao.*;
-import es.uji.ei1027.majorsacasa.model.UserDetails;
+import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,21 +63,26 @@ public class LoginController {
         // Comprueba que el login sea correcto
         // intentando cargar los datos de usuario
         String role = "";
+        String name = "";
 
         if (adminDao.getUserAdmin(user.getUsername()) != null) {
             role  = "Admin";
+            name = adminDao.getUserAdmin(user.getUsername()).getName();
             user = userDao.loadUserByUsername(user, adminDao.getUserAdmin(user.getUsername()).getPassword(),
                     role);
         } else if (elderlyDao.getUserElderly(user.getUsername()) != null) {
             role ="Elderly";
+            name = elderlyDao.getUserElderly(user.getUsername()).getName();
             user = userDao.loadUserByUsername(user, elderlyDao.getUserElderly(user.getUsername()).getPassword(),
                     role);
         } else if (volunteerDao.getUserVolunteer(user.getUsername()) != null) {
             role = "Volunteer";
+            name = volunteerDao.getUserVolunteer(user.getUsername()).getName();
             user = userDao.loadUserByUsername(user, volunteerDao.getUserVolunteer(user.getUsername()).getPassword(),
                     role);
         } else if (companyDao.getUserCompany(user.getUsername()) != null) {
             role = "Company";
+            name = companyDao.getUserCompany(user.getUsername()).getName();
             user = userDao.loadUserByUsername(user, companyDao.getUserCompany(user.getUsername()).getPassword(),
                     role);
         } else {
@@ -92,6 +97,7 @@ public class LoginController {
         }
         // Autenticados correctamente.
         // Guardamos los datos de el usuario autenticado en la sessión y su role
+        session.setAttribute("nameUser", name);
         session.setAttribute("user", user);
         session.setAttribute("role", role);
         String nextURL = (String) session.getAttribute("nextUrl");
