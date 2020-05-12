@@ -38,6 +38,7 @@ public class ContractController {
             model.addAttribute("login", true);
             return "login";
         }
+        model.addAttribute("companies", contractService);
         model.addAttribute("contracts", contractDao.getContracts());
         return "contract/list";
     }

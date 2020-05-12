@@ -14,6 +14,7 @@ public final class AdminRowMapper implements RowMapper<Admin> {
 
         admin.setUsername(resultSet.getString("username"));
         admin.setPassword(resultSet.getString("password"));
+        admin.setName(resultSet.getString("name"));
 
         return admin;
     }

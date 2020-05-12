@@ -32,28 +32,26 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Numero</th>
+                    <th>Empresa</th>
                     <th>Servicio</th>
                     <th>Precio</th>
+                    <th>Número de servicios</th>
                     <th>Fecha de comienzo</th>
                     <th>Fecha de finalización</th>
-                    <th>Número de servicios</th>
-                    <th>CIF Empresa</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="contract: ${contracts}">
-                    <td th:text="${contract.numContract}"></td>
+                    <td th:text="${companies.getCompanyName(contract.cifCompany)}"></td>
                     <td>
                         <p th:if="${contract.catering == true}">Catering</p>
                         <p th:if="${contract.cleaning == true}">Limpieza</p>
                         <p th:if="${contract.nursing == true}">Enfermería</p>
                     </td>
                     <td th:text="${contract.price}"></td>
+                    <td th:text="${contract.serviceNumber}"></td>
                     <td th:text="${contract.startDate}"></td>
                     <td th:text="${contract.endDate}"></td>
-                    <td th:text="${contract.serviceNumber}"></td>
-                    <td th:text="${contract.cifCompany}"></td>
                 </tr>
                 </tbody>
             </table>
