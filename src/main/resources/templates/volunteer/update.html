@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/volunteer.css">
 </head>
 <body>
 <div class="container">
@@ -26,9 +27,9 @@
                 Volver al listado de voluntarios</a>
         </div>
         <h2>Voluntario</h2>
-        <form class="form-horizontal" action="#" th:action="@{/volunteer/update}" th:object="${volunteer}"
-              method="post">
-            <table class="tableAddContract">
+        <form class="form-horizontal" action="#" th:action="@{/volunteer/update}"
+              th:object="${volunteer}" method="post">
+            <table class="tableAddVolunteer">
                 <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
@@ -72,7 +73,7 @@
                 <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label for="endDate">Fecha fin*:</label>
+                            <label for="endDate">Fecha fin:</label>
                             <input type="date" class="form-control" id="endDate" th:field="*{endDate}"/>
                         </div>
                     </td>
@@ -80,7 +81,7 @@
                 <tr>
                     <td class="buttonSubmit">
                         <div class="buttonAdd alignRight">
-                            <button class="btn" type="submit">Añadir</button>
+                            <button class="btn" type="submit">Actualizar</button>
                         </div>
                     </td>
                     <td class="buttonCancel">

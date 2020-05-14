@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -92,5 +93,12 @@ public class VolunteerController {
         volunteerDao.updateVolunteer(volunteer);
         return "redirect:list";
     }
+
+    @RequestMapping(value = "/update/{id}/{acceptDate}", method = RequestMethod.GET)
+    public String editRequestStatus(@PathVariable int id, @PathVariable LocalDate acceptDate) {
+        volunteerDao.updateVolunteerAcceptDate(id, acceptDate);
+        return "redirect:../../list";
+    }
+
 
 }

@@ -100,5 +100,9 @@ public class Volunteer {
     public void setId(int id) {
         this.id = id;
     }
+
+    public LocalDate today(){
+        return LocalDate.now();
+    }
 }
 

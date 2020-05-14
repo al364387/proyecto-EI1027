@@ -8,6 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,16 @@ public class VolunteerDao {
         jdbcTemplate.update("UPDATE Volunteer SET acceptDate =?, endDate =? WHERE id =?", volunteer.getAcceptDate() ,volunteer.getEndDate(), volunteer.getId());
     }
 
+    //UPDATE Volunteer SET acceptDate='2020-05-14' WHERE id=2;
+    public void updateVolunteerAcceptDate(int id, LocalDate date) {
+        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =? WHERE id =?", date, id);
+    }
+
+    public void updateVolunteerEndDate(int id, LocalDate date) {
+        jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", date, id);
+    }
+
+
     public Volunteer getVolunteer(int id) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE id =?", new VolunteerRowMapper(), id);
@@ -66,7 +77,7 @@ public class VolunteerDao {
             return c;
         } catch (EmptyResultDataAccessException e) {
             System.out.println("sin voluntarios: ");
-            return new ArrayList<Volunteer>();
+            return new ArrayList<>();
         }
     }
 

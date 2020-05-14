@@ -27,6 +27,7 @@
                 <th>Apellido</th>
                 <th>Fecha de inicio</th>
 
+
                 <th></th>
                 <th></th>
             </tr>
@@ -37,6 +38,8 @@
                 <td th:text="${voluntari.name}"></td>
                 <td th:text="${voluntari.surname}"></td>
                 <td th:text="${voluntari.acceptDate}"></td>
+
+                <td><a class="btn btn-success" th:href="@{/volunteer/update/{id}/{acceptDate} (id=${voluntari.id}, acceptDate=${voluntari.today()})}">Aceptar</a></td>
 
 
                 <td>
