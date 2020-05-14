@@ -95,7 +95,7 @@ public class VolunteerController {
     }
 
     @RequestMapping(value = "/update/{id}/{acceptDate}", method = RequestMethod.GET)
-    public String editRequestStatus(@PathVariable int id, @PathVariable LocalDate acceptDate) {
+    public String updateVolunteerAcceptDate(@PathVariable int id, @PathVariable LocalDate acceptDate) {
         volunteerDao.updateVolunteerAcceptDate(id, acceptDate);
         return "redirect:../../list";
     }

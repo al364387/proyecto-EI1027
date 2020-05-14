@@ -46,8 +46,8 @@ public class VolunteerDao {
         jdbcTemplate.update("UPDATE Volunteer SET acceptDate =? WHERE id =?", date, id);
     }
 
-    public void updateVolunteerEndDate(int id, LocalDate date) {
-        jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", date, id);
+    public void updateVolunteerEndDate(Volunteer volunteer, LocalDate date) {
+        jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", date, volunteer.getId());
     }
 
 
