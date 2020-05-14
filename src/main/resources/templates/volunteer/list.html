@@ -11,8 +11,10 @@
 </head>
 <body>
 <div class="container">
-    <div th:replace="fragments/nav"></div>
+    <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
+
+        <br>
         <h2>Lista Voluntarios</h2>
         <br>
         <div class="container">
@@ -37,8 +39,11 @@
                 <td th:text="${voluntari.acceptDate}"></td>
 
 
-                <td><a th:href="@{/volunteer/delete/{id}(id=${voluntari.id})}">Borrar</a>
-                <td><a th:href="@{/volunteer/update/{id}(id=${voluntari.id})}">Actualizar</a>
+                <td>
+                    <a class="buttonDelete" th:href="@{/volunteer/delete/{id}(id=${voluntari.id})}" role="buttonDelete" >Borrar</a>
+                <td>
+                <a class="buttonSubmit" th:href="@{/volunteer/update/{id}(id=${voluntari.id})}" role="buttonSubmit">Actualizar</a>
+
 
             </tr>
             </tbody>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="icon" type="image/png" href="/img/icon.png">
-    <title>Añadir voluntario</title>
+    <title>Actualizar voluntario</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/admin.css">
@@ -25,18 +25,10 @@
                 </svg>
                 Volver al listado de voluntarios</a>
         </div>
-        <h2>Nuevo voluntario</h2>
+        <h2>Voluntario</h2>
         <form class="form-horizontal" action="#" th:action="@{/volunteer/update}" th:object="${volunteer}"
               method="post">
             <table class="tableAddContract">
-                <tr>
-                    <td>
-                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label for="id">Id: <a href="/volunteer/update">Añadir nueva empresa</a></label>
-                            <input type="text" class="form-control" id="id" th:field="*{id}"/>
-                        </div>
-                    </td>
-                </tr>
                 <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">

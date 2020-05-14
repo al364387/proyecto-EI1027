@@ -1,68 +1,128 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:object="${session}">
 <head>
-    <title>Crear nuevo voluntario</title>
     <meta charset="UTF-8"/>
+    <title>Crear nuevo voluntario</title>
+    <link rel="icon" type="image/png" href="/img/icon.png">
     <div th:replace="fragments/nav :: nav-css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/volunteer.css">
+
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
+        <div class="return alignRight">
+            <a href="/register">
+                <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M8.354 1.646a.5.5 0 010 .708L2.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                    <path fill-rule="evenodd"
+                          d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                </svg>
+                Volver</a>
+        </div>
         <h2>Nuevo voluntario</h2>
-        <form action="#" th:action="@{/volunteer/add}"
-              th:object="${volunteer}" method="post">
-            <table>
+        <form class="form-horizontal" action="#" th:action="@{/volunteer/add}" th:object="${volunteer}" method="post">
+            <table class="tableAddVolunteer">
                 <tr>
-                    <td><label>Nombre</label></td>
-                    <td><input type="text" th:field="*{name}" th:errorClass="needcorrection"/>
-                        <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="name">Nombre*: </label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                        </div>
                     </td>
-                </tr>
-                <tr>
-                    <td><label>Apellido</label></td>
-                    <td><input type="text" th:field="*{surname}" th:errorClass="needcorrection"/>
-                        <div class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Fecha de nacimiento (dd/mm/yyyy)</label></td>
-                    <td><input type="date" th:field="*{birthdate}" th:errorClass="needcorrection"/>
-                        <div class="error" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Numero de telefono</label></td>
-                    <td><input type="number" th:field="*{phonenumber}" th:errorClass="needcorrection"/>
-                        <div class="error" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Direccion</label></td>
-                    <td><input type="text" th:field="*{address}" th:errorClass="needcorrection"/>
-                        <div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Nombre de usuario</label></td>
-                    <td><input type="text" th:field="*{username}" th:errorClass="needcorrection"/>
-                        <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Contraseña</label></td>
-                    <td><input type="password" th:field="*{password}" th:errorClass="needcorrection"/>
-                        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="surname">Apellidos*: </label>
+                            <input type="text" class="form-control" id="surname" th:field="*{surname}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+                        </div>
                     </td>
                 </tr>
 
                 <tr>
-                    <td colspan="2"><input type="submit" value="Registrarse"/></td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="birthdate">Fecha de nacimiento*: </label>
+                            <input type="date" class="form-control" id="birthdate" th:field="*{birthdate}"
+                                   th:errorClass="needcorrection"/>
+
+                            <div class="error" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="surname">Número de teléfono*: </label>
+                            <input type="number" class="form-control" id="phonenumber" th:field="*{phonenumber}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}"></div>
+                        </div>
+                    </td>
                 </tr>
+
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="address">Dirección*: </label>
+                            <input type="text" class="form-control" id="address" th:field="*{address}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="username">Nombre de usuario*: </label>
+                            <input type="text" class="form-control" id="username" th:field="*{username}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="password">Contraseña*: </label>
+                            <input type="password" class="form-control" id="password" th:field="*{password}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="buttonSubmit">
+                        <br>
+                        <div class="buttonAdd alignRight">
+                            <button class="btn" type="submit">Añadir</button>
+                        </div>
+                    </td>
+                    <td class="buttonCancel">
+                        <br>
+                        <div class="buttonDelete alignLeft">
+                            <button class="btn" type="reset">Borrar</button>
+                        </div>
+                    </td>
+                </tr>
+
             </table>
         </form>
+        <div class="alignRight">
+            *Campos obligatorios
+        </div>
+
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>
+
 </body>
 </html>

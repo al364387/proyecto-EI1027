@@ -9,6 +9,7 @@ public class Volunteer {
     private String surname;
     @DateTimeFormat(pattern = "dd/mm/yyyy")
     private LocalDate birthdate;
+
     private int phonenumber;
     private String address;
     private LocalDate acceptDate;

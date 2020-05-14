@@ -1,0 +1,80 @@
+/* List volunteer ================= */
+
+.addVolunteer{
+    text-decoration: none !important;
+    color: #1b2a49;
+    font-weight: bold;
+    border: 2px solid;
+    padding: 0 5px 5px 5px;
+}
+
+.addVolunteer a:link{
+    color: #00909e;
+    text-decoration: none !important;
+}
+.addVolunteer a:focus{
+    color: #00909e;
+    text-decoration: none !important;
+}
+
+.addVolunteer span{
+    vertical-align: text-top;
+}
+
+.addVolunteer svg{
+    vertical-align: text-bottom;
+}
+
+/* Add contract ================== */
+.return a{
+    color: #465881;
+    text-decoration: none;
+}
+
+.return a:hover{
+    color: #00909e;
+    text-decoration: none;
+}
+
+.tableAddVolunteer{
+    width: 72%;
+    margin: 0 auto;
+}
+
+.tableAddVolunteer tr td{
+    min-width: 369px;
+    min-height: 92px;
+}
+
+.tableAddVolunteer td div{
+    margin: 0 auto;
+}
+
+.tableAddVolunteer td.buttonSubmit{
+    padding-top: 20px;
+}
+
+.tableAddVolunteer td.buttonCancel{
+    padding-top: 20px;
+}
+
+.tableAddVolunteer label{
+    padding-top: 20px;
+}
+
+.tableAddVolunteer div.form-check-inline{
+    margin-right: .75rem;
+}
+
+.tableAddVolunteer label.form-check-label{
+    padding-top: 6px;
+}
+
+.buttonAdd{
+    padding-right: 15px;
+}
+
+.buttonDelete{
+    padding-left: 15px;
+}
+/* End Add contract ============== */
