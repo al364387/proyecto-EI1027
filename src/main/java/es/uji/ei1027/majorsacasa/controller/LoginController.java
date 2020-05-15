@@ -77,9 +77,15 @@ public class LoginController {
                     role);
         } else if (volunteerDao.getUserVolunteer(user.getUsername()) != null) {
             role = "Volunteer";
-            name = volunteerDao.getUserVolunteer(user.getUsername()).getName();
-            user = userDao.loadUserByUsername(user, volunteerDao.getUserVolunteer(user.getUsername()).getPassword(),
-                    role);
+            //Mirar si el voluntario tiene fecha de inicio y no tiene fecha fin
+            Volunteer volunteer = volunteerDao.getUserVolunteer(user.getUsername());
+            if(volunteer.getAcceptDate() != null && volunteer.getEndDate() == null) {
+                name = volunteer.getName();
+                user = userDao.loadUserByUsername(user, volunteer.getPassword(),
+                        role);
+            }else{
+                user = null;
+            }
         } else if (companyDao.getUserCompany(user.getUsername()) != null) {
             role = "Company";
             name = companyDao.getUserCompany(user.getUsername()).getName();

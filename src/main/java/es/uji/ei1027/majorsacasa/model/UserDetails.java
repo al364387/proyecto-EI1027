@@ -4,7 +4,11 @@ public class UserDetails {
     String username;
     String password;
 
+    //Para activar o desactivar la cuenta
+    boolean enabled;
+
     public UserDetails() {
+        enabled = false;
     }
 
     public String getUsername() {
@@ -21,5 +25,13 @@ public class UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

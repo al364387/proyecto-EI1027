@@ -1,5 +1,53 @@
-/* List volunteer ================= */
+.navbar-op{
+    font-size: 20px;
+    margin: 0 !important;
+}
 
+.navbar-op span{
+    color: #00909e;
+}
+
+.icon{
+    color: #fff;
+    margin-right: 40px;
+    font-size: 28px;
+}
+
+.icon:hover{
+    color: #00909e;
+}
+
+/* Index ========================= */
+.buttonOptions{
+    color: white;
+    font-size: 22px;
+    display: contents;
+}
+.tablaIndex{
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+}
+.tablaIndex h5{
+    transition-duration: 1.0s;
+    font-size: 24px;
+    background-color: #465881;
+    padding: 4px;
+    border: solid;
+}
+.tablaIndex h5:hover{
+    background-color: #00909e;
+}
+.tablaIndex a{
+    transition-duration: 0.1s;
+}
+.tablaIndex a:hover{
+    background-color: #00909e;
+    color: white;
+}
+/* End Index ===================== */
+
+/* List Volunteer ================= */
 .addVolunteer{
     text-decoration: none !important;
     color: #1b2a49;
@@ -24,8 +72,9 @@
 .addVolunteer svg{
     vertical-align: text-bottom;
 }
+/* End List Volunteer ============= */
 
-/* Add contract ================== */
+/* Add Volunteer ================== */
 .return a{
     color: #465881;
     text-decoration: none;
@@ -77,4 +126,4 @@
 .buttonDelete{
     padding-left: 15px;
 }
-/* End Add contract ============== */
+/* End Add Volunteer ============== */

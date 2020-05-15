@@ -4,8 +4,6 @@ import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Admin;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -99,6 +97,34 @@ public class VolunteerController {
         volunteerDao.updateVolunteerAcceptDate(id, acceptDate);
         return "redirect:../../list";
     }
+
+    /*
+    @RequestMapping(value = "/add")
+    public String addVolunteer(HttpSession session, Model model){
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        model.addAttribute("volunteer", new Volunteer());
+        return "company/add";
+
+    }
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("company") Company company,
+                                   BindingResult bindingResult){
+
+        CompanyValidator companyValidator = new CompanyValidator();
+        companyValidator.validate(company,bindingResult);
+
+        if (bindingResult.hasErrors()){
+            return "company/add";
+        }
+
+        companyDao.addCompany(company);
+        return "redirect:list";
+    }
+     */
 
 
 }
