@@ -5,6 +5,7 @@ public class UserDetails {
     String password;
 
     public UserDetails() {
+
     }
 
     public String getUsername() {
@@ -22,4 +23,5 @@ public class UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
