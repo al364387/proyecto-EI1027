@@ -74,6 +74,7 @@ public class VolunteerController {
                     "Ha habido un error", "errorVoluntario");
         }
 
+
         return "redirect:/index";
     }
 

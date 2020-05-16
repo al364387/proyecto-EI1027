@@ -23,11 +23,10 @@ public class VolunteerDao {
 
     //Añadir Voluntario
     public void addVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                createId(), volunteer.getName(), volunteer.getSurname(), volunteer.getBirthdate(), volunteer.getPhonenumber(), volunteer.getAddress(),
-                null,
-                volunteer.getUsername(), volunteer.getPassword(),
-                null);
+        jdbcTemplate.update("INSERT INTO Volunteer (name, surname, birthDate, phoneNumber, address, acceptDate, userName, password, endDate) " +
+                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+                volunteer.getName(), volunteer.getSurname(), volunteer.getBirthdate(), volunteer.getPhonenumber(), volunteer.getAddress(),
+                null, volunteer.getUsername(), volunteer.getPassword(), null);
     }
 
     //Borrar Voluntario
