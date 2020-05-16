@@ -19,6 +19,8 @@
         <br>
         <div class="container">
 
+            <a class="buttonSubmit" th:href="@{/volunteer/listaPendientes}" > Peticiones pendientes </a>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -26,8 +28,10 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Fecha de inicio</th>
+                <th>Fecha de fin</th>
 
-
+                <th></th>
+                <th></th>
 
                 <th></th>
                 <th></th>
@@ -42,7 +46,8 @@
                 <td th:text="${voluntari.endDate}"></td>
 
 
-                <td><a class="btn btn-success" th:href="@{/volunteer/update/{id}/{acceptDate} (id=${voluntari.id}, acceptDate=${voluntari.today()})}">Aceptar</a></td>
+                <td><a class="btn btn-danger" th:href="@{/volunteer/update/{id}/{acceptDate}/{endDate} (id=${voluntari.id}, acceptDate=${voluntari.acceptDate}, endDate=${voluntari.today()})}">Cancelar</a></td>
+
 
 
                 <td>

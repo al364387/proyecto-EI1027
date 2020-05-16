@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Voluntarios Pendientes</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/img/icon.png">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+
+        <br>
+        <h2>Lista Voluntarios Pendientes</h2>
+        <br>
+        <div class="container">
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de inicio</th>
+                    <th>Fecha de fin</th>
+
+                    <th></th>
+                    <th></th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="voluntari: ${volunteersP}">
+
+                    <td th:text="${voluntari.id}"></td>
+                    <td th:text="${voluntari.name}"></td>
+                    <td th:text="${voluntari.surname}"></td>
+                    <td th:text="${voluntari.acceptDate}"></td>
+                    <td th:text="${voluntari.endDate}"></td>
+
+
+
+                    <!-- Los botones solo deberian aparecer si no hay fecha de aceptación-->
+                    <td><a class="btn btn-success" th:href="@{/volunteer/update/{id}/{acceptDate} (id=${voluntari.id}, acceptDate=${voluntari.today()})}">Aceptar</a></td>
+
+
+                    <!-- Rechazar deberia borrar al voluntario?-->
+                    <td><a class="btn btn-danger">Rechazar</a></td>
+
+
+
+                    <td>
+                        <a class="buttonDelete" th:href="@{/volunteer/delete/{id}(id=${voluntari.id})}" role="buttonDelete" >Borrar</a>
+                    <td>
+                        <a class="buttonSubmit" th:href="@{/volunteer/update/{id}(id=${voluntari.id})}" role="buttonSubmit">Actualizar</a>
+
+
+                </tr>
+                </tbody>
+            </table>
+            <a th:href="@{/}">Atrás</a>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

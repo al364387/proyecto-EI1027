@@ -68,9 +68,10 @@ public class VolunteerController {
 
         try {
             volunteerDao.addVolunteer(volunteer);
+
         } catch (Exception e){
             throw new MajorsacasaException(
-                    "Un voluntario no puede ser menor de edad", "edadVoluntario");
+                    "Ha habido un error", "errorVoluntario");
         }
 
         return "redirect:/index";
@@ -99,32 +100,30 @@ public class VolunteerController {
     }
 
     /*
-    @RequestMapping(value = "/add")
-    public String addVolunteer(HttpSession session, Model model){
+        @RequestMapping(value = "/update/{id}/{acceptDate}/{endDate}", method = RequestMethod.GET)
+    public String updateVolunteerEndDate(@PathVariable int id, @PathVariable LocalDate acceptDate, @PathVariable LocalDate endDate) {
+        volunteerDao.updateVolunteerDate(id, acceptDate, endDate);
+        return "redirect:../../list";
+    }
+
+     */
+
+    @RequestMapping("/listaPendientes")
+    public String listVolunteerPendiente(HttpSession session, Model model) {
         if (session.getAttribute("user") == null)
         {
-            model.addAttribute("user", new UserDetails());
+            model.addAttribute("user", new Admin());
+            model.addAttribute("login", true);
             return "login";
         }
-        model.addAttribute("volunteer", new Volunteer());
-        return "company/add";
 
+        List<Volunteer> l = volunteerDao.getVolunteersPendientes();
+
+        model.addAttribute("isAdmin", true);
+        model.addAttribute("volunteersP", l);
+        return "volunteer/listaPendientes";
     }
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("company") Company company,
-                                   BindingResult bindingResult){
 
-        CompanyValidator companyValidator = new CompanyValidator();
-        companyValidator.validate(company,bindingResult);
-
-        if (bindingResult.hasErrors()){
-            return "company/add";
-        }
-
-        companyDao.addCompany(company);
-        return "redirect:list";
-    }
-     */
 
 
 }

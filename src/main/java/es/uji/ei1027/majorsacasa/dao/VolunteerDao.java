@@ -24,8 +24,7 @@ public class VolunteerDao {
     //Añadir Voluntario
     public void addVolunteer(Volunteer volunteer) {
         jdbcTemplate.update("INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                createId(),
-                volunteer.getName(), volunteer.getSurname(), volunteer.getBirthdate(), volunteer.getPhonenumber(), volunteer.getAddress(),
+                createId(), volunteer.getName(), volunteer.getSurname(), volunteer.getBirthdate(), volunteer.getPhonenumber(), volunteer.getAddress(),
                 null,
                 volunteer.getUsername(), volunteer.getPassword(),
                 null);
@@ -71,7 +70,7 @@ public class VolunteerDao {
     //Listar Voluntarios
     public List<Volunteer> getVolunteers() {
         try {
-            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer",
+            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE acceptDate is not NULL",
                     new VolunteerRowMapper());
             System.out.println("template: " + c);
             return c;
@@ -83,9 +82,29 @@ public class VolunteerDao {
 
     public int createId(){
         List<Volunteer> volunteers = getVolunteers();
-        int id = volunteers.get(volunteers.size() - 1).getId() + 1;
-        return id;
+        List<Volunteer> volunteersP = getVolunteersPendientes();
+        int id1 = volunteers.get(volunteers.size() - 1).getId() + 1;
+        int id2 = volunteersP.get(volunteersP.size() - 1).getId() + 1;
+        if(id1 > id2){
+            return id1;
+        }else{
+            return id2;
+        }
+
     }
+
+    public List<Volunteer> getVolunteersPendientes() {
+        try {
+            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE acceptDate is NULL",
+                    new VolunteerRowMapper());
+            System.out.println("template: " + c);
+            return c;
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("sin voluntarios: ");
+            return new ArrayList<>();
+        }
+    }
+
 
 
 }
