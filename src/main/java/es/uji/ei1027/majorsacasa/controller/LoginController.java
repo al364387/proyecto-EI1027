@@ -15,25 +15,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 
-class UserValidator implements Validator {
-    @Override
-    public boolean supports(Class<?> cls) {
-        return UserDetails.class.isAssignableFrom(cls);
-    }
-
-    @Override
-    public void validate(Object obj, Errors errors) {
-        UserDetails userDetails = (UserDetails) obj;
-        if (userDetails.getUsername().trim().equals("")) {
-            errors.rejectValue("username", "obligatori", "Introduzca el nombre de usuario");
-        }
-
-        if (userDetails.getPassword().trim().equals("")) {
-            errors.rejectValue("password", "obligatori", "Introduzca la contraseña");
-        }
-    }
-}
-
 @Controller
 public class LoginController {
     @Autowired

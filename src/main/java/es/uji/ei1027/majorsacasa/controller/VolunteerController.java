@@ -94,14 +94,14 @@ public class VolunteerController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/update/{id}/{acceptDate}", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateFechaIni/{id}/{acceptDate}", method = RequestMethod.GET)
     public String updateVolunteerAcceptDate(@PathVariable int id, @PathVariable LocalDate acceptDate) {
         volunteerDao.updateVolunteerAcceptDate(id, acceptDate);
         return "redirect:../../list";
     }
 
 
-        @RequestMapping(value = "/updateFecha/{id}/{endDate}", method = RequestMethod.GET)
+        @RequestMapping(value = "/updateFechaFin/{id}/{endDate}", method = RequestMethod.GET)
     public String updateVolunteerEndDate(@PathVariable int id, @PathVariable LocalDate endDate) {
         try {
             volunteerDao.updateVolunteerDate(id, endDate);
