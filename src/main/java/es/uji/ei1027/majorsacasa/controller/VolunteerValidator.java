@@ -41,7 +41,7 @@ public class VolunteerValidator implements Validator {
         }
 
         if(volunteer.getPassword().trim().equals("")){
-            errors.rejectValue("username", "Obligatorio", "Ha de introducirse una contraseña");
+            errors.rejectValue("password", "Obligatorio", "Ha de introducirse una contraseña");
         }
 
 

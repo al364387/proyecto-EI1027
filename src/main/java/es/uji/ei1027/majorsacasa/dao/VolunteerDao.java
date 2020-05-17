@@ -41,11 +41,11 @@ public class VolunteerDao {
 
     //UPDATE Volunteer SET acceptDate='2020-05-14' WHERE id=2;
     public void updateVolunteerAcceptDate(int id, LocalDate date) {
-        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =? WHERE id =?", date, id);
+        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =?, endDate=null WHERE id =?", date, id);
     }
 
-    public void updateVolunteerEndDate(Volunteer volunteer, LocalDate date) {
-        jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", date, volunteer.getId());
+    public void updateVolunteerDate(int id, LocalDate endDate) {
+        jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", endDate, id);
     }
 
 

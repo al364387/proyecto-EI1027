@@ -100,14 +100,19 @@ public class VolunteerController {
         return "redirect:../../list";
     }
 
-    /*
-        @RequestMapping(value = "/update/{id}/{acceptDate}/{endDate}", method = RequestMethod.GET)
-    public String updateVolunteerEndDate(@PathVariable int id, @PathVariable LocalDate acceptDate, @PathVariable LocalDate endDate) {
-        volunteerDao.updateVolunteerDate(id, acceptDate, endDate);
+
+        @RequestMapping(value = "/updateFecha/{id}/{endDate}", method = RequestMethod.GET)
+    public String updateVolunteerEndDate(@PathVariable int id, @PathVariable LocalDate endDate) {
+        try {
+            volunteerDao.updateVolunteerDate(id, endDate);
+        }catch (Exception ex){
+            throw new MajorsacasaException(
+                    "Ha habido un error", "errorVoluntario");
+        }
         return "redirect:../../list";
     }
 
-     */
+
 
     @RequestMapping("/listaPendientes")
     public String listVolunteerPendiente(HttpSession session, Model model) {
