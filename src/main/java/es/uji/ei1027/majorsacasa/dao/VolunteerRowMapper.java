@@ -29,6 +29,8 @@ public final class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setUsername(rs.getString("username"));
         volunteer.setPassword(rs.getString("password"));
 
+        volunteer.setState(rs.getString("state"));
+
 
         return volunteer;
     }

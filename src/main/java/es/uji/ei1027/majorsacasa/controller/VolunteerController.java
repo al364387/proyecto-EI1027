@@ -78,11 +78,13 @@ public class VolunteerController {
         return "redirect:/index";
     }
 
-    @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
-    public String editVolunteer(Model model, @PathVariable int id) {
-        model.addAttribute("volunteer", volunteerDao.getVolunteer(id));
-        return "volunteer/update";
-    }
+
+//TODO No funciona... y no se porqué
+@RequestMapping(value="/update/{id}", method = RequestMethod.GET)
+public String editVolunteer(Model model, @PathVariable int id) {
+    model.addAttribute("volunteer", volunteerDao.getVolunteer(id));
+    return "volunteer/update";
+}
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
@@ -94,14 +96,20 @@ public class VolunteerController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/updateFechaIni/{id}/{acceptDate}", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateAceptar/{id}/{acceptDate}", method = RequestMethod.GET)
     public String updateVolunteerAcceptDate(@PathVariable int id, @PathVariable LocalDate acceptDate) {
-        volunteerDao.updateVolunteerAcceptDate(id, acceptDate);
+        volunteerDao.updateVolunteerAccept(id, acceptDate);
+        return "redirect:../../list";
+    }
+
+    @RequestMapping(value = "/updateReject/{id}/{state}", method = RequestMethod.GET)
+    public String updateVolunteerAcceptDate(@PathVariable int id, @PathVariable String state) {
+        volunteerDao.updateVolunteerReject(id, state);
         return "redirect:../../list";
     }
 
 
-        @RequestMapping(value = "/updateFechaFin/{id}/{endDate}", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateFechaFin/{id}/{endDate}", method = RequestMethod.GET)
     public String updateVolunteerEndDate(@PathVariable int id, @PathVariable LocalDate endDate) {
         try {
             volunteerDao.updateVolunteerDate(id, endDate);
@@ -128,6 +136,22 @@ public class VolunteerController {
         model.addAttribute("isAdmin", true);
         model.addAttribute("volunteersP", l);
         return "volunteer/listaPendientes";
+    }
+
+    @RequestMapping("/listaRechazados")
+    public String listVolunteerRechazado(HttpSession session, Model model) {
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new Admin());
+            model.addAttribute("login", true);
+            return "login";
+        }
+
+        List<Volunteer> l = volunteerDao.getVolunteersRechazados();
+
+        model.addAttribute("isAdmin", true);
+        model.addAttribute("volunteersR", l);
+        return "volunteer/listaRechazados";
     }
 
 

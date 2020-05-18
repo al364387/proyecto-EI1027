@@ -17,6 +17,8 @@ public class Volunteer {
     private String password;
     private LocalDate endDate;
 
+    private String state;
+
     public Volunteer() {
     }
 
@@ -103,6 +105,14 @@ public class Volunteer {
 
     public LocalDate today(){
         return LocalDate.now();
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
 

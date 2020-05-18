@@ -23,10 +23,10 @@ public class VolunteerDao {
 
     //Añadir Voluntario
     public void addVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("INSERT INTO Volunteer (name, surname, birthDate, phoneNumber, address, acceptDate, userName, password, endDate) " +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+        jdbcTemplate.update("INSERT INTO Volunteer (name, surname, birthDate, phoneNumber, address, acceptDate, userName, password, endDate, state) " +
+                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
                 volunteer.getName(), volunteer.getSurname(), volunteer.getBirthdate(), volunteer.getPhonenumber(), volunteer.getAddress(),
-                null, volunteer.getUsername(), volunteer.getPassword(), null);
+                null, volunteer.getUsername(), volunteer.getPassword(), null, "Pendiente");
     }
 
     //Borrar Voluntario
@@ -36,16 +36,22 @@ public class VolunteerDao {
     }
 
     public void updateVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =?, endDate =? WHERE id =?", volunteer.getAcceptDate() ,volunteer.getEndDate(), volunteer.getId());
+        jdbcTemplate.update("UPDATE Volunteer SET name =?, surname =?, phonenumber =?, address =?, " +
+                "password =?  WHERE id =?", volunteer.getName(), volunteer.getSurname(), volunteer.getPhonenumber(),
+                volunteer.getAddress(), volunteer.getPassword(), volunteer.getId());
     }
 
-    //UPDATE Volunteer SET acceptDate='2020-05-14' WHERE id=2;
-    public void updateVolunteerAcceptDate(int id, LocalDate date) {
-        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =?, endDate=null WHERE id =?", date, id);
+    //Cambia estado y fechas
+    public void updateVolunteerAccept(int id, LocalDate date) {
+        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =?, endDate=null, state='Aceptado' WHERE id =?", date, id);
     }
 
     public void updateVolunteerDate(int id, LocalDate endDate) {
         jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", endDate, id);
+    }
+
+    public void updateVolunteerReject(int id, String state){
+        jdbcTemplate.update("UPDATE Volunteer SET state=? WHERE id =?", state, id);
     }
 
 
@@ -57,6 +63,7 @@ public class VolunteerDao {
             return null;
         }
     }
+
     public Volunteer getUserVolunteer(String username) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE username = ?", new VolunteerRowMapper(), username);
@@ -69,7 +76,7 @@ public class VolunteerDao {
     //Listar Voluntarios
     public List<Volunteer> getVolunteers() {
         try {
-            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE acceptDate is not NULL",
+            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state= 'Aceptado'",
                     new VolunteerRowMapper());
             System.out.println("template: " + c);
             return c;
@@ -77,24 +84,11 @@ public class VolunteerDao {
             System.out.println("sin voluntarios: ");
             return new ArrayList<>();
         }
-    }
-
-    public int createId(){
-        List<Volunteer> volunteers = getVolunteers();
-        List<Volunteer> volunteersP = getVolunteersPendientes();
-        int id1 = volunteers.get(volunteers.size() - 1).getId() + 1;
-        int id2 = volunteersP.get(volunteersP.size() - 1).getId() + 1;
-        if(id1 > id2){
-            return id1;
-        }else{
-            return id2;
-        }
-
     }
 
     public List<Volunteer> getVolunteersPendientes() {
         try {
-            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE acceptDate is NULL",
+            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state= 'Pendiente'",
                     new VolunteerRowMapper());
             System.out.println("template: " + c);
             return c;
@@ -104,6 +98,17 @@ public class VolunteerDao {
         }
     }
 
+    public List<Volunteer> getVolunteersRechazados() {
+        try {
+            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state='Rechazado'",
+                    new VolunteerRowMapper());
+            System.out.println("template: " + c);
+            return c;
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("sin voluntarios: ");
+            return new ArrayList<>();
+        }
+    }
 
 
 }

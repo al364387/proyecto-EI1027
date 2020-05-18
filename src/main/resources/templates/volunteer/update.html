@@ -14,7 +14,7 @@
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
         <div class="return alignRight">
-            <a href="/">
+            <a href="/volunteer/list">
                 <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                      xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -26,8 +26,9 @@
                 </svg>
                 Volver</a>
         </div>
-        <h2>Nuevo voluntario</h2>
-        <form class="form-horizontal" action="#" th:action="@{/volunteer/update}" th:object="${volunteer}" method="post">
+        <h2>Actualizar voluntario</h2>
+        <form class="form-horizontal" action="#" th:action="@{/volunteer/update}"
+              th:object="${volunteer}" method="post">
             <table class="tableAddVolunteer">
                 <tr>
                     <td>
@@ -53,7 +54,7 @@
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="birthdate">Fecha de nacimiento*: </label>
                             <input type="date" class="form-control" id="birthdate" th:field="*{birthdate}"
-                                   th:errorClass="needcorrection"/>
+                                   readonly="readonly" th:errorClass="needcorrection"/>
 
                             <div class="error" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></div>
                         </div>
@@ -73,7 +74,7 @@
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="address">Dirección*: </label>
                             <input type="text" class="form-control" id="address" th:field="*{address}"
-                                   th:errorClass="needcorrection"/>
+                                    th:errorClass="needcorrection"/>
                             <div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
                         </div>
                     </td>
@@ -84,7 +85,7 @@
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="username">Nombre de usuario*: </label>
                             <input type="text" class="form-control" id="username" th:field="*{username}"
-                                   th:errorClass="needcorrection"/>
+                                   readonly="readonly" th:errorClass="needcorrection"/>
                             <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                         </div>
                     </td>
@@ -102,7 +103,7 @@
                     <td class="buttonSubmit">
                         <br>
                         <div class="buttonAdd alignRight">
-                            <button class="btn" type="submit">Añadir</button>
+                            <button class="btn" type="submit">Actualizar</button>
                         </div>
                     </td>
                     <td class="buttonCancel">

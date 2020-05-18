@@ -50,6 +50,8 @@
                 <th>Apellido</th>
                 <th>Fecha de inicio</th>
                 <th>Fecha de fin</th>
+                <th>Estado</th>
+
 
                 <th></th>
                 <th></th>
@@ -65,11 +67,13 @@
                 <td th:text="${voluntari.surname}"></td>
                 <td th:text="${voluntari.acceptDate}"></td>
                 <td th:text="${voluntari.endDate}"></td>
+                <td th:text="${voluntari.state}"></td>
+
 
 
                 <td>
                     <a class="btn btn-danger" th:if="${voluntari.endDate == null}" th:href="@{/volunteer/updateFechaFin/{id}/{endDate} (id=${voluntari.id}, endDate=${voluntari.today()})}">Cancelar</a>
-                    <a class="btn btn-success" th:if="${voluntari.endDate != null}" th:href="@{/volunteer/updateFechaIni/{id}/{acceptDate} (id=${voluntari.id}, acceptDate=${voluntari.today()})}">Reactivar</a>
+                    <a class="btn btn-success" th:if="${voluntari.endDate != null}" th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntari.id}, acceptDate=${voluntari.today()})}">Reactivar</a>
 
                 </td>
 
@@ -86,6 +90,14 @@
         </table>
             <a th:href="@{/}">Atrás</a>
     </div>
+        <div class="return alignRight">
+            <a title="Peticiones rechazadas" class="addVolunteer" href="/volunteer/listaRechazados">
+                <svg class="bi bi-trash-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z" clip-rule="evenodd"/>
+                </svg>
+                <span style="">Peticiones rechazadas</span>
+            </a>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>

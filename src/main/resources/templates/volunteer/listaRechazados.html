@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestionar Voluntarios Pendientes</title>
+    <title>Lista Voluntarios Rechazados</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/img/icon.png">
     <link rel="stylesheet"
@@ -29,7 +29,7 @@
         </div>
 
         <br>
-        <h2>Lista Voluntarios Pendientes</h2>
+        <h2>Lista Voluntarios Rechazados</h2>
         <br>
         <div class="container">
 
@@ -53,7 +53,7 @@
                 </thead>
                 <tbody>
 
-                <tr th:each="voluntari: ${volunteersP}">
+                <tr th:each="voluntari: ${volunteersR}">
 
                     <td th:text="${voluntari.id}"></td>
                     <td th:text="${voluntari.name}"></td>
@@ -61,16 +61,6 @@
                     <td th:text="${voluntari.acceptDate}"></td>
                     <td th:text="${voluntari.endDate}"></td>
                     <td th:text="${voluntari.state}"></td>
-
-
-
-
-                    <!-- Los botones solo deberian aparecer si no hay fecha de aceptación-->
-                    <td><a class="btn btn-success" th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntari.id}, acceptDate=${voluntari.today()})}">Aceptar</a></td>
-
-
-                    <!-- Rechazar deberia borrar al voluntario?-->
-                    <td><a class="btn btn-danger" th:href="@{/volunteer/updateReject/{id}/{state} (id=${voluntari.id}, state='Rechazado')}">Rechazar</a></td>
 
 
 
