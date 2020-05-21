@@ -17,7 +17,7 @@ public class VolunteerValidator implements Validator {
         Volunteer volunteer = (Volunteer) o;
 
         if(volunteer.getName().trim().equals("")){
-            errors.rejectValue("name", "obligado", "Ha de introducirse un nombre");
+            errors.rejectValue("name", "Obligatorio", "Ha de introducirse un nombre");
         }
 
         if(volunteer.getSurname().trim().equals("")){

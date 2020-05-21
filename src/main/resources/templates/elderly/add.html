@@ -10,10 +10,10 @@
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
+        <h2>Nuevo solicitante</h2>
         <div class="alignRight font20">
             *Campos obligatorios
         </div>
-        <h2>Nuevo solicitante</h2>
         <form class="form-horizontal font20" action="#" th:action="@{/elderly/add}" th:object="${elderly}" method="post">
             <table class="tableAddElderly">
                 <tr>
