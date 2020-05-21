@@ -122,6 +122,72 @@ h2{
 }
 /* End Index ===================== */
 
+/* Register ====================== */
+.tableRegister{
+    width: 100vh;
+    margin: 0 auto;
+    height: 150px;
+}
+
+.tableRegister tr{
+    text-align: center;
+}
+/* End Register ================== */
+
+/* Add Volunteer ================== */
+.return a{
+    color: #465881;
+    text-decoration: none;
+}
+
+.return a:hover{
+    color: #00909e;
+    text-decoration: none;
+}
+
+.tableAddVolunteer{
+    width: 72%;
+    margin: 0 auto;
+}
+
+.tableAddVolunteer tr td{
+    min-width: 369px;
+    min-height: 92px;
+}
+
+.tableAddVolunteer td div{
+    margin: 0 auto;
+}
+
+.tableAddVolunteer td.buttonSubmit{
+    padding-top: 20px;
+}
+
+.tableAddVolunteer td.buttonCancel{
+    padding-top: 20px;
+}
+
+.tableAddVolunteer label{
+    padding-top: 20px;
+}
+
+.tableAddVolunteer div.form-check-inline{
+    margin-right: .75rem;
+}
+
+.tableAddVolunteer label.form-check-label{
+    padding-top: 6px;
+}
+
+.buttonAdd{
+    padding-right: 15px;
+}
+
+.buttonDelete{
+    padding-left: 15px;
+}
+/* End Add Volunteer ============== */
+
 /* Login ========================= */
 .formLogin{
     margin: 0 auto;
@@ -135,18 +201,6 @@ h2{
 }
 
 /* End Login ===================== */
-
-/* Register ====================== */
-.tableRegister{
-    width: 100vh;
-    margin: 0 auto;
-    height: 150px;
-}
-
-.tableRegister tr{
-    text-align: center;
-}
-/* End Register ================== */
 
 /* Errores ======================= */
 .error {
