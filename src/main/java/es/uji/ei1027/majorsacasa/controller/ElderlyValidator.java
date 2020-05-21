@@ -17,57 +17,52 @@ public class ElderlyValidator implements Validator {
 
         if (elderly.getDNI().trim().equals("")) {
             errors.rejectValue("DNI", "obligado",
-                    "Es necesario introducir un valor");
-        }
-
-        if (elderly.getSocialAssisId().trim().equals("")) {
-            errors.rejectValue("socialAssisId", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir el dni");
         }
 
         if (elderly.getName().trim().equals("")) {
             errors.rejectValue("name", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir el nombre");
         }
 
         if (elderly.getSurname().trim().equals("")) {
             errors.rejectValue("surname", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir los apellidos");
         }
 
         if (elderly.getEmail().trim().equals("")) {
             errors.rejectValue("email", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir el email");
         }
 
         if (elderly.getBirthDate() == null) {
             errors.rejectValue("birthDate", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir la fecha de nacimiento");
         }
 
         if (elderly.getPhoneNumber() == 0) {
             errors.rejectValue("phoneNumber", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir el número de teléfono");
         }
 
         if (elderly.getAddress().trim().equals("")) {
             errors.rejectValue("address", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir la dirección");
         }
 
         if (elderly.getBankAccount().trim().equals("")) {
             errors.rejectValue("bankAccount", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir el número de cuenta");
         }
 
         if (elderly.getUsername().trim().equals("")) {
             errors.rejectValue("username", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir un nombre de usuario");
         }
 
         if (elderly.getPassword().trim().equals("")) {
             errors.rejectValue("password", "obligado",
-                    "Es necesario introducir un valor");
+                    "Es necesario introducir una contraseña");
         }
     }
 }

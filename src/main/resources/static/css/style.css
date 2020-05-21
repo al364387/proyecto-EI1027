@@ -134,17 +134,54 @@ h2{
 }
 /* End Register ================== */
 
-/* Add Volunteer ================== */
-.return a{
-    color: #465881;
-    text-decoration: none;
+/* Add Elderly =================== */
+.font20{
+    font-size: 20px;
+}
+.tableAddElderly{
+    width: 72%;
+    margin: 0 auto;
 }
 
-.return a:hover{
-    color: #00909e;
-    text-decoration: none;
+.tableAddElderly tr td{
+    min-width: 369px;
+    min-height: 92px;
 }
 
+.tableAddElderly td div{
+    margin: 0 auto;
+}
+
+.tableAddElderly td.buttonSubmit{
+    padding-top: 20px;
+}
+
+.tableAddElderly td.buttonCancel{
+    padding-top: 20px;
+}
+
+.tableAddElderly label{
+    padding-top: 20px;
+}
+
+.tableAddElderly div.form-check-inline{
+    margin-right: .75rem;
+}
+
+.tableAddElderly label.form-check-label{
+    padding-top: 6px;
+}
+
+.buttonAdd{
+    padding-right: 15px;
+}
+
+.buttonDelete{
+    padding-left: 15px;
+}
+/* End Add Elderly =============== */
+
+/* Add Volunteer ================= */
 .tableAddVolunteer{
     width: 72%;
     margin: 0 auto;
@@ -186,7 +223,7 @@ h2{
 .buttonDelete{
     padding-left: 15px;
 }
-/* End Add Volunteer ============== */
+/* End Add Volunteer ============= */
 
 /* Login ========================= */
 .formLogin{
@@ -218,7 +255,7 @@ h2{
 .needcorrection {
     border: 1px solid #dc3545;
 }
-/* End Errores ================== */
+/* End Errores =================== */
 
 /* Float ========================= */
 .floatRight{
@@ -274,3 +311,15 @@ h2{
     color: #00909e;
 }
 /* End Diseño para botones ======= */
+
+/* Diseño para enlaces =========== */
+.return a{
+    color: #465881;
+    text-decoration: none;
+}
+
+.return a:hover{
+    color: #00909e;
+    text-decoration: none;
+}
+/* End Diseño para enlaces ======= */

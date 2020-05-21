@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
+import es.uji.ei1027.majorsacasa.dao.SocialAssistantDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/elderly")
 public class ElderlyController {
     private ElderlyDao elderlyDao;
+    private SocialAssistantDao socialAssistantDao;
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao) {
@@ -31,21 +33,24 @@ public class ElderlyController {
     @RequestMapping(value = "/add")
     public String addElderly(Model model) {
         model.addAttribute("elderly", new Elderly());
+        model.addAttribute("register", true);
         return "elderly/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult,  Model model) {
+
         ElderlyValidator elderlyValidator = new ElderlyValidator();
         elderlyValidator.validate(elderly, bindingResult);
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("register", true);
             return "elderly/add";
         }
 
         try {
-            elderlyDao.addElderly(elderly);
+            elderlyDao.addElderly(elderly, socialAssistantDao.getSocialAssistantID());
         } catch (DuplicateKeyException e){
             throw new MajorsacasaException(
             "Ya existe una cuenta con el DNI: " +

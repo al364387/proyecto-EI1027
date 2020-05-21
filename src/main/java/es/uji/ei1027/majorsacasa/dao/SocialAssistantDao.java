@@ -40,6 +40,11 @@ public class SocialAssistantDao {
         jdbcTemplate.update("DELETE FROM SocialAssistant WHERE dni = ?", dni);
     }
 
+    // Muestra el ID del asistente social
+    public String getSocialAssistantID(){
+        return jdbcTemplate.queryForObject("SELECT dni FROM SocialAssistant", new SocialAssistantRowMapper()).getDni();
+    }
+
     // Muestra los datos de un asistente social. Devuelve nulo si no existe
     public SocialAssistant getSocialAssistant(String dni){
         try {
@@ -58,5 +63,4 @@ public class SocialAssistantDao {
             return new ArrayList<SocialAssistant>();
         }
     }
-
 }

@@ -17,7 +17,7 @@ public class VolunteerValidator implements Validator {
         Volunteer volunteer = (Volunteer) o;
 
         if(volunteer.getName().trim().equals("")){
-            errors.rejectValue("name", "Obligatorio", "Ha de introducirse un nombre");
+            errors.rejectValue("name", "obligado", "Ha de introducirse un nombre");
         }
 
         if(volunteer.getSurname().trim().equals("")){
@@ -26,6 +26,10 @@ public class VolunteerValidator implements Validator {
 
         if(volunteer.getBirthdate()==null){
             errors.rejectValue("birthdate", "Obligatorio", "Ha de introducirse una fecha válida");
+        } else {
+            if(volunteer.getBirthdate().getYear() + 18 > LocalDate.now().getYear()){
+                errors.rejectValue("birthdate", "voluntario muy joven", "Es necesario tener 18 años para ser voluntario");
+            }
         }
 
         if(volunteer.getPhonenumber()==0){
@@ -45,9 +49,7 @@ public class VolunteerValidator implements Validator {
         }
 
 
-        if(volunteer.getBirthdate().getYear() + 18 > LocalDate.now().getYear()){
-            errors.rejectValue("birthdate", "voluntario muy joven", "Es necesario tener 18 años para ser voluntario");
-        }
+
 
 
     }

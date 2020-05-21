@@ -52,19 +52,21 @@ public class VolunteerController {
     @RequestMapping(value="/add")
     public String addVolunteer(Model model) {
         model.addAttribute("volunteer", new Volunteer());
+        model.addAttribute("register", true);
         return "volunteer/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
-                                   BindingResult bindingResult) {
-
+                                   BindingResult bindingResult, Model model) {
 
         VolunteerValidator volunteerValidator = new VolunteerValidator();
         volunteerValidator.validate(volunteer, bindingResult);
 
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()){
+            model.addAttribute("register", true);
             return "volunteer/add";
+        }
 
         try {
             volunteerDao.addVolunteer(volunteer);

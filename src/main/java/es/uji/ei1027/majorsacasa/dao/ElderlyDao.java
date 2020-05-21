@@ -20,9 +20,9 @@ public class ElderlyDao {
     }
 
     // Añade a la persona mayor a la bbdd
-    public void addElderly(Elderly elderly){
+    public void addElderly(Elderly elderly, String socialAssisId){
         jdbcTemplate.update("INSERT INTO Elderly VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                elderly.getSocialAssisId(), elderly.getName(), elderly.getSurname(),
+                socialAssisId, elderly.getName(), elderly.getSurname(),
                 elderly.getEmail(), elderly.getDNI(), elderly.getBirthDate(),
                 elderly.getPhoneNumber(), elderly.getAddress(), elderly.getBankAccount(),
                 elderly.getUsername(), elderly.getPassword());
@@ -30,9 +30,9 @@ public class ElderlyDao {
 
     // Actualiza los datos de una persona mayor
     public void upadateElderly(Elderly elderly){
-        jdbcTemplate.update("UPDATE Elderly SET socialAssisId = ?, name = ?, surname = ?, email = ?, birthDate = ?, " +
+        jdbcTemplate.update("UPDATE Elderly SET name = ?, surname = ?, email = ?, birthDate = ?, " +
                 "phoneNumber = ?, address = ?, bankAccount = ?, username = ?, password = ? WHERE dni = ?",
-                elderly.getSocialAssisId(), elderly.getName(), elderly.getSurname(), elderly.getEmail(),
+                elderly.getName(), elderly.getSurname(), elderly.getEmail(),
                 elderly.getBirthDate(), elderly.getPhoneNumber(), elderly.getAddress(), elderly.getBankAccount(),
                 elderly.getUsername(), elderly.getPassword(), elderly.getDNI());
     }
@@ -60,7 +60,6 @@ public class ElderlyDao {
         }
     }
 
-
     // Muestra todos los datos de las personas mayores
     public List<Elderly> getElderlies(){
         try {
@@ -69,4 +68,6 @@ public class ElderlyDao {
             return new ArrayList<Elderly>();
         }
     }
+
+
 }
