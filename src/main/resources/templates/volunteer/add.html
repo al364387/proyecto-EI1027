@@ -21,7 +21,8 @@
                           d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
                           clip-rule="evenodd"/>
                 </svg>
-                Volver</a>
+                Volver
+            </a>
         </div>
         <h2>Nuevo voluntario</h2>
         <form class="form-horizontal" action="#" th:action="@{/volunteer/add}" th:object="${volunteer}" method="post">
@@ -34,7 +35,6 @@
                                    th:errorClass="needcorrection"/>
 
                             <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-
                         </div>
                     </td>
                     <td>
@@ -44,7 +44,6 @@
                                    th:errorClass="needcorrection"/>
 
                             <div class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
-
                         </div>
                     </td>
                 </tr>
@@ -55,7 +54,6 @@
                             <label for="birthdate">Fecha de nacimiento*: </label>
                             <input type="date" class="form-control" id="birthdate" th:field="*{birthdate}"
                                    th:errorClass="needcorrection"/>
-
                             <div class="error" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></div>
                         </div>
                     </td>
@@ -64,7 +62,6 @@
                             <label for="surname">Número de teléfono*: </label>
                             <input type="number" class="form-control" id="phonenumber" th:field="*{phonenumber}"
                                    th:errorClass="needcorrection"/>
-
                             <div class="error" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}"></div>
                         </div>
                     </td>
@@ -76,7 +73,6 @@
                             <label for="address">Dirección*: </label>
                             <input type="text" class="form-control" id="address" th:field="*{address}"
                                    th:errorClass="needcorrection"/>
-
                             <div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
                         </div>
                     </td>
@@ -88,7 +84,6 @@
                             <label for="username">Nombre de usuario*: </label>
                             <input type="text" class="form-control" id="username" th:field="*{username}"
                                    th:errorClass="needcorrection"/>
-
                             <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                         </div>
                     </td>
@@ -97,7 +92,6 @@
                             <label for="password">Contraseña*: </label>
                             <input type="password" class="form-control" id="password" th:field="*{password}"
                                    th:errorClass="needcorrection"/>
-
                             <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                         </div>
                     </td>
@@ -123,7 +117,6 @@
         <div class="alignRight">
             *Campos obligatorios
         </div>
-
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>
