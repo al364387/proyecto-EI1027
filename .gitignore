@@ -4,3 +4,10 @@
 *.iws
 *.iml
 *.ipr
+_windows
+codestyles
+debugger.xml
+diff.xml
+editor.codeinsight.xml
+filetypes.xml
+find.xml
