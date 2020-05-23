@@ -6,14 +6,181 @@
     <title>Servicios</title>
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
+    <style>
+        .ac-container {
+            max-width: 680px;
+        }
+
+        .ac-container label {
+            text-align: center;
+            height: 55px !important;
+            line-height: 34px !important;
+            font-size: 30px !important;
+            padding: 5px 20px;
+            position: relative;
+            z-index: 20;
+            display: block;
+            cursor: pointer;
+            color: #fff;
+            background: #465881;
+            border: 3px black solid;
+        }
+
+        .icon-services {
+            width: 35px;
+            height: 34px;
+            line-height: 45px;
+            color: #fff;
+        }
+
+        .ac-container {
+            width: 100%;
+            margin: 10px auto 30px auto;
+            text-align: left;
+        }
+
+        .ac-container label:hover {
+            background: #00909e;
+        }
+
+        .ac-container input:checked + label, .ac-container input:checked + label:hover {
+            background: #0cc5c6;
+            color: #fff;
+            height: 30px;
+            line-height: 21px;
+            font-size: 13px;
+        }
+
+        .ac-container input {
+            display: none;
+        }
+
+        .ac-container article {
+            background: rgba(255, 255, 255, 0.5);
+            margin-top: -1px;
+            overflow: hidden;
+            height: 0;
+            position: relative;
+            z-index: 10;
+            -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+            -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+            -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+            -ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+            transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+        }
+
+        .ac-container article p {
+            text-align: justify;
+            font-style: normal;
+            color: #777;
+            line-height: 23px;
+            font-size: 18px;
+            padding: 20px;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .ac-container input:checked ~ article {
+            -webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+            -moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+            -o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+            -ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+            transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+            box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3);
+        }
+
+        .ac-container input:checked ~ article.ac-small {
+            height: 140px;
+        }
+
+        .ac-container input:checked ~ article.ac-medium {
+            height: 180px;
+        }
+
+        .ac-container input:checked ~ article.ac-large {
+            height: 230px;
+        }
+
+        .ac-container td {
+            width: 370px !important;
+            height: 252px !important;
+            position: relative;
+            padding: 20px;
+        }
+
+        .ac-container td div {
+            top: 0;
+            position: absolute;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div th:replace="fragments/nav :: nav"></div>
-        <div class="contenido">
-
-        </div>
-        <div th:replace="fragments/footer :: footer"></div>
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+        <br>
+        <h2>Nuestros servicios</h2>
+        <br>
+        <section class="ac-container">
+            <table>
+                <tr>
+                    <td>
+                        <div>
+                            <input id="ac-1" name="accordion-1" type="radio">
+                            <label for="ac-1">Comidas
+                                <svg class="icon-services" fill="currentColor"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M462.8 49.57a169.44 169.44 0 0 0-239.5 0C187.82 85 160.13 128 160.13 192v85.83l-40.62 40.59c-9.7 9.69-24 11.07-36.78 6a60.33 60.33 0 0 0-65 98.72C33 438.39 54.24 442.7 73.85 438.21c-4.5 19.6-.18 40.83 15.1 56.1a60.35 60.35 0 0 0 98.8-65c-5.09-12.73-3.72-27 6-36.75L234.36 352h85.89a187.87 187.87 0 0 0 61.89-10c-39.64-43.89-39.83-110.23 1.05-151.07 34.38-34.36 86.76-39.46 128.74-16.8 1.3-44.96-14.81-90.28-49.13-124.56z"/>
+                                </svg>
+                            </label>
+                            <article class="ac-medium">
+                                <p>Profesionales experimentados se encargán de cocinar un menú diseñado por
+                                    nutricionistas, teniendo en cuenta las alergias e intolerancias de cada caso
+                                    concreto.</p>
+                            </article>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input id="ac-2" name="accordion-1" type="radio">
+                            <label for="ac-2">Limpieza
+                                <svg class="icon-services" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 640 512">
+                                    <path d="M256.47 216.77l86.73 109.18s-16.6 102.36-76.57 150.12C206.66 523.85 0 510.19 0 510.19s3.8-23.14 11-55.43l94.62-112.17c3.97-4.7-.87-11.62-6.65-9.5l-60.4 22.09c14.44-41.66 32.72-80.04 54.6-97.47 59.97-47.76 163.3-40.94 163.3-40.94zM636.53 31.03l-19.86-25c-5.49-6.9-15.52-8.05-22.41-2.56l-232.48 177.8-34.14-42.97c-5.09-6.41-15.14-5.21-18.59 2.21l-25.33 54.55 86.73 109.18 58.8-12.45c8-1.69 11.42-11.2 6.34-17.6l-34.09-42.92 232.48-177.8c6.89-5.48 8.04-15.53 2.55-22.44z"/>
+                                </svg>
+                            </label>
+                            <article class="ac-medium">
+                                <p>Contamos con un servicio de limpieza especializado, empleando los mejores productos
+                                    del mercado para dar un servicio rápido y eficaz.</p>
+                            </article>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <input id="ac-3" name="accordion-1" type="radio">
+                            <label for="ac-3">Enfermería <svg class="icon-services" fill="currentColor"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M201.5 174.8l55.7 55.8c3.1 3.1 3.1 8.2 0 11.3l-11.3 11.3c-3.1 3.1-8.2 3.1-11.3 0l-55.7-55.8-45.3 45.3 55.8 55.8c3.1 3.1 3.1 8.2 0 11.3l-11.3 11.3c-3.1 3.1-8.2 3.1-11.3 0L111 265.2l-26.4 26.4c-17.3 17.3-25.6 41.1-23 65.4l7.1 63.6L2.3 487c-3.1 3.1-3.1 8.2 0 11.3l11.3 11.3c3.1 3.1 8.2 3.1 11.3 0l66.3-66.3 63.6 7.1c23.9 2.6 47.9-5.4 65.4-23l181.9-181.9-135.7-135.7-64.9 65zm308.2-93.3L430.5 2.3c-3.1-3.1-8.2-3.1-11.3 0l-11.3 11.3c-3.1 3.1-3.1 8.2 0 11.3l28.3 28.3-45.3 45.3-56.6-56.6-17-17c-3.1-3.1-8.2-3.1-11.3 0l-33.9 33.9c-3.1 3.1-3.1 8.2 0 11.3l17 17L424.8 223l17 17c3.1 3.1 8.2 3.1 11.3 0l33.9-34c3.1-3.1 3.1-8.2 0-11.3l-73.5-73.5 45.3-45.3 28.3 28.3c3.1 3.1 8.2 3.1 11.3 0l11.3-11.3c3.1-3.2 3.1-8.2 0-11.4z"/></svg></label>
+                            <article class="ac-medium">
+                                <p>Contamos con los mejores expertos en el campo sanitario para que no exista ningún
+                                    problema con nuestros clientes.</p>
+                            </article>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input id="ac-4" name="accordion-1" type="radio">
+                            <label for="ac-4">Voluntarios <svg class="icon-services" fill="currentColor"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z"/></svg></label>
+                            <article class="ac-medium">
+                                <p>Nuestros encantadores voluntarios podrán disfrutar de sus aficiones con los mayores,
+                                    creando un ambiente de calidez y cercacía.</p>
+                            </article>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </section>
     </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>
