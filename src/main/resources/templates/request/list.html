@@ -12,8 +12,7 @@
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
-        <h1> Lista de Peticiones </h1>
-        <a href="add">Añadir petición </a>
+        <h2> Lista de Peticiones </h2>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -56,7 +55,6 @@
             </tr>
             </tbody>
         </table>
-        <a th:href="@{/}">Atrás</a>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>

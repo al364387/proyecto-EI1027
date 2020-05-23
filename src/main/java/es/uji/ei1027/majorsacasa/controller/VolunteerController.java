@@ -35,18 +35,24 @@ public class VolunteerController {
 
     @RequestMapping("/list")
     public String listVolunteer(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null)
+
+        if (session.getAttribute("user") != null)
         {
-            model.addAttribute("user", new Admin());
-            model.addAttribute("login", true);
-            return "login";
+            if (session.getAttribute("role").equals("Admin")){
+                List<Volunteer> l = volunteerDao.getVolunteers();
+
+                model.addAttribute("isAdmin", true);
+                model.addAttribute("volunteers", l);
+                return "volunteer/list";
+            } else {
+                return "index";
+            }
         }
 
-        List<Volunteer> l = volunteerDao.getVolunteers();
+        model.addAttribute("user", new Admin());
+        model.addAttribute("login", true);
+        return "login";
 
-        model.addAttribute("isAdmin", true);
-        model.addAttribute("volunteers", l);
-        return "volunteer/list";
     }
 
     @RequestMapping(value="/add")
@@ -81,12 +87,12 @@ public class VolunteerController {
     }
 
 
-//TODO No funciona... y no se porqué
-@RequestMapping(value="/update/{id}", method = RequestMethod.GET)
-public String editVolunteer(Model model, @PathVariable int id) {
-    model.addAttribute("volunteer", volunteerDao.getVolunteer(id));
-    return "volunteer/update";
-}
+    //TODO No funciona... y no se porqué
+    @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
+    public String editVolunteer(Model model, @PathVariable int id) {
+        model.addAttribute("volunteer", volunteerDao.getVolunteer(id));
+        return "volunteer/update";
+    }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
@@ -122,40 +128,44 @@ public String editVolunteer(Model model, @PathVariable int id) {
         return "redirect:../../list";
     }
 
-
-
     @RequestMapping("/listaPendientes")
     public String listVolunteerPendiente(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null)
+
+        if (session.getAttribute("user") != null)
         {
-            model.addAttribute("user", new Admin());
-            model.addAttribute("login", true);
-            return "login";
+            if (session.getAttribute("role").equals("Admin")){
+                List<Volunteer> l = volunteerDao.getVolunteersPendientes();
+
+                model.addAttribute("isAdmin", true);
+                model.addAttribute("volunteersP", l);
+                return "volunteer/listaPendientes";
+            } else {
+                return "index";
+            }
         }
 
-        List<Volunteer> l = volunteerDao.getVolunteersPendientes();
-
-        model.addAttribute("isAdmin", true);
-        model.addAttribute("volunteersP", l);
-        return "volunteer/listaPendientes";
+        model.addAttribute("user", new Admin());
+        model.addAttribute("login", true);
+        return "login";
     }
 
     @RequestMapping("/listaRechazados")
     public String listVolunteerRechazado(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null)
+        if (session.getAttribute("user") != null)
         {
-            model.addAttribute("user", new Admin());
-            model.addAttribute("login", true);
-            return "login";
+            if (session.getAttribute("role").equals("Admin")){
+                List<Volunteer> l = volunteerDao.getVolunteersRechazados();
+
+                model.addAttribute("isAdmin", true);
+                model.addAttribute("volunteersR", l);
+                return "volunteer/listaRechazados";
+            } else {
+                return "index";
+            }
         }
 
-        List<Volunteer> l = volunteerDao.getVolunteersRechazados();
-
-        model.addAttribute("isAdmin", true);
-        model.addAttribute("volunteersR", l);
-        return "volunteer/listaRechazados";
+        model.addAttribute("user", new Admin());
+        model.addAttribute("login", true);
+        return "login";
     }
-
-
-
 }

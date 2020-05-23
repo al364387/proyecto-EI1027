@@ -32,27 +32,39 @@ public class ContractController {
 
     @RequestMapping("/list")
     public String listContracts(HttpSession session, Model model){
-        if (session.getAttribute("user") == null)
+        if (session.getAttribute("user") != null)
         {
-            model.addAttribute("user", new UserDetails());
-            model.addAttribute("login", true);
-            return "login";
+            if (session.getAttribute("role").equals("Admin")){
+                model.addAttribute("companies", contractService);
+                model.addAttribute("contracts", contractDao.getContracts());
+                return "contract/list";
+            } else {
+                return "index";
+            }
         }
-        model.addAttribute("companies", contractService);
-        model.addAttribute("contracts", contractDao.getContracts());
-        return "contract/list";
+
+        model.addAttribute("user", new UserDetails());
+        model.addAttribute("login", true);
+        return "login";
     }
 
     @RequestMapping(value = "/add")
     public String addContract(HttpSession session, Model model){
-        if (session.getAttribute("user") == null)
+
+        if (session.getAttribute("user") != null)
         {
-            model.addAttribute("user", new UserDetails());
-            return "login";
+            if (session.getAttribute("role").equals("Admin")){
+                model.addAttribute("contract", new Contract());
+                model.addAttribute("companies", contractService);
+                return "contract/add";
+            } else {
+                return "index";
+            }
         }
-        model.addAttribute("contract", new Contract());
-        model.addAttribute("companies", contractService);
-        return "contract/add";
+
+        model.addAttribute("login", true);
+        model.addAttribute("user", new UserDetails());
+        return "login";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

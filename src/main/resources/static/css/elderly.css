@@ -1,0 +1,94 @@
+.icon{
+    color: #fff;
+    font-size: 28px;
+    margin: 10px 40px 0 15px;
+}
+
+.icon:hover{
+    color: #00909e;
+}
+
+.navbar-op{
+    margin-bottom: 0;
+}
+
+.navbar-op span{
+    color: #00909e;
+}
+
+.navbar-right{
+    margin-right: 15px;
+}
+
+.ajustes{
+    margin-right: 50px;
+}
+
+.marginBottom{
+    margin-bottom: 5px;
+}
+
+.divHeight{
+    height: 50px;
+}
+
+/* Index ========================= */
+
+ .tabs {
+     position: relative;
+     height: 500px;
+     clear: both;
+     width: 60%;
+     margin: 0 auto;
+ }
+.tab {
+    float: left;
+}
+.tab label {
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    font-size: 25px;
+}
+.tab [type=radio] {
+    display: none;
+}
+.content-tab {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+[type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+    color: #00909e;
+}
+[type=radio]:checked ~ label ~ .content-tab {
+    z-index: 1;
+}
+
+.buttonService {
+    padding-top: 10px;
+    text-align: center;
+}
+.buttonService a{
+    background-color: #465881;
+    border-color: #465881;
+    color: #fff;
+    font-size: 25px;
+}
+.buttonService a:hover {
+    background-color: #00909e;
+    border-color: #00909e;
+    color: #fff;
+}
+/* End Index ===================== */
