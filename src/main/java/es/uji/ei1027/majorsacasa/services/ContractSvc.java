@@ -21,6 +21,4 @@ public class ContractSvc implements ContractService {
     public String getCompanyName(String CIF) {
         return companyDao.getCompany(CIF).getName();
     }
-
-
 }

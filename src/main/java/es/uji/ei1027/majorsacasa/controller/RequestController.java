@@ -55,6 +55,7 @@ public class RequestController {
             if (session.getAttribute("role").equals("Elderly")) {
                 model.addAttribute("request", new Request());
                 model.addAttribute("listContracts", contractDao.getContracts());
+                model.addAttribute("dni", session.getAttribute("dni"));
 
                 return "request/add";
             } else {
@@ -77,7 +78,7 @@ public class RequestController {
             return "request/add";
         }
 
-        requestDao.addRequest(request, (UserDetails) session.getAttribute("user"), elderlyDao, contractDao);
+        requestDao.addRequest(request, (String) session.getAttribute("dni"), contractDao);
         return "redirect:/";
     }
 

@@ -24,6 +24,10 @@
     margin-right: 50px;
 }
 
+.ajustes a svg{
+    width: 25px;
+}
+
 .marginBottom{
     margin-bottom: 5px;
 }
@@ -84,7 +88,7 @@
     background-color: #465881;
     border-color: #465881;
     color: #fff;
-    font-size: 25px;
+    font-size: 20px;
 }
 .buttonService a:hover {
     background-color: #00909e;

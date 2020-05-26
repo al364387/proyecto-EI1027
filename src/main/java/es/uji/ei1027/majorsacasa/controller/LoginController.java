@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import es.uji.ei1027.majorsacasa.dao.*;
 import es.uji.ei1027.majorsacasa.model.*;
+import es.uji.ei1027.majorsacasa.services.EldelyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,18 +36,16 @@ class UserValidator implements Validator {
 public class LoginController {
     @Autowired
     private UserDao userDao;
-
     @Autowired
     private AdminDao adminDao;
-
     @Autowired
     private ElderlyDao elderlyDao;
-
     @Autowired
     private VolunteerDao volunteerDao;
-
     @Autowired
     private CompanyDao companyDao;
+    @Autowired
+    private EldelyService eldelyService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("user") UserDetails user, Model model,
@@ -70,14 +69,19 @@ public class LoginController {
         } else if (elderlyDao.getUserElderly(user.getUsername()) != null) {
             role ="Elderly";
             name = elderlyDao.getUserElderly(user.getUsername()).getName();
+            String dni = elderlyDao.getUserElderly(user.getUsername()).getDNI();
             user = userDao.loadUserByUsername(user, elderlyDao.getUserElderly(user.getUsername()).getPassword(),
                     role);
+            session.setAttribute("requests", eldelyService.getRequestFormEldely(dni));
+            session.setAttribute("contracts", eldelyService);
+            session.setAttribute("dni", dni);
         } else if (volunteerDao.getUserVolunteer(user.getUsername()) != null) {
             role = "Volunteer";
             //Mirar si el voluntario tiene fecha de inicio y no tiene fecha fin
             Volunteer volunteer = volunteerDao.getUserVolunteer(user.getUsername());
             if(volunteer.getAcceptDate() != null && volunteer.getEndDate() == null) {
                 name = volunteer.getName();
+                String id = String.valueOf(volunteer.getId());
                 user = userDao.loadUserByUsername(user, volunteer.getPassword(),
                         role);
             }else{
@@ -86,6 +90,7 @@ public class LoginController {
         } else if (companyDao.getUserCompany(user.getUsername()) != null) {
             role = "Company";
             name = companyDao.getUserCompany(user.getUsername()).getName();
+            String cif = companyDao.getUserCompany(user.getUsername()).getCif();
             user = userDao.loadUserByUsername(user, companyDao.getUserCompany(user.getUsername()).getPassword(),
                     role);
         } else {

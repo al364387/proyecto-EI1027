@@ -31,9 +31,20 @@
                             <th>Estado</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td></td>
+                        <tbody th:object="${session}">
+                        <tr th:each="request: *{requests}">
+                            <td>
+                                <p th:if="${request.catering==true}">Catering</p>
+                                <p th:if="${request.nursing==true}">Enfermería</p>
+                                <p th:if="${request.cleaning==true}">Limpieza</p>
+                            </td>
+                            <td th:text="${session.contracts.getServicePrice(request.contractId)}"></td>
+                            <td th:text="${'De L a V - ' + request.time}"></td>
+                            <td th:if="${request.description==null}"> -</td>
+                            <td th:unless="${request.description==null}">
+                                <p th:text="${#strings.capitalize(request.description)}"></p>
+                            </td>
+                            <td th:text="${request.state}"></td>
                         </tr>
                         </tbody>
                     </table>

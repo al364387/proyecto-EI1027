@@ -32,7 +32,7 @@ public class ContractDao {
     }
 
     // Obtiene los datos de un contrato. Devuelve null si no existe.
-    public Contract getContract(String numContract){
+    public Contract getContract(int numContract){
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE numContract = ?",
                     new ContractRowMapper(), numContract);

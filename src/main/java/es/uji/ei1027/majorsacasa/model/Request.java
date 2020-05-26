@@ -14,7 +14,7 @@ public class Request {
     private boolean cleaning;
     private String description;
     private String elderlyId; //Id del mayor que haga la peticion
-    private String contractId; //segun el tipo de servicio
+    private int contractId; //segun el tipo de servicio
 
    public Request() {
        this.startDate = new Date();
@@ -101,11 +101,11 @@ public class Request {
         this.elderlyId = elderlyId;
     }
 
-    public String getContractId() {
+    public int getContractId() {
         return contractId;
     }
 
-    public void setContractId(String contractId) {
+    public void setContractId(int contractId) {
         this.contractId = contractId;
     }
 

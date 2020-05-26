@@ -19,7 +19,7 @@ public final class RequestRowMapper implements RowMapper<Request> {
        peticion.setCleaning(rs.getBoolean("cleaning"));
        peticion.setDescription(rs.getString("description"));
        peticion.setElderlyId(rs.getString("elderlyId"));
-       peticion.setContractId(rs.getString("contractId"));
+       peticion.setContractId(rs.getInt("contractId"));
        return peticion;
    }
 }

@@ -16,14 +16,14 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th scope="col"> Número </th>
+                <th scope="col"> Número</th>
                 <th scope="col"> Estado</th>
-                <th scope="col"> Fecha inicio </th>
-                <th scope="col"> Fecha fin </th>
-                <th scope="col"> Hora Servicio </th>
-                <th scope="col"> Servicio </th>
-                <th scope="col"> Descripción </th>
-                <th scope="col"> ID_Mayor </th>
+                <th scope="col"> Fecha inicio</th>
+                <th scope="col"> Fecha fin</th>
+                <th scope="col"> Hora Servicio</th>
+                <th scope="col"> Servicio</th>
+                <th scope="col"> Descripción</th>
+                <th scope="col"> ID_Mayor</th>
                 <th scope="col"> ID_Contrato</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -34,7 +34,9 @@
                 <td th:text="${request.number}"></td>
                 <td th:text="${request.state}"></td>
                 <td th:text="${request.startDate}"></td>
-                <td th:if="${request.endDate==null}">  -</td>  <!-- Super feature, te pone un "-" cuando no tiene descripcion -->
+                <!-- Super feature, te pone un "-" cuando no tiene descripcion -->
+                <td th:if="${request.endDate==null}"> -</td>
+
                 <td th:unless="${request.endDate==null}">
                     <p th:text="${request.endDate}"></p>
                 </td>
@@ -44,14 +46,19 @@
                     <p th:if="${request.nursing==true}">Enfermería</p>
                     <p th:if="${request.cleaning==true}">Limpieza</p>
                 </td>
-                <td th:if="${request.description==null}">             -</td>  <!-- Super feature, te pone un "-" cuando no tiene descripcion -->
+                <!-- Super feature, te pone un "-" cuando no tiene descripcion -->
+                <td th:if="${request.description==null}"> -</td>
                 <td th:unless="${request.description==null}">
                     <p th:text="${request.description}"></p>
                 </td>
                 <td th:text="${request.elderlyId}"></td>
                 <td th:text="${request.contractId}"></td>
-                <td><a class="btn btn-success" th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Aceptado')}">Aceptar</a></td>
-                <td><a class="btn btn-danger" th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Rechazado')}">Rechazar</a></td>
+                <td><a class="btn btn-success"
+                       th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Aceptado')}">Aceptar</a>
+                </td>
+                <td><a class="btn btn-danger"
+                       th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Rechazado')}">Rechazar</a>
+                </td>
             </tr>
             </tbody>
         </table>
