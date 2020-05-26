@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
+import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Admin;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
@@ -29,28 +30,42 @@ public class RequestController {
         this.requestDao = requestDao;
         this.contractDao = contractDao;
         this.elderlyDao = elderlyDao;
-
     }
 
     @RequestMapping("/list")
-    public String listCompanies(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null) {
-            model.addAttribute("user", new Admin());
-            model.addAttribute("login", true);
-            return "login";
+    public String listResquest(HttpSession session, Model model) {
+        if (session.getAttribute("user") != null) {
+            if (session.getAttribute("role").equals("Admin")) {
+                model.addAttribute("isAdmin", true);
+                model.addAttribute("requests", requestDao.getRequests());
+                return "request/list";
+            } else {
+                return "index";
+            }
         }
-        model.addAttribute("isAdmin", true);
-        model.addAttribute("requests", requestDao.getRequests());
-        return "request/list";
+
+        model.addAttribute("user", new Admin());
+        model.addAttribute("login", true);
+        return "login";
     }
 
     @RequestMapping(value = "/add")
-    public String addRequest(Model model) {
-        model.addAttribute("request", new Request());
-        model.addAttribute("listContracts", contractDao.getContracts());
+    public String addRequest(HttpSession session, Model model) {
+        if (session.getAttribute("user") != null) {
+            if (session.getAttribute("role").equals("Elderly")) {
+                model.addAttribute("request", new Request());
+                model.addAttribute("listContracts", contractDao.getContracts());
 
-        return "request/add";
+                return "request/add";
+            } else {
+                return "index";
+            }
+        }
 
+        model.addAttribute("user", new Elderly());
+        model.addAttribute("login", true);
+
+        return "login";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -67,9 +82,21 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/update/{number}/{estado}", method = RequestMethod.GET)
-    public String editRequestStatus(@PathVariable String number, @PathVariable String estado) {
-        requestDao.updateRequestStatus(Integer.parseInt(number), estado);
-        return "redirect:../../list";
+    public String editRequestStatus(@PathVariable String number, @PathVariable String estado, Model model,
+                                    HttpSession session) {
+
+        if (session.getAttribute("user") != null) {
+            if (session.getAttribute("role").equals("Admin")) {
+                requestDao.updateRequestStatus(Integer.parseInt(number), estado);
+                return "redirect:../../list";
+            } else {
+                return "index";
+            }
+        }
+
+        model.addAttribute("user", new Admin());
+        model.addAttribute("login", true);
+        return "login";
     }
 
 }

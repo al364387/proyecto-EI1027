@@ -16,12 +16,11 @@ public class AdminController {
         if (session.getAttribute("user") == null)
         {
             model.addAttribute("user", new Admin());
-            session.setAttribute("nextUrl", "admin/index");
+            session.setAttribute("nextUrl", "index");
             return "login";
         }
-        model.addAttribute("isAdmin", true);
 
-        return "admin";
+        return "index";
     }
 
 }

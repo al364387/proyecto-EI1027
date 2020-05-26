@@ -10,63 +10,93 @@
     </div>
 </head>
 <body>
-    <div th:fragment="nav">
-        <div class="row">
-            <div class="col-xl-1 col-md-1 col-sm-12 col-xs-12">
-                <br/>
-                <img class="logo" th:src="@{/img/logo.png}" alt="Logo">
-            </div>
-            <div class="col-xl-11 col-md-11 col-sm-12 col-xs-12">
-                <br/>
-                <br/>
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:object="${session}"
-                     th:classappend="*{role == 'Admin'} ? '' : 'padding0 justify-content-center'">
-                    <ul class="nav navbar-nav mr-auto" th:if="*{user == null}">
-                        <li class="navbar-li separator">
-                            <a class="navbar-op" th:classappend="${home} ? nav-select : '' " th:href="@{/}">Inicio</a>
+<div th:fragment="nav">
+    <div class="row">
+        <div class="col-xl-1 col-md-1 col-sm-12 col-xs-12">
+            <br/>
+            <img class="logo" th:src="@{/img/logo.png}" alt="Logo">
+        </div>
+        <div class="col-xl-11 col-md-11 col-sm-12 col-xs-12">
+            <br/>
+            <br/>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:object="${session}"
+                 th:classappend="*{role == 'Admin'} ? '' : 'padding0 justify-content-center'">
+                <ul class="nav navbar-nav mr-auto" th:if="*{user == null}">
+                    <li class="navbar-li separator">
+                        <a class="navbar-op" th:classappend="${home} ? nav-select : '' " th:href="@{/}">Inicio</a>
+                    </li>
+                    <li class="navbar-li separator">
+                        <a class="navbar-op" th:classappend="${info} ? nav-select : '' "
+                           th:href="@{/services}">Servicios</a>
+                    </li>
+                    <li class="navbar-li separator">
+                        <a class="navbar-op" th:classappend="${register} ? nav-select : '' "
+                           th:href="@{/register}">Registro</a>
+                    </li>
+                    <li class="navbar-li">
+                        <a class="navbar-op" th:classappend="${login} ? nav-select : '' " th:href="@{/login}">Iniciar
+                            sesión</a>
+                    </li>
+                </ul>
+                <div class="collapse navbar-collapse" th:unless="*{user == null}" th:classappend="*{role == 'Elderly'} ? 'divHeight' : ''">
+                    <ul class="nav navbar-nav" th:if="*{role == 'Admin'}">
+                        <li class="nav-item">
+                            <a th:href="@{/}" title="Inicio">
+                                <svg class="bi bi-house-fill icon" width="1em" height="1em" viewBox="0 0 16 16"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M8 3.293l6 6V13.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z"
+                                          clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd"
+                                          d="M7.293 1.5a1 1 0 011.414 0l6.647 6.646a.5.5 0 01-.708.708L8 2.207 1.354 8.854a.5.5 0 11-.708-.708L7.293 1.5z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                            </a>
                         </li>
-                        <li class="navbar-li separator">
-                            <a class="navbar-op" th:classappend="${info} ? nav-select : '' "
-                               th:href="@{/services}">Servicios</a>
-                        </li>
-                        <li class="navbar-li separator">
-                            <a class="navbar-op" th:classappend="${register} ? nav-select : '' "
-                               th:href="@{/register}">Registro</a>
-                        </li>
-                        <li class="navbar-li">
-                            <a class="navbar-op" th:classappend="${login} ? nav-select : '' " th:href="@{/login}">Iniciar
-                                sesión</a>
+                        <li class="nav-item">
+                            <p class="navbar-op">Autenticado como <span th:text="*{nameUser}"></span></p>
                         </li>
                     </ul>
-                    <div class="collapse navbar-collapse" th:unless="*{user == null}">
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a th:href="@{/}" title="Inicio">
-                                    <svg class="bi bi-house-fill icon" width="1em" height="1em" viewBox="0 0 16 16"
-                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                              d="M8 3.293l6 6V13.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z"
-                                              clip-rule="evenodd"/>
-                                        <path fill-rule="evenodd"
-                                              d="M7.293 1.5a1 1 0 011.414 0l6.647 6.646a.5.5 0 01-.708.708L8 2.207 1.354 8.854a.5.5 0 11-.708-.708L7.293 1.5z"
-                                              clip-rule="evenodd"/>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <p class="navbar-op">Autenticado como <span th:text="*{nameUser}"></span></p>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="navbar-op" href="/logout" th:href="@{/logout}">Salir</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+                    <ul class="nav navbar-nav" th:classappend="*{role == 'Elderly'} ? 'marginBottom' : ''" th:if="*{role == 'Elderly'}">
+                        <li class="nav-item">
+                            <a th:href="@{/}" title="Inicio">
+                                <svg class="bi bi-house-fill icon" width="1em" height="1em" viewBox="0 0 16 16"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M8 3.293l6 6V13.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z"
+                                          clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd"
+                                          d="M7.293 1.5a1 1 0 011.414 0l6.647 6.646a.5.5 0 01-.708.708L8 2.207 1.354 8.854a.5.5 0 11-.708-.708L7.293 1.5z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <p class="navbar-op">Autenticado como <span th:text="*{nameUser}"></span></p>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto" th:classappend="*{role == 'Elderly'} ? 'navbar-right marginBottom' : ''">
+                        <li class="nav-item ajustes" th:if="*{role == 'Elderly'}">
+                            <a class="navbar-op" href="" th:ref="">
+                                Ajustes
+                                <svg class="bi bi-gear" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-op" href="/logout" th:href="@{/logout}">Salir</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </div>
+</div>
 </body>
 </html>
 

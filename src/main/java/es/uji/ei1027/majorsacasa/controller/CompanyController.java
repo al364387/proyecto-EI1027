@@ -25,14 +25,20 @@ public class CompanyController {
 
     @RequestMapping(value = "/add")
     public String addCompany(HttpSession session, Model model){
-        if (session.getAttribute("user") == null)
-        {
-            model.addAttribute("user", new UserDetails());
-            return "login";
-        }
-        model.addAttribute("company", new Company());
-        return "company/add";
 
+        if (session.getAttribute("user") != null)
+        {
+            if (session.getAttribute("role").equals("Admin")){
+                model.addAttribute("company", new Company());
+                return "company/add";
+            } else {
+                return "index";
+            }
+        }
+
+        model.addAttribute("login", true);
+        model.addAttribute("user", new UserDetails());
+        return "login";
     }
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
@@ -49,9 +55,22 @@ public class CompanyController {
         return "redirect:list";
     }
     @RequestMapping("/list")
-    public String listCompanies(Model model){
-        model.addAttribute("companies",companyDao.getCompanies());
-        return "company/list";
+    public String listCompanies(Model model, HttpSession session){
+
+        if (session.getAttribute("user") != null)
+        {
+            if (session.getAttribute("role").equals("Admin")){
+
+                model.addAttribute("companies",companyDao.getCompanies());
+                return "company/list";
+            } else {
+                return "index";
+            }
+        }
+
+        model.addAttribute("login", true);
+        model.addAttribute("user", new UserDetails());
+        return "login";
     }
 
 

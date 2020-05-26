@@ -1,17 +1,64 @@
 <!DOCTYPE html>
 <html lang="es"
       xmlns:th="http://www.thymeleaf.org">
+<head>
     <div th:fragment="elderly-css">
         <link rel="stylesheet" th:href="@{/css/elderly.css}" href="/css/elderly.css">
     </div>
-<head>
+
 </head>
 <body>
     <div th:fragment="elderly">
-        <h3>Peticiones</h3>
-        <ul>
-            <li><a href="request/add"> Crear petición </a></li>
-        </ul>
+        <br>
+        <div class="tabs">
+            <div class="tab">
+                <input type="radio" id="tab-1" name="tab-group-1" checked>
+                <label for="tab-1">Servicios</label>
+                <div class="content-tab">
+                    <div class="buttonService">
+                        <a class="btn" href="request/add"> Contratar servicio</a>
+                    </div>
+                    <br>
+                    <br>
+                    <h3>Listado de servicios solicitados</h3>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Precio</th>
+                            <th>Fecha</th>
+                            <th>Comentario</th>
+                            <th>Estado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab">
+                <input type="radio" id="tab-2" name="tab-group-1">
+                <label for="tab-2">Ocio con voluntarios</label>
+                <div class="content-tab">
+                    <form>
+                        <select>
+                            <option></option>
+                        </select>
+                        <input type="submit" value="Solicitar">
+                    </form>
+                    <h3>Ocio con voluntarios</h3>
+                    <table>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
