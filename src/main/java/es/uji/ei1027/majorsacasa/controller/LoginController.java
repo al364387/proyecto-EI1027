@@ -84,6 +84,7 @@ public class LoginController {
                 String id = String.valueOf(volunteer.getId());
                 user = userDao.loadUserByUsername(user, volunteer.getPassword(),
                         role);
+                session.setAttribute("id", id);
             }else{
                 user = null;
             }

@@ -30,8 +30,7 @@
                 <td>
                     <br>
                     <h5>
-                        <a class="btn buttonOptions" href="/volunteer/update">Modificar perfil</a>
-
+                        <a class="btn buttonOptions" th:href="@{/volunteer/update/{id}(id=${session.id})}">Modificar perfil</a>
                     </h5>
                 </td>
             </tr>
