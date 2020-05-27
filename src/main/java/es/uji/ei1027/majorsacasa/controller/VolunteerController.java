@@ -1,9 +1,11 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.VolunteerAvailabilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Admin;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class VolunteerController {
     private VolunteerDao volunteerDao;
+    private VolunteerAvailabilityDao volunteerAvailabilityDao;
 
     @Autowired
     public void setVolunteerDao(VolunteerDao volunteerDao) {
@@ -44,6 +47,8 @@ public class VolunteerController {
                 model.addAttribute("isAdmin", true);
                 model.addAttribute("volunteers", l);
                 return "volunteer/list";
+            } else if (session.getAttribute("role").equals("Elderly")){
+                model.addAttribute("volAvailability", volunteerAvailabilityDao);
             } else {
                 return "index";
             }
@@ -76,12 +81,10 @@ public class VolunteerController {
 
         try {
             volunteerDao.addVolunteer(volunteer);
-
-        } catch (Exception e){
+        } catch (DuplicateKeyException e){
             throw new MajorsacasaException(
-                    "Ha habido un error", "errorVoluntario");
+                    "Ya existe una cuenta con el usuario: " + volunteer.getUsername(), "errorVoluntario");
         }
-
 
         return "redirect:/index";
     }

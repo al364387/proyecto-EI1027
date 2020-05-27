@@ -46,12 +46,32 @@ public class VolunteerAvailabilityDao {
     }
 
     // Muestra la disponibilidad de un voluntario. Devuelve nulo si no existe.
-    public VolunteerAvailability getVolunteerAvailability(int volunteer, String dniElderly){
+    public VolunteerAvailability getVolunteerAvailability(int volunteer){
+        try{
+            return jdbcTemplate.queryForObject("SELECT * FROM VolunteerAvailability WHERE idVolunteer = ?",
+                    new VolunteerAvailabilityRowMapper(), volunteer);
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
+    // Muestra la disponibilidad de un voluntario asociado a una persona mayor. Devuelve nulo si no existe.
+    public VolunteerAvailability getVolunteerAvailabilityWithElderly(int volunteer, String dniElderly){
         try{
             return jdbcTemplate.queryForObject("SELECT * FROM VolunteerAvailability WHERE idVolunteer = ? " +
                     "AND dniElderly = ?", new VolunteerAvailabilityRowMapper(), volunteer, dniElderly);
         } catch (EmptyResultDataAccessException e){
             return null;
+        }
+    }
+
+    // Muestra la disponibilidad de todos los voluntarios asociados a una persona mayor. Devuelve nulo si no existe.
+    public  List<VolunteerAvailability> getVolunteersAvailabilityFromElderly(String dniElderly){
+        try{
+            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability WHERE dniElderly = ?",
+                    new VolunteerAvailabilityRowMapper(), dniElderly);
+        } catch (EmptyResultDataAccessException e){
+            return new ArrayList<VolunteerAvailability>();
         }
     }
 

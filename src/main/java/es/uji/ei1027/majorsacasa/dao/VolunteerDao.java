@@ -23,10 +23,11 @@ public class VolunteerDao {
 
     //Añadir Voluntario
     public void addVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("INSERT INTO Volunteer (name, surname, birthDate, phoneNumber, address, acceptDate, userName, password, endDate, state) " +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
-                volunteer.getName(), volunteer.getSurname(), volunteer.getBirthdate(), volunteer.getPhonenumber(), volunteer.getAddress(),
-                null, volunteer.getUsername(), volunteer.getPassword(), null, "Pendiente");
+        jdbcTemplate.update("INSERT INTO Volunteer (name, surname, birthDate, phoneNumber, address, acceptDate, " +
+                        "userName, password, endDate, state) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+                volunteer.getName(), volunteer.getSurname(), volunteer.getBirthdate(), volunteer.getPhonenumber(),
+                volunteer.getAddress(), volunteer.getAcceptDate(), volunteer.getUsername(), volunteer.getPassword(),
+                volunteer.getEndDate(), volunteer.getState());
     }
 
     //Borrar Voluntario
@@ -37,20 +38,21 @@ public class VolunteerDao {
 
     public void updateVolunteer(Volunteer volunteer) {
         jdbcTemplate.update("UPDATE Volunteer SET name =?, surname =?, phonenumber =?, address =?, " +
-                "password =?  WHERE id =?", volunteer.getName(), volunteer.getSurname(), volunteer.getPhonenumber(),
-                volunteer.getAddress(), volunteer.getPassword(), volunteer.getId());
+                        "password =?  WHERE id =?", volunteer.getName(), volunteer.getSurname(),
+                volunteer.getPhonenumber(), volunteer.getAddress(), volunteer.getPassword(), volunteer.getId());
     }
 
     //Cambia estado y fechas
     public void updateVolunteerAccept(int id, LocalDate date) {
-        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =?, endDate=null, state='Aceptado' WHERE id =?", date, id);
+        jdbcTemplate.update("UPDATE Volunteer SET acceptDate =?, endDate=null, state='Aceptado' WHERE id =?",
+                date, id);
     }
 
     public void updateVolunteerDate(int id, LocalDate endDate) {
         jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", endDate, id);
     }
 
-    public void updateVolunteerReject(int id, String state){
+    public void updateVolunteerReject(int id, String state) {
         jdbcTemplate.update("UPDATE Volunteer SET state=? WHERE id =?", state, id);
     }
 
@@ -58,17 +60,16 @@ public class VolunteerDao {
     public Volunteer getVolunteer(int id) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE id =?", new VolunteerRowMapper(), id);
-        }
-        catch(EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     public Volunteer getUserVolunteer(String username) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE username = ?", new VolunteerRowMapper(), username);
-        }
-        catch(EmptyResultDataAccessException e) {
+            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE username = ?",
+                    new VolunteerRowMapper(), username);
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
