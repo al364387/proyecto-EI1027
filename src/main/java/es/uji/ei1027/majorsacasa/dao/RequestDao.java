@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,14 +44,13 @@ public class RequestDao {
                 dni, peticion.getContractId());
     }
 
-    /* Actualitza els atributs de la request */
-    public void updateRequest(Request peticion) {
-        jdbcTemplate.update("UPDATE Request SET state = ?, description = ?",
-                peticion.getState(), peticion.getDescription());
-    }
-
     public void updateRequestStatus(int number, String estado) {
         jdbcTemplate.update("UPDATE Request SET state = ? WHERE number = ?", estado, number);
+    }
+
+    public void cancelRequest(int number){
+        LocalDate endDate = cancelService();
+        jdbcTemplate.update("UPDATE Request SET endDate = ? WHERE number = ?", endDate, number);
     }
 
     /* Obté el request amb el nom donat. Torna null si no existeix. */
@@ -80,5 +80,11 @@ public class RequestDao {
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
         }
+    }
+
+    private LocalDate cancelService(){
+        LocalDate date = LocalDate.now();
+
+        return date;
     }
 }

@@ -6,8 +6,8 @@ import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Admin;
-import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,13 +23,11 @@ import javax.servlet.http.HttpSession;
 public class RequestController {
     private RequestDao requestDao;
     private ContractDao contractDao;
-    private ElderlyDao elderlyDao;
 
     @Autowired
-    public void setRequestDao(RequestDao requestDao, ContractDao contractDao, ElderlyDao elderlyDao) {
+    public void setRequestDao(RequestDao requestDao, ContractDao contractDao) {
         this.requestDao = requestDao;
         this.contractDao = contractDao;
-        this.elderlyDao = elderlyDao;
     }
 
     @RequestMapping("/list")
@@ -83,12 +81,12 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/update/{number}/{estado}", method = RequestMethod.GET)
-    public String editRequestStatus(@PathVariable String number, @PathVariable String estado, Model model,
+    public String editRequestStatus(@PathVariable int number, @PathVariable String estado, Model model,
                                     HttpSession session) {
 
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Admin")) {
-                requestDao.updateRequestStatus(Integer.parseInt(number), estado);
+                requestDao.updateRequestStatus(number, estado);
                 return "redirect:../../list";
             } else {
                 return "index";
@@ -97,6 +95,26 @@ public class RequestController {
 
         model.addAttribute("user", new Admin());
         model.addAttribute("login", true);
+        return "login";
+    }
+
+    @RequestMapping(value = "/cancel/{number}", method = RequestMethod.GET)
+    public String cancelRequest(@PathVariable int number, HttpSession session){
+
+        if (session.getAttribute("user") != null) {
+            if (session.getAttribute("role").equals("Elderly")) {
+
+                try{
+                    requestDao.cancelRequest(number);
+                } catch (DataIntegrityViolationException e){
+
+                }
+
+
+                return "redirect:../../";
+            }
+        }
+
         return "login";
     }
 
