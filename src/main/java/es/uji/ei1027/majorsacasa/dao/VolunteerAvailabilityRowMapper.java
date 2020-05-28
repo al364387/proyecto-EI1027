@@ -23,6 +23,7 @@ public class VolunteerAvailabilityRowMapper implements RowMapper<VolunteerAvaila
         volunteerAvailability.setSunday(rs.getBoolean("sunday"));
         volunteerAvailability.setIdVolunteer(rs.getInt("idVolunteer"));
         volunteerAvailability.setDniEderly(rs.getString("dniElderly"));
+        volunteerAvailability.setHobby(rs.getString("hobby"));
 
         return volunteerAvailability;
     }

@@ -21,42 +21,48 @@
                 <br>
                 <br>
                 <h3>Listado de servicios solicitados</h3>
-                <table class="table table-striped" th:object="${session}">
+                <table class="table table-hover" th:object="${session}">
                     <thead th:if="*{requests != null}">
                     <tr>
                         <th>Servicio</th>
-                        <th>Precio</th>
-                        <th>Fecha</th>
-                        <th>Comentario</th>
+                        <th>Horario</th>
                         <th>Estado</th>
+                        <th></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="request: *{requests}" >
+                    <tr th:each="request: *{requests}">
                         <td>
-                            <p th:if="${request.catering==true}">Catering</p>
+                            <p th:if="${request.catering==true}">Comidas</p>
                             <p th:if="${request.nursing==true}">Enfermería</p>
                             <p th:if="${request.cleaning==true}">Limpieza</p>
                         </td>
-                        <td th:text="${session.contracts.getServicePrice(request.contractId)}"></td>
-                        <td th:text="${'De L a V - ' + request.time}"></td>
-                        <td th:if="${request.description==null}"> -</td>
-                        <td th:unless="${request.description==null}">
-                            <p th:text="${#strings.capitalize(request.description)}"></p>
+                        <td th:text="${'De L a V - ' + #dates.format(request.time, 'HH:mm')}"></td>
+                        <td th:classappend="${(request.state == 'Pendiente' ? 'stateBlue'  : '') +
+                         (request.state == 'Aceptado' ? 'stateGreen'  : '') +
+                        (request.state == 'Rechazado' ? 'stateRed'  : '')+
+                        (request.state == 'Cancelado' ? 'stateRed'  : '')}" th:text="${request.state}"></td>
+                        <td>
+                            <a class="btn btn-info buttonSize"
+                               th:href="@{/request/info/{number}(number=${request.number})}">
+                                Más detalles
+                            </a>
                         </td>
-                        <td th:text="${request.state}"></td>
-                        <td th:if="${request.endDate == null}">
-                            <div th:if="${request.state != 'Rechazado'}">
-                                <a class="btn btn-danger"
-                                   th:href="@{/request/cancel/{number}(number=${request.number})}">Cancelar</a>
+                        <td>
+                            <div th:if="${request.state == 'Aceptado' || request.state == 'Pendiente'}">
+                                <a class="btn btn-danger buttonSize"
+                                        th:href="@{/request/cancel/{number}(number=${request.number})}">
+                                    Cancelar
+                                </a>
+                            </div>
+                            <div th:unless="${request.state == 'Aceptado' || request.state == 'Pendiente'}">
+                                <a class="btn btn-danger buttonSize disabled">
+                                    Cancelar
+                                </a>
                             </div>
                         </td>
-                        <td th:unless="${request.endDate == null}">
-                            <p>Cancelado</p>
-                        </td>
                     </tr>
-
                     </tbody>
                     <tr th:unless="*{requests != null}">
                         <td> No tiene ningún servicio contratado</td>
@@ -69,16 +75,53 @@
             <input type="radio" id="tab-2" name="tab-group-1">
             <label for="tab-2">Ocio con voluntarios</label>
             <div class="content-tab">
-                <form>
-                    <select>
-                        <option></option>
-                    </select>
-                    <input type="submit" value="Solicitar">
-                </form>
+                <div class="buttonService">
+                    <a class="btn" href="/volunteerAvailability/addElderly"> Voluntarios disponibles</a>
+                </div>
+                <br>
+                <br>
                 <h3>Ocio con voluntarios</h3>
-                <table>
+                <table class="table table-hover" th:object="${session}">
+                    <thead th:if="*{volunteers != null}">
                     <tr>
-                        <td></td>
+                        <th>Ocio</th>
+                        <th>Días</th>
+                        <th>Hora</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="volunteer: *{volunteers}">
+                        <td th:text="${#strings.capitalize(volunteer.hobby)}"></td>
+                        <td>
+                            <span th:classappend="${volunteer.monday == true ? 'dayActive'  : 'dayInactive'}">L</span>
+                            <span th:classappend="${volunteer.tuesday == true ? 'dayActive'  : 'dayInactive'}">M</span>
+                            <span th:classappend="${volunteer.wednesday == true ? 'dayActive'  : 'dayInactive'}">X</span>
+                            <span th:classappend="${volunteer.thursday == true ? 'dayActive'  : 'dayInactive'}">J</span>
+                            <span th:classappend="${volunteer.friday == true ? 'dayActive'  : 'dayInactive'}">V</span>
+                            <span th:classappend="${volunteer.saturday == true ? 'dayActive'  : 'dayInactive'}">S</span>
+                            <span th:classappend="${volunteer.sunday == true ? 'dayActive'  : 'dayInactive'}">D</span>
+                        </td>
+                        <td th:text="${'De ' + #dates.format(volunteer.startTime, 'HH:mm') + ' a ' + #dates.format(volunteer.endTime, 'HH:mm')}"></td>
+                        <td>
+                            <a class="btn btn-info buttonSize"
+                               th:href="@{/volunteerAvailability/infoVolunteer/{idVolunteer}/{dni}(idVolunteer=${volunteer.idVolunteer}, dni=${volunteer.dniEderly})}">
+                                Más detalles
+                            </a>
+                        </td>
+                        <td>
+                            <div>
+                                <a class="btn btn-danger buttonSize"
+                                   th:href="@{/volunteerAvailability/cancel/{idVolunteer}/{dni}(idVolunteer=${volunteer.idVolunteer}, dni=${volunteer.dniEderly})}">
+                                    Cancelar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tr th:unless="*{volunteers != null}">
+                        <td> No has solicitado a ningún voluntario</td>
                     </tr>
                 </table>
             </div>

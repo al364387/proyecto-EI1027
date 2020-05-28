@@ -1,42 +1,53 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Añadir petición</title>
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
+    <div th:replace="fragments/elderly :: elderly-css"></div>
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
-        <h2>Nueva petición</h2>
-        <form class="form-horizontal" action="#" th:action="@{/request/add}" th:object="${request}" method="post">
+        <div class="return alignRight">
+            <a href="/index">
+                <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                    <path d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"/>
+                </svg>
+                Volver
+            </a>
+        </div>
+        <h2>Contratar un servicio</h2>
+        <form class="form-horizontal tableContractService" action="#" th:action="@{/request/add}" th:object="${request}" method="post">
+            <table class="table table-borderless">
+                <tr>
+                    <td>
+                        <label for="contractId" class="control-label">Seleccione un servicio:</label>
+                        <select class="custom-select" id="contractId" th:field="*{contractId}">
+                            <option th:each="contrato: ${listContracts}" th:value="${contrato.numContract}">
+                                <p th:if="${contrato.catering==true }">Comidas</p>
+                                <p th:if="${contrato.nursing==true}">Enfermería</p>
+                                <p th:if="${contrato.cleaning==true}">Limpieza</p>
+                                 <span th:text="${#numbers.formatDecimal(contrato.price, 2, 0, 'COMMA')} + '€'"></span>
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="desc">Comentarios:</p>
+                        <textarea id="description" th:field="*{description}"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="buttonSubmit">
+                        <button type="submit" class="btn"> Contratar</button>
+                    </td>
+                </tr>
 
-            <label class="control-label">Seleccione un servicio:</label>
-            <select id="contractId" th:field="*{contractId}">
-                <option th:each="contrato: ${listContracts}" th:value="${contrato.numContract}">
-                    <p th:if="${contrato.catering==true }">Comidas</p>
-                    <p th:if="${contrato.nursing==true}">Enfermería</p>
-                    <p th:if="${contrato.cleaning==true}">Limpieza</p>
-                </option>
-            </select>
-
-            <div class="form-group row">
-                <label class="control-label col-sm-2" for="description">Detalles extra:</label>
-                <div>
-                    <input type="text" class="form-control" id="description" th:field="*{description}"/>
-                </div>
-            </div>
-
-            <!-- BOTON ANADIR -->
-            <div class="form-group row">
-                <div class="col-sm-offset-2 col-sm-4">
-                    <button type="submit" class="btn btn-primary"> Añadir</button>
-                </div>
-            </div>
+            </table>
         </form>
-        <a href="/"> Atrás </a>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>

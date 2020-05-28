@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class ContractSvc implements ContractService {
-    @Autowired
     CompanyDao companyDao;
+
+    @Autowired
+    public void setContractSvc(CompanyDao companyDao){
+        this.companyDao = companyDao;
+    }
 
     @Override
     public List<Company> getCompanies() {
