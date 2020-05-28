@@ -89,7 +89,7 @@ public class LoginController {
             Volunteer volunteer = volunteerDao.getUserVolunteer(user.getUsername());
             if (volunteer.getAcceptDate() != null && volunteer.getEndDate() == null) {
                 name = volunteer.getName();
-                String id = String.valueOf(volunteer.getId());
+                int id = volunteer.getId();
                 user = userDao.loadUserByUsername(user, volunteer.getPassword(),
                         role);
                 session.setAttribute("id", id);
