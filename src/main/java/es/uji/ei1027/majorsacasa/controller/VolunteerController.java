@@ -97,7 +97,7 @@ public class VolunteerController {
         return "volunteer/update";
     }
 
-    @RequestMapping(value="/update", method = RequestMethod.GET)
+    @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("volunteer") Volunteer volunteer,
             BindingResult bindingResult) {
