@@ -37,9 +37,10 @@ public class VolunteerDao {
     }
 
     public void updateVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("UPDATE Volunteer SET name =?, surname =?, phonenumber =?, address =?, " +
-                        "password =?  WHERE id =?", volunteer.getName(), volunteer.getSurname(),
-                volunteer.getPhonenumber(), volunteer.getAddress(), volunteer.getPassword(), volunteer.getId());
+        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, phonenumber=?, address=?, " +
+                        "password=?  WHERE id=?",
+                volunteer.getName(), volunteer.getSurname(), volunteer.getPhonenumber(), volunteer.getAddress(),
+                volunteer.getPassword(), volunteer.getId());
     }
 
     //Cambia estado y fechas
