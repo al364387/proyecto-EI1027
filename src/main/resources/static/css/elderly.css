@@ -25,7 +25,8 @@
 }
 
 .ajustes a svg{
-    width: 25px;
+    width: 28px;
+    margin-bottom: 4px;
 }
 
 .marginBottom{
@@ -36,18 +37,31 @@
     height: 50px;
 }
 
+.stateRed{
+    color: #CC0000;
+}
+
+.stateBlue{
+    color: #3366FF;
+}
+
+.stateGreen{
+    color: #207f00;
+}
+
 /* Index ========================= */
 
  .tabs {
      position: relative;
      height: 500px;
      clear: both;
-     width: 68%;
+     width: 75%;
      margin: 0 auto;
  }
 .tab {
     float: left;
 }
+
 .tab label {
     background: #eee;
     padding: 10px;
@@ -57,6 +71,13 @@
     left: 1px;
     font-size: 25px;
 }
+
+.tab label:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #0056b3;
+}
+
 .tab [type=radio] {
     display: none;
 }
@@ -70,6 +91,11 @@
     padding: 20px;
     border: 1px solid #ccc;
 }
+
+.content-tab table {
+    font-size: 20px;
+}
+
 [type=radio]:checked ~ label {
     background: white;
     border-bottom: 1px solid white;
@@ -95,4 +121,88 @@
     border-color: #00909e;
     color: #fff;
 }
+
+.dayActive {
+    color: #00909e;
+    font-weight: bold;
+}
+
+.dayInactive {
+    color: #c9c8c8;
+}
+
+.buttonSize{
+    font-size: 20px;
+}
+
 /* End Index ===================== */
+
+/* Info ========================== */
+.info{
+    width: 58%;
+    margin: 0 auto;
+}
+
+.info td{
+    font-size: 25px;
+    text-align: center;
+    padding: 10px;
+}
+
+.desc{
+    margin: 0;
+}
+
+.info textarea{
+    resize: none;
+    width: 100%;
+    height: 100px;
+    font-style: italic;
+}
+
+.info a{
+    font-size: 25px;
+}
+
+.return{
+    font-size: 25px;
+}
+
+.icon-info{
+    width: 25px;
+    margin-bottom: 3px;
+}
+
+.bold{
+    font-weight: 600;
+}
+/* End Info ====================== */
+
+/* Contract service ============== */
+.tableContractService{
+    width: 30%;
+    margin: 0 auto;
+}
+
+.tableContractService textarea{
+    resize: none;
+    width: 100%;
+    height: 100px;
+    font-style: italic;
+}
+
+.tableContractService td{
+    font-size: 25px;
+}
+
+.custom-select{
+    padding: 0 0 0 15px !important;
+}
+
+.tableContractService button{
+    font-size: 25px;
+}
+
+/* End Contract service ========== */
+
+

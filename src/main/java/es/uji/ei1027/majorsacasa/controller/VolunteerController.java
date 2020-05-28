@@ -89,8 +89,6 @@ public class VolunteerController {
         return "redirect:/index";
     }
 
-
-    //TODO No funciona... y no se porqué
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
     public String editVolunteer(Model model, @PathVariable int id) {
         model.addAttribute("volunteer", volunteerDao.getVolunteer(id));

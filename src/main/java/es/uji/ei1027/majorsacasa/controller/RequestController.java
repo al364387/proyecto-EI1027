@@ -6,6 +6,7 @@ import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Admin;
+import es.uji.ei1027.majorsacasa.services.EldelyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -76,7 +77,12 @@ public class RequestController {
             return "request/add";
         }
 
-        requestDao.addRequest(request, (String) session.getAttribute("dni"), contractDao);
+        EldelyService eldelyService = (EldelyService) session.getAttribute("eldelyService");
+        String dni = (String) session.getAttribute("dni");
+
+        session.setAttribute("requests", eldelyService.getRequestFormEldely(dni));
+
+        requestDao.addRequest(request, dni, contractDao);
         return "redirect:/";
     }
 
@@ -98,24 +104,35 @@ public class RequestController {
         return "login";
     }
 
+    @RequestMapping(value = "/info/{number}", method = RequestMethod.GET)
+    public String infoRequest(@PathVariable int number, HttpSession session){
+        if (session.getAttribute("user") != null) {
+            if (session.getAttribute("role").equals("Elderly")) {
+
+                session.setAttribute("request", requestDao.getRequest(number));
+
+                return "request/info";
+            }
+        }
+
+        return  "redirect:../../login";
+    }
+
     @RequestMapping(value = "/cancel/{number}", method = RequestMethod.GET)
     public String cancelRequest(@PathVariable int number, HttpSession session){
 
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
 
-                try{
-                    requestDao.cancelRequest(number);
-                } catch (DataIntegrityViolationException e){
-
-                }
-
+                requestDao.cancelRequest(number);
+                EldelyService eldelyService = (EldelyService) session.getAttribute("eldelyService");
+                session.setAttribute("requests", eldelyService.getRequestFormEldely((String) session.getAttribute("dni")));
 
                 return "redirect:../../";
             }
         }
 
-        return "login";
+        return  "redirect:../../login";
     }
 
 }
