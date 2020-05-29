@@ -4,7 +4,7 @@
 
 <head>
     <div th:fragment="volunteer-css">
-        <link rel="stylesheet" th:href="@{/css/admin.css}" href="/css/admin.css">
+        <link rel="stylesheet" th:href="@{/css/volunteer.css}" href="/css/volunteer.css">
 
     </div>
     <meta charset="UTF-8">
@@ -13,16 +13,22 @@
 </head>
 
 <body>
-
     <div th:fragment="volunteer">
-        <h2>Opciones de voluntarios</h2>
+        <h2>Opciones</h2>
         <table class="tablaIndex">
             <tr>
                 <td>
                     <br>
                     <h5>
+                        <a class="btn buttonOptions" href="/volunteerAvailability/add">Añadir disponibilidad</a>
+                    </h5>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <h5>
                         <a class="btn buttonOptions" href="/volunteerAvailability/list">Disponibilidad de voluntarios</a>
-
                     </h5>
                 </td>
             </tr>
