@@ -17,8 +17,46 @@
                 </svg>
                 Volver</a>
         </div>
-        <table>
-
+        <h2>Listado de voluntarios disponibles</h2>
+        <table class="table table-bordered" th:object="${session}">
+            <thead th:if="*{volunteersAvailable.size() != 0}">
+            <tr>
+                <th>Ocio</th>
+                <th>Voluntario</th>
+                <th>Disponibilidad</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="volunteerAvailable: *{volunteersAvailable}">
+                <td th:text="${#strings.capitalize(volunteerAvailable.hobby)}"></td>
+                <td>
+                    <span th:classappend="${volunteerAvailable.monday == true ? 'dayActive'  : 'dayInactive'}">L</span>
+                    <span th:classappend="${volunteerAvailable.tuesday == true ? 'dayActive'  : 'dayInactive'}">M</span>
+                    <span th:classappend="${volunteerAvailable.wednesday == true ? 'dayActive'  : 'dayInactive'}">X</span>
+                    <span th:classappend="${volunteerAvailable.thursday == true ? 'dayActive'  : 'dayInactive'}">J</span>
+                    <span th:classappend="${volunteerAvailable.friday == true ? 'dayActive'  : 'dayInactive'}">V</span>
+                    <span th:classappend="${volunteerAvailable.saturday == true ? 'dayActive'  : 'dayInactive'}">S</span>
+                    <span th:classappend="${volunteerAvailable.sunday == true ? 'dayActive'  : 'dayInactive'}">D</span>
+                </td>
+                <td th:text="${'De ' + #dates.format(volunteerAvailable.startTime, 'HH:mm') + ' a '
+                + #dates.format(volunteerAvailable.endTime, 'HH:mm')}"></td>
+                <td>
+                    <form action="#" th:action="@{/volunteerAvailability/addElderly}" th:object="${volunteerAva}"
+                          method="post">
+                        <div>
+                            <input type="hidden" id="id" th:field="*{id}" th:value="${volunteerAvailable.id}"/>
+                            <input type="hidden" id="dniElderly" th:field="*{dniEderly}"
+                                   th:value="${volunteerAvailable.dniEderly}"/>
+                            <input type="submit" value="Solicitar" class="btn btn-danger buttonSize"/>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+            <tr th:unless="*{volunteersAvailable.size() != 0}">
+                <td> No hay ningún voluntario disponible en estos momentos</td>
+            </tr>
         </table>
     </div>
     <div th:replace="fragments/footer :: footer"></div>

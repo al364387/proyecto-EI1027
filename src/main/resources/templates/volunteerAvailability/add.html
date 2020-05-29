@@ -4,9 +4,69 @@
 <head>
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
-    <div th:replace="fragments/elderly :: elderly-css"></div>
+    <div th:replace="fragments/volunteer :: volunteer-css"></div>
 </head>
 <body>
-
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+        <div class="return alignRight">
+            <a href="/contract/list">
+                <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M8.354 1.646a.5.5 0 010 .708L2.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                    <path fill-rule="evenodd"
+                          d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                </svg>
+                Volver</a>
+        </div>
+        <h2>Añadir disponibilidad</h2>
+        <form class="form-horizontal" action="#" th:action="@{/volunteerAvailability/add}" th:object="${volunteerAvailable}" method="post">
+            <table class="table table-borderless">
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <label>Hobby</label>-->
+<!--                        <input type="text" id="hobby" th:field="*{hobby}" />-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <label>Días</label>-->
+<!--                        <div class="input-group">-->
+<!--                            <input class="form-control" type="checkbox" th:field="*{monday}"> Lunes-->
+<!--                            <input class="form-control" type="checkbox" th:field="*{tuesday}"> Martes-->
+<!--                            <input class="form-control" type="checkbox" th:field="*{wednesday}"> Miércoles-->
+<!--                            <input class="form-control" type="checkbox" th:field="*{thursday}"> Jueves-->
+<!--                        </div>-->
+<!--                        <div class="input-group">-->
+<!--                            <input class="form-control" type="checkbox" th:field="*{friday}"> Viernes-->
+<!--                            <input class="form-control" type="checkbox" th:field="*{saturday}"> Sábado-->
+<!--                            <input class="form-control" type="checkbox" th:field="*{sunday}"> Domingo-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <label>Horas</label>-->
+<!--                        <div class="input-group">-->
+<!--                            <input type="time" class="form-control" placeholder="15:00" th:field="*{startTime}">-->
+<!--                            <span class="input-group-addon">-</span>-->
+<!--                            <input type="time" required class="form-control" placeholder="17:00" th:field="*{endTime}">-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+                <tr>
+                    <td class="buttonSubmit">
+                        <button class="btn" type="submit">Añadir</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>

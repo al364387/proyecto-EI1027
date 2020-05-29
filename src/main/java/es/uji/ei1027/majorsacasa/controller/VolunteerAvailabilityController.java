@@ -1,8 +1,8 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.VolunteerAvailabilityDao;
-import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
+import es.uji.ei1027.majorsacasa.model.VolunteerAvailability;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -30,6 +30,7 @@ public class VolunteerAvailabilityController {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Volunteer")) {
 
+                session.setAttribute("volunteerAvailable", new VolunteerAvailability());
                 return "volunteerAvailability/add";
             } else {
                 return "index";
@@ -43,11 +44,11 @@ public class VolunteerAvailabilityController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("request") Request request,
-                                   BindingResult bindingResult, Model model, HttpSession session) {
+    public String processAddSubmit(@ModelAttribute("volunteerAvailable") VolunteerAvailability volunteerAvailability,
+                                   BindingResult bindingResult, HttpSession session) {
 
         if (bindingResult.hasErrors()) {
-            return "request/add";
+            return "volunteerAvailability/add";
         }
 
         return "redirect:/";
@@ -57,7 +58,8 @@ public class VolunteerAvailabilityController {
     public String addRequestElderly(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
-                session.setAttribute("volunteers", volunteerAvailabilityDao.getAllVolunteerAvailabilities());
+                session.setAttribute("volunteerAva", new VolunteerAvailability());
+                session.setAttribute("volunteersAvailable", volunteerAvailabilityDao.getAllVolunteerAvailabilities());
                 return "volunteerAvailability/addElderly";
             } else {
                 return "index";
@@ -71,12 +73,14 @@ public class VolunteerAvailabilityController {
     }
 
     @RequestMapping(value = "/addElderly", method = RequestMethod.POST)
-    public String processAddSubmitElderly(@ModelAttribute("request") Request request,
-                                   BindingResult bindingResult, Model model, HttpSession session) {
-
+    public String processAddSubmitElderly(@ModelAttribute("volunteerAva") VolunteerAvailability volunteerAvailability,
+                                          BindingResult bindingResult, HttpSession session) {
         if (bindingResult.hasErrors()) {
             return "volunteerAvailability/addElderly";
         }
+
+        volunteerAvailabilityDao.updateVolunteerAvailabilityAddElderly(volunteerAvailability.getId(),
+                volunteerAvailability.getDniEderly());
 
         return "redirect:/";
     }
