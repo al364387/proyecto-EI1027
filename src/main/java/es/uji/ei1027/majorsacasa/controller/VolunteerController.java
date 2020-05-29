@@ -96,13 +96,13 @@ public class VolunteerController {
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("volunteer") Volunteer volunteer,
-            BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+    public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
             return "volunteer/update";
+        }
+
         volunteerDao.updateVolunteer(volunteer);
-        return "redirect:list";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/updateAceptar/{id}/{acceptDate}", method = RequestMethod.GET)
