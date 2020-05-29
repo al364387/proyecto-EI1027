@@ -20,14 +20,14 @@ public class VolunteerAvailabilityDao {
     }
 
     // Añade la disponibilidad del voluntario
-    public void addVolunteerAvailability(VolunteerAvailability volunteerAvailability){
+    public void addVolunteerAvailability(VolunteerAvailability volunteerAvailability, int idVolunteer){
         jdbcTemplate.update("INSERT INTO VolunteerAvailability (startTime, endTime, monday, tuesday, " +
                         "wednesday, thursday, friday, saturday, sunday, hobby, idVolunteer, dniElderly) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 volunteerAvailability.getStartTime(), volunteerAvailability.getEndTime(), volunteerAvailability.isMonday(),
                 volunteerAvailability.isTuesday(), volunteerAvailability.isWednesday(), volunteerAvailability.isThursday(),
                 volunteerAvailability.isFriday(), volunteerAvailability.isSaturday(), volunteerAvailability.isSunday(),
-                volunteerAvailability.getHobby(), volunteerAvailability.getIdVolunteer(), volunteerAvailability.getDniEderly());
+                volunteerAvailability.getHobby(), idVolunteer, volunteerAvailability.getDniEderly());
     }
 
     // Actualiza la disponibilidad del voluntario, a excepción de las claves primarias.

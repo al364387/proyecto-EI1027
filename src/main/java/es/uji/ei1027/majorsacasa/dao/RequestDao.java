@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 import javax.sql.DataSource;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -85,12 +84,12 @@ public class RequestDao {
     private void getTime(boolean cat, boolean nur, boolean clea, Request peticion){
 
         if (cat){
-            peticion.setTime(Time.valueOf(LocalTime.of(14,0,0)));
+            peticion.setTime(LocalTime.of(14,0,0));
         }else if (nur){
-            peticion.setTime(Time.valueOf(LocalTime.of(12,0,0)));
+            peticion.setTime(LocalTime.of(12,0,0));
 
         }else if (clea){
-            peticion.setTime(Time.valueOf(LocalTime.of(8,0,0)));
+            peticion.setTime(LocalTime.of(8,0,0));
         }
     }
 }

@@ -26,11 +26,10 @@ public class VolunteerAvailabilityController {
     }
 
     @RequestMapping(value = "/add")
-    public String addRequest(HttpSession session, Model model) {
+    public String addVolunteerAvailability(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Volunteer")) {
-
-                session.setAttribute("volunteerAvailable", new VolunteerAvailability());
+                model.addAttribute("volunteerAvailability", new VolunteerAvailability());
                 return "volunteerAvailability/add";
             } else {
                 return "index";
@@ -44,12 +43,17 @@ public class VolunteerAvailabilityController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("volunteerAvailable") VolunteerAvailability volunteerAvailability,
-                                   BindingResult bindingResult, HttpSession session) {
+    public String processAddSubmitVolunteerAvailability(@ModelAttribute("volunteerAvailability") VolunteerAvailability volunteerAvailability,
+                                                        BindingResult bindingResult, HttpSession session) {
+        System.out.println("entra" + volunteerAvailability.getStartTime() + " - " + volunteerAvailability.getEndTime());
 
         if (bindingResult.hasErrors()) {
+            System.out.println("error");
             return "volunteerAvailability/add";
         }
+
+
+        volunteerAvailabilityDao.addVolunteerAvailability(volunteerAvailability, (Integer) session.getAttribute("id"));
 
         return "redirect:/";
     }
@@ -58,7 +62,7 @@ public class VolunteerAvailabilityController {
     public String addRequestElderly(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
-                session.setAttribute("volunteerAva", new VolunteerAvailability());
+                model.addAttribute("volunteerAva", new VolunteerAvailability());
                 session.setAttribute("volunteersAvailable", volunteerAvailabilityDao.getAllVolunteerAvailabilities());
                 return "volunteerAvailability/addElderly";
             } else {
@@ -101,14 +105,14 @@ public class VolunteerAvailabilityController {
     }
 
     @RequestMapping(value = "/cancel/{idVolunteer}/{dni}", method = RequestMethod.GET)
-    public String cancelRequest(@PathVariable int idVolunteer, @PathVariable String dni, HttpSession session){
+    public String cancelRequest(@PathVariable int idVolunteer, @PathVariable String dni, HttpSession session) {
 
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
 
-                try{
+                try {
 
-                } catch (DataIntegrityViolationException e){
+                } catch (DataIntegrityViolationException e) {
 
                 }
 
@@ -116,6 +120,6 @@ public class VolunteerAvailabilityController {
             }
         }
 
-        return  "redirect:../../login";
+        return "redirect:../../login";
     }
 }

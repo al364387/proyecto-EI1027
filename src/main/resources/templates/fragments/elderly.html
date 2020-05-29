@@ -38,7 +38,7 @@
                             <p th:if="${request.nursing==true}">Enfermería</p>
                             <p th:if="${request.cleaning==true}">Limpieza</p>
                         </td>
-                        <td th:text="${'De L a V - ' + #dates.format(request.time, 'HH:mm')}"></td>
+                        <td th:text="${'De L a V - ' + request.time}"></td>
                         <td th:classappend="${(request.state == 'Pendiente' ? 'stateBlue'  : '') +
                          (request.state == 'Aceptado' ? 'stateGreen'  : '') +
                         (request.state == 'Rechazado' ? 'stateRed'  : '')+
@@ -103,7 +103,7 @@
                             <span th:classappend="${volunteer.saturday == true ? 'dayActive'  : 'dayInactive'}">S</span>
                             <span th:classappend="${volunteer.sunday == true ? 'dayActive'  : 'dayInactive'}">D</span>
                         </td>
-                        <td th:text="${'De ' + #dates.format(volunteer.startTime, 'HH:mm') + ' a ' + #dates.format(volunteer.endTime, 'HH:mm')}"></td>
+                        <td th:text="${'De ' + volunteer.startTime + ' a ' + volunteer.endTime}"></td>
                         <td>
                             <a class="btn btn-info buttonSize"
                                th:href="@{/volunteerAvailability/infoVolunteer/{idVolunteer}/{dni}(idVolunteer=${volunteer.idVolunteer}, dni=${volunteer.dniEderly})}">

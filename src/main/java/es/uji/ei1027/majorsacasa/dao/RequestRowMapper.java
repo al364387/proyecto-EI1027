@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 public final class RequestRowMapper implements RowMapper<Request> {
    public Request mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -13,12 +14,12 @@ public final class RequestRowMapper implements RowMapper<Request> {
        peticion.setState(rs.getString("state"));
        peticion.setStartDate(rs.getDate("startDate"));
        peticion.setEndDate(rs.getDate("endDate"));
-       peticion.setTime(rs.getTime("time"));
+       peticion.setTime(rs.getObject("time", LocalTime.class));
        peticion.setCatering(rs.getBoolean("catering"));
        peticion.setNursing(rs.getBoolean("nursing"));
        peticion.setCleaning(rs.getBoolean("cleaning"));
        peticion.setDescription(rs.getString("description"));
-       peticion.setElderlyId(rs.getString("elderlyId"));
+       peticion.setElderlyDNI(rs.getString("elderlyId"));
        peticion.setContractId(rs.getInt("contractId"));
        return peticion;
    }
