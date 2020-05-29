@@ -89,8 +89,6 @@ public class VolunteerController {
         return "redirect:/index";
     }
 
-
-    //TODO No funciona... y no se porqué
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
     public String editVolunteer(Model model, @PathVariable int id) {
         model.addAttribute("volunteer", volunteerDao.getVolunteer(id));
@@ -98,13 +96,13 @@ public class VolunteerController {
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("volunteer") Volunteer volunteer,
-            BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+    public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
             return "volunteer/update";
+        }
+
         volunteerDao.updateVolunteer(volunteer);
-        return "redirect:list";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/updateAceptar/{id}/{acceptDate}", method = RequestMethod.GET)

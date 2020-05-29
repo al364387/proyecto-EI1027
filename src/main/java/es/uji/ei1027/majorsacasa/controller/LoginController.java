@@ -20,6 +20,7 @@ class UserValidator implements Validator {
     public boolean supports(Class<?> cls) {
         return UserDetails.class.isAssignableFrom(cls);
     }
+
     @Override
     public void validate(Object obj, Errors errors) {
         UserDetails userDetails = (UserDetails) obj;
@@ -34,18 +35,24 @@ class UserValidator implements Validator {
 
 @Controller
 public class LoginController {
-    @Autowired
+
     private UserDao userDao;
-    @Autowired
     private AdminDao adminDao;
-    @Autowired
     private ElderlyDao elderlyDao;
-    @Autowired
     private VolunteerDao volunteerDao;
-    @Autowired
     private CompanyDao companyDao;
-    @Autowired
     private EldelyService eldelyService;
+
+    @Autowired
+    public void setLoginController(UserDao userDao, AdminDao adminDao, ElderlyDao elderlyDao,
+                                   VolunteerDao volunteerDao, CompanyDao companyDao, EldelyService eldelyService) {
+        this.userDao = userDao;
+        this.adminDao = adminDao;
+        this.elderlyDao = elderlyDao;
+        this.volunteerDao = volunteerDao;
+        this.companyDao = companyDao;
+        this.eldelyService = eldelyService;
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("user") UserDetails user, Model model,
@@ -62,29 +69,31 @@ public class LoginController {
         String name = "";
 
         if (adminDao.getUserAdmin(user.getUsername()) != null) {
-            role  = "Admin";
+            role = "Admin";
             name = adminDao.getUserAdmin(user.getUsername()).getName();
             user = userDao.loadUserByUsername(user, adminDao.getUserAdmin(user.getUsername()).getPassword(),
                     role);
         } else if (elderlyDao.getUserElderly(user.getUsername()) != null) {
-            role ="Elderly";
+            role = "Elderly";
             name = elderlyDao.getUserElderly(user.getUsername()).getName();
             String dni = elderlyDao.getUserElderly(user.getUsername()).getDNI();
             user = userDao.loadUserByUsername(user, elderlyDao.getUserElderly(user.getUsername()).getPassword(),
                     role);
             session.setAttribute("requests", eldelyService.getRequestFormEldely(dni));
-            session.setAttribute("contracts", eldelyService);
+            session.setAttribute("eldelyService", eldelyService);
+            session.setAttribute("volunteers", eldelyService.getLeisureTime(dni));
             session.setAttribute("dni", dni);
         } else if (volunteerDao.getUserVolunteer(user.getUsername()) != null) {
             role = "Volunteer";
             //Mirar si el voluntario tiene fecha de inicio y no tiene fecha fin
             Volunteer volunteer = volunteerDao.getUserVolunteer(user.getUsername());
-            if(volunteer.getAcceptDate() != null && volunteer.getEndDate() == null) {
+            if (volunteer.getAcceptDate() != null && volunteer.getEndDate() == null) {
                 name = volunteer.getName();
-                String id = String.valueOf(volunteer.getId());
+                int id = volunteer.getId();
                 user = userDao.loadUserByUsername(user, volunteer.getPassword(),
                         role);
-            }else{
+                session.setAttribute("id", id);
+            } else {
                 user = null;
             }
         } else if (companyDao.getUserCompany(user.getUsername()) != null) {

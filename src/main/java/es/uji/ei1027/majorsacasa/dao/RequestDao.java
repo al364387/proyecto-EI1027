@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 
 import javax.sql.DataSource;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,34 +26,26 @@ public class RequestDao {
 
     /* Afegeix la request a la base de dades */
     public void addRequest(Request peticion, String dni, ContractDao contractDao) {
-//        Time time;
-//
-//        if(peticion.getTime() == null){
-//            time = new Time(10);
-//        } else {
-//            time = peticion.getTime();
-//        }
 
         boolean catering = contractDao.getContract(peticion.getContractId()).isCatering();
         boolean nursing = contractDao.getContract(peticion.getContractId()).isNursing();
         boolean cleaning = contractDao.getContract(peticion.getContractId()).isCleaning();
+        getTime(catering,nursing,cleaning, peticion);
 
         jdbcTemplate.update("INSERT INTO Request(state, startDate, endDate, time, catering, nursing, cleaning," +
                         " description, elderlyId, contractId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                peticion.getState(), peticion.getStartDate(),
-                peticion.getEndDate(), peticion.getTime(), catering,
-                nursing, cleaning, peticion.getDescription(),
-                dni, peticion.getContractId());
-    }
-
-    /* Actualitza els atributs de la request */
-    public void updateRequest(Request peticion) {
-        jdbcTemplate.update("UPDATE Request SET state = ?, description = ?",
-                peticion.getState(), peticion.getDescription());
+                peticion.getState(), peticion.getStartDate(), peticion.getEndDate(), peticion.getTime(), catering, nursing, cleaning,
+                peticion.getDescription(), dni, peticion.getContractId());
     }
 
     public void updateRequestStatus(int number, String estado) {
         jdbcTemplate.update("UPDATE Request SET state = ? WHERE number = ?", estado, number);
+    }
+
+    public void cancelRequest(int number){
+        LocalDate endDate = cancelService();
+        String state = "Cancelado";
+        jdbcTemplate.update("UPDATE Request SET state = ?, endDate = ? WHERE number = ?", state, endDate, number);
     }
 
     /* Obté el request amb el nom donat. Torna null si no existeix. */
@@ -79,6 +74,23 @@ public class RequestDao {
             return jdbcTemplate.query("SELECT * FROM Request", new RequestRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
+        }
+    }
+
+    private LocalDate cancelService(){
+
+        return LocalDate.now();
+    }
+
+    private void getTime(boolean cat, boolean nur, boolean clea, Request peticion){
+
+        if (cat){
+            peticion.setTime(Time.valueOf(LocalTime.of(14,0,0)));
+        }else if (nur){
+            peticion.setTime(Time.valueOf(LocalTime.of(12,0,0)));
+
+        }else if (clea){
+            peticion.setTime(Time.valueOf(LocalTime.of(8,0,0)));
         }
     }
 }

@@ -75,10 +75,11 @@ public class VolunteerAvailabilityDao {
         }
     }
 
-    // Muestra todas las disponibilidades de los voluntarios. Devuelve una lista vacia si no hay ninguna.
+    // Muestra todas las disponibilidades de los voluntarios que no esten asociados a una persona mayor.
+    // Devuelve una lista vacia si no hay ninguna.
     public List<VolunteerAvailability> getAllVolunteerAvailabilities(){
         try{
-            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability", new VolunteerAvailabilityRowMapper());
+            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability WHERE dniElderly = null", new VolunteerAvailabilityRowMapper());
         } catch (EmptyResultDataAccessException e){
             return new ArrayList<VolunteerAvailability>();
         }
