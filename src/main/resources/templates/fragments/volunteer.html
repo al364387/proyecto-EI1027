@@ -13,21 +13,75 @@
 
 <body>
     <div th:fragment="volunteer">
-        <h2>Opciones</h2>
+        <br>
+        <div class="tabs">
+            <div class="tab">
+                <input type="radio" id="tab-1" name="tab-group-1" checked>
+                <label for="tab-1">Principal</label>
+                <div class="content-tab">
+                    <h2>Servicios Ofrecidos</h2>
+                    <table>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                        <tr>
+
+                        <th></th>                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        </tr>
+                        <!-- La idea es que aquí vaya una lista con los servicios que ya ha aceptado
+                        el voluntario. En el DAO habrá que creer una lista de request solo de un voluntario
+                          en concreto y otra que filtre según el dia, supongo. ¿Puede hacerse directamente?-->
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="tab">
+                <input type="radio" id="tab-2" name="tab-group-1">
+                <label for="tab-2">Peticiones pendientes</label>
+                <div class="content-tab">
+                    <h2>Peticiones Pendientes</h2>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                            <!-- Aquí irá otra tabla de los servicios pendientes por aceptar -->
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab">
+                <input type="radio" id="tab-3" name="tab-group-1">
+                <label for="tab-3">Modificar horario</label>
+                <div class="content-tab">
+                    <h2>Modificar Horario</h2>
+
+                    <!-- Aquí el como cambiar los horarios -->
+                </div>
+            </div>
+
+        </div>
+        <h2>Opciones de voluntarios</h2>
         <table class="tablaIndex">
             <tr>
                 <td>
                     <br>
                     <h5>
-                        <a class="btn buttonOptions" href="/volunteerAvailability/add">Añadir disponibilidad</a>
-                    </h5>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <br>
-                    <h5>
                         <a class="btn buttonOptions" href="/volunteerAvailability/list">Disponibilidad de voluntarios</a>
+                        <a class="btn buttonOptions" href="/volunteerAvailability/add">Añadir disponibilidad</a>
+
                     </h5>
                 </td>
             </tr>
@@ -36,6 +90,7 @@
                     <br>
                     <h5>
                         <a class="btn buttonOptions" th:href="@{/volunteer/update/{id}(id=${session.id})}">Modificar perfil</a>
+                        <div id="datepicker"></div>
                     </h5>
                 </td>
             </tr>

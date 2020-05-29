@@ -7,6 +7,21 @@
     color: #00909e;
 }
 
+.navbar-right{
+    margin-right: 15px;
+}
+
+
+
+.ajustes{
+    margin-right: 50px;
+}
+
+.ajustes a svg{
+    width: 28px;
+    margin-bottom: 4px;
+}
+
 .icon{
     color: #fff;
     margin-right: 40px;
@@ -119,3 +134,98 @@
 /* End Add Volunteer availability = */
 
 
+/*Tabs*/
+
+.tabs {
+    position: relative;
+    height: 500px;
+    clear: both;
+    width: 75%;
+    margin: 0 auto;
+}
+.tab {
+    float: left;
+}
+
+.tab label {
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    font-size: 22px;
+}
+
+.tab label:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #00909e;
+}
+
+.tab [type=radio] {
+    display: none;
+}
+.content-tab {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.content-tab table {
+    font-size: 20px;
+}
+
+[type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+    color: #00909e;
+}
+[type=radio]:checked ~ label ~ .content-tab {
+    z-index: 1;
+}
+
+
+/*Codigo prueba*/
+.dropbtn {
+    background-color: #343a40;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #343a40;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {background-color: #00909e;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #00909e;}
