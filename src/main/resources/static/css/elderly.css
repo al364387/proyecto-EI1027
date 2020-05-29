@@ -75,7 +75,7 @@
 .tab label:hover{
     cursor: pointer;
     color: #fff;
-    background-color: #0056b3;
+    background-color: #00909e;
 }
 
 .tab [type=radio] {

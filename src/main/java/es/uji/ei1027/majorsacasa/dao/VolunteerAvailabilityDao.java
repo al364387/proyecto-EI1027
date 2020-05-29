@@ -21,11 +21,13 @@ public class VolunteerAvailabilityDao {
 
     // Añade la disponibilidad del voluntario
     public void addVolunteerAvailability(VolunteerAvailability volunteerAvailability){
-        jdbcTemplate.update("INSERT INTO VolunteerAvailability VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO VolunteerAvailability (startTime, endTime, monday, tuesday, " +
+                        "wednesday, thursday, friday, saturday, sunday, hobby, idVolunteer, dniElderly) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 volunteerAvailability.getStartTime(), volunteerAvailability.getEndTime(), volunteerAvailability.isMonday(),
                 volunteerAvailability.isTuesday(), volunteerAvailability.isWednesday(), volunteerAvailability.isThursday(),
                 volunteerAvailability.isFriday(), volunteerAvailability.isSaturday(), volunteerAvailability.isSunday(),
-                volunteerAvailability.getIdVolunteer(), volunteerAvailability.getDniEderly());
+                volunteerAvailability.getHobby(), volunteerAvailability.getIdVolunteer(), volunteerAvailability.getDniEderly());
     }
 
     // Actualiza la disponibilidad del voluntario, a excepción de las claves primarias.
@@ -38,6 +40,13 @@ public class VolunteerAvailabilityDao {
                 volunteerAvailability.isFriday(), volunteerAvailability.isSaturday(), volunteerAvailability.isSunday(),
                 volunteerAvailability.getIdVolunteer(), volunteerAvailability.getDniEderly());
     }
+
+    // Asocia la disponibilidad del voluntario a una persona mayor.
+    public void updateVolunteerAvailabilityAddElderly(int id, String dniEderly) {
+        jdbcTemplate.update("UPDATE VolunteerAvailability SET dniElderly = ? WHERE id = ?",
+                dniEderly, id);
+    }
+
 
     // Borra la disponibilidad del voluntario de la bbdd
     public void deleteVolunteerAvailability(int volunteer, String dniElderly){

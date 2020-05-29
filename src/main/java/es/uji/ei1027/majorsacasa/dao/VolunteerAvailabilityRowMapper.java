@@ -12,6 +12,7 @@ public class VolunteerAvailabilityRowMapper implements RowMapper<VolunteerAvaila
     public VolunteerAvailability mapRow(ResultSet rs, int i) throws SQLException {
         VolunteerAvailability volunteerAvailability = new VolunteerAvailability();
 
+        volunteerAvailability.setId(rs.getInt("id"));
         volunteerAvailability.setStartTime(rs.getTime("startTime"));
         volunteerAvailability.setEndTime(rs.getTime("endTime"));
         volunteerAvailability.setMonday(rs.getBoolean("monday"));

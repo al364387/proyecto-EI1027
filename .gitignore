@@ -4,8 +4,8 @@
 *.iws
 *.iml
 *.ipr
-_windows/
-codestyles/
+*/_windows/
+*/codestyles/
 debugger.xml
 diff.xml
 editor.codeinsight.xml
