@@ -128,3 +128,68 @@
 }
 /* End Add contract ============== */
 
+/* List volunteer ================== */
+.tabs {
+    position: relative;
+    height: 600px;
+    clear: both;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.tab {
+    float: left;
+}
+
+.tab label {
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    font-size: 25px;
+}
+
+.tab label:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #00909e;
+}
+
+.tab [type=radio] {
+    display: none;
+}
+
+.content-tab {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.content-tab table {
+    font-size: 20px;
+}
+
+[type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+    color: #00909e;
+}
+
+[type=radio]:checked ~ label ~ .content-tab {
+    z-index: 1;
+}
+
+.icon-info {
+    width: 25px;
+    margin-bottom: 3px;
+}
+/* End List volunteer ============== */
+
