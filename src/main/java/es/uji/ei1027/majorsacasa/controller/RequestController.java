@@ -1,14 +1,12 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
-import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Admin;
-import es.uji.ei1027.majorsacasa.services.EldelyService;
+import es.uji.ei1027.majorsacasa.services.ElderlyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -77,10 +75,10 @@ public class RequestController {
             return "request/add";
         }
 
-        EldelyService eldelyService = (EldelyService) session.getAttribute("eldelyService");
+        ElderlyService elderlyService = (ElderlyService) session.getAttribute("elderlyService");
         String dni = (String) session.getAttribute("dni");
 
-        session.setAttribute("requests", eldelyService.getRequestFormEldely(dni));
+        session.setAttribute("requests", elderlyService.getRequestFormEldely(dni));
 
         requestDao.addRequest(request, dni, contractDao);
         return "redirect:/";
@@ -109,7 +107,7 @@ public class RequestController {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
 
-                session.setAttribute("request", requestDao.getRequest(number));
+                session.setAttribute("requestElderly", requestDao.getRequest(number));
 
                 return "request/info";
             }
@@ -125,8 +123,8 @@ public class RequestController {
             if (session.getAttribute("role").equals("Elderly")) {
 
                 requestDao.cancelRequest(number);
-                EldelyService eldelyService = (EldelyService) session.getAttribute("eldelyService");
-                session.setAttribute("requests", eldelyService.getRequestFormEldely((String) session.getAttribute("dni")));
+                ElderlyService elderlyService = (ElderlyService) session.getAttribute("elderlyService");
+                session.setAttribute("requests", elderlyService.getRequestFormEldely((String) session.getAttribute("dni")));
 
                 return "redirect:../../";
             }

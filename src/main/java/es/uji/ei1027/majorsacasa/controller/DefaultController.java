@@ -1,7 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.model.Admin;
-import es.uji.ei1027.majorsacasa.services.EldelyService;
+import es.uji.ei1027.majorsacasa.services.ElderlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +27,10 @@ public class DefaultController {
     public String index(Model model, HttpSession session) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
-                EldelyService eldelyService = (EldelyService) session.getAttribute("eldelyService");
+                ElderlyService elderlyService = (ElderlyService) session.getAttribute("elderlyService");
                 String dni = (String) session.getAttribute("dni");
-                session.setAttribute("requests", eldelyService.getRequestFormEldely(dni));
-                session.setAttribute("volunteers", eldelyService.getLeisureTime(dni));
+                session.setAttribute("requests", elderlyService.getRequestFormEldely(dni));
+                session.setAttribute("volunteers", elderlyService.getLeisureTime(dni));
             }
         } else {
             model.addAttribute("images", images);

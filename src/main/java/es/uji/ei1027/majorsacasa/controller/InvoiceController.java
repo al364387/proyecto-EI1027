@@ -1,7 +1,11 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.dao.InvoiceDao;
+import es.uji.ei1027.majorsacasa.dao.InvoiceLineDao;
+import es.uji.ei1027.majorsacasa.model.Company;
 import es.uji.ei1027.majorsacasa.model.Invoice;
+import es.uji.ei1027.majorsacasa.model.InvoiceLine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -18,6 +23,7 @@ import java.util.List;
 
 public class InvoiceController {
     private InvoiceDao invoiceDao;
+    private InvoiceLineDao invoiceLineDao;
 
 
     @Autowired
@@ -38,6 +44,17 @@ public class InvoiceController {
         model.addAttribute("invoices", l);
         return "invoice/list";
     }
+
+
+    //Intento 1, supongo
+    @RequestMapping(value = "/facturaPDF/{invoicenum}")
+    public String invoicePDF(Model model, HttpSession session, @PathVariable String invoicenum) {
+        //Mirar si de pura casualidad funciona
+
+
+        return "invoice/list";
+    }
+
 
     @RequestMapping(value="/add")
     public String addInvoice(Model model) {

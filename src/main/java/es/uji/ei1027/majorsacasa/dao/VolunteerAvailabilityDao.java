@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,26 +16,26 @@ public class VolunteerAvailabilityDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public void setDataSource(DataSource dataSource){
+    public void setDataSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     // Añade la disponibilidad del voluntario
-    public void addVolunteerAvailability(VolunteerAvailability volunteerAvailability){
+    public void addVolunteerAvailability(VolunteerAvailability volunteerAvailability, int idVolunteer) {
         jdbcTemplate.update("INSERT INTO VolunteerAvailability (startTime, endTime, monday, tuesday, " +
-                        "wednesday, thursday, friday, saturday, sunday, hobby, idVolunteer, dniElderly) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        "wednesday, thursday, friday, saturday, sunday, hobby, endDate, idVolunteer, dniElderly) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 volunteerAvailability.getStartTime(), volunteerAvailability.getEndTime(), volunteerAvailability.isMonday(),
                 volunteerAvailability.isTuesday(), volunteerAvailability.isWednesday(), volunteerAvailability.isThursday(),
                 volunteerAvailability.isFriday(), volunteerAvailability.isSaturday(), volunteerAvailability.isSunday(),
-                volunteerAvailability.getHobby(), volunteerAvailability.getIdVolunteer(), volunteerAvailability.getDniEderly());
+                volunteerAvailability.getHobby(), volunteerAvailability.getEndDate(), idVolunteer, volunteerAvailability.getDniEderly());
     }
 
     // Actualiza la disponibilidad del voluntario, a excepción de las claves primarias.
     public void updateVolunteerAvailability(VolunteerAvailability volunteerAvailability) {
         jdbcTemplate.update("UPDATE VolunteerAvailability " +
-                "SET startTime = ?, endTime = ?, monday = ?, tuesday = ?, wednesday = ?, thursday= ?, friday = ?," +
-                " saturday = ?, sunday = ? WHERE idVolunteer = ? AND dniElderly = ?",
+                        "SET startTime = ?, endTime = ?, monday = ?, tuesday = ?, wednesday = ?, thursday= ?, friday = ?," +
+                        " saturday = ?, sunday = ? WHERE idVolunteer = ? AND dniElderly = ?",
                 volunteerAvailability.getStartTime(), volunteerAvailability.getEndTime(), volunteerAvailability.isMonday(),
                 volunteerAvailability.isTuesday(), volunteerAvailability.isWednesday(), volunteerAvailability.isThursday(),
                 volunteerAvailability.isFriday(), volunteerAvailability.isSaturday(), volunteerAvailability.isSunday(),
@@ -47,49 +48,56 @@ public class VolunteerAvailabilityDao {
                 dniEderly, id);
     }
 
+    // Se actualiza endDate con la fecha actual (se cancela)
+    public void cancelVolunteerAvailability(int id){
+        LocalDate endDate =  LocalDate.now();
+        jdbcTemplate.update("UPDATE VolunteerAvailability SET endDate = ? WHERE id = ?",
+                endDate, id);
+    }
 
     // Borra la disponibilidad del voluntario de la bbdd
-    public void deleteVolunteerAvailability(int volunteer, String dniElderly){
+    public void deleteVolunteerAvailability(int volunteer, String dniElderly) {
         jdbcTemplate.update("DELETE FROM VolunteerAvailability WHERE idVolunteer = ? AND dniElderly = ?",
                 volunteer, dniElderly);
     }
 
     // Muestra la disponibilidad de un voluntario. Devuelve nulo si no existe.
-    public VolunteerAvailability getVolunteerAvailability(int volunteer){
-        try{
+    public VolunteerAvailability getVolunteerAvailability(int volunteer) {
+        try {
             return jdbcTemplate.queryForObject("SELECT * FROM VolunteerAvailability WHERE idVolunteer = ?",
                     new VolunteerAvailabilityRowMapper(), volunteer);
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     // Muestra la disponibilidad de un voluntario asociado a una persona mayor. Devuelve nulo si no existe.
-    public VolunteerAvailability getVolunteerAvailabilityWithElderly(int volunteer, String dniElderly){
-        try{
+    public VolunteerAvailability getVolunteerAvailabilityWithElderly(int volunteer, String dniElderly) {
+        try {
             return jdbcTemplate.queryForObject("SELECT * FROM VolunteerAvailability WHERE idVolunteer = ? " +
                     "AND dniElderly = ?", new VolunteerAvailabilityRowMapper(), volunteer, dniElderly);
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     // Muestra la disponibilidad de todos los voluntarios asociados a una persona mayor. Devuelve nulo si no existe.
-    public  List<VolunteerAvailability> getVolunteersAvailabilityFromElderly(String dniElderly){
-        try{
-            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability WHERE dniElderly = ?",
+    public List<VolunteerAvailability> getVolunteersAvailabilityFromElderly(String dniElderly) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability WHERE dniElderly = ? AND endDate is null",
                     new VolunteerAvailabilityRowMapper(), dniElderly);
-        } catch (EmptyResultDataAccessException e){
-            return new ArrayList<VolunteerAvailability>();
+        } catch (EmptyResultDataAccessException e) {
+            return null;
         }
     }
 
     // Muestra todas las disponibilidades de los voluntarios que no esten asociados a una persona mayor.
     // Devuelve una lista vacia si no hay ninguna.
-    public List<VolunteerAvailability> getAllVolunteerAvailabilities(){
-        try{
-            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability WHERE dniElderly = null", new VolunteerAvailabilityRowMapper());
-        } catch (EmptyResultDataAccessException e){
+    public List<VolunteerAvailability> getAllVolunteerAvailabilities() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability WHERE dniElderly is null AND endDate is null",
+                    new VolunteerAvailabilityRowMapper());
+        } catch (EmptyResultDataAccessException e) {
             return new ArrayList<VolunteerAvailability>();
         }
     }

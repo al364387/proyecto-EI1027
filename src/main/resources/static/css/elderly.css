@@ -1,63 +1,127 @@
-.icon{
+.icon {
     color: #fff;
     font-size: 28px;
     margin: 10px 40px 0 15px;
 }
 
-.icon:hover{
+.icon:hover {
     color: #00909e;
 }
 
-.navbar-op{
+.navbar-op {
     margin-bottom: 0;
 }
 
-.navbar-op span{
+.navbar-op span {
     color: #00909e;
 }
 
-.navbar-right{
+.navbar-right {
     margin-right: 15px;
 }
 
-.ajustes{
-    margin-right: 50px;
-}
-
-.ajustes a svg{
+.ajustes button svg {
     width: 28px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
-.marginBottom{
+.marginBottom {
     margin-bottom: 5px;
 }
 
-.divHeight{
+.divHeight {
     height: 50px;
 }
 
-.stateRed{
+.stateRed {
     color: #CC0000;
 }
 
-.stateBlue{
+.stateBlue {
     color: #3366FF;
 }
 
-.stateGreen{
+.stateGreen {
     color: #207f00;
 }
 
+.stateCancel {
+    color: #777777;
+}
+
+.dayActive {
+    color: #00909e;
+    font-weight: bold;
+}
+
+.dayInactive {
+    color: #c9c8c8;
+}
+
+.form-control {
+    font-size: 25px;
+}
+
+.middle td {
+    vertical-align: middle;
+}
+
+.middle td p {
+    vertical-align: middle;
+    margin: 0;
+}
+
+.emptyTable {
+    text-align: center;
+    margin-top: 40px;
+}
+/* Dropdown ====================== */
+.dropbtn {
+    background-color: #343a40;
+    border: none;
+    min-width: 182px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #343a40;
+    min-width: 182px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 100;
+
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {background-color: #00909e;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #00909e;}
+/* End Dropdown ================== */
+
 /* Index ========================= */
 
- .tabs {
-     position: relative;
-     height: 500px;
-     clear: both;
-     width: 75%;
-     margin: 0 auto;
- }
+.tabs {
+    position: relative;
+    height: 600px;
+    clear: both;
+    width: 75%;
+    margin: 0 auto;
+}
+
 .tab {
     float: left;
 }
@@ -72,7 +136,7 @@
     font-size: 25px;
 }
 
-.tab label:hover{
+.tab label:hover {
     cursor: pointer;
     color: #fff;
     background-color: #00909e;
@@ -81,6 +145,7 @@
 .tab [type=radio] {
     display: none;
 }
+
 .content-tab {
     position: absolute;
     top: 58px;
@@ -102,6 +167,7 @@
     z-index: 2;
     color: #00909e;
 }
+
 [type=radio]:checked ~ label ~ .content-tab {
     z-index: 1;
 }
@@ -110,99 +176,117 @@
     padding-top: 10px;
     text-align: center;
 }
-.buttonService a{
+
+.buttonService a {
     background-color: #465881;
     border-color: #465881;
     color: #fff;
     font-size: 20px;
 }
+
 .buttonService a:hover {
     background-color: #00909e;
     border-color: #00909e;
     color: #fff;
 }
 
-.dayActive {
-    color: #00909e;
-    font-weight: bold;
-}
-
-.dayInactive {
-    color: #c9c8c8;
-}
-
-.buttonSize{
+.buttonSize {
     font-size: 20px;
 }
 
 /* End Index ===================== */
 
 /* Info ========================== */
-.info{
+.info {
     width: 58%;
     margin: 0 auto;
 }
 
-.info td{
+.info td {
     font-size: 25px;
     text-align: center;
     padding: 10px;
 }
 
-.desc{
+.desc {
     margin: 0;
 }
 
-.info textarea{
+.info textarea {
     resize: none;
     width: 100%;
     height: 100px;
     font-style: italic;
 }
 
-.info a{
+.info a {
     font-size: 25px;
 }
 
-.return{
+.return {
     font-size: 25px;
 }
 
-.icon-info{
+.icon-info {
     width: 25px;
     margin-bottom: 3px;
 }
 
-.bold{
+.bold {
     font-weight: 600;
 }
+
+.dayMargin {
+    margin-right: 10px;
+}
+
+.dayTop {
+    padding-bottom: 0 !important;
+}
+
+.dayBottom {
+    padding-top: 0 !important;
+}
+
 /* End Info ====================== */
 
 /* Contract service ============== */
-.tableContractService{
+.tableContractService {
     width: 30%;
     margin: 0 auto;
 }
 
-.tableContractService textarea{
+.tableContractService textarea {
     resize: none;
     width: 100%;
     height: 100px;
     font-style: italic;
 }
 
-.tableContractService td{
+.tableContractService td {
     font-size: 25px;
 }
 
-.custom-select{
+.custom-select {
     padding: 0 0 0 15px !important;
 }
 
-.tableContractService button{
+.tableContractService button {
     font-size: 25px;
 }
 
 /* End Contract service ========== */
+
+/* Add VolunteerAva ============== */
+.tableAddVolunteerAva {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.tableAddVolunteerAva button {
+    font-size: 25px;
+}
+/* End add VolunteerAva ========== */
 
 

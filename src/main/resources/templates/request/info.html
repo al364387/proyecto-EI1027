@@ -17,52 +17,53 @@
                 </svg>
                 Volver</a>
         </div>
-        <h2 th:if="${session.request.catering==true}" th:text="${'Detalles del servicio de comidas'}"></h2>
-        <h2 th:if="${session.request.nursing==true}" th:text="${'Detalles del servicio de enfermería'}"></h2>
-        <h2 th:if="${session.request.cleaning==true}" th:text="${'Detalles del servicio de limpieza'}"></h2>
+        <h2 th:if="${session.requestElderly.catering==true}" th:text="${'Detalles del servicio de comidas'}"></h2>
+        <h2 th:if="${session.requestElderly.nursing==true}" th:text="${'Detalles del servicio de enfermería'}"></h2>
+        <h2 th:if="${session.requestElderly.cleaning==true}" th:text="${'Detalles del servicio de limpieza'}"></h2>
 
         <table class="info">
             <tr>
                 <td colspan="2">
-                    El servicio de realiza de <span class="bold">Lunes</span> a <span class="bold">Viernes</span>
-                    a las <span class="bold" th:text="${#dates.format(session.request.time, 'HH:mm')}"></span>
+                    El servicio de realiza de <span class="dayActive">Lunes</span> a <span class="dayActive">Viernes</span>
+                    a las <span class="dayActive" th:text="${session.requestElderly.time}"></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="bold">Precio: </span>
-                    <span th:text="${#numbers.formatDecimal(session.eldelyService.getServicePrice(session.request.contractId), 2, 0, 'COMMA')}"></span>
+                    <span th:text="${#numbers.formatDecimal(session.elderlyService.getServicePrice(session.requestElderly.contractId), 2, 0, 'COMMA')}"></span>
                     <span>€</span>
                 </td>
-                <td>
+                <td th:if="${session.requestElderly.endDate == null}">
                     <span class="bold">Estado del servicio: </span>
-                    <span th:text="${session.request.state}"
-                          th:classappend="${(session.request.state == 'Pendiente'? 'stateBlue'  : '') +
-                          (session.request.state == 'Aceptado'? 'stateGreen'  : '') +
-                          (session.request.state == 'Rechazado'? 'stateRed'  : '')}"></span>
+                    <span th:text="${session.requestElderly.state}"
+                          th:classappend="${(session.requestElderly.state == 'Pendiente' ? 'stateBlue'  : '') +
+                          (session.requestElderly.state == 'Aceptado' ? 'stateGreen'  : '') +
+                          (session.requestElderly.state == 'Rechazado' ? 'stateRed'  : '')}"></span>
+                </td>
+                <td th:unless="${session.requestElderly.endDate == null}">
+                    <span class="bold">Estado del servicio: </span>
+                    <span class="stateCancel">Cancelado</span>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" th:if="${session.request.description==null}">
+                <td colspan="2" th:if="${session.requestElderly.description==null}">
                     <p class="desc bold">Comentarios</p>
-                    <textarea readonly></textarea>
+                    <textarea class="form-control" readonly></textarea>
                 </td>
-                <td colspan="2" th:unless="${session.request.description==null}">
+                <td colspan="2" th:unless="${session.requestElderly.description==null}">
                     <p class="desc bold">Comentarios</p>
-                    <textarea th:text="${#strings.capitalize(session.request.description)}" readonly></textarea>
+                    <textarea class="form-control" th:text="${#strings.capitalize(session.requestElderly.description)}" readonly></textarea>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" th:if="${session.request.endDate == null}">
-                    <div th:if="${session.request.state != 'Rechazado'}">
+                <td colspan="2" th:if="${session.requestElderly.endDate == null}">
+                    <div th:if="${session.requestElderly.state != 'Rechazado' || session.requestElderly.endDate != null}">
                         <a class="btn btn-danger"
-                           th:href="@{/request/cancel/{number}(number=${session.request.number})}">
+                           th:href="@{/request/cancel/{number}(number=${session.requestElderly.number})}">
                             Cancelar servicio
                         </a>
                     </div>
-                </td>
-                <td colspan="2" th:unless="${session.request.endDate == null}">
-                    <p>Servicio cancelado</p>
                 </td>
             </tr>
         </table>

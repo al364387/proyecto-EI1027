@@ -239,6 +239,21 @@ h2{
 .tableRegister tr{
     text-align: center;
 }
+
+.buttonSubmit {
+    padding-top: 10px;
+    text-align: center;
+}
+.buttonSubmit a{
+    background-color: #465881;
+    border-color: #465881;
+    color: #fff;
+}
+.buttonSubmit a:hover {
+    background-color: #00909e;
+    border-color: #00909e;
+    color: #fff;
+}
 /* End Register ================== */
 
 /* Add Elderly =================== */
@@ -430,3 +445,4 @@ h2{
     text-decoration: none;
 }
 /* End Diseño para enlaces ======= */
+

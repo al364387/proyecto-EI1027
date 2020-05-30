@@ -18,8 +18,10 @@
                 Volver</a>
         </div>
         <h2>Listado de voluntarios disponibles</h2>
-        <table class="table table-bordered" th:object="${session}">
-            <thead th:if="*{volunteersAvailable.size() != 0}">
+        <br>
+        <table class="tableAddVolunteerAva middle" th:object="${session}"
+               th:classappend="*{volunteersAvailable.size() == 0} ? 'emptyTable' : 'table table-bordered'">
+            <thead th:if="*{volunteersAvailable.size() > 0}">
             <tr>
                 <th>Ocio</th>
                 <th>Voluntario</th>
@@ -30,6 +32,7 @@
             <tbody>
             <tr th:each="volunteerAvailable: *{volunteersAvailable}">
                 <td th:text="${#strings.capitalize(volunteerAvailable.hobby)}"></td>
+                <td th:text="${session.elderlyService.getNameVolunteer(volunteerAvailable.idVolunteer)}"></td>
                 <td>
                     <span th:classappend="${volunteerAvailable.monday == true ? 'dayActive'  : 'dayInactive'}">L</span>
                     <span th:classappend="${volunteerAvailable.tuesday == true ? 'dayActive'  : 'dayInactive'}">M</span>
@@ -38,23 +41,16 @@
                     <span th:classappend="${volunteerAvailable.friday == true ? 'dayActive'  : 'dayInactive'}">V</span>
                     <span th:classappend="${volunteerAvailable.saturday == true ? 'dayActive'  : 'dayInactive'}">S</span>
                     <span th:classappend="${volunteerAvailable.sunday == true ? 'dayActive'  : 'dayInactive'}">D</span>
+                    <span th:text="${'de ' + volunteerAvailable.startTime + ' a ' + volunteerAvailable.endTime}"></span>
                 </td>
-                <td th:text="${'De ' + #dates.format(volunteerAvailable.startTime, 'HH:mm') + ' a '
-                + #dates.format(volunteerAvailable.endTime, 'HH:mm')}"></td>
                 <td>
-                    <form action="#" th:action="@{/volunteerAvailability/addElderly}" th:object="${volunteerAva}"
-                          method="post">
-                        <div>
-                            <input type="hidden" id="id" th:field="*{id}" th:value="${volunteerAvailable.id}"/>
-                            <input type="hidden" id="dniElderly" th:field="*{dniEderly}"
-                                   th:value="${volunteerAvailable.dniEderly}"/>
-                            <input type="submit" value="Solicitar" class="btn btn-danger buttonSize"/>
-                        </div>
-                    </form>
+                    <div class="buttonService">
+                        <a th:href="@{/volunteerAvailability/addElderly/{id}(id = ${volunteerAvailable.id})}" class="btn">Solicitar</a>
+                    </div>
                 </td>
             </tr>
             </tbody>
-            <tr th:unless="*{volunteersAvailable.size() != 0}">
+            <tr th:unless="*{volunteersAvailable.size() > 0}">
                 <td> No hay ningún voluntario disponible en estos momentos</td>
             </tr>
         </table>

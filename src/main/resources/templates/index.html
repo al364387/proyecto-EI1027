@@ -17,6 +17,10 @@
         <div th:if="*{role == 'Volunteer'}">
             <div th:replace="fragments/volunteer :: volunteer-css"></div>
         </div>
+
+        <div th:if="*{role == 'Company'}">
+            <div th:replace="fragments/company :: company-css"></div>
+        </div>
     </div>
 </head>
 <body>
@@ -35,6 +39,9 @@
             </div>
             <div th:if="*{role == 'Volunteer'}">
                 <div th:replace="fragments/volunteer :: volunteer"></div>
+            </div>
+            <div th:if="*{role == 'Company'}">
+                <div th:replace="fragments/company :: company"></div>
             </div>
         </div>
     </div>

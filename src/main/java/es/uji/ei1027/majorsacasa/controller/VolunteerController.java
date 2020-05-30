@@ -42,11 +42,15 @@ public class VolunteerController {
         if (session.getAttribute("user") != null)
         {
             if (session.getAttribute("role").equals("Admin")){
-                List<Volunteer> l = volunteerDao.getVolunteers();
+                List<Volunteer> listaAceptados = volunteerDao.getVolunteers();
+                List<Volunteer> listaPendientes = volunteerDao.getVolunteersPendientes();
+                List<Volunteer> listaRechazados = volunteerDao.getVolunteersRechazados();
 
-                model.addAttribute("isAdmin", true);
-                model.addAttribute("volunteers", l);
+                model.addAttribute("volunteers", listaAceptados);
+                model.addAttribute("volunteersP", listaPendientes);
+                model.addAttribute("volunteersR", listaRechazados);
                 return "volunteer/list";
+
             } else if (session.getAttribute("role").equals("Elderly")){
                 model.addAttribute("volAvailability", volunteerAvailabilityDao);
             } else {
@@ -127,46 +131,5 @@ public class VolunteerController {
                     "Ha habido un error", "errorVoluntario");
         }
         return "redirect:../../list";
-    }
-
-    @RequestMapping("/listaPendientes")
-    public String listVolunteerPendiente(HttpSession session, Model model) {
-
-        if (session.getAttribute("user") != null)
-        {
-            if (session.getAttribute("role").equals("Admin")){
-                List<Volunteer> l = volunteerDao.getVolunteersPendientes();
-
-                model.addAttribute("isAdmin", true);
-                model.addAttribute("volunteersP", l);
-                return "volunteer/listaPendientes";
-            } else {
-                return "index";
-            }
-        }
-
-        model.addAttribute("user", new Admin());
-        model.addAttribute("login", true);
-        return "login";
-    }
-
-    @RequestMapping("/listaRechazados")
-    public String listVolunteerRechazado(HttpSession session, Model model) {
-        if (session.getAttribute("user") != null)
-        {
-            if (session.getAttribute("role").equals("Admin")){
-                List<Volunteer> l = volunteerDao.getVolunteersRechazados();
-
-                model.addAttribute("isAdmin", true);
-                model.addAttribute("volunteersR", l);
-                return "volunteer/listaRechazados";
-            } else {
-                return "index";
-            }
-        }
-
-        model.addAttribute("user", new Admin());
-        model.addAttribute("login", true);
-        return "login";
     }
 }

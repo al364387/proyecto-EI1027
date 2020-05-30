@@ -1,98 +1,123 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Añadir persona mayor</title>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/elderly.css" th:href="@{/css/elderly.css}"/>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+    <div th:replace="fragments/nav :: nav-css"/>
+    <div th:replace="fragments/elderly :: elderly-css"></div>
 </head>
 <body>
-<h2>Añadir persona mayor</h2>
-<form class="form-horizontal" action="#" th:action="@{/elderly/update}" th:object="${elderly}" method="post">
-    <table>
-        <tr>
-            <td><label>DNI: </label></td>
-            <td>
-                <input type="text" th:field="*{DNI}" size="20" maxlength="20" readonly required/>
-            </td>
-
-        </tr>
-        <tr>
-            <td><label>Número de asistente social:</label></td>
-            <td>
-                <input type="text" th:field="*{socialAssisId}" size="20"
-                       maxlength="20"/>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Nombre:</label></td>
-            <td>
-                <input type="text" th:field="*{name}" size="20" maxlength="20"
-                       required/>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Apellidos:</label></td>
-            <td>
-                <div>
-                    <input type="text" th:field="*{surname}" size="20" maxlength="20" required/>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Email:</label></td>
-            <td>
-                <input type="email" th:field="*{email}" size="20" maxlength="50"
-                       required/>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Fecha de nacimiento: </label></td>
-            <td>
-                <input type="date" th:field="*{birthDate}" required/>
-            </td>
-        </tr>
-        <tr>
-            <td> <label>Teléfono:</label></td>
-            <td>
-                <input type="tel" th:field="*{phoneNumber}" required/>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Dirección:</label></td>
-            <td>
-                <input type="text" th:field="*{address}" size="50"
-                       maxlength="70" required/>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Cuenata bancaria:</label></td>
-            <td>
-                <input type="text" th:field="*{bankAccount}" size="50" maxlength="50" required/>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Usuario:</label></td>
-            <td>
-                <input type="text" th:field="*{username}" size="20" maxlength="20" required/>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Contraseña:</label></td>
-            <td>
-                <input type="password" th:field="*{password}" size="20" maxlength="20" required/>
-            </td>
-        </tr>
-    </table>
-
-    <div class="form-group row">
-        <div class="col-sm-offset-2 col-sm-4">
-            <button type="submit" class="btn btn-primary"> Actualizar</button>
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+        <h2>Perfil</h2>
+        <div class="alignRight font20">
+            *Campos obligatorios
         </div>
+        <form class="form-horizontal font20" action="#" th:action="@{/elderly/update}" th:object="${elderly}" method="post">
+            <table class="tableAddElderly">
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="name">Nombre*:</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}"
+                                   th:errorClass="needcorrection" size="20" maxlength="20"/>
+                            <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="surname">Apellidos*:</label>
+                            <input type="text" class="form-control" id="surname" th:field="*{surname}"
+                                   th:errorClass="needcorrection" size="20" maxlength="20"/>
+                            <div class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="dni">DNI*: </label>
+                            <input type="text" class="form-control" id="dni" th:field="*{DNI}"
+                                   th:errorClass="needcorrection" size="20" maxlength="20" readonly/>
+                            <div class="error" th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="email">Email*:</label>
+                            <input type="email" class="form-control" id="email" th:field="*{email}"
+                                   th:errorClass="needcorrection" size="20" maxlength="50"/>
+                            <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="birthDate">Fecha de nacimiento*: </label>
+                            <input type="date" class="form-control" id="birthDate" th:field="*{birthDate}"
+                                   th:errorClass="needcorrection" readonly/>
+                            <div class="error" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="phoneNumber">Teléfono*:</label>
+                            <input type="tel" class="form-control" id="phoneNumber" th:field="*{phoneNumber}"
+                                   th:errorClass="needcorrection"/>
+                            <div class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="address">Dirección*:</label>
+                            <input type="text" class="form-control" id="address" th:field="*{address}" th:errorClass="needcorrection" size="50"
+                                   maxlength="70"/>
+                            <div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="bankAccount">Cuenta bancaria*:</label>
+                            <input type="text" class="form-control" id="bankAccount" th:field="*{bankAccount}" th:errorClass="needcorrection" size="50"
+                                   maxlength="50"/>
+                            <div class="error" th:if="${#fields.hasErrors('bankAccount')}" th:errors="*{bankAccount}"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label>Usuario*:</label>
+                            <input type="text" class="form-control" id="username" th:field="*{username}" th:errorClass="needcorrection" size="20"
+                                   maxlength="20" readonly/>
+                            <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+                            <label for="password">Contraseña*:</label>
+                            <input type="password" class="form-control" id="password" th:field="*{password}" th:errorClass="needcorrection" size="20"
+                                   maxlength="20"/>
+                            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="buttonSubmit" colspan="2">
+                        <br>
+                        <div class="buttonAdd">
+                            <button class="btn font20" type="submit">Actualizar</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
-</form>
-<a href="/elderly/list"> Atrás </a>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+
 </body>
 </html>

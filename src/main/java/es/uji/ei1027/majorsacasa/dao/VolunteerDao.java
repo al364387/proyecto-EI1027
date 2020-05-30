@@ -80,10 +80,8 @@ public class VolunteerDao {
         try {
             List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state= 'Aceptado'",
                     new VolunteerRowMapper());
-            System.out.println("template: " + c);
             return c;
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("sin voluntarios: ");
             return new ArrayList<>();
         }
     }
@@ -92,10 +90,8 @@ public class VolunteerDao {
         try {
             List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state= 'Pendiente'",
                     new VolunteerRowMapper());
-            System.out.println("template: " + c);
             return c;
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("sin voluntarios: ");
             return new ArrayList<>();
         }
     }
@@ -104,10 +100,8 @@ public class VolunteerDao {
         try {
             List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state='Rechazado'",
                     new VolunteerRowMapper());
-            System.out.println("template: " + c);
             return c;
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("sin voluntarios: ");
             return new ArrayList<>();
         }
     }
