@@ -42,7 +42,7 @@ public class RequestDao {
     }
 
     public void cancelRequest(int number){
-        LocalDate endDate = cancelService();
+        LocalDate endDate =  LocalDate.now();
         jdbcTemplate.update("UPDATE Request SET endDate = ? WHERE number = ?", endDate, number);
     }
 
@@ -73,11 +73,6 @@ public class RequestDao {
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
         }
-    }
-
-    private LocalDate cancelService(){
-
-        return LocalDate.now();
     }
 
     private void getTime(boolean cat, boolean nur, boolean clea, Request peticion){

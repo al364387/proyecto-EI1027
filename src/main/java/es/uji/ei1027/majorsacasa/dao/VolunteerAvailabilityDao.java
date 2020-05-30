@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,12 @@ public class VolunteerAvailabilityDao {
                 dniEderly, id);
     }
 
+    // Se actualiza endDate con la fecha actual (se cancela)
+    public void cancelVolunteerAvailability(int id){
+        LocalDate endDate =  LocalDate.now();
+        jdbcTemplate.update("UPDATE VolunteerAvailability SET endDate = ? WHERE id = ?",
+                endDate, id);
+    }
 
     // Borra la disponibilidad del voluntario de la bbdd
     public void deleteVolunteerAvailability(int volunteer, String dniElderly) {
@@ -77,10 +84,10 @@ public class VolunteerAvailabilityDao {
     // Muestra la disponibilidad de todos los voluntarios asociados a una persona mayor. Devuelve nulo si no existe.
     public List<VolunteerAvailability> getVolunteersAvailabilityFromElderly(String dniElderly) {
         try {
-            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability WHERE dniElderly = ?",
+            return jdbcTemplate.query("SELECT * FROM VolunteerAvailability WHERE dniElderly = ? AND endDate is null",
                     new VolunteerAvailabilityRowMapper(), dniElderly);
         } catch (EmptyResultDataAccessException e) {
-            return new ArrayList<VolunteerAvailability>();
+            return null;
         }
     }
 

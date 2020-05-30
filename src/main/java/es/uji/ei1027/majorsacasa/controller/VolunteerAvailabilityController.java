@@ -3,9 +3,8 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.VolunteerAvailabilityDao;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import es.uji.ei1027.majorsacasa.model.VolunteerAvailability;
-import es.uji.ei1027.majorsacasa.services.EldelyService;
+import es.uji.ei1027.majorsacasa.services.ElderlyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -92,8 +91,14 @@ public class VolunteerAvailabilityController {
     public String infoRequest(@PathVariable int idVolunteer, @PathVariable String dni, HttpSession session) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
+                System.out.println("idV: " + idVolunteer + " dni: " + dni);
 
-                session.setAttribute("volunteer",
+                ElderlyService elderlyService = (ElderlyService) session.getAttribute("elderlyService");
+
+                session.setAttribute("nameV", elderlyService.getNameVolunteer(idVolunteer));
+                session.setAttribute("phoneV", elderlyService.getPhoneVolunteer(idVolunteer));
+
+                session.setAttribute("volunteerElderly",
                         volunteerAvailabilityDao.getVolunteerAvailabilityWithElderly(idVolunteer, dni));
 
                 return "/volunteerAvailability/infoVolunteer";
@@ -103,22 +108,18 @@ public class VolunteerAvailabilityController {
         return "redirect:../../login";
     }
 
-    @RequestMapping(value = "/cancel/{idVolunteer}/{dni}", method = RequestMethod.GET)
-    public String cancelRequest(@PathVariable int idVolunteer, @PathVariable String dni, HttpSession session) {
+    @RequestMapping(value = "/cancel/{id}", method = RequestMethod.GET)
+    public String cancelRequest(@PathVariable int id, HttpSession session) {
 
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
 
-                try {
-
-                } catch (DataIntegrityViolationException e) {
-
-                }
+                volunteerAvailabilityDao.cancelVolunteerAvailability(id);
 
                 return "redirect:../../";
             }
         }
 
-        return "redirect:../../login";
+        return "redirect:../login";
     }
 }

@@ -19,7 +19,7 @@
         </div>
         <h2>Listado de voluntarios disponibles</h2>
         <br>
-        <table class="tableAddVolunteerAva" th:object="${session}"
+        <table class="tableAddVolunteerAva middle" th:object="${session}"
                th:classappend="*{volunteersAvailable.size() == 0} ? 'emptyTable' : 'table table-bordered'">
             <thead th:if="*{volunteersAvailable.size() > 0}">
             <tr>
@@ -32,7 +32,7 @@
             <tbody>
             <tr th:each="volunteerAvailable: *{volunteersAvailable}">
                 <td th:text="${#strings.capitalize(volunteerAvailable.hobby)}"></td>
-                <td th:text="${session.eldelyService.getNameVolunteer(volunteerAvailable.idVolunteer)}"></td>
+                <td th:text="${session.elderlyService.getNameVolunteer(volunteerAvailable.idVolunteer)}"></td>
                 <td>
                     <span th:classappend="${volunteerAvailable.monday == true ? 'dayActive'  : 'dayInactive'}">L</span>
                     <span th:classappend="${volunteerAvailable.tuesday == true ? 'dayActive'  : 'dayInactive'}">M</span>

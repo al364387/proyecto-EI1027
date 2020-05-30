@@ -17,7 +17,50 @@
                 </svg>
                 Volver</a>
         </div>
-
+        <h2 th:text="${'Detalles de ' + session.volunteerElderly.hobby}"></h2>
+        <table class="info">
+            <tr>
+                <td colspan="2" class="dayTop">
+                    <span class="dayMargin" th:classappend="${session.volunteerElderly.monday == true ? 'dayActive'  : 'dayInactive'}">Lunes</span>
+                    <span class="dayMargin" th:classappend="${session.volunteerElderly.tuesday == true ? 'dayActive'  : 'dayInactive'}">Martes</span>
+                    <span class="dayMargin" th:classappend="${session.volunteerElderly.wednesday == true ? 'dayActive'  : 'dayInactive'}">Miércoles</span>
+                    <span th:classappend="${session.volunteerElderly.thursday == true ? 'dayActive'  : 'dayInactive'}">Jueves</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="dayBottom">
+                    <span class="dayMargin" th:classappend="${session.volunteerElderly.friday == true ? 'dayActive'  : 'dayInactive'}">Viernes</span>
+                    <span class="dayMargin" th:classappend="${session.volunteerElderly.saturday == true ? 'dayActive'  : 'dayInactive'}">Sábado</span>
+                    <span th:classappend="${session.volunteerElderly.sunday == true ? 'dayActive'  : 'dayInactive'}">Domingo</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="dayBottom">
+                    De <span class="dayActive" th:text="${session.volunteerElderly.startTime}"></span> a
+                    <span class="dayActive" th:text="${session.volunteerElderly.endTime}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bold">Nombre del voluntario/a: </span> <span th:text="${session.nameV}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bold">Teléfono de contacto: </span> <span th:text="${session.phoneV}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div th:if="${session.volunteerElderly.endDate == null}">
+                        <a class="btn btn-danger buttonSize"
+                           th:href="@{/volunteerAvailability/cancel/{id}(id=${session.volunteerElderly.id})}">
+                            Cancelar
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>

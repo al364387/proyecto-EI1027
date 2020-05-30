@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ElderlySvc implements EldelyService {
+public class ElderlySvc implements ElderlyService {
     RequestDao requestDao;
     ContractDao contractDao;
     VolunteerAvailabilityDao volunteerAvailabilityDao;
@@ -45,5 +45,10 @@ public class ElderlySvc implements EldelyService {
     @Override
     public String getNameVolunteer(int id) {
         return volunteerDao.getVolunteer(id).getName() + " " + volunteerDao.getVolunteer(id).getSurname();
+    }
+
+    @Override
+    public int getPhoneVolunteer(int id) {
+        return volunteerDao.getVolunteer(id).getPhonenumber();
     }
 }

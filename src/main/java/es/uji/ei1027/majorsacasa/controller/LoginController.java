@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import es.uji.ei1027.majorsacasa.dao.*;
 import es.uji.ei1027.majorsacasa.model.*;
-import es.uji.ei1027.majorsacasa.services.EldelyService;
+import es.uji.ei1027.majorsacasa.services.ElderlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,17 +41,17 @@ public class LoginController {
     private ElderlyDao elderlyDao;
     private VolunteerDao volunteerDao;
     private CompanyDao companyDao;
-    private EldelyService eldelyService;
+    private ElderlyService elderlyService;
 
     @Autowired
     public void setLoginController(UserDao userDao, AdminDao adminDao, ElderlyDao elderlyDao,
-                                   VolunteerDao volunteerDao, CompanyDao companyDao, EldelyService eldelyService) {
+                                   VolunteerDao volunteerDao, CompanyDao companyDao, ElderlyService elderlyService) {
         this.userDao = userDao;
         this.adminDao = adminDao;
         this.elderlyDao = elderlyDao;
         this.volunteerDao = volunteerDao;
         this.companyDao = companyDao;
-        this.eldelyService = eldelyService;
+        this.elderlyService = elderlyService;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -79,9 +79,9 @@ public class LoginController {
             String dni = elderlyDao.getUserElderly(user.getUsername()).getDNI();
             user = userDao.loadUserByUsername(user, elderlyDao.getUserElderly(user.getUsername()).getPassword(),
                     role);
-            session.setAttribute("requests", eldelyService.getRequestFormEldely(dni));
-            session.setAttribute("eldelyService", eldelyService);
-            session.setAttribute("volunteers", eldelyService.getLeisureTime(dni));
+            session.setAttribute("requests", elderlyService.getRequestFormEldely(dni));
+            session.setAttribute("elderlyService", elderlyService);
+            session.setAttribute("volunteers", elderlyService.getLeisureTime(dni));
             session.setAttribute("dni", dni);
         } else if (volunteerDao.getUserVolunteer(user.getUsername()) != null) {
             role = "Volunteer";
