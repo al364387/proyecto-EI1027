@@ -104,7 +104,7 @@ public class Invoice {
 
             logo.setAbsolutePosition(0,700);
             documento.add(logo);
-            logo.scaleToFit(10, 30);
+            logo.scaleAbsolute(10, 30);
 
             //Image logo = Image.getInstance("logo.png");
             //documento.add(logo);
@@ -118,19 +118,27 @@ public class Invoice {
             titulo.setAlignment(Element.ALIGN_CENTER);
             documento.add(titulo);
 
-            documento.add(new Paragraph("Compañia: "));
-            documento.add(new Paragraph("Correo electronico: "));
-            documento.add(new Paragraph("Servicio: "));
+            String servicio = "";
+            if(catering) servicio = "Catering";
+            if(nursing) servicio = "Nursing";
+            if(cleaning) servicio = "Cleaning";
+
+            documento.add(new Paragraph("Compañia: " ));
+            documento.add(new Paragraph("Correo electronico: " ));
+            documento.add(new Paragraph("Servicio: " + servicio));
             documento.add(new Paragraph("Fecha: " + date));
 
 
             int numColumns = 3;
             PdfPTable tabla = new PdfPTable(numColumns);
             //Conseguir de alguna manera la lista de lineas de factura que iran en esta factura
-            List<InvoiceLine> invoices;
-            for (int i = 0; i < 15; i++) {
-                tabla.addCell("celda " + i);
+            /*
+            for(InvoiceLine invoiceLine : invoiceLines){
+                tabla.addCell(invoiceLine.getNumber() + "");
+                tabla.addCell(invoiceLine.getConcept());
+                tabla.addCell(invoiceLine.getMonthPrice() + "");
             }
+            */
             documento.add(tabla);
 
             documento.close();

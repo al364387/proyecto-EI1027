@@ -30,8 +30,8 @@ public class InvoiceLineController {
     }
 
     @RequestMapping("/list")
-    public String listInvoice(Model model) {
-        List<InvoiceLine> l = invoiceLineDao.getInvoiceLines();
+    public String listInvoice(Model model, String invoiceNumId) {
+        List<InvoiceLine> l = invoiceLineDao.getInvoiceLines(invoiceNumId);
 
         model.addAttribute("invoiceLines", l);
         return "invoiceLine/list";
