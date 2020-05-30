@@ -20,13 +20,9 @@
     margin-right: 15px;
 }
 
-.ajustes {
-    margin-right: 50px;
-}
-
-.ajustes a svg {
+.ajustes button svg {
     width: 28px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .marginBottom {
@@ -79,6 +75,43 @@
     text-align: center;
     margin-top: 40px;
 }
+/* Dropdown ====================== */
+.dropbtn {
+    background-color: #343a40;
+    border: none;
+    min-width: 182px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #343a40;
+    min-width: 182px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 100;
+
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {background-color: #00909e;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #00909e;}
+/* End Dropdown ================== */
+
 /* Index ========================= */
 
 .tabs {
