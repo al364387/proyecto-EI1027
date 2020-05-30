@@ -9,4 +9,5 @@ public interface EldelyService {
     List<Request> getRequestFormEldely(String dni);
     double getServicePrice(int contractId);
     List<VolunteerAvailability> getLeisureTime(String dni);
+    String getNameVolunteer(int id);
 }

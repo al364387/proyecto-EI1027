@@ -24,40 +24,41 @@
                 Volver</a>
         </div>
         <h2>Añadir disponibilidad</h2>
-        <form class="form-horizontal" action="#" th:action="@{/volunteerAvailability/add}" th:object="${volunteerAvailable}" method="post">
-            <table class="table table-borderless">
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <label>Hobby</label>-->
-<!--                        <input type="text" id="hobby" th:field="*{hobby}" />-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <label>Días</label>-->
-<!--                        <div class="input-group">-->
-<!--                            <input class="form-control" type="checkbox" th:field="*{monday}"> Lunes-->
-<!--                            <input class="form-control" type="checkbox" th:field="*{tuesday}"> Martes-->
-<!--                            <input class="form-control" type="checkbox" th:field="*{wednesday}"> Miércoles-->
-<!--                            <input class="form-control" type="checkbox" th:field="*{thursday}"> Jueves-->
-<!--                        </div>-->
-<!--                        <div class="input-group">-->
-<!--                            <input class="form-control" type="checkbox" th:field="*{friday}"> Viernes-->
-<!--                            <input class="form-control" type="checkbox" th:field="*{saturday}"> Sábado-->
-<!--                            <input class="form-control" type="checkbox" th:field="*{sunday}"> Domingo-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <label>Horas</label>-->
-<!--                        <div class="input-group">-->
-<!--                            <input type="time" class="form-control" placeholder="15:00" th:field="*{startTime}">-->
-<!--                            <span class="input-group-addon">-</span>-->
-<!--                            <input type="time" required class="form-control" placeholder="17:00" th:field="*{endTime}">-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                </tr>-->
+        <form class="form-horizontal" action="#" th:action="@{/volunteerAvailability/add}" th:object="${volunteerAvailability}" method="post">
+            <table class="tableAddAvailability">
+                <tr>
+                    <td>
+                        <label for="hobby">Hobby</label>
+                        <input class="form-control" type="text" id="hobby" th:field="*{hobby}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Días</label>
+                        <div class="checkboxDays form-check">
+                            <input type="checkbox" th:field="*{monday}"> <span>Lunes</span>
+                            <input type="checkbox" th:field="*{tuesday}"> <span>Martes</span>
+                            <input type="checkbox" th:field="*{wednesday}"> <span>Miércoles</span>
+                            <input type="checkbox" th:field="*{thursday}"> <span>Jueves</span>
+                        </div>
+                        <div class="checkboxDays form-check">
+                            <input type="checkbox" th:field="*{friday}"> <span>Viernes</span>
+                            <input type="checkbox" th:field="*{saturday}"> <span>Sábado</span>
+                            <input type="checkbox" th:field="*{sunday}"> <span>Domingo</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Horas</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">De</span>
+                            <input class="form-control" type="time" th:field="*{startTime}">
+                            <span class="input-group-addon"> a </span>
+                            <input class="form-control" type="time" th:field="*{endTime}">
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <td class="buttonSubmit">
                         <button class="btn" type="submit">Añadir</button>

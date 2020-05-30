@@ -2,6 +2,7 @@ package es.uji.ei1027.majorsacasa.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class VolunteerAvailability {
@@ -18,6 +19,7 @@ public class VolunteerAvailability {
     private boolean saturday;
     private boolean sunday;
     private String hobby;
+    private LocalDate endDate;
     private int idVolunteer;
     private String dniEderly;
 
@@ -111,6 +113,14 @@ public class VolunteerAvailability {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public int getIdVolunteer() {

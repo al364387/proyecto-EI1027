@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.VolunteerAvailabilityDao;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import es.uji.ei1027.majorsacasa.model.VolunteerAvailability;
+import es.uji.ei1027.majorsacasa.services.EldelyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -45,13 +46,9 @@ public class VolunteerAvailabilityController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmitVolunteerAvailability(@ModelAttribute("volunteerAvailability") VolunteerAvailability volunteerAvailability,
                                                         BindingResult bindingResult, HttpSession session) {
-        System.out.println("entra" + volunteerAvailability.getStartTime() + " - " + volunteerAvailability.getEndTime());
-
         if (bindingResult.hasErrors()) {
-            System.out.println("error");
             return "volunteerAvailability/add";
         }
-
 
         volunteerAvailabilityDao.addVolunteerAvailability(volunteerAvailability, (Integer) session.getAttribute("id"));
 
@@ -76,17 +73,19 @@ public class VolunteerAvailabilityController {
         return "login";
     }
 
-    @RequestMapping(value = "/addElderly", method = RequestMethod.POST)
-    public String processAddSubmitElderly(@ModelAttribute("volunteerAva") VolunteerAvailability volunteerAvailability,
-                                          BindingResult bindingResult, HttpSession session) {
-        if (bindingResult.hasErrors()) {
-            return "volunteerAvailability/addElderly";
+    @RequestMapping(value = "/addElderly/{id}", method = RequestMethod.GET)
+    public String processAddSubmitElderly(@PathVariable int id, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            if (session.getAttribute("role").equals("Elderly")) {
+
+                String dni = (String) session.getAttribute("dni");
+                volunteerAvailabilityDao.updateVolunteerAvailabilityAddElderly(id, dni);
+
+                return "redirect:../../";
+            }
         }
 
-        volunteerAvailabilityDao.updateVolunteerAvailabilityAddElderly(volunteerAvailability.getId(),
-                volunteerAvailability.getDniEderly());
-
-        return "redirect:/";
+        return "redirect:../../login";
     }
 
     @RequestMapping(value = "/infoVolunteer/{idVolunteer}/{dni}", method = RequestMethod.GET)

@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class VolunteerAvailabilityRowMapper implements RowMapper<VolunteerAvailability> {
@@ -24,6 +25,7 @@ public class VolunteerAvailabilityRowMapper implements RowMapper<VolunteerAvaila
         volunteerAvailability.setSaturday(rs.getBoolean("saturday"));
         volunteerAvailability.setSunday(rs.getBoolean("sunday"));
         volunteerAvailability.setHobby(rs.getString("hobby"));
+        volunteerAvailability.setEndDate(rs.getObject("endDate", LocalDate.class));
         volunteerAvailability.setIdVolunteer(rs.getInt("idVolunteer"));
         volunteerAvailability.setDniEderly(rs.getString("dniElderly"));
 

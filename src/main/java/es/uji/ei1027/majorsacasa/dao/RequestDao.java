@@ -43,8 +43,7 @@ public class RequestDao {
 
     public void cancelRequest(int number){
         LocalDate endDate = cancelService();
-        String state = "Cancelado";
-        jdbcTemplate.update("UPDATE Request SET state = ?, endDate = ? WHERE number = ?", state, endDate, number);
+        jdbcTemplate.update("UPDATE Request SET endDate = ? WHERE number = ?", endDate, number);
     }
 
     /* Obté el request amb el nom donat. Torna null si no existeix. */

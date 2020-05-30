@@ -5,6 +5,7 @@
 *.iml
 *.ipr
 */_windows/
+/_windows/laf.xml
 */codestyles/
 debugger.xml
 diff.xml
