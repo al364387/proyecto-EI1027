@@ -2,45 +2,83 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Crear nueva linea de factura</title>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <link rel="icon" type="image/png" href="/img/icon.png">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/company.css">
 </head>
 <body>
-<h2>Nueva linea de factura</h2>
-<form action="#" th:action="@{/invoiceLine/add}"
-      th:object="${invoiceLine}" method="post">
-    <table>
-        <tr>
-            <td><label>Numero de linea de factura</label></td>
-            <td><input type="text" th:field="*{number}" /></td>
-        </tr>
-        <tr>
-            <td><label>Concepto</label></td>
-            <td><input type="text" th:field="*{concept}" /></td>
-        </tr>
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+        <h2>Nueva linea de factura</h2>
+        <form class="form-horizontal" action="#" th:action="@{/invoiceLine/add}"
+              th:object="${invoiceLine}" method="post">
+            <table class="tableAddVolunteer">
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
 
-        <tr>
-            <td><label>Precio</label></td>
-            <td><input type="text" th:field="*{monthPrice}" /></td>
-        </tr>
+                            <label>Numero de solicitud: </label>
+                            <input type="text" th:field="*{requestNum}"/>
+                        </div>
+                    </td>
+                </tr>
 
-        <tr>
-            <td><label>Numero de factura</label></td>
-            <td><input type="text" th:field="*{invoiceNumId}" /></td>
-        </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
 
-        <tr>
-            <td><label>Numero de solicitud</label></td>
-            <td><input type="text" th:field="*{requestNum}" /></td>
-        </tr>
+                            <label>Numero de linea de factura: </label>
+                            <input type="number" th:field="*{number}"/>
+                        </div>
+                    </td>
+                    <td>
 
-        <tr>
-            <td colspan="2"><input type="submit" value="Añadir linea de factura" /></td>
-        </tr>
-    </table>
-</form>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+
+                            <label>Numero de factura: </label>
+                            <input type="text" th:field="*{invoiceNumId}"/>
+                        </div>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+
+                            <label>Precio de la factura: </label>
+                            <input type="number" th:field="*{monthPrice}">
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
+
+                            <label>Concepto de la peticion:            </label>
+                            <input type="textarea" rows="5" cols="10" th:field="*{concept}"/>
+                        </div>
+
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="buttonSubmit">
+                        <br>
+                        <div class="buttonAdd alignRight">
+                            <button class="btn" type="submit">Añadir linea de factura</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>

@@ -102,7 +102,7 @@ public class Invoice {
 
             Image logo = Image.getInstance("logo.png");
 
-            logo.setAbsolutePosition(0,700);
+            logo.setAbsolutePosition(480,690);
             documento.add(logo);
             logo.scaleAbsolute(10, 30);
 
