@@ -2,49 +2,77 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Gestionar Facturas</title>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <link rel="icon" type="image/png" href="/img/icon.png">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+
+
 </head>
 <body>
 <div class="container">
-    <h2>Lista Facturas</h2>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Numero de factura</th>
-            <th>Fecha</th>
-            <th>Servicio</th>
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
 
-
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="invoice: ${invoices}">
-            <td th:text="${invoice.invoicenum}"></td>
-            <td th:text="${invoice.date}"></td>
-            <td ><a th:href="${invoice.crearPDF()}">Generar PDF  <!--Conseguir de alguna manera la compañia y la lista de lineas de factura-->
-                <svg class="bi bi-file-earmark-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
-                    <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
-                    <path fill-rule="evenodd" d="M5.646 9.146a.5.5 0 0 1 .708 0L8 10.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z"/>
-                    <path fill-rule="evenodd" d="M8 6a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4A.5.5 0 0 1 8 6z"/>
+        <div class="return alignRight">
+            <a href="/">
+                <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M8.354 1.646a.5.5 0 010 .708L2.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                    <path fill-rule="evenodd"
+                          d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
                 </svg>
+                Volver</a>
+        </div>
 
-            </a></td>
+        <br>
+        <h2>Lista Facturas</h2>
+        <br>
+        <div class="container">
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Numero de factura</th>
+                    <th>Fecha</th>
 
 
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="invoice: ${invoices}">
+                    <td th:text="${invoice.invoicenum}"></td>
+                    <td th:text="${invoice.date}"></td>
+
+                    <td><a class="btn btn-success" th:href="${invoice.crearPDF()}">Generar PDF
+                        <!--Conseguir de alguna manera la compañia y la lista de lineas de factura-->
+                        <svg class="bi bi-file-earmark-arrow-down" width="1em" height="1em" viewBox="0 0 16 16"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+                            <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+                            <path fill-rule="evenodd"
+                                  d="M5.646 9.146a.5.5 0 0 1 .708 0L8 10.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z"/>
+                            <path fill-rule="evenodd" d="M8 6a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4A.5.5 0 0 1 8 6z"/>
+                        </svg>
+
+                    </a></td>
 
 
-            <td><a th:href="@{/invoice/delete/{name}(name=${invoice.invoicenum})}">Borrar</a>
-        </tr>
-        </tbody>
-    </table>
-    <a href="add" class="btn btn-success" role="button">Añade factura</a>
+                    <td><a th:href="@{/invoice/delete/{name}(name=${invoice.invoicenum})}">Borrar</a>
+                </tr>
+                </tbody>
+            </table>
+            <a href="add" class="buttonSubmit" role="button">Añade factura</a>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>
