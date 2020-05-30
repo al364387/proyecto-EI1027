@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:fragment="company-css">
+        <link rel="stylesheet" th:href="@{/css/company.css}" href="/css/company.css">
+
+    </div>
+    <meta charset="UTF-8">
+    <title>Empresas</title>
+
+</head>
+
+<body>
+<div th:fragment="company">
+    <br>
+    <div class="tabs">
+        <div class="tab">
+            <input type="radio" id="tab-1" name="tab-group-1" checked>
+            <label for="tab-1">Principal</label>
+            <div class="content-tab">
+                <h2>Peticiones</h2>
+                <!-- Peticiones pendientes y peticiones aceptadas-->
+
+            </div>
+        </div>
+
+        <div class="tab">
+            <input type="radio" id="tab-2" name="tab-group-1">
+            <label for="tab-2">Facturas</label>
+            <div class="content-tab">
+                <h2>Facturas</h2>
+                <a class="btn buttonOptions" th:href="@{/invoice/list}">Lista de facturas</a>
+
+
+            </div>
+        </div>
+
+        <div class="tab">
+            <input type="radio" id="tab-3" name="tab-group-1">
+            <label for="tab-3">Modificar horario</label>
+            <div class="content-tab">
+                <h2>Modificar Horario</h2>
+
+                <!-- Aquí el como cambiar los horarios -->
+            </div>
+        </div>
+
+    </div>
+    </table>
+</div>
+</body>
+</html>

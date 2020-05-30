@@ -16,6 +16,8 @@
         <tr>
             <th>Numero de factura</th>
             <th>Fecha</th>
+            <th>Servicio</th>
+
 
             <th></th>
             <th></th>
@@ -25,6 +27,10 @@
         <tr th:each="invoice: ${invoices}">
             <td th:text="${invoice.invoicenum}"></td>
             <td th:text="${invoice.date}"></td>
+            <td ><a th:href="${invoice.crearPDF()}">Generar PDF</a></td>
+
+
+
 
             <td><a th:href="@{/invoice/delete/{name}(name=${invoice.invoicenum})}">Borrar</a>
         </tr>

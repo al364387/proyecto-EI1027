@@ -1,0 +1,147 @@
+.navbar-op{
+    font-size: 20px;
+    margin: 0 !important;
+}
+
+.navbar-op span{
+    color: #00909e;
+}
+
+.navbar-right{
+    margin-right: 15px;
+}
+
+
+
+.ajustes{
+    margin-right: 50px;
+}
+
+.ajustes a svg{
+    width: 28px;
+    margin-bottom: 4px;
+}
+
+.icon{
+    color: #fff;
+    margin-right: 40px;
+    font-size: 28px;
+}
+
+.icon:hover{
+    color: #00909e;
+}
+
+/* Index ========================= */
+.buttonOptions{
+    color: white;
+    font-size: 22px;
+    display: contents;
+}
+.tablaIndex{
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+}
+.tablaIndex h5{
+    transition-duration: 1.0s;
+    font-size: 24px;
+    background-color: #465881;
+    padding: 4px;
+    border: solid;
+}
+.tablaIndex h5:hover{
+    background-color: #00909e;
+}
+.tablaIndex a{
+    transition-duration: 0.1s;
+}
+.tablaIndex a:hover{
+    background-color: #00909e;
+    color: white;
+}
+/* End Index ===================== */
+
+/* List Company ================= */
+.addCompany{
+    text-decoration: none !important;
+    color: #1b2a49;
+    font-weight: bold;
+    border: 2px solid;
+    padding: 0 5px 5px 5px;
+}
+
+.addCompany a:link{
+    color: #00909e;
+    text-decoration: none !important;
+}
+.addCompany a:focus{
+    color: #00909e;
+    text-decoration: none !important;
+}
+
+.addCompany span{
+    vertical-align: text-top;
+}
+
+.addCompany svg{
+    vertical-align: text-bottom;
+}
+/* End List Volunteer ============= */
+
+/*Tabs*/
+
+.tabs {
+    position: relative;
+    height: 500px;
+    clear: both;
+    width: 75%;
+    margin: 0 auto;
+}
+.tab {
+    float: left;
+}
+
+.tab label {
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    font-size: 22px;
+}
+
+.tab label:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #00909e;
+}
+
+.tab [type=radio] {
+    display: none;
+}
+.content-tab {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.content-tab table {
+    font-size: 20px;
+}
+
+[type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+    color: #00909e;
+}
+[type=radio]:checked ~ label ~ .content-tab {
+    z-index: 1;
+}
