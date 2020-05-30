@@ -34,6 +34,7 @@
                             <th>Apellido</th>
                             <th>Estado</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -44,8 +45,10 @@
 
 
                             <td> <!-- Si no hay fecha de aceptación se puede aceptar al voluntario -->
-                                <a class="btn btn-success" th:if="${voluntariP.acceptDate != null}"
-                                   th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntariP.id}, acceptDate=${voluntariP.today()})}">Aceptar</a>
+                                <a class="btn btn-success" th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntariP.id}, acceptDate=${voluntariP.today()})}">Aceptar</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" th:href="@{/volunteer/updateFechaFin/{id}/{endDate} (id=${voluntariP.id}, endDate=${voluntariP.today()})}">Rechazar</a>
                             </td>
                         </tr>
                         </tbody>
