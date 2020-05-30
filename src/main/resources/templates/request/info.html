@@ -37,9 +37,9 @@
                 <td th:if="${session.requestElderly.endDate == null}">
                     <span class="bold">Estado del servicio: </span>
                     <span th:text="${session.requestElderly.state}"
-                          th:classappend="${(session.requestElderly.state == 'Pendiente'? 'stateBlue'  : '') +
-                          (session.requestElderly.state == 'Aceptado'? 'stateGreen'  : '') +
-                          (session.requestElderly.state == 'Rechazado'? 'stateRed'  : '')}"></span>
+                          th:classappend="${(session.requestElderly.state == 'Pendiente' ? 'stateBlue'  : '') +
+                          (session.requestElderly.state == 'Aceptado' ? 'stateGreen'  : '') +
+                          (session.requestElderly.state == 'Rechazado' ? 'stateRed'  : '')}"></span>
                 </td>
                 <td th:unless="${session.requestElderly.endDate == null}">
                     <span class="bold">Estado del servicio: </span>

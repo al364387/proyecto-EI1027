@@ -11,8 +11,6 @@
     margin-right: 15px;
 }
 
-
-
 .ajustes{
     margin-right: 50px;
 }
@@ -24,12 +22,16 @@
 
 .icon{
     color: #fff;
-    margin-right: 40px;
+    margin: 0 40px 0 15px;
     font-size: 28px;
 }
 
 .icon:hover{
     color: #00909e;
+}
+
+.divHeight {
+    height: 50px;
 }
 
 /* Index ========================= */
@@ -192,13 +194,14 @@
 }
 
 
-/*Codigo prueba*/
+/* Desplegable */
 .dropbtn {
     background-color: #343a40;
     color: white;
-    padding: 16px;
+    padding: 13px;
     font-size: 16px;
     border: none;
+    min-width: 160px;
 }
 
 .dropdown {
@@ -211,7 +214,7 @@
     position: fixed;
     background-color: #343a40;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 100;
 
 }

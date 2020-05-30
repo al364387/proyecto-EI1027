@@ -38,8 +38,8 @@
                             sesión</a>
                     </li>
                 </ul>
-                <div class="collapse navbar-collapse" th:unless="*{user == null}" th:classappend="*{role == 'Elderly'} ? 'divHeight' : ''">
-                    <ul class="nav navbar-nav" th:if="*{role == 'Admin'}">
+                <div class="collapse navbar-collapse" th:unless="*{user == null}" th:classappend="*{role == 'Elderly' || role == 'Volunteer'} ? 'divHeight' : ''">
+                    <ul class="nav navbar-nav" th:classappend="*{role == 'Elderly' || role == 'Volunteer'} ? 'marginBottom' : ''">
                         <li class="nav-item">
                             <a th:href="@{/}" title="Inicio">
                                 <svg class="bi bi-house-fill icon" width="1em" height="1em" viewBox="0 0 16 16"
@@ -57,25 +57,9 @@
                             <p class="navbar-op">Autenticado como <span th:text="*{nameUser}"></span></p>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav" th:classappend="*{role == 'Elderly'} ? 'marginBottom' : ''" th:if="*{role == 'Elderly'}">
-                        <li class="nav-item">
-                            <a th:href="@{/}" title="Inicio">
-                                <svg class="bi bi-house-fill icon" width="1em" height="1em" viewBox="0 0 16 16"
-                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                          d="M8 3.293l6 6V13.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z"
-                                          clip-rule="evenodd"/>
-                                    <path fill-rule="evenodd"
-                                          d="M7.293 1.5a1 1 0 011.414 0l6.647 6.646a.5.5 0 01-.708.708L8 2.207 1.354 8.854a.5.5 0 11-.708-.708L7.293 1.5z"
-                                          clip-rule="evenodd"/>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <p class="navbar-op">Autenticado como <span th:text="*{nameUser}"></span></p>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav ml-auto" th:classappend="*{role == 'Elderly'} ? 'navbar-right marginBottom' : ''">
+                    <ul class="nav navbar-nav ml-auto"
+                        th:classappend="*{(role == 'Elderly' ? 'navbar-right marginBottom' : '')
+                        + (role == 'Volunteer' ? 'marginBottom' : '')}">
                         <li class="nav-item ajustes" th:if="*{role == 'Elderly'}">
                             <a class="navbar-op"  th:href="@{/elderly/update/{dni}(dni = ${session.dni})}">
                                 Ajustes
@@ -88,37 +72,10 @@
                                 </svg>
                             </a>
                         </li>
-
-                    </ul>
-                </div>
-
-                <div class="collapse navbar-collapse" th:unless="*{user == null}" th:classappend="*{role == 'Volunteer'} ? 'divHeight' : ''">
-                    <ul class="nav navbar-nav" th:if="*{role == 'Admin'}">
-                    </ul>
-                    <ul class="nav navbar-nav" th:classappend="*{role == 'Volunteer'} ? 'marginBottom' : ''" th:if="*{role == 'Volunteer'}">
-                        <li class="nav-item">
-                            <a th:href="@{/}" title="Inicio">
-                                <svg class="bi bi-house-fill icon" width="1em" height="1em" viewBox="0 0 16 16"
-                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                          d="M8 3.293l6 6V13.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z"
-                                          clip-rule="evenodd"/>
-                                    <path fill-rule="evenodd"
-                                          d="M7.293 1.5a1 1 0 011.414 0l6.647 6.646a.5.5 0 01-.708.708L8 2.207 1.354 8.854a.5.5 0 11-.708-.708L7.293 1.5z"
-                                          clip-rule="evenodd"/>
-                                </svg>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <p class="navbar-op">Autenticado como <span th:text="*{nameUser}"></span></p>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav ml-auto" th:classappend="*{role == 'Volunteer'} ? 'navbar-right marginBottom' : ''">
-                        <li class="nav-item ajustes" th:if="*{role == 'Volunteer'}">
-
+                        <li class="nav-item" th:if="*{role == 'Volunteer'}">
                             <div class="dropdown">
-                                <button class="dropbtn">Ajustes
+                                <button class="dropbtn">
+                                    Opciones
                                     <svg class="bi bi-gear" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -129,18 +86,15 @@
                                 </button>
                                 <div class="dropdown-content">
                                     <a th:href="@{/volunteer/update/{id}(id=${session.id})}">Perfil</a>
-                                    <a th:href="@{/volunteer/update/{id}(id=${session.id})}">Modificar Perfil</a>
-                                    <a href="#">Cancelar cuenta</a>
+                                    <a href="/logout" th:href="@{/logout}">Salir</a>
                                 </div>
                             </div>
-
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" th:if="*{role != 'Volunteer'}">
                             <a class="navbar-op" href="/logout" th:href="@{/logout}">Salir</a>
                         </li>
                     </ul>
                 </div>
-
             </nav>
         </div>
     </div>
