@@ -116,7 +116,6 @@ public class Invoice {
                             BaseColor.CYAN));             // color
 
             titulo.setAlignment(Element.ALIGN_CENTER);
-
             documento.add(titulo);
 
             documento.add(new Paragraph("Compañia: "));
