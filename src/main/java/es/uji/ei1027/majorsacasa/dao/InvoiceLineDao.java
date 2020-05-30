@@ -48,10 +48,10 @@ public class InvoiceLineDao {
     }
 
     //Listar Lineas de Facturas
-    public List<InvoiceLine> getInvoiceLines() {
+    public List<InvoiceLine> getInvoiceLines(String invoiceNumId) {
         try {
-            List<InvoiceLine> c = jdbcTemplate.query("SELECT * from InvoiceLine",
-                    new InvoiceLineRowMapper());
+            List<InvoiceLine> c = jdbcTemplate.query("SELECT * from InvoiceLine WHERE invoiceNumId=?",
+                    new InvoiceLineRowMapper(), invoiceNumId);
             System.out.println("template: " + c);
             return c;
         } catch (EmptyResultDataAccessException e) {
