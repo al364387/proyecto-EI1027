@@ -49,11 +49,24 @@
     color: #207f00;
 }
 
+.dayActive {
+    color: #00909e;
+    font-weight: bold;
+}
+
+.dayInactive {
+    color: #c9c8c8;
+}
+
+.form-control{
+    font-size: 25px;
+}
+
 /* Index ========================= */
 
  .tabs {
      position: relative;
-     height: 500px;
+     height: 600px;
      clear: both;
      width: 75%;
      margin: 0 auto;
@@ -122,15 +135,6 @@
     color: #fff;
 }
 
-.dayActive {
-    color: #00909e;
-    font-weight: bold;
-}
-
-.dayInactive {
-    color: #c9c8c8;
-}
-
 .buttonSize{
     font-size: 20px;
 }
@@ -172,10 +176,6 @@
     width: 25px;
     margin-bottom: 3px;
 }
-
-.bold{
-    font-weight: 600;
-}
 /* End Info ====================== */
 
 /* Contract service ============== */
@@ -204,5 +204,26 @@
 }
 
 /* End Contract service ========== */
+
+/* Add VolunteerAva ============== */
+.tableAddVolunteerAva {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.tableAddVolunteerAva td{
+    vertical-align: middle;
+}
+
+.tableAddVolunteerAva button{
+    font-size: 25px;
+}
+
+.emptyTable{
+    text-align: center;
+    margin-top: 40px;
+}
+/* End add VolunteerAva ========== */
 
 

@@ -89,6 +89,51 @@
 }
 /* End List Volunteer ============= */
 
+/* Add Volunteer availability ===== */
+.return a{
+    margin-right: 100px;
+}
+
+.tableAddAvailability{
+    width: 35%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tableAddAvailability td{
+    padding-bottom: 10px;
+}
+
+.tableAddAvailability label{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.tableAddAvailability input[type="text"]{
+    margin: 0 auto;
+    width: 50%;
+}
+
+.checkboxDays span{
+    margin-right: 10px;
+}
+
+.input-group {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.input-group input[type="time"]{
+    height: 32px !important;
+    border-radius: .25rem !important;
+}
+
+.input-group span{
+    margin: 0 10px;
+}
+/* End Add Volunteer availability = */
+
+
 /*Tabs*/
 
 .tabs {

@@ -1,11 +1,16 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import java.sql.Time;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class VolunteerAvailability {
     private int id;
-    private Time startTime;
-    private Time endTime;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime startTime;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime endTime;
     private boolean monday;
     private boolean tuesday;
     private boolean wednesday;
@@ -14,11 +19,12 @@ public class VolunteerAvailability {
     private boolean saturday;
     private boolean sunday;
     private String hobby;
+    private LocalDate endDate;
     private int idVolunteer;
     private String dniEderly;
 
     public VolunteerAvailability() {
-        super();
+
     }
 
     public int getId() {
@@ -29,19 +35,19 @@ public class VolunteerAvailability {
         this.id = id;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
@@ -109,6 +115,14 @@ public class VolunteerAvailability {
         this.hobby = hobby;
     }
 
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
     public int getIdVolunteer() {
         return idVolunteer;
     }
@@ -128,7 +142,8 @@ public class VolunteerAvailability {
     @Override
     public String toString() {
         return "VolunteerAvailability{" +
-                "startTime=" + startTime +
+                "id=" + id +
+                ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", monday=" + monday +
                 ", tuesday=" + tuesday +
@@ -137,6 +152,7 @@ public class VolunteerAvailability {
                 ", friday=" + friday +
                 ", saturday=" + saturday +
                 ", sunday=" + sunday +
+                ", hobby='" + hobby + '\'' +
                 ", idVolunteer=" + idVolunteer +
                 ", dniEderly='" + dniEderly + '\'' +
                 '}';

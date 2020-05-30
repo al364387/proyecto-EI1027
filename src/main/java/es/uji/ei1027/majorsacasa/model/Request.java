@@ -1,6 +1,8 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import java.sql.Time;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Request {
@@ -8,13 +10,14 @@ public class Request {
     private String state;
     private Date startDate;
     private Date endDate;  //acepta nulos
-    private Time time;  //tiempo del servicio
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime time;  //tiempo del servicio
     private boolean catering;
     private boolean nursing;
     private boolean cleaning;
     private String description;
-    private String elderlyId; //Id del mayor que haga la peticion
-    private int contractId; //segun el tipo de servicio
+    private String elderlyDNI; // DNI del mayor que haga la peticion
+    private int contractId; // Según el tipo de servicio
 
    public Request() {
        this.startDate = new Date();
@@ -53,11 +56,11 @@ public class Request {
         this.endDate = endDate;
     }
 
-    public Time getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
@@ -93,12 +96,12 @@ public class Request {
         this.description = description;
     }
 
-    public String getElderlyId() {
-        return elderlyId;
+    public String getElderlyDNI() {
+        return elderlyDNI;
     }
 
-    public void setElderlyId(String elderlyId) {
-        this.elderlyId = elderlyId;
+    public void setElderlyDNI(String elderlyDNI) {
+        this.elderlyDNI = elderlyDNI;
     }
 
     public int getContractId() {
@@ -121,7 +124,7 @@ public class Request {
                 ", nursing=" + nursing +
                 ", cleaning=" + cleaning +
                 ", description='" + description + '\'' +
-                ", elderlyId='" + elderlyId + '\'' +
+                ", elderlyId='" + elderlyDNI + '\'' +
                 ", contractId='" + contractId + '\'' +
                 '}';
     }

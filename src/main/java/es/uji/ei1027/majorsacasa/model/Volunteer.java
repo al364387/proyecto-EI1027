@@ -19,6 +19,9 @@ public class Volunteer {
         state = "Pendiente";
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -56,6 +59,10 @@ public class Volunteer {
         this.endDate = endDate;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -90,14 +97,6 @@ public class Volunteer {
 
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public LocalDate today(){

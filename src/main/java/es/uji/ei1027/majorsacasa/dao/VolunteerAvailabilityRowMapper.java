@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class VolunteerAvailabilityRowMapper implements RowMapper<VolunteerAvailability> {
 
@@ -13,8 +15,8 @@ public class VolunteerAvailabilityRowMapper implements RowMapper<VolunteerAvaila
         VolunteerAvailability volunteerAvailability = new VolunteerAvailability();
 
         volunteerAvailability.setId(rs.getInt("id"));
-        volunteerAvailability.setStartTime(rs.getTime("startTime"));
-        volunteerAvailability.setEndTime(rs.getTime("endTime"));
+        volunteerAvailability.setStartTime(rs.getObject("startTime", LocalTime.class));
+        volunteerAvailability.setEndTime(rs.getObject("endTime", LocalTime.class));
         volunteerAvailability.setMonday(rs.getBoolean("monday"));
         volunteerAvailability.setTuesday(rs.getBoolean("tuesday"));
         volunteerAvailability.setWednesday(rs.getBoolean("wednesday"));
@@ -22,9 +24,10 @@ public class VolunteerAvailabilityRowMapper implements RowMapper<VolunteerAvaila
         volunteerAvailability.setFriday(rs.getBoolean("friday"));
         volunteerAvailability.setSaturday(rs.getBoolean("saturday"));
         volunteerAvailability.setSunday(rs.getBoolean("sunday"));
+        volunteerAvailability.setHobby(rs.getString("hobby"));
+        volunteerAvailability.setEndDate(rs.getObject("endDate", LocalDate.class));
         volunteerAvailability.setIdVolunteer(rs.getInt("idVolunteer"));
         volunteerAvailability.setDniEderly(rs.getString("dniElderly"));
-        volunteerAvailability.setHobby(rs.getString("hobby"));
 
         return volunteerAvailability;
     }

@@ -25,7 +25,7 @@
             <tr>
                 <td colspan="2">
                     El servicio de realiza de <span class="bold">Lunes</span> a <span class="bold">Viernes</span>
-                    a las <span class="bold" th:text="${#dates.format(session.request.time, 'HH:mm')}"></span>
+                    a las <span class="bold" th:text="${session.request.time}"></span>
                 </td>
             </tr>
             <tr>
@@ -34,22 +34,26 @@
                     <span th:text="${#numbers.formatDecimal(session.eldelyService.getServicePrice(session.request.contractId), 2, 0, 'COMMA')}"></span>
                     <span>€</span>
                 </td>
-                <td>
+                <td th:if="${session.request.endDate == null}">
                     <span class="bold">Estado del servicio: </span>
                     <span th:text="${session.request.state}"
                           th:classappend="${(session.request.state == 'Pendiente'? 'stateBlue'  : '') +
                           (session.request.state == 'Aceptado'? 'stateGreen'  : '') +
                           (session.request.state == 'Rechazado'? 'stateRed'  : '')}"></span>
                 </td>
+                <td th:unless="${session.request.endDate == null}">
+                    <span class="bold">Estado del servicio: </span>
+                    <span class="stateRed">Cancelado</span>
+                </td>
             </tr>
             <tr>
                 <td colspan="2" th:if="${session.request.description==null}">
                     <p class="desc bold">Comentarios</p>
-                    <textarea readonly></textarea>
+                    <textarea class="form-control" readonly></textarea>
                 </td>
                 <td colspan="2" th:unless="${session.request.description==null}">
                     <p class="desc bold">Comentarios</p>
-                    <textarea th:text="${#strings.capitalize(session.request.description)}" readonly></textarea>
+                    <textarea class="form-control" th:text="${#strings.capitalize(session.request.description)}" readonly></textarea>
                 </td>
             </tr>
             <tr>

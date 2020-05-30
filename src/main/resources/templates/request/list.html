@@ -51,7 +51,7 @@
                 <td th:unless="${request.description==null}">
                     <p th:text="${request.description}"></p>
                 </td>
-                <td th:text="${request.elderlyId}"></td>
+                <td th:text="${request.elderlyDNI}"></td>
                 <td th:text="${request.contractId}"></td>
                 <td><a class="btn btn-success"
                        th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Aceptado')}">Aceptar</a>
