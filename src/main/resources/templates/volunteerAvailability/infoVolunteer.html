@@ -4,18 +4,37 @@
 <head>
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
-    <div th:replace="fragments/elderly :: elderly-css"></div>
+    <div th:if="${session.role == 'Elderly'}">
+        <div th:replace="fragments/elderly :: elderly-css"/>
+    </div>
+    <div th:if="${session.role == 'Volunteer'}">
+        <div th:replace="fragments/volunteer :: volunteer-css"/>
+    </div>
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
-        <div class="return alignRight">
+        <div class="return alignRight" th:if="${session.role == 'Elderly'}">
             <a href="/index">
                 <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
                     <path d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"/>
                 </svg>
                 Volver</a>
+        </div>
+        <div class="return alignRight" th:if="${session.role == 'Volunteer'}">
+            <a href="/volunteer/list">
+                <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M8.354 1.646a.5.5 0 010 .708L2.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                    <path fill-rule="evenodd"
+                          d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                </svg>
+                Volver
+            </a>
         </div>
         <h2 th:text="${'Detalles de ' + session.volunteerElderly.hobby}"></h2>
         <table class="info">
@@ -41,13 +60,22 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td th:if="${session.role == 'Elderly'}">
                     <span class="bold">Nombre del voluntario/a: </span> <span th:text="${session.nameV}"></span>
+                </td>
+                <td th:unless="${session.role == 'Elderly'}">
+                    <span class="bold">Nombre del solicitante: </span>
+                    <span th:text="${session.volunteerService.getNameElderly(session.volunteerElderly.dniEderly)}"></span>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <span class="bold">Teléfono de contacto: </span> <span th:text="${session.phoneV}"></span>
+                <td th:if="${session.role == 'Elderly'}">
+                    <span class="bold">Teléfono de contacto: </span>
+                    <span th:text="${session.phoneV}"></span>
+                </td>
+                <td th:unless="${session.role == 'Elderly'}">
+                    <span class="bold">Teléfono de contacto: </span>
+                    <span th:text="${session.volunteerService.getPhoneElderly(session.volunteerElderly.dniEderly)}"></span>
                 </td>
             </tr>
             <tr>

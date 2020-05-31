@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import es.uji.ei1027.majorsacasa.dao.*;
 import es.uji.ei1027.majorsacasa.model.*;
 import es.uji.ei1027.majorsacasa.services.ElderlyService;
+import es.uji.ei1027.majorsacasa.services.VolunteerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,16 +43,19 @@ public class LoginController {
     private VolunteerDao volunteerDao;
     private CompanyDao companyDao;
     private ElderlyService elderlyService;
+    private VolunteerService volunteerService;
 
     @Autowired
     public void setLoginController(UserDao userDao, AdminDao adminDao, ElderlyDao elderlyDao,
-                                   VolunteerDao volunteerDao, CompanyDao companyDao, ElderlyService elderlyService) {
+                                   VolunteerDao volunteerDao, CompanyDao companyDao, ElderlyService elderlyService,
+                                   VolunteerService volunteerService) {
         this.userDao = userDao;
         this.adminDao = adminDao;
         this.elderlyDao = elderlyDao;
         this.volunteerDao = volunteerDao;
         this.companyDao = companyDao;
         this.elderlyService = elderlyService;
+        this.volunteerService = volunteerService;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -92,6 +96,9 @@ public class LoginController {
                 int id = volunteer.getId();
                 user = userDao.loadUserByUsername(user, volunteer.getPassword(),
                         role);
+                session.setAttribute("volunteerService", volunteerService);
+                session.setAttribute("listAvais", volunteerService.getListVolunteerAvailabilities(id));
+                session.setAttribute("listAvaisOut", volunteerService.getListVolunteerAvailabilitiesOutElderly(id));
                 session.setAttribute("id", id);
             } else {
                 user = null;

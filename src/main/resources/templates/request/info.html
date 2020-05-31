@@ -31,8 +31,7 @@
             <tr>
                 <td>
                     <span class="bold">Precio: </span>
-                    <span th:text="${#numbers.formatDecimal(session.elderlyService.getServicePrice(session.requestElderly.contractId), 2, 0, 'COMMA')}"></span>
-                    <span>€</span>
+                    <span th:text="${#numbers.formatDecimal(session.elderlyService.getServicePrice(session.requestElderly.contractId), 2, 0, 'COMMA') + '€'}"></span>
                 </td>
                 <td th:if="${session.requestElderly.endDate == null}">
                     <span class="bold">Estado del servicio: </span>

@@ -12,95 +12,111 @@
 </head>
 
 <body>
-    <div th:fragment="volunteer">
+    <div th:fragment="volunteer" th:object="${session}">
         <br>
+        <div class="buttonAddAva">
+            <a class="btn" href="/volunteerAvailability/add">Añadir disponibilidad</a>
+        </div>
+        <br>
+        <h3>Listado de disponibilidad</h3>
         <div class="tabs">
             <div class="tab">
                 <input type="radio" id="tab-1" name="tab-group-1" checked>
-                <label for="tab-1">Principal</label>
+                <label for="tab-1">Con solicitantes</label>
+
                 <div class="content-tab">
-                    <h2>Servicios Ofrecidos</h2>
-                    <table>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-
-                    </tr>
+                    <table class="tablaIndex" th:classappend="*{listAvais.size() == 0} ? '' : 'table table-hover'">
+                        <thead th:if="*{listAvais.size() > 0}">
                         <tr>
-
-                        <th></th>                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                            <th>Ocio</th>
+                            <th>Dias</th>
+                            <th>Hora</th>
+                            <th></th>
+                            <th></th>
                         </tr>
-                        <!-- La idea es que aquí vaya una lista con los servicios que ya ha aceptado
-                        el voluntario. En el DAO habrá que creer una lista de request solo de un voluntario
-                          en concreto y otra que filtre según el dia, supongo. ¿Puede hacerse directamente?-->
+                        </thead>
+                        <tbody>
+                        <tr th:each="lAva: *{listAvais}">
+                            <td th:text="${#strings.capitalize(lAva.hobby)}"></td>
+                            <td>
+                                <span th:classappend="${lAva.monday == true ? 'dayActive'  : 'dayInactive'}">L</span>
+                                <span th:classappend="${lAva.tuesday == true ? 'dayActive'  : 'dayInactive'}">M</span>
+                                <span th:classappend="${lAva.wednesday == true ? 'dayActive'  : 'dayInactive'}">X</span>
+                                <span th:classappend="${lAva.thursday == true ? 'dayActive'  : 'dayInactive'}">J</span>
+                                <span th:classappend="${lAva.friday == true ? 'dayActive'  : 'dayInactive'}">V</span>
+                                <span th:classappend="${lAva.saturday == true ? 'dayActive'  : 'dayInactive'}">S</span>
+                                <span th:classappend="${lAva.sunday == true ? 'dayActive'  : 'dayInactive'}">D</span>
+                            </td>
+                            <td>
+                                De <span class="dayActive" th:text="${lAva.startTime}"></span> a
+                                <span class="dayActive" th:text="${lAva.endTime}"></span>
+                            </td>
+                            <td>
+                                <a class="btn btn-info buttonSize"
+                                   th:href="@{/volunteerAvailability/infoVolunteer/{id}(id=${lAva.id})}">
+                                    Más detalles
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger buttonSize"
+                                   th:href="@{/volunteerAvailability/cancel/{id}(id=${lAva.id})}">
+                                    Cancelar
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tr th:unless="*{listAvais.size() > 0}">
+                            <td>No tiene ningún solicitante</td>
+                        </tr>
                     </table>
-
                 </div>
             </div>
 
             <div class="tab">
                 <input type="radio" id="tab-2" name="tab-group-1">
-                <label for="tab-2">Peticiones pendientes</label>
+                <label for="tab-2">Sin solicitantes</label>
+
                 <div class="content-tab">
-                    <h2>Peticiones Pendientes</h2>
-
-                    <table>
+                    <table class="tablaIndex" th:classappend="*{listAvaisOut.size() == 0} ? '' : 'table table-hover'">
+                        <thead th:if="*{listAvaisOut.size() > 0}">
                         <tr>
+                            <th>Ocio</th>
+                            <th>Dias</th>
+                            <th>Hora</th>
                             <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-
                         </tr>
-                            <!-- Aquí irá otra tabla de los servicios pendientes por aceptar -->
+                        </thead>
+                        <tbody>
+                        <tr th:each="lAvaOut: *{listAvaisOut}">
+                            <td th:text="${#strings.capitalize(lAvaOut.hobby)}"></td>
+                            <td>
+                                <span th:classappend="${lAvaOut.monday == true ? 'dayActive'  : 'dayInactive'}">L</span>
+                                <span th:classappend="${lAvaOut.tuesday == true ? 'dayActive'  : 'dayInactive'}">M</span>
+                                <span th:classappend="${lAvaOut.wednesday == true ? 'dayActive'  : 'dayInactive'}">X</span>
+                                <span th:classappend="${lAvaOut.thursday == true ? 'dayActive'  : 'dayInactive'}">J</span>
+                                <span th:classappend="${lAvaOut.friday == true ? 'dayActive'  : 'dayInactive'}">V</span>
+                                <span th:classappend="${lAvaOut.saturday == true ? 'dayActive'  : 'dayInactive'}">S</span>
+                                <span th:classappend="${lAvaOut.sunday == true ? 'dayActive'  : 'dayInactive'}">D</span>
+                            </td>
+                            <td>
+                                De <span class="dayActive" th:text="${lAvaOut.startTime}"></span> a
+                                <span class="dayActive" th:text="${lAvaOut.endTime}"></span>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger buttonSize"
+                                   th:href="@{/volunteerAvailability/cancel/{id}(id=${lAvaOut.id})}">
+                                    Cancelar
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tr th:unless="*{listAvaisOut.size() > 0}">
+                            <td>No tiene ninguna disponibilidad sin solicitante</td>
+                        </tr>
                     </table>
                 </div>
             </div>
-
-            <div class="tab">
-                <input type="radio" id="tab-3" name="tab-group-1">
-                <label for="tab-3">Modificar horario</label>
-                <div class="content-tab">
-                    <h2>Modificar Horario</h2>
-
-                    <!-- Aquí el como cambiar los horarios -->
-                </div>
-            </div>
-
         </div>
-        <h2>Opciones de voluntarios</h2>
-        <table class="tablaIndex">
-            <tr>
-                <td>
-                    <br>
-                    <h5>
-                        <a class="btn buttonOptions" href="/volunteerAvailability/list">Disponibilidad de voluntarios</a>
-                    </h5>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <br>
-                    <h5>
-                        <a class="btn buttonOptions" href="/volunteerAvailability/add">Añadir disponibilidad</a>
-                    </h5>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <br>
-                    <h5>
-                        <a class="btn buttonOptions" th:href="@{/volunteer/update/{id}(id=${session.id})}">Modificar perfil</a>
-                        <div id="datepicker"></div>
-                    </h5>
-                </td>
-            </tr>
-        </table>
     </div>
 </body>
 </html>
