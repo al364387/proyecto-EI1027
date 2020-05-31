@@ -100,12 +100,14 @@ public class VolunteerController {
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult,
+                                      HttpSession session) {
+
         if (bindingResult.hasErrors()){
             return "volunteer/update";
         }
 
-        volunteerDao.updateVolunteer(volunteer);
+        volunteerDao.updateVolunteer(volunteer, (Integer) session.getAttribute("id"));
         return "redirect:/";
     }
 

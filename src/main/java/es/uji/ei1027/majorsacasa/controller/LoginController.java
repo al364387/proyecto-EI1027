@@ -96,7 +96,9 @@ public class LoginController {
                 int id = volunteer.getId();
                 user = userDao.loadUserByUsername(user, volunteer.getPassword(),
                         role);
+                session.setAttribute("volunteerService", volunteerService);
                 session.setAttribute("listAvais", volunteerService.getListVolunteerAvailabilities(id));
+                session.setAttribute("listAvaisOut", volunteerService.getListVolunteerAvailabilitiesOutElderly(id));
                 session.setAttribute("id", id);
             } else {
                 user = null;

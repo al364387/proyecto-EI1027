@@ -1,3 +1,6 @@
+h3 {
+    text-align: center;
+}
 .navbar-op{
     font-size: 20px;
     margin: 0 !important;
@@ -80,6 +83,10 @@
     font-size: 25px;
 }
 
+.bold {
+    font-weight: 600;
+}
+
 /* Index ========================= */
 .buttonOptions{
     color: white;
@@ -88,7 +95,6 @@
 }
 .tablaIndex{
     text-align: center;
-    width: 70%;
     margin: 0 auto;
 }
 
@@ -109,10 +115,6 @@
 /* End Index ===================== */
 
 /* Add Volunteer availability ===== */
-.return a{
-    margin-right: 100px;
-}
-
 .tableAddAvailability{
     width: 35%;
     margin: 0 auto;
@@ -155,11 +157,12 @@
 /* Tabs =========================== */
 .tabs {
     position: relative;
-    height: 500px;
+    height: 400px;
     clear: both;
     width: 75%;
     margin: 0 auto;
 }
+
 .tab {
     float: left;
 }
@@ -171,10 +174,10 @@
     margin-left: -1px;
     position: relative;
     left: 1px;
-    font-size: 22px;
+    font-size: 25px;
 }
 
-.tab label:hover{
+.tab label:hover {
     cursor: pointer;
     color: #fff;
     background-color: #00909e;
@@ -183,6 +186,7 @@
 .tab [type=radio] {
     display: none;
 }
+
 .content-tab {
     position: absolute;
     top: 58px;
@@ -204,6 +208,7 @@
     z-index: 2;
     color: #00909e;
 }
+
 [type=radio]:checked ~ label ~ .content-tab {
     z-index: 1;
 }

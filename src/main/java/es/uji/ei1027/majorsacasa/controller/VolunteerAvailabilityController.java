@@ -131,7 +131,7 @@ public class VolunteerAvailabilityController {
     public String cancelRequest(@PathVariable int id, HttpSession session) {
 
         if (session.getAttribute("user") != null) {
-            if (session.getAttribute("role").equals("Elderly")) {
+            if (session.getAttribute("role").equals("Elderly") || session.getAttribute("role").equals("Volunteer")) {
 
                 volunteerAvailabilityDao.cancelVolunteerAvailability(id);
 

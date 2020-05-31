@@ -36,11 +36,11 @@ public class VolunteerDao {
                 id);
     }
 
-    public void updateVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, phonenumber=?, address=?, " +
-                        "password=?  WHERE id=?",
+    public void updateVolunteer(Volunteer volunteer, int id) {
+        jdbcTemplate.update("UPDATE Volunteer SET name = ?, surname = ?, phonenumber = ?, address = ?, " +
+                        "password = ?  WHERE id = ?",
                 volunteer.getName(), volunteer.getSurname(), volunteer.getPhonenumber(), volunteer.getAddress(),
-                volunteer.getPassword(), volunteer.getId());
+                volunteer.getPassword(), id);
     }
 
     //Cambia estado y fechas
