@@ -30,11 +30,10 @@ public class RequestDao {
         boolean nursing = contractDao.getContract(peticion.getContractId()).isNursing();
         boolean cleaning = contractDao.getContract(peticion.getContractId()).isCleaning();
         getTime(catering,nursing,cleaning, peticion);
-
         jdbcTemplate.update("INSERT INTO Request(state, startDate, endDate, time, catering, nursing, cleaning," +
                         " description, elderlyId, contractId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                peticion.getState(), peticion.getStartDate(), peticion.getEndDate(), peticion.getTime(), catering, nursing, cleaning,
-                peticion.getDescription(), dni, peticion.getContractId());
+                peticion.getState(), peticion.getStartDate(), peticion.getEndDate(), peticion.getTime(), catering,
+                nursing, cleaning, peticion.getDescription(), dni, peticion.getContractId());
     }
 
     public void updateRequestStatus(int number, String estado) {
