@@ -25,6 +25,8 @@ public class CompanyDao {
         jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?, ?, ?)",
                 empresa.getCif(), empresa.getName(), empresa.getPhoneNumber(),
                 empresa.getEmail(), empresa.getUsername(), empresa.getPassword());
+
+        System.out.println(sendMail(empresa.getEmail(), empresa.getUsername(), empresa.getPassword(), empresa.getName()));
     }
 
     /* Esborra la empresa de la base de dades */
@@ -64,5 +66,16 @@ public class CompanyDao {
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Company>();
         }
+    }
+
+    private String sendMail(String to, String user, String pass, String empresa){
+        return  "De: cas@conselleria.com" + "\n" +
+                "Para: " + to + "\n" +
+                "Asunto: Alta en la web Majors a Casa" + "\n" +
+                "Mensaje: \n" +
+                "Se ha dado de Alta su empresa "+ empresa + " en la web Majors a Casa del CAS \n" +
+                "Sus datos de acceso son: \n" +
+                "Usuario: " + user + "\n" +
+                "Contraseña " + pass;
     }
 }

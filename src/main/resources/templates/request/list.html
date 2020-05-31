@@ -1,67 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:object="${session}">
 <head>
-    <title> Gestion Peticiones </title>
     <meta charset="UTF-8"/>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <title>Majors a Casa</title>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+    <div th:replace="fragments/nav :: nav-css"/>
+    <div th:if="*{user != null}">
+        <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css" />
+    </div>
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
+        <br>
         <h2> Lista de Peticiones </h2>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col"> Número</th>
-                <th scope="col"> Estado</th>
-                <th scope="col"> Fecha inicio</th>
-                <th scope="col"> Fecha fin</th>
-                <th scope="col"> Hora Servicio</th>
-                <th scope="col"> Servicio</th>
-                <th scope="col"> Descripción</th>
-                <th scope="col"> ID_Mayor</th>
-                <th scope="col"> ID_Contrato</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="request: ${requests}">
-                <td th:text="${request.number}"></td>
-                <td th:text="${request.state}"></td>
-                <td th:text="${request.startDate}"></td>
-                <!-- Super feature, te pone un "-" cuando no tiene descripcion -->
-                <td th:if="${request.endDate==null}"> -</td>
-
-                <td th:unless="${request.endDate==null}">
-                    <p th:text="${request.endDate}"></p>
-                </td>
-                <td th:text="${request.time}"></td>
-                <td>
-                    <p th:if="${request.catering==true}">Catering</p>
-                    <p th:if="${request.nursing==true}">Enfermería</p>
-                    <p th:if="${request.cleaning==true}">Limpieza</p>
-                </td>
-                <!-- Super feature, te pone un "-" cuando no tiene descripcion -->
-                <td th:if="${request.description==null}"> -</td>
-                <td th:unless="${request.description==null}">
-                    <p th:text="${request.description}"></p>
-                </td>
-                <td th:text="${request.elderlyDNI}"></td>
-                <td th:text="${request.contractId}"></td>
-                <td><a class="btn btn-success"
-                       th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Aceptado')}">Aceptar</a>
-                </td>
-                <td><a class="btn btn-danger"
-                       th:href="@{/request/update/{number}/{estado}(number=${request.number} , estado='Rechazado')}">Rechazar</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <br>
+        <div class="container">
+            <table class="tableListCompany table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"> Solicitante</th>
+                    <th scope="col"> Servicio</th>
+                    <th scope="col"> Fecha inicio</th>
+                    <th scope="col"> Fecha fin</th>
+                    <th scope="col"> Estado</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody th:object="${session}">
+                <tr th:each="request: *{requests}">
+                    <td th:text="${session.elderlyService.getNameElderly(request.elderlyDNI)}"></td>
+                    <td>
+                        <p th:if="${request.catering==true}">Catering</p>
+                        <p th:if="${request.nursing==true}">Enfermería</p>
+                        <p th:if="${request.cleaning==true}">Limpieza</p>
+                    </td>
+                    <td th:text="${#temporals.format(request.startDate, 'dd-MM-yyyy')}"></td>
+                    <!-- Super feature, te pone "---" cuando no tiene descripcion -->
+                    <td class="center" th:if="${request.endDate==null}">---</td>
+                    <td th:unless="${request.endDate==null}">
+                        <p th:text="${#temporals.format(request.endDate, 'dd-MM-yyyy')}"></p>
+                    </td>
+                    <td th:if="${request.endDate == null}">
+                            <span th:classappend="${(request.state == 'Pendiente' ? 'stateBlue'  : '') +
+                            (request.state == 'Aceptado' ? 'stateGreen'  : '') +
+                            (request.state == 'Rechazado' ? 'stateRed'  : '')+
+                            (request.endDate == null ? ''  : 'stateRed')}" th:text="${request.state}">
+                            </span>
+                    </td>
+                    <td th:unless="${request.endDate == null}">
+                        <span class="stateCancel">Cancelado</span>
+                    </td>
+                    <td th:if="${request.state != 'Aceptado' && request.endDate == null}">
+                        <a class="btn btn-info"
+                           th:href="@{/request/update/{number}/{estado}(number=${request.number} ,
+                           estado='Aceptado')}">
+                            Aceptar
+                        </a>
+                    </td>
+                    <td th:unless="${request.state != 'Aceptado' && request.endDate == null}">
+                        <a class="btn btn-info disabled">Aceptar</a>
+                    </td>
+                    <td th:if="${request.state != 'Rechazado' && request.endDate == null}">
+                        <a class="btn btn-danger"
+                           th:href="@{/request/update/{number}/{estado}(number=${request.number} ,
+                           estado='Rechazado')}">
+                            Rechazar
+                        </a>
+                    </td>
+                    <td th:unless="${request.state != 'Rechazado' && request.endDate == null}">
+                        <a class="btn btn-danger disabled">Rechazar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>

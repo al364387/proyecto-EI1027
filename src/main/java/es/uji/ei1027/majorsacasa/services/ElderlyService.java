@@ -11,4 +11,5 @@ public interface ElderlyService {
     List<VolunteerAvailability> getLeisureTime(String dni);
     String getNameVolunteer(int id);
     int getPhoneVolunteer(int id);
+    String getNameElderly(String dni);
 }

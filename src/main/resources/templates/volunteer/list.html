@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:object="${session}">
 <head>
-    <title>Gestionar Voluntarios</title>
     <meta charset="UTF-8"/>
+    <title>Majors a Casa</title>
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
     <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css"/>
@@ -27,12 +27,13 @@
                 </label>
 
                 <div class="content-tab">
-                    <table class="table table-striped">
-                        <thead>
+                    <table th:classappend="${volunteersP.size() == 0} ? '' : 'table table-hover'">
+                        <thead th:if="${volunteersP.size() > 0}">
                         <tr>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Estado</th>
+                            <th></th>
                             <th></th>
                         </tr>
                         </thead>
@@ -40,15 +41,20 @@
                         <tr th:each="voluntariP: ${volunteersP}">
                             <td th:text="${voluntariP.name}"></td>
                             <td th:text="${voluntariP.surname}"></td>
-                            <td th:text="${voluntariP.state}"></td>
-
-
+                            <td th:classappend="${(voluntariP.state == 'Pendiente' ? 'stateBlue'  : '') +
+                            (voluntariP.state == 'Aceptado' ? 'stateGreen'  : '') +
+                            (voluntariP.state == 'Rechazado' ? 'stateRed'  : '')}" th:text="${voluntariP.state}"></td>
                             <td> <!-- Si no hay fecha de aceptación se puede aceptar al voluntario -->
-                                <a class="btn btn-success" th:if="${voluntariP.acceptDate != null}"
-                                   th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntariP.id}, acceptDate=${voluntariP.today()})}">Aceptar</a>
+                                <a class="btn btn-success" th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntariP.id}, acceptDate=${voluntariP.today()})}">Aceptar</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" th:href="@{/volunteer/updateFechaFin/{id}/{endDate} (id=${voluntariP.id}, endDate=${voluntariP.today()})}">Rechazar</a>
                             </td>
                         </tr>
                         </tbody>
+                        <tr th:unless="${volunteersP.size() > 0}">
+                            <td> No hay ninguna petición pendiente</td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -63,8 +69,8 @@
                 </label>
 
                 <div class="content-tab">
-                    <table class="table table-striped">
-                        <thead>
+                    <table th:classappend="${volunteers.size() == 0} ? '' : 'table table-hover'">
+                        <thead th:if="${volunteers.size() > 0}">
                         <tr>
                             <th>Nombre</th>
                             <th>Apellido</th>
@@ -77,18 +83,21 @@
                         <tr th:each="voluntari: ${volunteers}">
                             <td th:text="${voluntari.name}"></td>
                             <td th:text="${voluntari.surname}"></td>
-                            <td th:text="${voluntari.acceptDate}"></td>
-                            <td th:text="${voluntari.state}"></td>
-
-
+                            <td th:text="${#temporals.format(voluntari.acceptDate, 'dd-MM-yyyy')}"></td>
+                            <td th:classappend="${(voluntari.state == 'Pendiente' ? 'stateBlue'  : '') +
+                            (voluntari.state == 'Aceptado' ? 'stateGreen'  : '') +
+                            (voluntari.state == 'Rechazado' ? 'stateRed'  : '')}" th:text="${voluntari.state}"></td>
                             <td>
                                 <a class="btn btn-danger" th:if="${voluntari.endDate == null}"
-                                   th:href="@{/volunteer/updateFechaFin/{id}/{endDate} (id=${voluntari.id}, endDate=${voluntari.today()})}">Cancelar</a>
+                                   th:href="@{/volunteer/updateFechaFin/{id} (id=${voluntari.id})}">Cancelar</a>
                                 <a class="btn btn-success" th:if="${voluntari.endDate != null}"
                                    th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntari.id}, acceptDate=${voluntari.today()})}">Reactivar</a>
                             </td>
                         </tr>
                         </tbody>
+                        <tr th:unless="${volunteers.size() > 0}">
+                            <td> No hay ninguna petición aceptada</td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -106,8 +115,8 @@
                 </label>
 
                 <div class="content-tab">
-                    <table class="table table-striped">
-                        <thead>
+                    <table th:classappend="${volunteersR.size() == 0} ? '' : 'table table-hover'">
+                        <thead th:if="${volunteersR.size() > 0}">
                         <tr>
                             <th>Nombre</th>
                             <th>Apellido</th>
@@ -120,16 +129,19 @@
                         <tr th:each="voluntariR: ${volunteersR}">
                             <td th:text="${voluntariR.name}"></td>
                             <td th:text="${voluntariR.surname}"></td>
-                            <td th:text="${voluntariR.acceptDate}"></td>
-                            <td th:text="${voluntariR.endDate}"></td>
-                            <td th:text="${voluntariR.state}"></td>
-
+                            <td th:text="${#temporals.format(voluntariR.acceptDate, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${#temporals.format(voluntariR.endDate, 'dd-MM-yyyy')}"></td>
+                            <td th:classappend="${(voluntariR.state == 'Pendiente' ? 'stateBlue'  : '') +
+                            (voluntariR.state == 'Aceptado' ? 'stateGreen'  : '') +
+                            (voluntariR.state == 'Rechazado' ? 'stateRed'  : '')}" th:text="${voluntariR.state}"></td>
                         </tr>
                         </tbody>
+                        <tr th:unless="${volunteersR.size() > 0}">
+                            <td> No hay ninguna petición rechazada</td>
+                        </tr>
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>

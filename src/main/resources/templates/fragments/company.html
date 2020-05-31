@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<div th:fragment="company">
+<div th:fragment="company" th:object="${session}">
     <br>
     <div class="tabs">
         <div class="tab">
@@ -23,6 +23,31 @@
                 <h2>Peticiones</h2>
                 <!-- Peticiones pendientes y peticiones aceptadas-->
                 <a class="btn buttonOptions" th:href="@{/invoiceLine/add}">Crear linea de factura</a>
+
+                <table  class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nº</th>
+                        <th>Estado</th>
+                        <th>Servicio</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Fin</th>
+                        <th>Descripción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <!-- No funciona :( -->
+                    <tr th:each="request: *{requestCompany}">
+                        <td th:text="${request.number}"></td>
+                        <td th:text="${request.state}"></td>
+                        <td th:text="${request.getType()}"></td>
+                        <td th:text="${request.startDate}"></td>
+                        <td th:text="${request.endDate}"></td>
+                        <td th:text="${request.description}"></td>
+                    </tr>
+                    </tbody>
+                </table>
 
 
             </div>
@@ -40,7 +65,6 @@
         </div>
 
     </div>
-    </table>
 </div>
 </body>
 </html>

@@ -17,17 +17,35 @@
     color: #00909e;
 }
 
+.stateRed {
+    color: #CC0000;
+}
+
+.stateBlue {
+    color: #3366FF;
+}
+
+.stateGreen {
+    color: #207f00;
+}
+
+.stateCancel {
+    color: #777777;
+}
+
 /* Index ========================= */
 .buttonOptions{
     color: white;
     font-size: 22px;
     display: contents;
 }
+
 .tablaIndex{
     text-align: center;
     width: 30%;
     margin: 0 auto;
 }
+
 .tablaIndex h5{
     transition-duration: 1.0s;
     font-size: 24px;
@@ -35,19 +53,31 @@
     padding: 4px;
     border: solid;
 }
+
 .tablaIndex h5:hover{
     background-color: #00909e;
 }
+
 .tablaIndex a{
     transition-duration: 0.1s;
 }
+
 .tablaIndex a:hover{
     background-color: #00909e;
     color: white;
 }
 /* End Index ===================== */
 
-/* List contract ================= */
+/* List contract && company ====== */
+.tableListCompany{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.divAddCompany{
+    margin-left: 110px;
+}
+
 .addContract{
     text-decoration: none !important;
     color: #1b2a49;
@@ -60,6 +90,7 @@
     color: #00909e;
     text-decoration: none !important;
 }
+
 .addContract a:focus{
     color: #00909e;
     text-decoration: none !important;
@@ -72,7 +103,7 @@
 .addContract svg{
     vertical-align: text-bottom;
 }
-/* End List contract ============= */
+/* End List contract && company == */
 
 /* Add contract ================== */
 .return a{
@@ -148,7 +179,7 @@
     margin-left: -1px;
     position: relative;
     left: 1px;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .tab label:hover {
@@ -163,7 +194,7 @@
 
 .content-tab {
     position: absolute;
-    top: 58px;
+    top: 51px;
     left: 0;
     background: white;
     right: 0;
@@ -173,7 +204,7 @@
 }
 
 .content-tab table {
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 [type=radio]:checked ~ label {
@@ -188,7 +219,7 @@
 }
 
 .icon-info {
-    width: 25px;
+    width: 20px;
     margin-bottom: 3px;
 }
 /* End List volunteer ============== */

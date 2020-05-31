@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public final class RequestRowMapper implements RowMapper<Request> {
@@ -12,8 +13,8 @@ public final class RequestRowMapper implements RowMapper<Request> {
        Request peticion = new Request();
        peticion.setNumber(rs.getInt("number"));
        peticion.setState(rs.getString("state"));
-       peticion.setStartDate(rs.getDate("startDate"));
-       peticion.setEndDate(rs.getDate("endDate"));
+       peticion.setStartDate(rs.getObject("startDate", LocalDate.class));
+       peticion.setEndDate(rs.getObject("endDate", LocalDate.class));
        peticion.setTime(rs.getObject("time", LocalTime.class));
        peticion.setCatering(rs.getBoolean("catering"));
        peticion.setNursing(rs.getBoolean("nursing"));

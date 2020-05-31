@@ -1,9 +1,6 @@
 package es.uji.ei1027.majorsacasa.services;
 
-import es.uji.ei1027.majorsacasa.dao.ContractDao;
-import es.uji.ei1027.majorsacasa.dao.RequestDao;
-import es.uji.ei1027.majorsacasa.dao.VolunteerAvailabilityDao;
-import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.dao.*;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.VolunteerAvailability;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +14,17 @@ public class ElderlySvc implements ElderlyService {
     ContractDao contractDao;
     VolunteerAvailabilityDao volunteerAvailabilityDao;
     VolunteerDao volunteerDao;
+    ElderlyDao elderlyDao;
 
     @Autowired
     public void setElderlySvc(RequestDao requestDao, ContractDao contractDao,
-                              VolunteerAvailabilityDao volunteerAvailabilityDao, VolunteerDao volunteerDao) {
+                              VolunteerAvailabilityDao volunteerAvailabilityDao, VolunteerDao volunteerDao,
+                              ElderlyDao elderlyDao) {
         this.requestDao = requestDao;
         this.contractDao = contractDao;
         this.volunteerAvailabilityDao = volunteerAvailabilityDao;
         this.volunteerDao = volunteerDao;
+        this.elderlyDao = elderlyDao;
     }
 
     @Override
@@ -50,5 +50,10 @@ public class ElderlySvc implements ElderlyService {
     @Override
     public int getPhoneVolunteer(int id) {
         return volunteerDao.getVolunteer(id).getPhonenumber();
+    }
+
+    @Override
+    public String getNameElderly(String dni) {
+        return elderlyDao.getElderly(dni).getName() + " " + elderlyDao.getElderly(dni).getSurname();
     }
 }

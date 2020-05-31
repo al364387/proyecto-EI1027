@@ -55,6 +55,10 @@ public class ElderlyController {
             throw new MajorsacasaException(
             "Ya existe una cuenta con el DNI: " +
             elderly.getDNI(), "CPDuplicada");
+        }catch (NullPointerException e){
+            throw new MajorsacasaException(
+                    "Ya existe una cuenta con el usuario: " +
+                            elderly.getUsername(), "CPDuplicada2");
         }
 
         return "redirect:list";

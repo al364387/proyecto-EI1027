@@ -4,6 +4,7 @@ import es.uji.ei1027.majorsacasa.dao.VolunteerAvailabilityDao;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import es.uji.ei1027.majorsacasa.model.VolunteerAvailability;
 import es.uji.ei1027.majorsacasa.services.ElderlyService;
+import es.uji.ei1027.majorsacasa.services.VolunteerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,12 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/volunteerAvailability")
 public class VolunteerAvailabilityController {
     private VolunteerAvailabilityDao volunteerAvailabilityDao;
+    private VolunteerService volunteerService;
 
     @Autowired
-    public void setVolunteerDao(VolunteerAvailabilityDao volunteerAvailabilityDao) {
+    public void setVolunteerDao(VolunteerAvailabilityDao volunteerAvailabilityDao, VolunteerService volunteerService) {
         this.volunteerAvailabilityDao = volunteerAvailabilityDao;
+        this.volunteerService = volunteerService;
     }
 
     @RequestMapping(value = "/add")
@@ -91,7 +94,6 @@ public class VolunteerAvailabilityController {
     public String infoRequest(@PathVariable int idVolunteer, @PathVariable String dni, HttpSession session) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
-                System.out.println("idV: " + idVolunteer + " dni: " + dni);
 
                 ElderlyService elderlyService = (ElderlyService) session.getAttribute("elderlyService");
 
@@ -108,11 +110,28 @@ public class VolunteerAvailabilityController {
         return "redirect:../../login";
     }
 
+    @RequestMapping(value = "/infoVolunteer/{id}", method = RequestMethod.GET)
+    public String infoRequest2(@PathVariable int id, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            if (session.getAttribute("role").equals("Volunteer")) {
+
+                session.setAttribute("volunteerService", volunteerService);
+
+                session.setAttribute("volunteerElderly",
+                        volunteerAvailabilityDao.getVolunteerAvailability(id));
+
+                return "/volunteerAvailability/infoVolunteer";
+            }
+        }
+
+        return "redirect:../../login";
+    }
+
     @RequestMapping(value = "/cancel/{id}", method = RequestMethod.GET)
     public String cancelRequest(@PathVariable int id, HttpSession session) {
 
         if (session.getAttribute("user") != null) {
-            if (session.getAttribute("role").equals("Elderly")) {
+            if (session.getAttribute("role").equals("Elderly") || session.getAttribute("role").equals("Volunteer")) {
 
                 volunteerAvailabilityDao.cancelVolunteerAvailability(id);
 

@@ -35,7 +35,7 @@ public class ContractController {
         if (session.getAttribute("user") != null)
         {
             if (session.getAttribute("role").equals("Admin")){
-                model.addAttribute("companies", contractService);
+                model.addAttribute("contractService", contractService);
                 model.addAttribute("contracts", contractDao.getContracts());
                 return "contract/list";
             } else {
@@ -55,7 +55,7 @@ public class ContractController {
         {
             if (session.getAttribute("role").equals("Admin")){
                 model.addAttribute("contract", new Contract());
-                model.addAttribute("companies", contractService);
+                model.addAttribute("contractService", contractService);
                 return "contract/add";
             } else {
                 return "index";
@@ -74,7 +74,7 @@ public class ContractController {
         contractValidator.validate(contract, bindingResult);
 
         if (bindingResult.hasErrors()){
-            model.addAttribute("companies", contractService);
+            model.addAttribute("contractService", contractService);
             return "contract/add";
         }
 

@@ -2,12 +2,11 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <title>Actualizar voluntario</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/css/volunteer.css">
+    <title>Majors a Casa</title>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+    <div th:replace="fragments/nav :: nav-css"/>
+    <div th:replace="fragments/volunteer :: volunteer-css"></div>
+    <!--    <link rel="stylesheet" href="/css/admin.css">-->
 </head>
 <body>
 <div class="container">
@@ -24,9 +23,10 @@
                           d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
                           clip-rule="evenodd"/>
                 </svg>
-                Volver</a>
+                Volver
+            </a>
         </div>
-        <h2>Actualizar voluntario</h2>
+        <h2>Actualizar perfil</h2>
         <form class="form-horizontal" action="#" th:action="@{/volunteer/update}"
               th:object="${volunteer}" method="post">
             <table class="tableAddVolunteer">
@@ -64,7 +64,8 @@
                             <label for="surname">Número de teléfono*: </label>
                             <input type="number" class="form-control" id="phonenumber" th:field="*{phonenumber}"
                                    th:errorClass="needcorrection"/>
-                            <div class="error" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}"></div>
+                            <div class="error" th:if="${#fields.hasErrors('phonenumber')}"
+                                 th:errors="*{phonenumber}"></div>
                         </div>
                     </td>
                 </tr>
@@ -74,7 +75,7 @@
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="address">Dirección*: </label>
                             <input type="text" class="form-control" id="address" th:field="*{address}"
-                                    th:errorClass="needcorrection"/>
+                                   th:errorClass="needcorrection"/>
                             <div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
                         </div>
                     </td>
@@ -113,13 +114,15 @@
                         </div>
                     </td>
                 </tr>
-
             </table>
         </form>
+        <br>
         <div class="alignRight">
             *Campos obligatorios
         </div>
-
+        <div class="buttonCancelVol">
+            <a class="btn btn-danger" th:href="@{/volunteer/updateFechaFin/{id} (id=${session.id})}">Cancelar cuenta</a>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>
