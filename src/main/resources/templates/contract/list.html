@@ -2,8 +2,9 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
       th:object="${session}">
 <head>
-    <meta charset="UTF-8">
-    <title>Listado de contratos</title>
+    <meta charset="UTF-8"/>
+    <title>Majors a Casa</title>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
     <div th:if="*{user != null}">
         <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css" />
@@ -17,7 +18,7 @@
         <h2>Listado de contratos</h2>
         <br>
         <div class="container">
-            <div>
+            <div class="divAddCompany">
                 <a title="Añadir nuevo contrato" class="addContract" href="/contract/add">
                     <svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
@@ -29,29 +30,29 @@
                 </a>
             </div>
             <br>
-            <table class="table table-striped">
+            <table class="tableListCompany table table-striped">
                 <thead>
                 <tr>
                     <th>Empresa</th>
                     <th>Servicio</th>
                     <th>Precio</th>
-                    <th>Número de servicios</th>
+                    <th>Nº de servicios</th>
                     <th>Fecha de comienzo</th>
                     <th>Fecha de finalización</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="contract: ${contracts}">
-                    <td th:text="${companies.getCompanyName(contract.cifCompany)}"></td>
+                    <td th:text="${contractService.getCompanyName(contract.cifCompany)}"></td>
                     <td>
                         <p th:if="${contract.catering == true}">Catering</p>
                         <p th:if="${contract.cleaning == true}">Limpieza</p>
                         <p th:if="${contract.nursing == true}">Enfermería</p>
                     </td>
-                    <td th:text="${contract.price}"></td>
+                    <td th:text="${#numbers.formatDecimal(contract.price, 2, 0, 'COMMA') + '€'}"></td>
                     <td th:text="${contract.serviceNumber}"></td>
-                    <td th:text="${contract.startDate}"></td>
-                    <td th:text="${contract.endDate}"></td>
+                    <td th:text="${#temporals.format(contract.startDate,'dd-MM-yyyy')}"></td>
+                    <td th:text="${#temporals.format(contract.endDate, 'dd-MM-yyyy')}"></td>
                 </tr>
                 </tbody>
             </table>

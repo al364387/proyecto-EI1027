@@ -3,7 +3,8 @@
       th:object="${session}">
 <head>
     <meta charset="UTF-8"/>
-    <title>Añadir contrato</title>
+    <title>Majors a Casa</title>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
     <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css"/>
 </head>
@@ -32,7 +33,7 @@
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="cifCompany">Empresa*: <a href="/company/add">Añadir nueva empresa</a></label>
                             <select class="form-control" id="cifCompany" th:field="*{cifCompany}">
-                                <option th:each="company: ${companies.getCompanies()}" th:value="${company.cif}"
+                                <option th:each="company: ${contractService.getCompanies()}" th:value="${company.cif}"
                                         th:text="${company.name}">
                                 </option>
                             </select>

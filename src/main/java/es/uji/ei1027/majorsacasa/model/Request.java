@@ -2,14 +2,15 @@ package es.uji.ei1027.majorsacasa.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
 public class Request {
     private int number;
     private String state;
-    private Date startDate;
-    private Date endDate;  //acepta nulos
+    private LocalDate startDate;
+    private LocalDate endDate;  //acepta nulos
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime time;  //tiempo del servicio
     private boolean catering;
@@ -20,7 +21,7 @@ public class Request {
     private int contractId; // Según el tipo de servicio
 
    public Request() {
-       this.startDate = new Date();
+       startDate = LocalDate.now();
        this.state="Pendiente";
    }
 
@@ -40,19 +41,19 @@ public class Request {
         this.state = state;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

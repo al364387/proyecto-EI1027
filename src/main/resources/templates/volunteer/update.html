@@ -26,7 +26,7 @@
                 Volver
             </a>
         </div>
-        <h2>Actualizar voluntario</h2>
+        <h2>Actualizar perfil</h2>
         <form class="form-horizontal" action="#" th:action="@{/volunteer/update}"
               th:object="${volunteer}" method="post">
             <table class="tableAddVolunteer">
@@ -114,20 +114,15 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <br>
-                    <div class="buttonCancelVol">
-
-                        <a class="btn btn-danger" th:href="@{/volunteer/updateFechaFin/{id} (id=${session.id})}">Cancelar Cuenta</a>
-                    </div>
-                </tr>
-
             </table>
         </form>
+        <br>
         <div class="alignRight">
             *Campos obligatorios
         </div>
-
+        <div class="buttonCancelVol">
+            <a class="btn btn-danger" th:href="@{/volunteer/updateFechaFin/{id} (id=${session.id})}">Cancelar cuenta</a>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>
