@@ -51,14 +51,11 @@ public class ElderlyController {
 
         try {
             elderlyDao.addElderly(elderly, socialAssistantDao.getSocialAssistantID());
-        } catch (DuplicateKeyException e){
+        } catch (NullPointerException e){
             throw new MajorsacasaException(
-            "Ya existe una cuenta con el DNI: " +
-            elderly.getDNI(), "CPDuplicada");
-        }catch (NullPointerException e){
-            throw new MajorsacasaException(
-                    "Ya existe una cuenta con el usuario: " +
-                            elderly.getUsername(), "CPDuplicada2");
+                "con el DNI: " + elderly.getDNI() +
+                " o con el usuario: " + elderly.getUsername(),
+                "CPDuplicada");
         }
 
         return "redirect:list";
@@ -73,6 +70,10 @@ public class ElderlyController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("elderly") Elderly elderly,
                                       BindingResult bindingResult) {
+
+        ElderlyValidator elderlyValidator = new ElderlyValidator();
+        elderlyValidator.validate(elderly, bindingResult);
+
         if (bindingResult.hasErrors()){
             return "elderly/update";
         }

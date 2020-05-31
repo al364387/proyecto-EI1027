@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,7 +52,13 @@ public class CompanyController {
             return "company/add";
         }
 
-        companyDao.addCompany(company);
+        try {
+            companyDao.addCompany(company);
+        } catch (DuplicateKeyException e){
+            throw new MajorsacasaException("con el CIF: " + company.getCif() +
+                    " o con el usuario: " + company.getUsername(), "CPDuplicada");
+        }
+
         return "redirect:list";
     }
     @RequestMapping("/list")

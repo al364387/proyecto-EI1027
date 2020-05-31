@@ -115,8 +115,8 @@ public class LoginController {
         }
 
         if (user == null) {
-            bindingResult.rejectValue("username", "badpw", "");
-            bindingResult.rejectValue("password", "badpw", "Usuario o contraseña incorrecta");
+            bindingResult.rejectValue("username", "badpw", "Usuario incoreccto");
+            bindingResult.rejectValue("password", "badpw", "Contraseña incorrecta");
             model.addAttribute("login", true);
             return "login";
         }
@@ -129,10 +129,10 @@ public class LoginController {
         if (nextURL != null) {
             session.removeAttribute("nextUrl");
             return "redirect:/" + nextURL;
-        }
-        // Volver a la página principal
-        else
+        } else {
+            // Volver a la página principal
             return "redirect:/";
+        }
     }
 
     @RequestMapping("/logout")

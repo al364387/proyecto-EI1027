@@ -61,7 +61,6 @@ public class VolunteerController {
         model.addAttribute("user", new Admin());
         model.addAttribute("login", true);
         return "login";
-
     }
 
     @RequestMapping(value="/add")
@@ -87,7 +86,8 @@ public class VolunteerController {
             volunteerDao.addVolunteer(volunteer);
         } catch (DuplicateKeyException e){
             throw new MajorsacasaException(
-                    "Ya existe una cuenta con el usuario: " + volunteer.getUsername(), "errorVoluntario");
+                    "con el usuario: " + volunteer.getUsername(),
+                    "CPDuplicada");
         }
 
         return "redirect:/index";
@@ -102,6 +102,8 @@ public class VolunteerController {
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult,
                                       HttpSession session) {
+        VolunteerValidator volunteerValidator = new VolunteerValidator();
+        volunteerValidator.validate(volunteer, bindingResult);
 
         if (bindingResult.hasErrors()){
             return "volunteer/update";

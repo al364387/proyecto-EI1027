@@ -1,21 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:object="${session}">
 <head>
-    <meta charset="UTF-8">
-    <title>Error</title>
-    <link rel="icon" type="image/png" href="/img/icon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <div class="container">
-        <div class="alert" th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info'">
-            <h3 th:text="${message}"></h3>
-            <p>Pulsa el botón para ir al inicio o el botón del navegador para ir hacia atras</p>
+    <meta charset="UTF-8"/>
+    <title>Majors a Casa</title>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+    <div th:replace="fragments/nav :: nav-css"/>
+    <div th:if="*{user != null}">
+        <div th:if="*{role == 'Admin'}">
+            <div th:replace="fragments/admin :: admin-css"></div>
         </div>
-        <div th:align="center">
-            <a href="/" class="btn btn-primary">Inicio</a>
+        <div th:if="*{role == 'Elderly'}">
+            <div th:replace="fragments/elderly :: elderly-css"></div>
+        </div>
+        <div th:if="*{role == 'Volunteer'}">
+            <div th:replace="fragments/volunteer :: volunteer-css"></div>
+        </div>
+
+        <div th:if="*{role == 'Company'}">
+            <div th:replace="fragments/company :: company-css"></div>
         </div>
     </div>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="contenido">
+        <div class="alert"
+             th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info divInfo'">
+            <h3 th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'hiddenError' : ''">
+                Ya existe una cuenta
+            </h3>
+            <h3 th:text="${message}"></h3>
+            <p>Pulsa el botón para ir a la página de inicio o el botón del navegador para ir hacia atras</p>
+        </div>
+        <div th:align="center">
+            <div class="buttonSubmit">
+                <a href="/" class="btn btn-primary">Inicio</a>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>

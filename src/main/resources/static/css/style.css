@@ -383,6 +383,16 @@ h2{
 .needcorrection {
     border: 1px solid #dc3545;
 }
+
+.divInfo{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hiddenError {
+    display: none;
+}
 /* End Errores =================== */
 
 /* Float ========================= */
