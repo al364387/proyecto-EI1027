@@ -109,6 +109,7 @@ public class LoginController {
             String cif = companyDao.getUserCompany(user.getUsername()).getCif();
             user = userDao.loadUserByUsername(user, companyDao.getUserCompany(user.getUsername()).getPassword(),
                     role);
+            session.setAttribute("cif", cif);
         } else {
             user = null;
         }

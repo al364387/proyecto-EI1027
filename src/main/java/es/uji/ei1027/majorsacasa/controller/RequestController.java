@@ -36,7 +36,12 @@ public class RequestController {
                 model.addAttribute("isAdmin", true);
                 model.addAttribute("requests", requestDao.getRequests());
                 return "request/list";
-            } else {
+            } else if(session.getAttribute("role").equals("Company")){
+                //No se todavia si funciona, es una idea
+                String cif = (String) session.getAttribute("cif");
+                model.addAttribute("requestCompany", requestDao.getRequestsCompany(cif));
+                return "request/list";
+            }else{
                 return "index";
             }
         }
