@@ -86,7 +86,7 @@
 
                             <td>
                                 <a class="btn btn-danger" th:if="${voluntari.endDate == null}"
-                                   th:href="@{/volunteer/updateFechaFin/{id}/{endDate} (id=${voluntari.id}, endDate=${voluntari.today()})}">Cancelar</a>
+                                   th:href="@{/volunteer/updateFechaFin/{id} (id=${voluntari.id})}">Cancelar</a>
                                 <a class="btn btn-success" th:if="${voluntari.endDate != null}"
                                    th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntari.id}, acceptDate=${voluntari.today()})}">Reactivar</a>
                             </td>
