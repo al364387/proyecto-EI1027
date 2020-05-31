@@ -2,8 +2,9 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
       th:object="${session}">
 <head>
-    <title> Gestionar Compañías </title>
     <meta charset="UTF-8"/>
+    <title>Majors a Casa</title>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
     <div th:if="*{user != null}">
         <div th:if="*{role == 'Admin'}" th:replace="fragments/admin :: admin-css" />
@@ -13,37 +14,41 @@
 <div class="container">
     <div th:replace="fragments/nav :: nav"/>
     <div class="contenido">
-        <h2> Lista de Empresas </h2>
-        <div>
-            <a title="Añadir nueva compañía" class="addContract" href="/company/add">
-                <svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-                          clip-rule="evenodd"></path>
-                </svg>
-                <span style="">Nueva Empresa</span>
-            </a>
-        </div>
         <br>
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Correo Electrónico</th>
-                <th scope="col">Cif</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="company: ${companies}">
-                <td th:text="${company.name}"></td>
-                <td th:text="${company.phoneNumber}"></td>
-                <td th:text="${company.email}"></td>
-                <td th:text="${company.cif}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <h2> Lista de Empresas </h2>
+        <br>
+        <div class="container">
+            <div class="divAddCompany">
+                <a title="Añadir nueva compañía" class="addContract" href="/company/add">
+                    <svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    <span style="">Nueva empresa</span>
+                </a>
+            </div>
+            <br>
+            <table class="table table-striped tableListCompany">
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo electrónico</th>
+                    <th scope="col">CIF</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="company: ${companies}">
+                    <td th:text="${company.name}"></td>
+                    <td th:text="${company.phoneNumber}"></td>
+                    <td th:text="${company.email}"></td>
+                    <td th:text="${company.cif}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>
