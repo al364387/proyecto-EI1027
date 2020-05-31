@@ -22,19 +22,21 @@ import javax.servlet.http.HttpSession;
 public class RequestController {
     private RequestDao requestDao;
     private ContractDao contractDao;
+    private ElderlyService elderlyService;
 
     @Autowired
-    public void setRequestDao(RequestDao requestDao, ContractDao contractDao) {
+    public void setRequestDao(RequestDao requestDao, ContractDao contractDao, ElderlyService elderlyService) {
         this.requestDao = requestDao;
         this.contractDao = contractDao;
+        this.elderlyService = elderlyService;
     }
 
     @RequestMapping("/list")
     public String listResquest(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Admin")) {
-                model.addAttribute("isAdmin", true);
-                model.addAttribute("requests", requestDao.getRequests());
+                session.setAttribute("elderlyService", elderlyService);
+                session.setAttribute("requests", requestDao.getRequests());
                 return "request/list";
             } else {
                 return "index";
@@ -90,6 +92,7 @@ public class RequestController {
 
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Admin")) {
+                session.setAttribute("requests", requestDao.getRequests());
                 requestDao.updateRequestStatus(number, estado);
                 return "redirect:../../list";
             } else {
