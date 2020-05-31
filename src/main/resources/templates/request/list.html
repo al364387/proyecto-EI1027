@@ -30,8 +30,8 @@
                     <th scope="col"></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr th:each="request: ${session.requests}">
+                <tbody th:object="${session}">
+                <tr th:each="request: *{requests}">
                     <td th:text="${session.elderlyService.getNameElderly(request.elderlyDNI)}"></td>
                     <td>
                         <p th:if="${request.catering==true}">Catering</p>
