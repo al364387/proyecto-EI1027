@@ -41,7 +41,9 @@
                         <tr th:each="voluntariP: ${volunteersP}">
                             <td th:text="${voluntariP.name}"></td>
                             <td th:text="${voluntariP.surname}"></td>
-                            <td th:text="${voluntariP.state}"></td>
+                            <td th:classappend="${(voluntariP.state == 'Pendiente' ? 'stateBlue'  : '') +
+                            (voluntariP.state == 'Aceptado' ? 'stateGreen'  : '') +
+                            (voluntariP.state == 'Rechazado' ? 'stateRed'  : '')}" th:text="${voluntariP.state}"></td>
                             <td> <!-- Si no hay fecha de aceptación se puede aceptar al voluntario -->
                                 <a class="btn btn-success" th:href="@{/volunteer/updateAceptar/{id}/{acceptDate} (id=${voluntariP.id}, acceptDate=${voluntariP.today()})}">Aceptar</a>
                             </td>
@@ -82,7 +84,9 @@
                             <td th:text="${voluntari.name}"></td>
                             <td th:text="${voluntari.surname}"></td>
                             <td th:text="${#temporals.format(voluntari.acceptDate, 'dd-MM-yyyy')}"></td>
-                            <td th:text="${voluntari.state}"></td>
+                            <td th:classappend="${(voluntari.state == 'Pendiente' ? 'stateBlue'  : '') +
+                            (voluntari.state == 'Aceptado' ? 'stateGreen'  : '') +
+                            (voluntari.state == 'Rechazado' ? 'stateRed'  : '')}" th:text="${voluntari.state}"></td>
                             <td>
                                 <a class="btn btn-danger" th:if="${voluntari.endDate == null}"
                                    th:href="@{/volunteer/updateFechaFin/{id} (id=${voluntari.id})}">Cancelar</a>
@@ -127,7 +131,9 @@
                             <td th:text="${voluntariR.surname}"></td>
                             <td th:text="${#temporals.format(voluntariR.acceptDate, 'dd-MM-yyyy')}"></td>
                             <td th:text="${#temporals.format(voluntariR.endDate, 'dd-MM-yyyy')}"></td>
-                            <td th:text="${voluntariR.state}"></td>
+                            <td th:classappend="${(voluntariR.state == 'Pendiente' ? 'stateBlue'  : '') +
+                            (voluntariR.state == 'Aceptado' ? 'stateGreen'  : '') +
+                            (voluntariR.state == 'Rechazado' ? 'stateRed'  : '')}" th:text="${voluntariR.state}"></td>
                         </tr>
                         </tbody>
                         <tr th:unless="${volunteersR.size() > 0}">
