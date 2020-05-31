@@ -4,7 +4,12 @@
 <head>
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
-    <div th:replace="fragments/elderly :: elderly-css"></div>
+    <div th:if="${session.role == 'Elderly'}">
+        <div th:replace="fragments/elderly :: elderly-css"/>
+    </div>
+    <div th:if="${session.role == 'Volunteer'}">
+        <div th:replace="fragments/volunteer :: volunteer-css"/>
+    </div>
 </head>
 <body>
 <div class="container">
@@ -41,13 +46,21 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td th:if="${session.role == 'Elderly'}">
                     <span class="bold">Nombre del voluntario/a: </span> <span th:text="${session.nameV}"></span>
+                </td>
+                <td th:unless="${session.role == 'Elderly'}">
+                    <span class="bold">Nombre del solicitante: </span>
+                    <span th:text="${session.volunteerService.getNameElderly(session.volunteerElderly.dniEderly)}"></span>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <span class="bold">Teléfono de contacto: </span> <span th:text="${session.phoneV}"></span>
+                <td th:if="${session.role == 'Elderly'}">
+                    <span th:text="${session.phoneV}"></span>
+                </td>
+                <td th:unless="${session.role == 'Elderly'}">
+                    <span class="bold">Teléfono de contacto: </span>
+                    <span th:text="${session.volunteerService.getPhoneElderly(session.volunteerElderly.dniEderly)}"></span>
                 </td>
             </tr>
             <tr>
