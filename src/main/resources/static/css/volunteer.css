@@ -112,6 +112,16 @@ h3 {
     border-color: #00909e;
     color: #fff;
 }
+
+
+.buttonCancelVol {
+    padding-top: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+
+
 /* End Index ===================== */
 
 /* Add Volunteer availability ===== */

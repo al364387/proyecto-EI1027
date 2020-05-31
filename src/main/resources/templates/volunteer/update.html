@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
     <div th:replace="fragments/volunteer :: volunteer-css"></div>
-<!--    <link rel="stylesheet" href="/css/admin.css">-->
+    <!--    <link rel="stylesheet" href="/css/admin.css">-->
 </head>
 <body>
 <div class="container">
@@ -64,7 +64,8 @@
                             <label for="surname">Número de teléfono*: </label>
                             <input type="number" class="form-control" id="phonenumber" th:field="*{phonenumber}"
                                    th:errorClass="needcorrection"/>
-                            <div class="error" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}"></div>
+                            <div class="error" th:if="${#fields.hasErrors('phonenumber')}"
+                                 th:errors="*{phonenumber}"></div>
                         </div>
                     </td>
                 </tr>
@@ -74,7 +75,7 @@
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
                             <label for="address">Dirección*: </label>
                             <input type="text" class="form-control" id="address" th:field="*{address}"
-                                    th:errorClass="needcorrection"/>
+                                   th:errorClass="needcorrection"/>
                             <div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
                         </div>
                     </td>
@@ -112,6 +113,13 @@
                             <button class="btn" type="reset">Borrar</button>
                         </div>
                     </td>
+                </tr>
+                <tr>
+                    <br>
+                    <div class="buttonCancelVol">
+
+                        <a class="btn btn-danger" th:href="@{/volunteer/updateFechaFin/{id} (id=${session.id})}">Cancelar Cuenta</a>
+                    </div>
                 </tr>
 
             </table>

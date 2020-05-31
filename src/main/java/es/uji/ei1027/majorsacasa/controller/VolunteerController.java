@@ -124,14 +124,14 @@ public class VolunteerController {
     }
 
 
-    @RequestMapping(value = "/updateFechaFin/{id}/{endDate}", method = RequestMethod.GET)
-    public String updateVolunteerEndDate(@PathVariable int id, @PathVariable LocalDate endDate) {
+    @RequestMapping(value = "/updateFechaFin/{id}", method = RequestMethod.GET)
+    public String updateVolunteerEndDate(@PathVariable int id) {
         try {
-            volunteerDao.updateVolunteerDate(id, endDate);
+            volunteerDao.cancelVolunteer(id);
         }catch (Exception ex){
             throw new MajorsacasaException(
                     "Ha habido un error", "errorVoluntario");
         }
-        return "redirect:../../list";
+        return "redirect:../../logout";
     }
 }

@@ -49,7 +49,11 @@ public class VolunteerDao {
                 date, id);
     }
 
-    public void updateVolunteerDate(int id, LocalDate endDate) {
+    public void cancelVolunteer(int id) {
+
+        LocalDate endDate=LocalDate.now();
+
+        //TODO: Cambiar el state al que toque
         jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", endDate, id);
     }
 
