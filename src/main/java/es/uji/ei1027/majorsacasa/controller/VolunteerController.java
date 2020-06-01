@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.VolunteerAvailabilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Admin;
+import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -30,6 +31,11 @@ public class VolunteerController {
         this.volunteerDao = volunteerDao;
     }
 
+    @Autowired
+    public void setVolunteerAvailabilityDao (VolunteerAvailabilityDao volunteerAvailabilityDao){
+        this.volunteerAvailabilityDao = volunteerAvailabilityDao;
+    }
+
     @RequestMapping(value = "/delete/{id}")
     public String processDeleteVolunteer(@PathVariable int id) {
         volunteerDao.deleteVolunteer(id);
@@ -38,10 +44,10 @@ public class VolunteerController {
 
     @RequestMapping("/list")
     public String listVolunteer(HttpSession session, Model model) {
+        if (session.getAttribute("user") != null) {
+            UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (session.getAttribute("user") != null)
-        {
-            if (session.getAttribute("role").equals("Admin")){
+            if (session.getAttribute("role").equals("Admin") && user.getUsername().equals("casVolunteer")){
                 List<Volunteer> listaAceptados = volunteerDao.getVolunteers();
                 List<Volunteer> listaPendientes = volunteerDao.getVolunteersPendientes();
                 List<Volunteer> listaRechazados = volunteerDao.getVolunteersRechazados();
@@ -61,7 +67,6 @@ public class VolunteerController {
         model.addAttribute("user", new Admin());
         model.addAttribute("login", true);
         return "login";
-
     }
 
     @RequestMapping(value="/add")
@@ -87,7 +92,8 @@ public class VolunteerController {
             volunteerDao.addVolunteer(volunteer);
         } catch (DuplicateKeyException e){
             throw new MajorsacasaException(
-                    "Ya existe una cuenta con el usuario: " + volunteer.getUsername(), "errorVoluntario");
+                    "con el usuario: " + volunteer.getUsername(),
+                    "CPDuplicada");
         }
 
         return "redirect:/index";
@@ -102,6 +108,8 @@ public class VolunteerController {
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult,
                                       HttpSession session) {
+        VolunteerValidator volunteerValidator = new VolunteerValidator();
+        volunteerValidator.validate(volunteer, bindingResult);
 
         if (bindingResult.hasErrors()){
             return "volunteer/update";
@@ -122,7 +130,6 @@ public class VolunteerController {
         volunteerDao.updateVolunteerReject(id, state);
         return "redirect:../../list";
     }
-
 
     @RequestMapping(value = "/updateFechaFin/{id}", method = RequestMethod.GET)
     public String updateVolunteerEndDate(@PathVariable int id) {
