@@ -40,9 +40,7 @@ public class RequestController {
                 return "request/list";
             } else if(session.getAttribute("role").equals("Company")){
                 //No se todavia si funciona, es una idea
-                String cif = (String) session.getAttribute("cif");
-                model.addAttribute("requestCompany", requestDao.getRequestsCompany(cif));
-                return "request/list";
+                model.addAttribute("requestD", requestDao);
             }else{
                 return "index";
             }
@@ -52,6 +50,7 @@ public class RequestController {
         model.addAttribute("login", true);
         return "login";
     }
+
 
     @RequestMapping(value = "/add")
     public String addRequest(HttpSession session, Model model) {
