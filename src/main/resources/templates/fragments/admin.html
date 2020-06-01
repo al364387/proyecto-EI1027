@@ -8,9 +8,11 @@
 </head>
 <body>
     <div th:fragment="admin">
-        <h2>Opciones de administración</h2>
+        <br>
+        <h2>Opciones</h2>
+        <br>
         <table class="tablaIndex">
-            <tr>
+            <tr th:if="${session.user.username == 'casManager'}">
                 <td>
                     <br>
                     <h5>
@@ -18,21 +20,21 @@
                     </h5>
                 </td>
             </tr>
-            <tr>
+            <tr th:if="${session.user.username == 'casVolunteer'}">
                 <td>
                     <h5>
                         <a class="btn buttonOptions" href="/volunteer/list">Gestión de voluntarios</a>
                     </h5>
                 </td>
             </tr>
-            <tr>
+            <tr th:if="${session.user.username == 'casCommitee'}">
                 <td>
                     <h5>
                         <a class="btn buttonOptions" href="/request/list">Gestión de peticiones</a>
                     </h5>
                 </td>
             </tr>
-            <tr>
+            <tr th:if="${session.user.username == 'casManager'}">
                 <td>
                     <h5>
                         <a class="btn buttonOptions" href="/company/list">Gestión empresas</a>
