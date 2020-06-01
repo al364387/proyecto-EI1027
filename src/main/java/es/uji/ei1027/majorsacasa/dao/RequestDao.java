@@ -85,4 +85,27 @@ public class RequestDao {
             peticion.setTime(LocalTime.of(8,0,0));
         }
     }
+
+    /* Saca una lista de las request de una compañia
+SELECT Request.* FROM Request
+INNER JOIN Contract on Request.contractid = Contract.numcontract
+INNER JOIN Company on Contract.cifcompany = Company.cif
+WHERE Company.cif='Y3418145O';
+
+    */
+
+    public List<Request> getRequestsCompany(String cif) {
+        try {
+            List<Request> lista = jdbcTemplate.query("SELECT Request.* FROM Request\n" +
+                    "    INNER JOIN Contract on Request.contractid = Contract.numcontract\n" +
+                    "    INNER JOIN Company on Contract.cifcompany = Company.cif\n" +
+                    "    WHERE Company.cif=?", new RequestRowMapper(), cif);
+            for(Request r: lista){
+                System.out.println(r.toString());
+            }
+            return lista;
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
 }

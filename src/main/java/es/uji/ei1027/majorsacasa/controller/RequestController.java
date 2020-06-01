@@ -5,7 +5,6 @@ import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Admin;
-import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.services.ElderlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,30 +25,19 @@ public class RequestController {
     private ElderlyService elderlyService;
 
     @Autowired
-    public void setRequestDao(RequestDao requestDao) {
+    public void setRequestDao(RequestDao requestDao, ContractDao contractDao, ElderlyService elderlyService) {
         this.requestDao = requestDao;
-    }
-
-    @Autowired
-    public void setContractDao(ContractDao contractDao){
         this.contractDao = contractDao;
-    }
-
-    @Autowired
-    public void setElderlyService(ElderlyService elderlyService){
         this.elderlyService = elderlyService;
     }
 
     @RequestMapping("/list")
     public String listResquest(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
-            UserDetails user = (UserDetails) session.getAttribute("user");
-
-            if (session.getAttribute("role").equals("Admin") && user.getUsername().equals("casCommitee")){
+            if (session.getAttribute("role").equals("Admin")) {
                 session.setAttribute("elderlyService", elderlyService);
                 session.setAttribute("requests", requestDao.getRequests());
                 return "request/list";
-
             } else if(session.getAttribute("role").equals("Company")){
                 //No se todavia si funciona, es una idea
                 model.addAttribute("requestD", requestDao);

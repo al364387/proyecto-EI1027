@@ -16,7 +16,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -67,8 +66,6 @@
             <artifactId>itextpdf</artifactId>
             <version>5.5.10</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -79,6 +76,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

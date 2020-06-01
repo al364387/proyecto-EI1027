@@ -6,7 +6,9 @@
 *.ipr
 */_windows/
 /_windows/laf.xml
-*/codestyles/
+/_windows/path.macros.xml
+/codestyles/
+/codestyles/Default.xml
 debugger.xml
 diff.xml
 editor.codeinsight.xml

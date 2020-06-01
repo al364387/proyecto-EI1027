@@ -42,18 +42,23 @@ public class LoginController {
     private ElderlyDao elderlyDao;
     private VolunteerDao volunteerDao;
     private CompanyDao companyDao;
+    private RequestDao requestDao;
+
     private ElderlyService elderlyService;
     private VolunteerService volunteerService;
 
+
+
     @Autowired
     public void setLoginController(UserDao userDao, AdminDao adminDao, ElderlyDao elderlyDao,
-                                   VolunteerDao volunteerDao, CompanyDao companyDao, ElderlyService elderlyService,
+                                   VolunteerDao volunteerDao, CompanyDao companyDao, RequestDao requestDao, ElderlyService elderlyService,
                                    VolunteerService volunteerService) {
         this.userDao = userDao;
         this.adminDao = adminDao;
         this.elderlyDao = elderlyDao;
         this.volunteerDao = volunteerDao;
         this.companyDao = companyDao;
+        this.requestDao = requestDao;
         this.elderlyService = elderlyService;
         this.volunteerService = volunteerService;
     }
@@ -109,13 +114,16 @@ public class LoginController {
             String cif = companyDao.getUserCompany(user.getUsername()).getCif();
             user = userDao.loadUserByUsername(user, companyDao.getUserCompany(user.getUsername()).getPassword(),
                     role);
+            session.setAttribute("cif", cif);
+            session.setAttribute("requestCompany", requestDao.getRequestsCompany(cif));
+
         } else {
             user = null;
         }
 
         if (user == null) {
-            bindingResult.rejectValue("username", "badpw", "");
-            bindingResult.rejectValue("password", "badpw", "Usuario o contraseña incorrecta");
+            bindingResult.rejectValue("username", "badpw", "Usuario incoreccto");
+            bindingResult.rejectValue("password", "badpw", "Contraseña incorrecta");
             model.addAttribute("login", true);
             return "login";
         }
@@ -128,10 +136,10 @@ public class LoginController {
         if (nextURL != null) {
             session.removeAttribute("nextUrl");
             return "redirect:/" + nextURL;
-        }
-        // Volver a la página principal
-        else
+        } else {
+            // Volver a la página principal
             return "redirect:/";
+        }
     }
 
     @RequestMapping("/logout")

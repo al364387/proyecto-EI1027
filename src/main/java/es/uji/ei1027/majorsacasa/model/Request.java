@@ -129,4 +129,10 @@ public class Request {
                 ", contractId='" + contractId + '\'' +
                 '}';
     }
+
+    public String getType(){
+       if(catering) return "Catering";
+       if(nursing) return "Nursing";
+       else return "Cleaning";
+    }
 }
