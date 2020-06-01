@@ -32,9 +32,10 @@ public class ContractController {
 
     @RequestMapping("/list")
     public String listContracts(HttpSession session, Model model){
-        if (session.getAttribute("user") != null)
-        {
-            if (session.getAttribute("role").equals("Admin")){
+        if (session.getAttribute("user") != null) {
+            UserDetails user = (UserDetails) session.getAttribute("user");
+
+            if (session.getAttribute("role").equals("Admin") && user.getUsername().equals("casManager")){
                 model.addAttribute("contractService", contractService);
                 model.addAttribute("contracts", contractDao.getContracts());
                 return "contract/list";
@@ -50,10 +51,10 @@ public class ContractController {
 
     @RequestMapping(value = "/add")
     public String addContract(HttpSession session, Model model){
+        if (session.getAttribute("user") != null) {
+            UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (session.getAttribute("user") != null)
-        {
-            if (session.getAttribute("role").equals("Admin")){
+            if (session.getAttribute("role").equals("Admin") && user.getUsername().equals("casManager")){
                 model.addAttribute("contract", new Contract());
                 model.addAttribute("contractService", contractService);
                 return "contract/add";
