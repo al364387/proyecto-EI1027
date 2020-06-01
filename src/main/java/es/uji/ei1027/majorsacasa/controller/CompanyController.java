@@ -1,9 +1,9 @@
 package es.uji.ei1027.majorsacasa.controller;
 
-
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,10 +25,10 @@ public class CompanyController {
 
     @RequestMapping(value = "/add")
     public String addCompany(HttpSession session, Model model){
+        if (session.getAttribute("user") != null) {
+            UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (session.getAttribute("user") != null)
-        {
-            if (session.getAttribute("role").equals("Admin")){
+            if (session.getAttribute("role").equals("Admin") && user.getUsername().equals("casManager")){
                 model.addAttribute("company", new Company());
                 return "company/add";
             } else {
@@ -40,6 +40,7 @@ public class CompanyController {
         model.addAttribute("user", new UserDetails());
         return "login";
     }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
                                    BindingResult bindingResult){
@@ -51,15 +52,22 @@ public class CompanyController {
             return "company/add";
         }
 
-        companyDao.addCompany(company);
+        try {
+            companyDao.addCompany(company);
+        } catch (DuplicateKeyException e){
+            throw new MajorsacasaException("con el CIF: " + company.getCif() +
+                    " o con el usuario: " + company.getUsername(), "CPDuplicada");
+        }
+
         return "redirect:list";
     }
+
     @RequestMapping("/list")
     public String listCompanies(Model model, HttpSession session){
+        if (session.getAttribute("user") != null) {
+            UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (session.getAttribute("user") != null)
-        {
-            if (session.getAttribute("role").equals("Admin")){
+            if (session.getAttribute("role").equals("Admin") && user.getUsername().equals("casManager")){
 
                 model.addAttribute("companies",companyDao.getCompanies());
                 return "company/list";
@@ -72,7 +80,4 @@ public class CompanyController {
         model.addAttribute("user", new UserDetails());
         return "login";
     }
-
-
-
 }
