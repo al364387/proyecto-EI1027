@@ -73,17 +73,17 @@
                         <thead th:if="${volunteers.size() > 0}">
                         <tr>
                             <th>Nombre</th>
-                            <th>Apellido</th>
                             <th>Fecha de inicio</th>
+                            <th>Fecha de fin</th>
                             <th>Estado</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="voluntari: ${volunteers}">
-                            <td th:text="${voluntari.name}"></td>
-                            <td th:text="${voluntari.surname}"></td>
+                            <td th:text="${voluntari.name + ' ' + voluntari.surname}"></td>
                             <td th:text="${#temporals.format(voluntari.acceptDate, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${#temporals.format(voluntari.endDate, 'dd-MM-yyyy')}"></td>
                             <td th:classappend="${(voluntari.state == 'Pendiente' ? 'stateBlue'  : '') +
                             (voluntari.state == 'Aceptado' ? 'stateGreen'  : '') +
                             (voluntari.state == 'Rechazado' ? 'stateRed'  : '')}" th:text="${voluntari.state}"></td>
@@ -119,7 +119,6 @@
                         <thead th:if="${volunteersR.size() > 0}">
                         <tr>
                             <th>Nombre</th>
-                            <th>Apellido</th>
                             <th>Fecha de inicio</th>
                             <th>Fecha de fin</th>
                             <th>Estado</th>
@@ -127,8 +126,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="voluntariR: ${volunteersR}">
-                            <td th:text="${voluntariR.name}"></td>
-                            <td th:text="${voluntariR.surname}"></td>
+                            <td th:text="${voluntariR.name + ' '+ voluntariR.surname}"></td>
                             <td th:text="${#temporals.format(voluntariR.acceptDate, 'dd-MM-yyyy')}"></td>
                             <td th:text="${#temporals.format(voluntariR.endDate, 'dd-MM-yyyy')}"></td>
                             <td th:classappend="${(voluntariR.state == 'Pendiente' ? 'stateBlue'  : '') +
