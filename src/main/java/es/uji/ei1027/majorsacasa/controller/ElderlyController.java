@@ -55,7 +55,7 @@ public class ElderlyController {
             throw new MajorsacasaException(
                 "con el DNI: " + elderly.getDNI() +
                 " o con el usuario: " + elderly.getUsername(),
-                "CPDuplicada");
+                "CPduplicada");
         }
 
         return "redirect:list";

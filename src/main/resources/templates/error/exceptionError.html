@@ -26,9 +26,9 @@
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
-        <div class="alert"
-             th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info divInfo'">
-            <h3 th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'hiddenError' : ''">
+        <div class="alert divInfo"
+             th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info'">
+            <h3 th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? '' : 'hiddenError'">
                 Ya existe una cuenta
             </h3>
             <h3 th:text="${message}"></h3>

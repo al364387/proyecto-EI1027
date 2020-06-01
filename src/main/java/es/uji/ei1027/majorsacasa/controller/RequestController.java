@@ -5,6 +5,7 @@ import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Admin;
+import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.services.ElderlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/request")
@@ -25,23 +27,34 @@ public class RequestController {
     private ElderlyService elderlyService;
 
     @Autowired
-    public void setRequestDao(RequestDao requestDao, ContractDao contractDao, ElderlyService elderlyService) {
+    public void setRequestDao(RequestDao requestDao) {
         this.requestDao = requestDao;
+    }
+
+    @Autowired
+    public void setContractDao(ContractDao contractDao) {
         this.contractDao = contractDao;
+    }
+
+    @Autowired
+    public void setElderlyService(ElderlyService elderlyService) {
         this.elderlyService = elderlyService;
     }
 
     @RequestMapping("/list")
     public String listResquest(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
-            if (session.getAttribute("role").equals("Admin")) {
+            UserDetails user = (UserDetails) session.getAttribute("user");
+
+            if (session.getAttribute("role").equals("Admin") && user.getUsername().equals("casCommitee")) {
                 session.setAttribute("elderlyService", elderlyService);
                 session.setAttribute("requests", requestDao.getRequests());
                 return "request/list";
-            } else if(session.getAttribute("role").equals("Company")){
+
+            } else if (session.getAttribute("role").equals("Company")) {
                 //No se todavia si funciona, es una idea
                 model.addAttribute("requestD", requestDao);
-            }else{
+            } else {
                 return "index";
             }
         }
@@ -80,14 +93,29 @@ public class RequestController {
             model.addAttribute("listContracts", contractDao.getContracts());
             return "request/add";
         }
-
         ElderlyService elderlyService = (ElderlyService) session.getAttribute("elderlyService");
         String dni = (String) session.getAttribute("dni");
 
-        session.setAttribute("requests", elderlyService.getRequestFormEldely(dni));
+        List<Request> serviciosContratados = requestDao.getRequestsFromEldely(dni);
 
-        requestDao.addRequest(request, dni, contractDao);
-        return "redirect:/";
+        if (!isServiceRequested(serviciosContratados, request)) {
+            session.setAttribute("requests", elderlyService.getRequestFormEldely(dni));
+            requestDao.addRequest(request, dni, contractDao);
+            return "redirect:/";
+        } else {
+            throw new MajorsacasaException(
+                    "El tipo de servicio seleccionado ya había sido contratado",
+                    "SPduplicado");
+        }
+    }
+
+    private boolean isServiceRequested(List<Request> serviciosContratados, Request request) {
+        for (Request l : serviciosContratados) {
+            if (l.getContractId() == request.getContractId()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @RequestMapping(value = "/update/{number}/{estado}", method = RequestMethod.GET)
@@ -110,7 +138,7 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/info/{number}", method = RequestMethod.GET)
-    public String infoRequest(@PathVariable int number, HttpSession session){
+    public String infoRequest(@PathVariable int number, HttpSession session) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
 
@@ -120,11 +148,11 @@ public class RequestController {
             }
         }
 
-        return  "redirect:../../login";
+        return "redirect:../../login";
     }
 
     @RequestMapping(value = "/cancel/{number}", method = RequestMethod.GET)
-    public String cancelRequest(@PathVariable int number, HttpSession session){
+    public String cancelRequest(@PathVariable int number, HttpSession session) {
 
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
@@ -137,7 +165,6 @@ public class RequestController {
             }
         }
 
-        return  "redirect:../../login";
+        return "redirect:../../login";
     }
-
 }

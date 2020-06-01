@@ -4,6 +4,7 @@
 *.iws
 *.iml
 *.ipr
+*.xml
 */_windows/
 /_windows/laf.xml
 /_windows/path.macros.xml

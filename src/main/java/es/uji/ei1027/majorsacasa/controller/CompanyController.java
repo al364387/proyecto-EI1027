@@ -56,7 +56,7 @@ public class CompanyController {
             companyDao.addCompany(company);
         } catch (DuplicateKeyException e){
             throw new MajorsacasaException("con el CIF: " + company.getCif() +
-                    " o con el usuario: " + company.getUsername(), "CPDuplicada");
+                    " o con el usuario: " + company.getUsername(), "CPduplicada");
         }
 
         return "redirect:list";

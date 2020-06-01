@@ -93,7 +93,7 @@ public class VolunteerController {
         } catch (DuplicateKeyException e){
             throw new MajorsacasaException(
                     "con el usuario: " + volunteer.getUsername(),
-                    "CPDuplicada");
+                    "CPduplicada");
         }
 
         return "redirect:/index";
