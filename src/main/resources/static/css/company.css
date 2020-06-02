@@ -11,8 +11,6 @@
     margin-right: 15px;
 }
 
-
-
 .ajustes{
     margin-right: 50px;
 }
@@ -33,16 +31,27 @@
 }
 
 /* Index ========================= */
+.middle td {
+    vertical-align: middle;
+}
+
+.emptyTable {
+    text-align: center;
+    margin-top: 40px;
+}
+
 .buttonOptions{
     color: white;
     font-size: 22px;
     display: contents;
 }
+
 .tablaIndex{
     text-align: center;
     width: 30%;
     margin: 0 auto;
 }
+
 .tablaIndex h5{
     transition-duration: 1.0s;
     font-size: 24px;
@@ -50,19 +59,22 @@
     padding: 4px;
     border: solid;
 }
+
 .tablaIndex h5:hover{
     background-color: #00909e;
 }
+
 .tablaIndex a{
     transition-duration: 0.1s;
 }
+
 .tablaIndex a:hover{
     background-color: #00909e;
     color: white;
 }
 /* End Index ===================== */
 
-/* List Company ================= */
+/* List Company ================== */
 .addCompany{
     text-decoration: none !important;
     color: #1b2a49;
@@ -75,6 +87,7 @@
     color: #00909e;
     text-decoration: none !important;
 }
+
 .addCompany a:focus{
     color: #00909e;
     text-decoration: none !important;
@@ -87,10 +100,9 @@
 .addCompany svg{
     vertical-align: text-bottom;
 }
-/* End List Volunteer ============= */
+/* End List Company ============== */
 
 /*Tabs*/
-
 .tabs {
     position: relative;
     height: 500px;
@@ -98,6 +110,7 @@
     width: 75%;
     margin: 0 auto;
 }
+
 .tab {
     float: left;
 }
@@ -109,7 +122,7 @@
     margin-left: -1px;
     position: relative;
     left: 1px;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .tab label:hover{
@@ -121,9 +134,10 @@
 .tab [type=radio] {
     display: none;
 }
+
 .content-tab {
     position: absolute;
-    top: 58px;
+    top: 51px;
     left: 0;
     background: white;
     right: 0;
@@ -132,16 +146,13 @@
     border: 1px solid #ccc;
 }
 
-.content-tab table {
-    font-size: 20px;
-}
-
 [type=radio]:checked ~ label {
     background: white;
     border-bottom: 1px solid white;
     z-index: 2;
     color: #00909e;
 }
+
 [type=radio]:checked ~ label ~ .content-tab {
     z-index: 1;
 }
