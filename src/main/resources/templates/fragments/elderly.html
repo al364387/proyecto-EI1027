@@ -34,11 +34,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="request: *{requests}">
-                        <td>
-                            <p th:if="${request.catering==true}">Comidas</p>
-                            <p th:if="${request.nursing==true}">Enfermería</p>
-                            <p th:if="${request.cleaning==true}">Limpieza</p>
-                        </td>
+                        <td th:text="${request.getType()}"></td>
                         <td>
                             De <span class="dayActive">L</span> a <span class="dayActive">V</span>
                             - <span class="dayActive" th:text="${request.time}"></span>
@@ -73,10 +69,10 @@
                             </div>
                         </td>
                     </tr>
-                    </tbody>
                     <tr th:unless="*{requests.size() > 0}">
                         <td> No tiene ningún servicio contratado</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

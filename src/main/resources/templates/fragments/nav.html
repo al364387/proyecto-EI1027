@@ -20,7 +20,7 @@
             <br/>
             <br/>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:object="${session}"
-                 th:classappend="*{role == 'Admin'} ? '' : 'padding0 justify-content-center'">
+                 th:classappend="*{role == 'Admin' || role == 'Company'} ? '' : 'padding0 justify-content-center'">
                 <ul class="nav navbar-nav mr-auto" th:if="*{user == null}">
                     <li class="navbar-li separator">
                         <a class="navbar-op" th:classappend="${home} ? nav-select : '' " th:href="@{/}">Inicio</a>
@@ -72,7 +72,6 @@
                                 </button>
                                 <div class="dropdown-content">
                                     <a class="navbar-op" th:href="@{/elderly/update/{dni}(dni = ${session.dni})}">Perfil</a>
-                                    <a class="navbar-op" th:href="@{/incoice/listElderly/{dni}(dni = ${session.dni})}">Facturas</a>
                                     <a class="navbar-op" href="/logout" th:href="@{/logout}">Salir</a>
                                 </div>
                             </div>
@@ -96,13 +95,7 @@
                             </div>
                         </li>
 
-                        <!-- Solución temporal-->
-                        <li class="nav-item" th:if="*{role == 'Company'}">
-                            <a class="navbar-op" href="/logout" th:href="@{/logout}">Salir</a>
-                        </li>
-
-
-                        <li class="nav-item" th:if="*{role == 'Admin'}">
+                        <li class="nav-item" th:if="*{role == 'Admin' || role == 'Company'}">
                             <a class="navbar-op" href="/logout" th:href="@{/logout}">Salir</a>
                         </li>
                     </ul>
