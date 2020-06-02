@@ -131,8 +131,8 @@ public class Request {
     }
 
     public String getType(){
-       if(catering) return "Catering";
-       if(nursing) return "Nursing";
-       else return "Cleaning";
+       if(catering) return "Comidas";
+       else if(nursing) return "Enfermería";
+       else return "Limpieza";
     }
 }
