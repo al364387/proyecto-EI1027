@@ -17,9 +17,8 @@
                 </svg>
                 Volver</a>
         </div>
-        <h2 th:if="${session.requestElderly.catering==true}" th:text="${'Detalles del servicio de comidas'}"></h2>
-        <h2 th:if="${session.requestElderly.nursing==true}" th:text="${'Detalles del servicio de enfermería'}"></h2>
-        <h2 th:if="${session.requestElderly.cleaning==true}" th:text="${'Detalles del servicio de limpieza'}"></h2>
+
+        <h2 th:text="${'Detalles del servicio de ' + #strings.toLowerCase(session.requestElderly.getType())}"></h2>
 
         <table class="info">
             <tr>
