@@ -20,27 +20,30 @@ public class InvoiceLineDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    //Añadir Linea de Factura
+    // Añadir Linea de Factura
     public void addInvoiceLine(InvoiceLine invoiceLine) {
         jdbcTemplate.update("INSERT INTO InvoiceLine VALUES(?, ?, ?, ?, ?)",
-                invoiceLine.getNumber(), invoiceLine.getConcept(), invoiceLine.getMonthPrice(), invoiceLine.getInvoiceNumId(), invoiceLine.getRequestNum());
+                invoiceLine.getNumber(), invoiceLine.getConcept(), invoiceLine.getMonthPrice(),
+                invoiceLine.getInvoiceNumId(), invoiceLine.getRequestNum());
     }
 
-    //Borrar Linea de Factura
+    // Borrar Linea de Factura
     public void deleteInvoiceLine(int number) {
         jdbcTemplate.update("DELETE from InvoiceLine where number=?",
                 number);
     }
 
-    //Modificar atributos de la Linea de Factura
+    // Modificar atributos de la Linea de Factura
     public void updateInvoiceLine(InvoiceLine invoiceLine) {
-        jdbcTemplate.update("UPDATE InvoiceLine SET concept =?, monthPrice =? WHERE number =?", invoiceLine.getConcept(),invoiceLine.getMonthPrice(), invoiceLine.getNumber());
+        jdbcTemplate.update("UPDATE InvoiceLine SET concept =?, monthPrice =? WHERE number =?",
+                invoiceLine.getConcept(),invoiceLine.getMonthPrice(), invoiceLine.getNumber());
     }
 
-    //Obtiene InvoiceLine
+    // Obtiene InvoiceLine
     public InvoiceLine getInvoiceLine(int number) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM InvoiceLine WHERE number =?", new InvoiceLineRowMapper(), number);
+            return jdbcTemplate.queryForObject("SELECT * FROM InvoiceLine WHERE number =?",
+                    new InvoiceLineRowMapper(), number);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -50,32 +53,11 @@ public class InvoiceLineDao {
     //Listar Lineas de Facturas
     public List<InvoiceLine> getInvoiceLines(String invoiceNumId) {
         try {
-            List<InvoiceLine> c = jdbcTemplate.query("SELECT * from InvoiceLine WHERE invoiceNumId=?",
+            return jdbcTemplate.query("SELECT * from InvoiceLine WHERE invoiceNumId=?" ,
                     new InvoiceLineRowMapper(), invoiceNumId);
-            System.out.println("template: " + c);
-            return c;
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("sin lineas de factura: ");
+
             return new ArrayList<InvoiceLine>();
         }
     }
-
-    /* Sacar lista de lineas de factura asociada a una empresa
-    SELECT Invoiceline.* FROM Invoiceline
-    INNER JOIN Request on Invoiceline.requestnum = Request.number
-    INNER JOIN Contract on Request.contractid = Contract.numcontract
-    INNER JOIN Company on Contract.cifcompany = Company.cif
-    WHERE Company.cif='Y3418145O';
-
-    FALTA TENER EN CUENTA QUE LAS LINEAS DE FACTURA TENGAN LA MISMA FACTURA
-
-        SELECT Invoiceline.* FROM Invoiceline
-    INNER JOIN Request on Invoiceline.requestnum = Request.number
-    INNER JOIN Contract on Request.contractid = Contract.numcontract
-    INNER JOIN Company on Contract.cifcompany = Company.cif
-    WHERE Company.cif='Y3418145O' AND Invoiceline.invoicenumid = ?;
-
-     */
-
-
 }
