@@ -74,11 +74,13 @@ public class InvoiceController {
         return "redirect:list";
     }
     @RequestMapping(value="/templatePDF")
-    public void createPdf(Model model) throws Exception {
+    public String createPdf(Model model) throws Exception {
         Map<String,String> data = new HashMap<String,String>();
+        //El mapa que ha de pasarle tiene que tener las lineas de factura
         data.put("name","James");
         //Estoy en blanco, lo siento
         pdfGenaratorUtil.createPdf("invoice/templatePDF", data);
+        return "redirect:list";
 
     }
 }
