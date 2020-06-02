@@ -1,18 +1,10 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.PdfPTable;
-
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.MalformedURLException;
+
 import java.time.LocalDate;
-import java.util.List;
 
 public class Invoice {
     private String invoicenum;
@@ -76,7 +68,12 @@ public class Invoice {
         this.price = price;
     }
 
+    public String nombrePDF(){
+        String nom = invoicenum.replace('/', '-');
+        return nom;
+    }
 
+/*
     public void crearPDF(){
         // Se crea el documento
         try {
@@ -132,16 +129,16 @@ public class Invoice {
             int numColumns = 3;
             PdfPTable tabla = new PdfPTable(numColumns);
             //Conseguir de alguna manera la lista de lineas de factura que iran en esta factura
-            /*
+
             for(InvoiceLine invoiceLine : invoiceLines){
                 tabla.addCell(invoiceLine.getNumber() + "");
                 tabla.addCell(invoiceLine.getConcept());
                 tabla.addCell(invoiceLine.getMonthPrice() + "");
             }
-            */
-            documento.add(tabla);
 
-            documento.close();
+            //documento.add(tabla);
+
+            //documento.close();
 
             System.out.println("B - Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
         } catch (DocumentException ex) {
@@ -152,5 +149,7 @@ public class Invoice {
             e.printStackTrace();
         }
 
+
     }
+    */
 }

@@ -2,21 +2,13 @@ package es.uji.ei1027.majorsacasa.dao;
 
 import javax.sql.DataSource;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import es.uji.ei1027.majorsacasa.model.Company;
+
 import es.uji.ei1027.majorsacasa.model.Invoice;
-import es.uji.ei1027.majorsacasa.model.InvoiceLine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +57,35 @@ public class InvoiceDao {
         }
     }
 
+    /* Sacar lista de facturas asociadas a una empresa
+    SELECT Invoice.* FROM Invoice
+    INNER JOIN Invoiceline on Invoice.invoicenum = Invoiceline.invoicenumid
+    INNER JOIN Request on Invoiceline.requestnum = Request.number
+    INNER JOIN Contract on Request.contractid = Contract.numcontract
+    INNER JOIN Company on Contract.cifcompany = Company.cif
+    WHERE Company.cif='Y3418145O';
+     */
+
+    public List<Invoice> getInvoicesCompany(String cif) {
+        try {
+            List<Invoice> c = jdbcTemplate.query("SELECT Invoice.* FROM Invoice\n" +
+                            "    INNER JOIN Invoiceline on Invoice.invoicenum = Invoiceline.invoicenumid\n" +
+                            "    INNER JOIN Request on Invoiceline.requestnum = Request.number\n" +
+                            "    INNER JOIN Contract on Request.contractid = Contract.numcontract\n" +
+                            "    INNER JOIN Company on Contract.cifcompany = Company.cif\n" +
+                            "    WHERE Company.cif=?;",
+                    new InvoiceRowMapper(), cif);
+            System.out.println("template: " + c);
+            return c;
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("sin facturas: ");
+            return new ArrayList<Invoice>();
+        }
+    }
+
 
     //NO SE NI SI SE HACE AQUÍ, ESO ES UN PROBLEMA
+    /*
     public void crearPDF(Invoice invoice, List<InvoiceLine> invoiceLines) {
         // Se crea el documento
         try {
@@ -138,4 +157,5 @@ public class InvoiceDao {
         }
 
     }
+    */
 }

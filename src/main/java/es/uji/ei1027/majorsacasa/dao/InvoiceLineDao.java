@@ -60,5 +60,22 @@ public class InvoiceLineDao {
         }
     }
 
+    /* Sacar lista de lineas de factura asociada a una empresa
+    SELECT Invoiceline.* FROM Invoiceline
+    INNER JOIN Request on Invoiceline.requestnum = Request.number
+    INNER JOIN Contract on Request.contractid = Contract.numcontract
+    INNER JOIN Company on Contract.cifcompany = Company.cif
+    WHERE Company.cif='Y3418145O';
+
+    FALTA TENER EN CUENTA QUE LAS LINEAS DE FACTURA TENGAN LA MISMA FACTURA
+
+        SELECT Invoiceline.* FROM Invoiceline
+    INNER JOIN Request on Invoiceline.requestnum = Request.number
+    INNER JOIN Contract on Request.contractid = Contract.numcontract
+    INNER JOIN Company on Contract.cifcompany = Company.cif
+    WHERE Company.cif='Y3418145O' AND Invoiceline.invoicenumid = ?;
+
+     */
+
 
 }

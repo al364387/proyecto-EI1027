@@ -43,6 +43,7 @@ public class LoginController {
     private VolunteerDao volunteerDao;
     private CompanyDao companyDao;
     private RequestDao requestDao;
+    private InvoiceDao invoiceDao;
 
     private ElderlyService elderlyService;
     private VolunteerService volunteerService;
@@ -51,7 +52,7 @@ public class LoginController {
 
     @Autowired
     public void setLoginController(UserDao userDao, AdminDao adminDao, ElderlyDao elderlyDao,
-                                   VolunteerDao volunteerDao, CompanyDao companyDao, RequestDao requestDao, ElderlyService elderlyService,
+                                   VolunteerDao volunteerDao, CompanyDao companyDao, RequestDao requestDao, InvoiceDao invoiceDao, ElderlyService elderlyService,
                                    VolunteerService volunteerService) {
         this.userDao = userDao;
         this.adminDao = adminDao;
@@ -59,6 +60,7 @@ public class LoginController {
         this.volunteerDao = volunteerDao;
         this.companyDao = companyDao;
         this.requestDao = requestDao;
+        this.invoiceDao = invoiceDao;
         this.elderlyService = elderlyService;
         this.volunteerService = volunteerService;
     }
@@ -116,6 +118,7 @@ public class LoginController {
                     role);
             session.setAttribute("cif", cif);
             session.setAttribute("requestCompany", requestDao.getRequestsCompany(cif));
+            session.setAttribute("invoicesCompany", invoiceDao.getInvoicesCompany(cif));
 
         } else {
             user = null;

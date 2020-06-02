@@ -99,7 +99,7 @@ WHERE Company.cif='Y3418145O';
             List<Request> lista = jdbcTemplate.query("SELECT Request.* FROM Request\n" +
                     "    INNER JOIN Contract on Request.contractid = Contract.numcontract\n" +
                     "    INNER JOIN Company on Contract.cifcompany = Company.cif\n" +
-                    "    WHERE Company.cif=?", new RequestRowMapper(), cif);
+                    "    WHERE Company.cif=? AND Request.state='Aceptado'", new RequestRowMapper(), cif);
             for(Request r: lista){
                 System.out.println(r.toString());
             }
