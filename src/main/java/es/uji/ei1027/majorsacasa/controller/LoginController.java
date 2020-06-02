@@ -119,7 +119,7 @@ public class LoginController {
             session.setAttribute("cif", cif);
             session.setAttribute("requestCompany", requestDao.getRequestsCompany(cif));
             session.setAttribute("invoicesCompany", invoiceDao.getInvoicesCompany(cif));
-
+            session.setAttribute("elderlyService", elderlyService);
         } else {
             user = null;
         }
