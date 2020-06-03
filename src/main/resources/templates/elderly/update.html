@@ -108,13 +108,15 @@
                 <tr>
                     <td class="buttonSubmit" colspan="2">
                         <br>
-                        <div class="buttonAdd">
-                            <button class="btn font20" type="submit">Actualizar</button>
-                        </div>
+                        <button class="btn font20" type="submit">Actualizar</button>
                     </td>
                 </tr>
             </table>
         </form>
+        <br>
+        <div class="buttonCancelAccount">
+            <a class="btn btn-danger font20" th:href="@{/elderly/delete/{dni} (dni=${session.dni})}">Cancelar cuenta</a>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>

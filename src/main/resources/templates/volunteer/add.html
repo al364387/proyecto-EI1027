@@ -11,6 +11,9 @@
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
         <h2>Nuevo voluntario</h2>
+        <div class="alignRight">
+            *Campos obligatorios
+        </div>
         <form class="form-horizontal" action="#" th:action="@{/volunteer/add}" th:object="${volunteer}" method="post">
             <table class="tableAddVolunteer">
                 <tr>
@@ -100,12 +103,8 @@
 
             </table>
         </form>
-        <div class="alignRight">
-            *Campos obligatorios
-        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>
-
 </body>
 </html>

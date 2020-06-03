@@ -307,6 +307,14 @@ h2{
 .buttonDelete{
     padding-left: 15px;
 }
+
+.buttonDelete button{
+    width: 103px;
+}
+
+.buttonDelete button.font20{
+    width: 122px;
+}
 /* End Add Elderly =============== */
 
 /* Add Volunteer ================= */
@@ -447,6 +455,12 @@ h2{
     background-color: transparent;
     border-color: #00909e;
     color: #00909e;
+}
+
+.buttonCancelAccount{
+    padding-top: 10px;
+    text-align: center;
+    color: #fff;
 }
 
 /* End Diseño para botones ======= */

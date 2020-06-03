@@ -6,27 +6,15 @@
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
     <div th:replace="fragments/volunteer :: volunteer-css"></div>
-    <!--    <link rel="stylesheet" href="/css/admin.css">-->
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
-        <div class="return alignRight">
-            <a href="/volunteer/list">
-                <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M8.354 1.646a.5.5 0 010 .708L2.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
-                          clip-rule="evenodd"/>
-                    <path fill-rule="evenodd"
-                          d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
-                          clip-rule="evenodd"/>
-                </svg>
-                Volver
-            </a>
-        </div>
         <h2>Actualizar perfil</h2>
+        <div class="alignRight">
+            *Campos obligatorios
+        </div>
         <form class="form-horizontal" action="#" th:action="@{/volunteer/update}"
               th:object="${volunteer}" method="post">
             <table class="tableAddVolunteer">
@@ -101,26 +89,15 @@
                 </tr>
 
                 <tr>
-                    <td class="buttonSubmit">
+                    <td class="buttonSubmit" colspan="2">
                         <br>
-                        <div class="buttonAdd alignRight">
-                            <button class="btn" type="submit">Actualizar</button>
-                        </div>
-                    </td>
-                    <td class="buttonCancel">
-                        <br>
-                        <div class="buttonDelete alignLeft">
-                            <button class="btn" type="reset">Borrar</button>
-                        </div>
+                        <button class="btn" type="submit">Actualizar</button>
                     </td>
                 </tr>
             </table>
         </form>
         <br>
-        <div class="alignRight">
-            *Campos obligatorios
-        </div>
-        <div class="buttonCancelVol">
+        <div class="buttonCancelAccount">
             <a class="btn btn-danger" th:href="@{/volunteer/updateFechaFin/{id} (id=${session.id})}">Cancelar cuenta</a>
         </div>
     </div>
