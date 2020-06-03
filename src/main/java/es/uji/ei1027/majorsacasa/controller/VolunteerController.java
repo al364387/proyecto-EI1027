@@ -136,6 +136,6 @@ public class VolunteerController {
 
         volunteerDao.cancelVolunteer(id);
 
-        return "index";
+        return "redirect:../../logout";
     }
 }
