@@ -88,14 +88,21 @@ public class RequestDao {
 
     public List<Request> getRequestsCompany(String cif) {
         try {
-            List<Request> lista = jdbcTemplate.query("SELECT Request.* FROM Request \n" +
-                    "    INNER JOIN Contract on Request.contractid = Contract.numcontract \n" +
-                    "    INNER JOIN Company on Contract.cifcompany = Company.cif \n" +
-                    "    WHERE Company.cif = ? AND Request.state='Aceptado'", new RequestRowMapper(), cif);
-            for(Request r: lista){
-                System.out.println(r.toString());
-            }
-            return lista;
+            return jdbcTemplate.query("SELECT Request.* FROM Request" +
+                    "    INNER JOIN Contract on Request.contractid = Contract.numcontract" +
+                    "    INNER JOIN Company on Contract.cifcompany = Company.cif" +
+                    "    WHERE Company.cif = ? AND Request.state = 'Aceptado'", new RequestRowMapper(), cif);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
+
+    public List<Request> getRequestsCompanyCancel(String cif) {
+        try {
+            return jdbcTemplate.query("SELECT Request.* FROM Request" +
+                    "    INNER JOIN Contract on Request.contractid = Contract.numcontract" +
+                    "    INNER JOIN Company on Contract.cifcompany = Company.cif" +
+                    "    WHERE Company.cif = ? AND Request.endDate is not null", new RequestRowMapper(), cif);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
         }

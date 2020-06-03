@@ -32,7 +32,7 @@
                 </thead>
                 <tbody th:object="${session}">
                 <tr th:each="request: *{requests}">
-                    <td th:text="${session.elderlyService.getNameElderly(request.elderlyDNI)}"></td>
+                    <td th:text="${session.volunteerService.getNameElderly(request.elderlyDNI)}"></td>
                     <td th:text="${request.getType()}"></td>
                     <td th:text="${#temporals.format(request.startDate, 'dd-MM-yyyy')}"></td>
                     <!-- Super feature, te pone "---" cuando no tiene descripcion -->

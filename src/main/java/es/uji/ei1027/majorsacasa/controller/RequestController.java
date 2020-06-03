@@ -7,6 +7,7 @@ import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Admin;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.services.ElderlyService;
+import es.uji.ei1027.majorsacasa.services.VolunteerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ public class RequestController {
     private RequestDao requestDao;
     private ContractDao contractDao;
     private ElderlyService elderlyService;
+    private VolunteerService volunteerService;
 
     @Autowired
     public void setRequestDao(RequestDao requestDao) {
@@ -41,19 +43,21 @@ public class RequestController {
         this.elderlyService = elderlyService;
     }
 
+    @Autowired
+    public void setVolunteerService(VolunteerService volunteerService){
+        this.volunteerService = volunteerService;
+    }
+
     @RequestMapping("/list")
     public String listResquest(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
             UserDetails user = (UserDetails) session.getAttribute("user");
 
             if (session.getAttribute("role").equals("Admin") && user.getUsername().equals("casCommitee")) {
-                session.setAttribute("elderlyService", elderlyService);
+                session.setAttribute("volunteerService", volunteerService);
                 session.setAttribute("requests", requestDao.getRequests());
                 return "request/list";
 
-            } else if (session.getAttribute("role").equals("Company")) {
-                //No se todavia si funciona, es una idea
-                model.addAttribute("requestD", requestDao);
             } else {
                 return "index";
             }
@@ -143,6 +147,11 @@ public class RequestController {
             if (session.getAttribute("role").equals("Elderly")) {
 
                 session.setAttribute("requestElderly", requestDao.getRequest(number));
+
+                return "request/info";
+            } else if (session.getAttribute("role").equals("Company")){
+
+                session.setAttribute("requestInfo", requestDao.getRequest(number));
 
                 return "request/info";
             }

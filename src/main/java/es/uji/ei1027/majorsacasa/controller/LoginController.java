@@ -118,8 +118,9 @@ public class LoginController {
                     role);
             session.setAttribute("cif", cif);
             session.setAttribute("requestCompany", requestDao.getRequestsCompany(cif));
+            session.setAttribute("requestCompanyCancel", requestDao.getRequestsCompanyCancel(cif));
             session.setAttribute("invoicesCompany", invoiceDao.getInvoicesCompany(cif));
-            session.setAttribute("elderlyService", elderlyService);
+            session.setAttribute("volunteerService", volunteerService);
         } else {
             user = null;
         }

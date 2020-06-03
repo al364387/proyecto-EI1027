@@ -9,5 +9,6 @@ public interface VolunteerService {
     List<VolunteerAvailability> getListVolunteerAvailabilitiesOutElderly(int id);
     String getNameElderly(String id);
     int getPhoneElderly(String id);
+    String getAddressElderly(String id);
     String getNameVolunteer(int id);
 }

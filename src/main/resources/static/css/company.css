@@ -102,6 +102,44 @@
 }
 /* End List Company ============== */
 
+/* Info Company ================== */
+.info {
+    width: 58%;
+    margin: 0 auto;
+}
+
+.info td {
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.desc {
+    margin: 0;
+}
+
+.info textarea {
+    resize: none;
+    width: 100%;
+    height: 100px;
+    font-style: italic;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.dayActive {
+    color: #00909e;
+    font-weight: bold;
+}
+
+.return {
+    font-size: 20px;
+}
+
+/* End Info Company ============== */
+
 /*Tabs*/
 .tabs {
     position: relative;
@@ -156,5 +194,7 @@
 [type=radio]:checked ~ label ~ .content-tab {
     z-index: 1;
 }
+
+
 
 

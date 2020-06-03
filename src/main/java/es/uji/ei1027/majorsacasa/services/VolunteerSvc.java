@@ -44,6 +44,11 @@ public class VolunteerSvc implements VolunteerService{
     }
 
     @Override
+    public String getAddressElderly(String id) {
+        return elderlyDao.getElderly(id).getAddress();
+    }
+
+    @Override
     public String getNameVolunteer(int id) {
         return volunteerDao.getVolunteer(id).getName();
     }

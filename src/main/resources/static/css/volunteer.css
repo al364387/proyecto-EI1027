@@ -56,7 +56,7 @@ h3 {
 }
 
 .info td {
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
     padding: 10px;
 }
@@ -73,14 +73,11 @@ h3 {
 }
 
 .info a {
-    font-size: 25px;
-}
-.info a {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .return {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .bold {

@@ -4,13 +4,18 @@
 <head>
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}">
     <div th:replace="fragments/nav :: nav-css"/>
-    <div th:replace="fragments/elderly :: elderly-css"></div>
+    <div th:if="${session.role == 'Elderly'}">
+        <div th:replace="fragments/elderly :: elderly-css"/>
+    </div>
+    <div th:if="${session.role == 'Company'}">
+        <div th:replace="fragments/company :: company-css"/>
+    </div>
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/nav :: nav"></div>
     <div class="contenido">
-        <div class="return alignRight">
+        <div class="return alignRight" th:if="${session.role == 'Elderly'}">
             <a href="/index">
                 <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
                     <path d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"/>
@@ -18,53 +23,112 @@
                 Volver</a>
         </div>
 
-        <h2 th:text="${'Detalles del servicio de ' + #strings.toLowerCase(session.requestElderly.getType())}"></h2>
+        <div class="return alignRight" th:if="${session.role == 'Company'}">
+            <a href="/volunteer/list">
+                <svg class="bi bi-chevron-double-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M8.354 1.646a.5.5 0 010 .708L2.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                    <path fill-rule="evenodd"
+                          d="M12.354 1.646a.5.5 0 010 .708L6.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"/>
+                </svg>
+                Volver
+            </a>
+        </div>
 
-        <table class="info">
-            <tr>
-                <td colspan="2">
-                    El servicio de realiza de <span class="dayActive">Lunes</span> a <span class="dayActive">Viernes</span>
-                    a las <span class="dayActive" th:text="${session.requestElderly.time}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="bold">Precio: </span>
-                    <span th:text="${#numbers.formatDecimal(session.elderlyService.getServicePrice(session.requestElderly.contractId), 2, 0, 'COMMA') + '€'}"></span>
-                </td>
-                <td th:if="${session.requestElderly.endDate == null}">
-                    <span class="bold">Estado del servicio: </span>
-                    <span th:text="${session.requestElderly.state}"
-                          th:classappend="${(session.requestElderly.state == 'Pendiente' ? 'stateBlue'  : '') +
+        <div th:if="${session.role != 'Company'}">
+            <h2 th:text="${'Detalles del servicio de ' + #strings.toLowerCase(session.requestElderly.getType())}"></h2>
+
+            <table class="info">
+                <tr>
+                    <td colspan="2">
+                        El servicio de realiza de <span class="dayActive">Lunes</span> a <span class="dayActive">Viernes</span>
+                        a las <span class="dayActive" th:text="${session.requestElderly.time}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="bold">Precio: </span>
+                        <span th:text="${#numbers.formatDecimal(session.elderlyService.getServicePrice(session.requestElderly.contractId), 2, 0, 'COMMA') + '€'}"></span>
+                    </td>
+                    <td th:if="${session.requestElderly.endDate == null}">
+                        <span class="bold">Estado del servicio: </span>
+                        <span th:text="${session.requestElderly.state}"
+                              th:classappend="${(session.requestElderly.state == 'Pendiente' ? 'stateBlue'  : '') +
                           (session.requestElderly.state == 'Aceptado' ? 'stateGreen'  : '') +
                           (session.requestElderly.state == 'Rechazado' ? 'stateRed'  : '')}"></span>
-                </td>
-                <td th:unless="${session.requestElderly.endDate == null}">
-                    <span class="bold">Estado del servicio: </span>
-                    <span class="stateCancel">Cancelado</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" th:if="${session.requestElderly.description==null}">
-                    <p class="desc bold">Comentarios</p>
-                    <textarea class="form-control" readonly></textarea>
-                </td>
-                <td colspan="2" th:unless="${session.requestElderly.description==null}">
-                    <p class="desc bold">Comentarios</p>
-                    <textarea class="form-control" th:text="${#strings.capitalize(session.requestElderly.description)}" readonly></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" th:if="${session.requestElderly.endDate == null}">
-                    <div th:if="${session.requestElderly.state != 'Rechazado' || session.requestElderly.endDate != null}">
-                        <a class="btn btn-danger"
-                           th:href="@{/request/cancel/{number}(number=${session.requestElderly.number})}">
-                            Cancelar servicio
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        </table>
+                    </td>
+                    <td th:unless="${session.requestElderly.endDate == null}">
+                        <span class="bold">Estado del servicio: </span>
+                        <span class="stateCancel">Cancelado</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" th:if="${session.requestElderly.description==null}">
+                        <p class="desc bold">Comentarios</p>
+                        <textarea class="form-control" readonly></textarea>
+                    </td>
+                    <td colspan="2" th:unless="${session.requestElderly.description==null}">
+                        <p class="desc bold">Comentarios</p>
+                        <textarea class="form-control" th:text="${#strings.capitalize(session.requestElderly.description)}" readonly></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" th:if="${session.requestElderly.endDate == null}">
+                        <div th:if="${session.requestElderly.state != 'Rechazado' || session.requestElderly.endDate != null}">
+                            <a class="btn btn-danger"
+                               th:href="@{/request/cancel/{number}(number=${session.requestElderly.number})}">
+                                Cancelar servicio
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div th:unless="${session.role != 'Company'}">
+            <h2>Detalles del servicio</h2>
+            <table class="info">
+                <tr>
+                    <td colspan="2">
+                        El servicio de realiza de <span class="dayActive">Lunes</span> a <span class="dayActive">Viernes</span>
+                        a las <span class="dayActive" th:text="${session.requestInfo.time}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" th:if="${session.requestInfo.description==null}">
+                        <p class="desc bold">Comentarios</p>
+                        <textarea class="form-control" readonly></textarea>
+                    </td>
+                    <td colspan="2" th:unless="${session.requestInfo.description==null}">
+                        <p class="desc bold">Comentarios</p>
+                        <textarea class="form-control" th:text="${#strings.capitalize(session.requestInfo.description)}" readonly></textarea>
+                    </td>
+                </tr>
+            </table>
+            <h2>Detalles del solicitante</h2>
+            <table class="info">
+                <tr>
+                    <td>
+                        <span class="bold">Nombre del solicitante: </span>
+                        <span th:text="${session.volunteerService.getNameElderly(session.requestInfo.elderlyDNI)}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="bold">Teléfono de contacto: </span>
+                        <span th:text="${session.volunteerService.getPhoneElderly(session.requestInfo.elderlyDNI)}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="bold">Dirección: </span>
+                        <span th:text="${session.volunteerService.getAddressElderly(session.requestInfo.elderlyDNI)}"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div>

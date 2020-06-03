@@ -90,8 +90,8 @@ public class VolunteerAvailabilityController {
         return "redirect:../../login";
     }
 
-    @RequestMapping(value = "/infoVolunteer/{idVolunteer}/{dni}", method = RequestMethod.GET)
-    public String infoRequest(@PathVariable int idVolunteer, @PathVariable String dni, HttpSession session) {
+    @RequestMapping(value = "/infoVolunteer/{id}/{idVolunteer}", method = RequestMethod.GET)
+    public String infoRequest(@PathVariable int id, @PathVariable int idVolunteer, HttpSession session) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
 
@@ -101,7 +101,7 @@ public class VolunteerAvailabilityController {
                 session.setAttribute("phoneV", elderlyService.getPhoneVolunteer(idVolunteer));
 
                 session.setAttribute("volunteerElderly",
-                        volunteerAvailabilityDao.getVolunteerAvailabilityWithElderly(idVolunteer, dni));
+                        volunteerAvailabilityDao.getVolunteerAvailability(id));
 
                 return "/volunteerAvailability/infoVolunteer";
             }

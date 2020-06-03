@@ -51,9 +51,4 @@ public class ElderlySvc implements ElderlyService {
     public int getPhoneVolunteer(int id) {
         return volunteerDao.getVolunteer(id).getPhonenumber();
     }
-
-    @Override
-    public String getNameElderly(String dni) {
-        return elderlyDao.getElderly(dni).getName() + " " + elderlyDao.getElderly(dni).getSurname();
-    }
 }

@@ -55,8 +55,8 @@ public class InvoiceLineController {
     }
 
     @RequestMapping(value="/update/{number}", method = RequestMethod.GET)
-    public String editInvoiceLine(Model model, @PathVariable int invoiceLine) {
-        model.addAttribute("invoiceLine", invoiceLineDao.getInvoiceLine(invoiceLine));
+    public String editInvoiceLine(Model model, @PathVariable int number) {
+        model.addAttribute("invoiceLine", invoiceLineDao.getInvoiceLine(number));
         return "invoiceLine/update";
     }
 
