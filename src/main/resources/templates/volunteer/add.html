@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:object="${session}">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:object="${session}">
 <head>
     <meta charset="UTF-8"/>
     <title>Crear nuevo voluntario</title>
@@ -48,10 +49,11 @@
                     </td>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label for="surname">Número de teléfono*: </label>
+                            <label for="phonenumber">Número de teléfono*: </label>
                             <input type="number" class="form-control" id="phonenumber" th:field="*{phonenumber}"
                                    th:errorClass="needcorrection"/>
-                            <div class="error" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}"></div>
+                            <div class="error" th:if="${#fields.hasErrors('phonenumber')}"
+                                 th:errors="*{phonenumber}"></div>
                         </div>
                     </td>
                 </tr>

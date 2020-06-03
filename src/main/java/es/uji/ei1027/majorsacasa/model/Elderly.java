@@ -18,10 +18,6 @@ public class Elderly {
     public Elderly() {
     }
 
-    public String getSocialAssisId() {
-        return socialAssisId;
-    }
-
     public void setSocialAssisId(String socialAssisId) {
         this.socialAssisId = socialAssisId;
     }

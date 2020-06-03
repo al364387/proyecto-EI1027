@@ -4,7 +4,6 @@ import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.dao.SocialAssistantDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,10 +23,9 @@ public class ElderlyController {
         this.elderlyDao = elderlyDao;
     }
 
-    @RequestMapping("/list")
-    public String listElderlies(Model model) {
-        model.addAttribute("elderlies", elderlyDao.getElderlies());
-        return "elderly/list";
+    @Autowired
+    public void setSocialAssistantDao(SocialAssistantDao socialAssistantDao){
+        this.socialAssistantDao = socialAssistantDao;
     }
 
     @RequestMapping(value = "/add")

@@ -52,6 +52,4 @@ public class VolunteerSvc implements VolunteerService{
     public String getNameVolunteer(int id) {
         return volunteerDao.getVolunteer(id).getName();
     }
-
-
 }

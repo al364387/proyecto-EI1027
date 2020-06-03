@@ -91,9 +91,9 @@
                 <tr>
                     <td>
                         <div class="col-lg-10 col-xl-10 col-md-10 col-xs-2">
-                            <label>Usuario*:</label>
+                            <label for="username">Usuario*:</label>
                             <input type="text" class="form-control" id="username" th:field="*{username}" th:errorClass="needcorrection" size="20"
-                                   maxlength="20"/>
+                                                                 maxlength="20"/>
                             <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                         </div>
                     </td>

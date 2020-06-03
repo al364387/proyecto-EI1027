@@ -19,13 +19,6 @@ h2{
     background: #ffffff;
 }
 
-
-.loggeduser {
-    color: gray;
-    text-align: right;
-    margin-right: 10pt;
-}
-
 .logo{
     width: 65px;
     height: 89px;
@@ -40,16 +33,16 @@ h2{
     text-decoration: none !important;
 }
 
-.padding0{
-    padding: 0;
-}
-
 .nav-select{
     color: #00909e !important;
 }
 
 .separator{
     border-right: 2px #ffffff solid;
+}
+
+.padding0{
+    padding: 0;
 }
 
 /* Index ========================= */
@@ -60,10 +53,6 @@ h2{
 .carousel-inner img {
     width: 100%;
     max-height: 460px
-}
-
-.carousel-control {
-    width: 0;
 }
 
 .carousel-control.left,
@@ -181,7 +170,6 @@ h2{
     -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
     -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
     -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-    -ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
     transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
 }
 
@@ -199,7 +187,6 @@ h2{
     -webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
     -moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
     -o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-    -ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
     transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
     box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3);
 }

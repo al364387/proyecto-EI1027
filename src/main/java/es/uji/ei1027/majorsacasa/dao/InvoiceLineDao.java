@@ -1,6 +1,5 @@
 package es.uji.ei1027.majorsacasa.dao;
 
-import es.uji.ei1027.majorsacasa.model.Invoice;
 import es.uji.ei1027.majorsacasa.model.InvoiceLine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

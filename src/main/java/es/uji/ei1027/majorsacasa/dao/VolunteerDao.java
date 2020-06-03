@@ -50,10 +50,7 @@ public class VolunteerDao {
     }
 
     public void cancelVolunteer(int id) {
-
         LocalDate endDate=LocalDate.now();
-
-        //TODO: Cambiar el state al que toque
         jdbcTemplate.update("UPDATE Volunteer SET endDate =? WHERE id =?", endDate, id);
     }
 
@@ -82,9 +79,8 @@ public class VolunteerDao {
     //Listar Voluntarios
     public List<Volunteer> getVolunteers() {
         try {
-            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state= 'Aceptado'",
+            return jdbcTemplate.query("SELECT * from Volunteer WHERE state= 'Aceptado'",
                     new VolunteerRowMapper());
-            return c;
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<>();
         }
@@ -92,9 +88,8 @@ public class VolunteerDao {
 
     public List<Volunteer> getVolunteersPendientes() {
         try {
-            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state= 'Pendiente'",
+            return jdbcTemplate.query("SELECT * from Volunteer WHERE state= 'Pendiente'",
                     new VolunteerRowMapper());
-            return c;
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<>();
         }
@@ -102,13 +97,10 @@ public class VolunteerDao {
 
     public List<Volunteer> getVolunteersRechazados() {
         try {
-            List<Volunteer> c = jdbcTemplate.query("SELECT * from Volunteer WHERE state='Rechazado'",
+            return jdbcTemplate.query("SELECT * from Volunteer WHERE state='Rechazado'",
                     new VolunteerRowMapper());
-            return c;
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<>();
         }
     }
-
-
 }

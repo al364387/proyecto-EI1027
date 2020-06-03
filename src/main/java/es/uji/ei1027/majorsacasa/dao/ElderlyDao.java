@@ -59,15 +59,4 @@ public class ElderlyDao {
             return null;
         }
     }
-
-    // Muestra todos los datos de las personas mayores
-    public List<Elderly> getElderlies(){
-        try {
-            return jdbcTemplate.query("SELECT * FROM Elderly", new ElderlyRowMapper());
-        } catch (EmptyResultDataAccessException e){
-            return new ArrayList<Elderly>();
-        }
-    }
-
-
 }

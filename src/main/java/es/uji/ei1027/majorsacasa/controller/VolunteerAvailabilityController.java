@@ -79,7 +79,6 @@ public class VolunteerAvailabilityController {
     public String processAddSubmitElderly(@PathVariable int id, HttpSession session) {
         if (session.getAttribute("user") != null) {
             if (session.getAttribute("role").equals("Elderly")) {
-
                 String dni = (String) session.getAttribute("dni");
                 volunteerAvailabilityDao.updateVolunteerAvailabilityAddElderly(id, dni);
 
@@ -87,7 +86,7 @@ public class VolunteerAvailabilityController {
             }
         }
 
-        return "redirect:../../login";
+        return "login";
     }
 
     @RequestMapping(value = "/infoVolunteer/{id}/{idVolunteer}", method = RequestMethod.GET)
@@ -107,7 +106,7 @@ public class VolunteerAvailabilityController {
             }
         }
 
-        return "redirect:../../login";
+        return "login";
     }
 
     @RequestMapping(value = "/infoVolunteer/{id}", method = RequestMethod.GET)
@@ -124,7 +123,7 @@ public class VolunteerAvailabilityController {
             }
         }
 
-        return "redirect:../../login";
+        return "login";
     }
 
     @RequestMapping(value = "/cancel/{id}", method = RequestMethod.GET)
@@ -135,10 +134,10 @@ public class VolunteerAvailabilityController {
 
                 volunteerAvailabilityDao.cancelVolunteerAvailability(id);
 
-                return "redirect:../../";
+                return "index";
             }
         }
 
-        return "redirect:../login";
+        return "login";
     }
 }

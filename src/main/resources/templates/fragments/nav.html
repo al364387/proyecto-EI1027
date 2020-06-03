@@ -23,18 +23,18 @@
                  th:classappend="*{role == 'Admin' || role == 'Company'} ? '' : 'padding0 justify-content-center'">
                 <ul class="nav navbar-nav mr-auto" th:if="*{user == null}">
                     <li class="navbar-li separator">
-                        <a class="navbar-op" th:classappend="${home} ? nav-select : '' " th:href="@{/}">Inicio</a>
+                        <a class="navbar-op" th:classappend="${home} ? 'nav-select' : '' " th:href="@{/}">Inicio</a>
                     </li>
                     <li class="navbar-li separator">
-                        <a class="navbar-op" th:classappend="${info} ? nav-select : '' "
+                        <a class="navbar-op" th:classappend="${info} ? 'nav-select' : '' "
                            th:href="@{/services}">Servicios</a>
                     </li>
                     <li class="navbar-li separator">
-                        <a class="navbar-op" th:classappend="${register} ? nav-select : '' "
+                        <a class="navbar-op" th:classappend="${register} ? 'nav-select' : '' "
                            th:href="@{/register}">Registro</a>
                     </li>
                     <li class="navbar-li">
-                        <a class="navbar-op" th:classappend="${login} ? nav-select : '' " th:href="@{/login}">Iniciar
+                        <a class="navbar-op" th:classappend="${login} ? 'nav-select' : '' " th:href="@{/login}">Iniciar
                             sesión</a>
                     </li>
                 </ul>

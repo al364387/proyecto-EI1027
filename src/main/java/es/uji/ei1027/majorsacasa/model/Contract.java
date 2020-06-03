@@ -95,10 +95,6 @@ public class Contract {
         return auxService;
     }
 
-    public void setAuxService(String auxService) {
-        this.auxService = auxService;
-    }
-
     @Override
     public String toString() {
         return "Contract{" +

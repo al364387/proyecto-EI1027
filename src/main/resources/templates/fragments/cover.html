@@ -16,7 +16,7 @@
             </ol>
             <div class="carousel-inner">
                 <div th:each="image,iterstat: ${images}" th:class="${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
-                    <img th:src="@{${image}}"class="d-block w-100">
+                    <img th:src="@{${image}}" class="d-block w-100" alt="portada">
                     <div class="header-text hidden-xs">
                         <div class="col-md-10 marginCenter">
                             <h2 class="alignLeft">
@@ -45,20 +45,6 @@
                 <span class="sr-only"> Next </span>
             </a>
         </div>
-
-
-        <!--        La creación de facturas tiene que ser automática -->
-        <!--        <h3>Facturas</h3>-->
-        <!--        <ul>-->
-        <!--            <li><a href="invoice/add"> Crear factura </a></li>-->
-        <!--            <li><a href="invoice/list"> Lista de facturas </a></li>-->
-        <!--        </ul>-->
-
-        <!--        <h3>Linea de Factura</h3>-->
-        <!--        <ul>-->
-        <!--            <li><a href="invoiceLine/add"> Crear linea de factura </a></li>-->
-        <!--            <li><a href="invoiceLine/list"> Lista de lineas de facturas </a></li>-->
-        <!--        </ul>-->
     </div>
 </body>
 </html>

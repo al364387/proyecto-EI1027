@@ -67,12 +67,12 @@
                 </tr>
                 <tr>
                     <td colspan="2" th:if="${session.requestElderly.description==null}">
-                        <p class="desc bold">Comentarios</p>
-                        <textarea class="form-control" readonly></textarea>
+                        <label for="descriptionV" class="bold">Comentarios</label>
+                        <textarea id="descriptionV" class="form-control" readonly></textarea>
                     </td>
                     <td colspan="2" th:unless="${session.requestElderly.description==null}">
-                        <p class="desc bold">Comentarios</p>
-                        <textarea class="form-control" th:text="${#strings.capitalize(session.requestElderly.description)}" readonly></textarea>
+                        <label for="description" class="bold">Comentarios</label>
+                        <textarea id="description" class="form-control" th:text="${#strings.capitalize(session.requestElderly.description)}" readonly></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -98,12 +98,12 @@
                 </tr>
                 <tr>
                     <td colspan="2" th:if="${session.requestInfo.description==null}">
-                        <p class="desc bold">Comentarios</p>
-                        <textarea class="form-control" readonly></textarea>
+                        <label for="descriptionVC" class="bold">Comentarios</label>
+                        <textarea id="descriptionVC" class="form-control" readonly></textarea>
                     </td>
                     <td colspan="2" th:unless="${session.requestInfo.description==null}">
-                        <p class="desc bold">Comentarios</p>
-                        <textarea class="form-control" th:text="${#strings.capitalize(session.requestInfo.description)}" readonly></textarea>
+                        <label for="descriptionC" class="bold">Comentarios</label>
+                        <textarea id="descriptionC" class="form-control" th:text="${#strings.capitalize(session.requestInfo.description)}" readonly></textarea>
                     </td>
                 </tr>
             </table>

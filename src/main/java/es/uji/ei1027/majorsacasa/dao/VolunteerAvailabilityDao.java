@@ -31,17 +31,6 @@ public class VolunteerAvailabilityDao {
                 volunteerAvailability.getHobby(), volunteerAvailability.getEndDate(), idVolunteer, volunteerAvailability.getDniEderly());
     }
 
-    // Actualiza la disponibilidad del voluntario, a excepción de las claves primarias.
-    public void updateVolunteerAvailability(VolunteerAvailability volunteerAvailability) {
-        jdbcTemplate.update("UPDATE VolunteerAvailability " +
-                        "SET startTime = ?, endTime = ?, monday = ?, tuesday = ?, wednesday = ?, thursday= ?, friday = ?," +
-                        " saturday = ?, sunday = ? WHERE idVolunteer = ? AND dniElderly = ?",
-                volunteerAvailability.getStartTime(), volunteerAvailability.getEndTime(), volunteerAvailability.isMonday(),
-                volunteerAvailability.isTuesday(), volunteerAvailability.isWednesday(), volunteerAvailability.isThursday(),
-                volunteerAvailability.isFriday(), volunteerAvailability.isSaturday(), volunteerAvailability.isSunday(),
-                volunteerAvailability.getIdVolunteer(), volunteerAvailability.getDniEderly());
-    }
-
     // Asocia la disponibilidad del voluntario a una persona mayor.
     public void updateVolunteerAvailabilityAddElderly(int id, String dniEderly) {
         jdbcTemplate.update("UPDATE VolunteerAvailability SET dniElderly = ? WHERE id = ?",
@@ -64,17 +53,6 @@ public class VolunteerAvailabilityDao {
             return null;
         }
     }
-
-
-    // Muestra la disponibilidad de un voluntario con solicitantes. Devuelve nulo si no existe.
-//    public VolunteerAvailability getVolunteerAvailabilityWithElderly(int volunteer, String dniElderly) {
-//        try {
-//            return jdbcTemplate.queryForObject("SELECT * FROM VolunteerAvailability WHERE idVolunteer = ? " +
-//                    "AND dniElderly = ?", new VolunteerAvailabilityRowMapper(), volunteer, dniElderly);
-//        } catch (EmptyResultDataAccessException e) {
-//            return null;
-//        }
-//    }
 
     // Muestra la disponibilidad de un voluntario con solicitantes. Devuelve nulo si no existe.
     public List<VolunteerAvailability> getVolunteerAvailabilities(int volunteer) {

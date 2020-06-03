@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.Formatter;
 
 import javax.sql.DataSource;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -24,7 +23,7 @@ public class MajorsacasaConfiguration  {
     public Formatter<LocalDate> localDateFormatter() {
         return new Formatter<LocalDate>() {
             @Override
-            public LocalDate parse(String text, Locale locale) throws ParseException {
+            public LocalDate parse(String text, Locale locale) {
                 return LocalDate.parse(text, DateTimeFormatter.ISO_LOCAL_DATE);
             }
 

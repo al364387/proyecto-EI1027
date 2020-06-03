@@ -25,7 +25,6 @@ import java.util.List;
 public class RequestController {
     private RequestDao requestDao;
     private ContractDao contractDao;
-    private ElderlyService elderlyService;
     private VolunteerService volunteerService;
 
     @Autowired
@@ -36,11 +35,6 @@ public class RequestController {
     @Autowired
     public void setContractDao(ContractDao contractDao) {
         this.contractDao = contractDao;
-    }
-
-    @Autowired
-    public void setElderlyService(ElderlyService elderlyService) {
-        this.elderlyService = elderlyService;
     }
 
     @Autowired

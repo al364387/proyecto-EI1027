@@ -38,9 +38,8 @@ public class InvoiceDao {
     //Listar Facturas
     public List<Invoice> getInvoices() {
         try {
-            List<Invoice> c = jdbcTemplate.query("SELECT * from Invoice",
+            return jdbcTemplate.query("SELECT * from Invoice",
                     new InvoiceRowMapper());
-            return c;
         } catch (EmptyResultDataAccessException e) {
 
             return new ArrayList<Invoice>();
@@ -58,15 +57,14 @@ public class InvoiceDao {
 
     public List<Invoice> getInvoicesCompany(String cif) {
         try {
-            List<Invoice> c = jdbcTemplate.query("SELECT Invoice.* FROM Invoice\n" +
+
+            return jdbcTemplate.query("SELECT Invoice.* FROM Invoice\n" +
                             "    INNER JOIN Invoiceline on Invoice.invoicenum = Invoiceline.invoicenumid\n" +
                             "    INNER JOIN Request on Invoiceline.requestnum = Request.number\n" +
                             "    INNER JOIN Contract on Request.contractid = Contract.numcontract\n" +
                             "    INNER JOIN Company on Contract.cifcompany = Company.cif\n" +
                             "    WHERE Company.cif=?;",
                     new InvoiceRowMapper(), cif);
-
-            return c;
         } catch (EmptyResultDataAccessException e) {
 
             return new ArrayList<Invoice>();
