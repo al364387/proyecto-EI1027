@@ -20,11 +20,7 @@ public class SocialAssistantDao {
     }
 
     // Muestra el ID del asistente social
-    public String getSocialAssistantID(){
-        try {
-            return jdbcTemplate.queryForObject("SELECT dni FROM SocialAssistant", new SocialAssistantRowMapper()).getDni();
-        }catch (NullPointerException e){
-            return null;
-        }
+    public SocialAssistant getSocialAssistantID(){
+        return jdbcTemplate.queryForObject("SELECT * FROM SocialAssistant", new SocialAssistantRowMapper());
     }
 }

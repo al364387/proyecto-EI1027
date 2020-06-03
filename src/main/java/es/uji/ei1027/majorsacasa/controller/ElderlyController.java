@@ -4,6 +4,7 @@ import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.dao.SocialAssistantDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,8 +49,8 @@ public class ElderlyController {
         }
 
         try {
-            elderlyDao.addElderly(elderly, socialAssistantDao.getSocialAssistantID());
-        } catch (NullPointerException e){
+            elderlyDao.addElderly(elderly, socialAssistantDao.getSocialAssistantID().getDni());
+        } catch (DuplicateKeyException e){
             throw new MajorsacasaException(
                 "con el DNI: " + elderly.getDNI() +
                 " o con el usuario: " + elderly.getUsername(),
