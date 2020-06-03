@@ -39,7 +39,7 @@ public class VolunteerController {
     @RequestMapping(value = "/delete/{id}")
     public String processDeleteVolunteer(@PathVariable int id) {
         volunteerDao.deleteVolunteer(id);
-        return "redirect:../list";
+        return "index";
     }
 
     @RequestMapping("/list")
@@ -133,12 +133,9 @@ public class VolunteerController {
 
     @RequestMapping(value = "/updateFechaFin/{id}", method = RequestMethod.GET)
     public String updateVolunteerEndDate(@PathVariable int id) {
-        try {
-            volunteerDao.cancelVolunteer(id);
-        }catch (Exception ex){
-            throw new MajorsacasaException(
-                    "Ha habido un error", "errorVoluntario");
-        }
-        return "redirect:../../logout";
+
+        volunteerDao.cancelVolunteer(id);
+
+        return "index";
     }
 }

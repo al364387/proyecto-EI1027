@@ -57,7 +57,7 @@ public class ElderlyController {
                 "CPduplicada");
         }
 
-        return "redirect:list";
+        return "index";
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
@@ -77,7 +77,8 @@ public class ElderlyController {
             return "elderly/update";
         }
         elderlyDao.upadateElderly(elderly);
-        return "redirect:list";
+
+        return "elderly/update";
     }
 
     @RequestMapping(value = "delete/{dni}")
@@ -86,11 +87,11 @@ public class ElderlyController {
             elderlyDao.deleteElderly(dni);
         }catch (Exception e){
             throw new MajorsacasaException(
-                "No se puede borrar el usuario con DNI: " + dni +
+                "No puede borrar la cuenta con DNI: " + dni +
                 " si aun tiene servicios solicitados",
                 "CPConServicios");
         }
 
-        return "redirect:../list";
+        return "index";
     }
 }
