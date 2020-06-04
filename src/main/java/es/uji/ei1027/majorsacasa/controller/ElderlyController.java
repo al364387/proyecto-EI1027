@@ -50,14 +50,13 @@ public class ElderlyController {
 
         try {
             elderlyDao.addElderly(elderly, socialAssistantDao.getSocialAssistantID().getDni());
+
         } catch (DuplicateKeyException e){
             throw new MajorsacasaException(
-                "con el DNI: " + elderly.getDNI() +
-                " o con el usuario: " + elderly.getUsername(),
-                "CPduplicada");
+                "con el usuario o con el DNI introducido", "CPduplicada");
         }
 
-        return "index";
+        return "redirect:../login";
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
@@ -85,13 +84,12 @@ public class ElderlyController {
     public String processDelete(@PathVariable String dni){
         try{
             elderlyDao.deleteElderly(dni);
+            return "index";
         }catch (Exception e){
             throw new MajorsacasaException(
                 "No puede borrar la cuenta con DNI: " + dni +
                 " si aun tiene servicios solicitados",
                 "CPConServicios");
         }
-
-        return "index";
     }
 }

@@ -96,7 +96,7 @@ public class VolunteerController {
                     "CPduplicada");
         }
 
-        return "redirect:/index";
+        return "redirect:../login";
     }
 
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)

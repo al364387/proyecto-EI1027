@@ -57,19 +57,30 @@ public class DefaultController {
     }
 
     @RequestMapping("/services")
-    public String services(Model model) {
+    public String services(Model model, HttpSession session) {
+        if (session.getAttribute("user") != null){
+            return "index";
+        }
+
         model.addAttribute("info", true);
         return "services";
     }
 
     @RequestMapping("/register")
-    public String register(Model model) {
+    public String register(Model model, HttpSession session) {
+        if (session.getAttribute("user") != null){
+            return "index";
+        }
+
         model.addAttribute("register", true);
         return "register";
     }
 
     @RequestMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, HttpSession session) {
+        if (session.getAttribute("user") != null){
+            return "index";
+        }
         model.addAttribute("user", new Admin());
         model.addAttribute("login", true);
         return "login";
