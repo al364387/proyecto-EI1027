@@ -23,6 +23,11 @@ public class ContractValidator implements Validator {
         if (contract.getPrice() == 0) {
             errors.rejectValue("price", "obligado",
                     "Es necesario introducir un precio");
+        } else{
+            if (contract.getPrice() < 0) {
+                errors.rejectValue("price", "obligado",
+                        "Es necesario introducir un precio mayor a 0");
+            }
         }
 
         if (contract.getServiceNumber() == 0) {
