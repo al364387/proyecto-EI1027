@@ -33,6 +33,11 @@ public class ContractValidator implements Validator {
         if (contract.getServiceNumber() == 0) {
             errors.rejectValue("serviceNumber", "obligado",
                     "Es necesario introducir un número de servicios");
+        } else{
+            if (contract.getServiceNumber() < 0) {
+                errors.rejectValue("price", "obligado",
+                        "Es necesario introducir un número de servicios a 0");
+            }
         }
 
         if (contract.getStartDate() == null) {
